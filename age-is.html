@@ -5,39 +5,37 @@
 	<title>Age is...</title>
 	<style>
 		body {
-			font-family: "monospace";
-			background-color: #2a2824;
-			color: #1ae6e6;
+		 font-family: "monospace";
+		 background-color: #2a2824;
+		 color: #1ae6e6;
+
+		 width: 60%;
+		 margin: 10% auto;
 		}
 		hr {
-			border: solid #3e3c38 1px;
+		 border: dotted #3e3c38 1px;
 		}
 	</style>
 </head>
 <body>
 	<script>
-	document.write("** Balboa's age is");
-	document.write("<br>");
-	document.write(" 40 years");
-	
-	document.write("<p>");
-	
-	document.write("** Iuzy's age is");
-	document.write("<br>");
-	document.write(" 23 years");
-	
-	document.write("<p>");
-	
-	document.write(" = Sum of the ages is: " + Math.round((40 + 23)/2));
-	
-	document.write("<hr>");
+	document.write("** Balboa's age is <br>");
+	document.write(" 40 years <p>");
 
-	document.write("** Iuzy was born on december "+ (2018 - 23));
-	document.write("<br>");
-	document.write("** Laila was born on august "+ (2018 - 26));
-	document.write("<br>");
-	document.write("** Balboa was born on february "+ (2018 - 40));
-	document.write("<br>");
+	document.write("** Iuzy's age is <br>");
+	document.write(" 23 years"+ "<p>");
+
+	document.write(" = Sum of the ages is: " +Math.round((40 + 23)/2)+ "<hr>");
+
+	document.write("** Iuzy was born on december "+ (2018 - 23)+ "<br>");
+	document.write("** Laila was born on august "+ (2018 - 26)+ "<br>");
+	document.write("** Balboa was born on february "+ (2018 - 40)+ "<hr>");
+
+	document.write("** Emily was born on december " +(2018 - 21)+ "<br>");
+	document.write("** Jasmine was born on august " +(2018 - 18)+ "<br>");
+	document.write("** Scarlett was born on february " +(2018 - 33));
+
+	document.write("<hr>");
 
 </script>
 </body>
