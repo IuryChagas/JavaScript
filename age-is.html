@@ -19,21 +19,44 @@
 </head>
 <body>
 	<script>
-	document.write("** Balboa's age is <br>");
-	document.write(" 40 years <p>");
+	
+	var currentYear = 2018;
+	var iuzyAge = 23;
+	var lailaAge = 26;
+	var balboaAge = 40;
+	var emilyAge = 21;
+	var jasmineAge = 18;
+	var scarlettAge = 33;
+	
+	var  averageAge = (iuzyAge + lailaAge + balboaAge + emilyAge + jasmineAge + scarlettAge)/6;
 
-	document.write("** Iuzy's age is <br>");
-	document.write(" 23 years"+ "<p>");
+	document.write("** Iuzy is "+(iuzyAge)+ " years old <br>");
+	document.write("** Laila is "+(lailaAge)+" years old <br>");
+	document.write("** Balboa is "+(balboaAge)+" years old <br>");
+	document.write("** Emily is "+(emilyAge)+" years old <br>");
+	document.write("** Jasmine is "+(jasmineAge)+" years old <br>");
+	document.write("** Scarlett is "+(scarlettAge)+" years old <br>");
 
-	document.write(" = Sum of the ages is: " +Math.round((40 + 23)/2)+ "<hr>");
+	document.write("<hr>");
 
-	document.write("** Iuzy was born on december "+ (2018 - 23)+ "<br>");
-	document.write("** Laila was born on august "+ (2018 - 26)+ "<br>");
-	document.write("** Balboa was born on february "+ (2018 - 40)+ "<hr>");
+	document.write("** Balboa's age is");
+	document.write(" "+balboaAge+" years old<p>");
 
-	document.write("** Emily was born on december " +(2018 - 21)+ "<br>");
-	document.write("** Jasmine was born on august " +(2018 - 18)+ "<br>");
-	document.write("** Scarlett was born on february " +(2018 - 33));
+	document.write("** Iuzy's age is ");
+	document.write(" "+iuzyAge+" years old<p>");
+
+	document.write(" = Sum of the ages is: " +Math.round((40 + 23)/2)+" <br >");
+	document.write(" = Average age: "+Math.round(averageAge)+" years old");
+
+	document.write("<hr>")
+
+	document.write("** Iuzy was born on december "+ (currentYear - iuzyAge)+ "<br>");
+	document.write("** Laila was born on august "+ (currentYear - lailaAge)+ "<br>");
+	document.write("** Balboa was born on february "+ (currentYear - balboaAge)+ "<hr>");
+
+	document.write("** Emily was born on december " +(currentYear - emilyAge)+ "<br>");
+	document.write("** Jasmine was born on august " +(currentYear - jasmineAge)+ "<br>");
+	document.write("** Scarlett was born on february " +(currentYear - scarlettAge));
 
 	document.write("<hr>");
 
