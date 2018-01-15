@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Age is...</title>
+	<style>
+		body {
+		 font-family: "monospace";
+		 background-color: #2a2824;
+		 color: #1ae6e6;
+		 width: 60%;
+		 margin: 10% auto;
+		}
+
+		hr {
+		 border: dotted #3e3c38 1px;
+		}
+
+		p:last-child {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<script>
+	function skipline(phrase) {
+		phrase = document.write("<hr>");
+	};
+
+	function print(line) {
+		line = document.write(line+"<br>");
+	}
+
+	/*	formula: Weight / (Height * Height)		*/
+
+	var yourWeight = 54;
+	var yourHeight = 1.61;
+	var yourImc = yourWeight / (yourHeight * yourHeight);
+
+	var myWeight = 76;
+	var myHeight = 1.71;
+	var myImc = myWeight / (myHeight * myHeight);
+</script>
+<p>
+	<script>
+		print("The result of your IMC is: "+ Math.round(yourImc)+("<br>"));
+		print("The result of my IMC is: "+ Math.round(myImc));
+	</script>
+</p>
+</body>
+</html>
