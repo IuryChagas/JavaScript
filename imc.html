@@ -31,21 +31,24 @@
 		line = document.write(line+"<br>");
 	}
 
+	function calcImc(weight, height) {
+		var imc = weight / (height * height);
+		print("IMC's result is: "+Math.round(imc));
+		skipline();
+	}
+
 	/*	formula: Weight / (Height * Height)		*/
 
 	var yourWeight = 54;
 	var yourHeight = 1.61;
-	var yourImc = yourWeight / (yourHeight * yourHeight);
+
+	calcImc(yourWeight, yourHeight);
 
 	var myWeight = 76;
 	var myHeight = 1.71;
-	var myImc = myWeight / (myHeight * myHeight);
+
+	calcImc(myWeight, myHeight);
+
 </script>
-<p>
-	<script>
-		print("The result of your IMC is: "+ Math.round(yourImc)+("<br>"));
-		print("The result of my IMC is: "+ Math.round(myImc));
-	</script>
-</p>
 </body>
 </html>
