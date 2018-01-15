@@ -20,6 +20,14 @@
 <body>
 	<script>
 	
+	function skipline(phrase) {
+		phrase = document.write("<hr>");
+	};
+
+	function print(line) {
+		line = document.write(line+"<br>");
+	}
+
 	var currentYear = 2018;
 	var iuzyAge = 23;
 	var lailaAge = 26;
@@ -29,36 +37,32 @@
 	var scarlettAge = 33;
 	
 	var  averageAge = (iuzyAge + lailaAge + balboaAge + emilyAge + jasmineAge + scarlettAge)/6;
+	var totalSum = (iuzyAge + lailaAge + balboaAge + emilyAge + jasmineAge + scarlettAge);
 
-	document.write("** Iuzy is "+(iuzyAge)+ " years old <br>");
-	document.write("** Laila is "+(lailaAge)+" years old <br>");
-	document.write("** Balboa is "+(balboaAge)+" years old <br>");
-	document.write("** Emily is "+(emilyAge)+" years old <br>");
-	document.write("** Jasmine is "+(jasmineAge)+" years old <br>");
-	document.write("** Scarlett is "+(scarlettAge)+" years old <br>");
 
-	document.write("<hr>");
+	print("** Iuzy is "+(iuzyAge)+ " years old");
+	print("** Laila is "+(lailaAge)+" years old");
+	print("** Balboa is "+(balboaAge)+" years old");
+	print("** Emily is "+(emilyAge)+" years old");
+	print("** Jasmine is "+(jasmineAge)+" years old");
+	print("** Scarlett is "+(scarlettAge)+" years old");
+	skipline();
 
-	document.write("** Balboa's age is");
-	document.write(" "+balboaAge+" years old<p>");
+	print("° Total sum of the ages is = " +totalSum+" years");
+	print("° Average age = "+Math.round(averageAge)+" years old");
 
-	document.write("** Iuzy's age is ");
-	document.write(" "+iuzyAge+" years old<p>");
+	skipline();
 
-	document.write(" = Sum of the ages is: " +Math.round((40 + 23)/2)+" <br >");
-	document.write(" = Average age: "+Math.round(averageAge)+" years old");
+	print("** Iuzy was born on december "+ (currentYear - iuzyAge));
+	print("** Laila was born on august "+ (currentYear - lailaAge));
+	print("** Balboa was born on february "+ (currentYear - balboaAge));
 
-	document.write("<hr>")
+	print("** Emily was born on december " +(currentYear - emilyAge));
+	print("** Jasmine was born on august " +(currentYear - jasmineAge));
+	print("** Scarlett was born on february " +(currentYear - scarlettAge));
 
-	document.write("** Iuzy was born on december "+ (currentYear - iuzyAge)+ "<br>");
-	document.write("** Laila was born on august "+ (currentYear - lailaAge)+ "<br>");
-	document.write("** Balboa was born on february "+ (currentYear - balboaAge)+ "<hr>");
+	skipline();
 
-	document.write("** Emily was born on december " +(currentYear - emilyAge)+ "<br>");
-	document.write("** Jasmine was born on august " +(currentYear - jasmineAge)+ "<br>");
-	document.write("** Scarlett was born on february " +(currentYear - scarlettAge));
-
-	document.write("<hr>");
 
 </script>
 </body>
