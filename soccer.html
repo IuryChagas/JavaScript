@@ -30,21 +30,19 @@
 	function print(line) {
 		line = document.write(line+"<br>");
 	}
-	var victories = 3;
-	var tieds = 1;
-	var defeats = 0;
 
-	var victories = victories * prompt("Number of victories: ");
-	var tieds = tieds * prompt("Number of tied: ");
-	var defeats = prompt("Numder of defeats: ");
+	var victories = parseInt(prompt("Number of victories: "));
+	var tieds = parseInt(prompt("Number of tied: "));
+	var defeats = parseInt(prompt("Numder of defeats: "));
 
-	var totalpoints = victories + tieds;
+	var totalpoints = (victories * 3) + tieds;
 
 	print("Number of victories: "+victories);
 	print("Number of tieds: "+tieds);
 	print("Number of defeats: "+defeats);
 	skipline();
 	print("Your Team has: 🏆 "+totalpoints+" points");
+
 </script>
 </body>
 </html>
