@@ -36,14 +36,18 @@
 		return weight / (height * height);
 	}
 
-		var yourImc = calcImc(54, 1.61);
-		var myImc = calcImc(76, 1.71);
-		var totalSum = yourImc + myImc;
+		var userName = prompt("What's your Name? ");
+		var informedWeight = prompt(userName+" what's your Weight? ");
+		var informedHeight = prompt("and now, Whta's your Height? ");
+		var yourImc = calcImc(informedWeight, informedHeight);
 
-		print("IMC's result is: "+Math.round(yourImc));
-		print("IMC's result is: "+Math.round(myImc));
+		print("▸ "+userName);
 		skipline();
-		print("Total Sum of IMC's: "+Math.round(totalSum));
+		print("Informed Weight: "+Math.round(informedWeight)+" kg");
+		print("Informed Height: "+(informedHeight)+" m");
+		skipline();
+		print("▸ "+userName+" your imc is: "+Math.round(yourImc));
+
 </script>
 </body>
 </html>
