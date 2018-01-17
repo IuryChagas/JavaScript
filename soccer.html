@@ -37,12 +37,24 @@
 
 	var totalpoints = (victories * 3) + tieds;
 
+	print("Your team's score last year's: "+28+" points");
+	skipline();
 	print("Number of victories: "+victories);
 	print("Number of tieds: "+tieds);
 	print("Number of defeats: "+defeats);
 	skipline();
-	print("Your Team has: 🏆 "+totalpoints+" points");
+	print("Your team has: 🏆 "+totalpoints+" points");
 
+	if (totalpoints > 28) {
+		skipline();
+		print("Your team is BETTER than last year's.");
+	} else if (totalpoints == 28) {
+			skipline();
+			print("Your team has not progressed, It's with the same points!");
+	} else {
+			skipline();
+			print("Your team is WORSE than last year's.");
+	};
 </script>
 </body>
 </html>
