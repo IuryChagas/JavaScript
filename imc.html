@@ -39,14 +39,23 @@
 		var userName = prompt("What's your Name? ");
 		var informedWeight = prompt(userName+" what's your Weight? ");
 		var informedHeight = prompt("and now, Whta's your Height? ");
-		var yourImc = calcImc(informedWeight, informedHeight);
+		var userImc = calcImc(informedWeight, informedHeight);
 
 		print("▸ "+userName);
 		skipline();
 		print("Informed Weight: "+Math.round(informedWeight)+" kg");
 		print("Informed Height: "+(informedHeight)+" m");
 		skipline();
-		print("▸ "+userName+" your imc is: "+Math.round(yourImc));
+		print("▸ "+userName+" your imc is: "+Math.round(userImc));
+		skipline();
+
+		if(userImc > 18.5 && userImc < 35) {
+			print("Your imc is excellent!");
+		}if(userImc <= 18.5) {
+			print("You are below recommended.");
+		}if (userImc >= 35) {
+			print("You are above recommended.");
+		}
 
 </script>
 </body>
