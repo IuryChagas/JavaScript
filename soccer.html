@@ -23,38 +23,40 @@
 </head>
 <body>
 	<script>
-	function skipline(phrase) {
-		phrase = document.write("<hr>");
-	};
+		function skipline(phrase) {
+			phrase = document.write("<hr>");
+		};
 
-	function print(line) {
-		line = document.write(line+"<br>");
-	}
+		function print(line) {
+			line = document.write(line+"<br>");
+		}
 
-	var victories = parseInt(prompt("Number of victories: "));
-	var tieds = parseInt(prompt("Number of tied: "));
-	var defeats = parseInt(prompt("Numder of defeats: "));
+		var victories = parseInt(prompt("Number of victories: "));
+		var tied = parseInt(prompt("Number of tied: "));
+		var defeats = parseInt(prompt("Numder of defeats: "));
 
-	var totalpoints = (victories * 3) + tieds;
+		var totalpoints = victories * 3 + tied;
 
-	print("Your team's score last year's: "+28+" points");
-	skipline();
-	print("Number of victories: "+victories);
-	print("Number of tieds: "+tieds);
-	print("Number of defeats: "+defeats);
-	skipline();
-	print("Your team has: 🏆 "+totalpoints+" points");
-
-	if (totalpoints > 28) {
+		print("Your team's score last year's: "+28+" points");
 		skipline();
-		print("Your team is BETTER than last year's.");
-	} else if (totalpoints == 28) {
+		print("Number of victories: "+victories);
+		print("Number of tied: "+tied);
+		print("Number of defeats: "+defeats);
+		skipline();
+		print("Your team has: 🏆 "+totalpoints+" points");
+
+		if (totalpoints > 28) {
 			skipline();
-			print("Your team has not progressed, It's with the same points!");
-	} else {
-			skipline();
-			print("Your team is WORSE than last year's.");
-	};
-</script>
+			print("Your team is BETTER than last year's.");
+		} else if (totalpoints == 28) {
+				skipline();
+				print("Your team has not progressed, It's with the same points!");
+		} else {
+				skipline();
+				print("Your team is WORSE than last year's.");
+		};
+
+	</script>
+	<p>Try again: Ctrl + R or F5</p>
 </body>
 </html>
