@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Cup Years</title>
+	<style>
+		body {
+		 font-family: "monospace";
+		 background-color: #2a2824;
+		 color: #1ae6e6;
+		 width: 60%;
+		 margin: 10% auto;
+		}
+
+		hr {
+		 border: dotted #3e3c38 1px;
+		}
+
+		p:last-child {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+<h1>
+	<p>Years of FIFA World Cup </p>
+</h1>
+	<script>
+		function skipline(phrase) {
+			phrase = document.write("<hr>");
+		};
+
+		function print(line) {
+			line = document.write(line+"<br>");
+		}
+
+		var yearOfWorldCup = 1930;
+		var userRequest = parseInt(prompt("Searching for years of world cups. Define initial year: "));
+
+		while(yearOfWorldCup <= userRequest){
+			
+			print("🏆:"+yearOfWorldCup);
+			skipline();
+			
+			yearOfWorldCup = yearOfWorldCup + 4;
+		}if(userRequest < 1930){
+			print(` <pre> 
+			           $$$$$$$$$$$$$$$$$$$$$$$
+			         $$$$   $$$$$$$$$$$$$$$$$$$$$
+			       $$$$      $$$$$$$$$$$$$$$$$$$$$$
+			     $$$$$        $$$$$$$$$$$$$$$$$$$$$$$
+			    $$$$$          $$$$$$$$$$$$$$$$$$$$$$$
+			   $$$$$            $$$$$$$$$$$$$$$$$$$$$$$
+			  $$$$$$            $$$$$$$$$$$$$$$$$$$$$$$$
+			  $$$$$$           $$$$$$$$$           $$$$$$
+			  $$…$$$$$         $$$$ $$$ $$$         $$$$$
+			  $$$$$$$$      $$$$   $    $$$$     $$$$$$$$
+			  $$$$$$$$$$$$$$$$$   $$$   $$$$$$$$$$$$$$$$$
+			  $$$ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ o$$
+			  $$$  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  $$$
+			   $$$  $’$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  o$$$
+			   ’$$o  $$  $$’$$$$$$$$$$$$$$’$$ $$     o$$
+			     $$o$    $$  ’$$’$$’$$’  $$     $   o$$
+			      $$$o$  $    $$   $$   $$     $$  o$
+			       ’$$$$O$    $$    $$   $$     o$$$
+			          ’$$o$$   $$   $$   $$   o$$$
+			             ’$$$$o$o$o$o$o$o$o$o$$$$
+
+			          Buuu! There is no result here... 
+</pre> `);}
+	</script>
+	<p>Try again: Ctrl + R or F5 🔃</p>
+</body>
+</html>
