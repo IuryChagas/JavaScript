@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Arrays JS</title>
+	<style>
+		h1 {
+			text-align: center; 
+		}
+		body {
+			width: 50%;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<h1>concat() arrays in Js</h1>
+	<script>
+		
+		function skipline(line) {
+			line = document.write("<br>");
+		}
+		function write(phrase){
+			phrase = document.write("<hr>");
+		}
+
+		var arr1 = new Array(9,8,7,6,5,4,3,2,1,0);
+		 function desc(a,b) {
+		 	if (a > b) {
+		 		return -1;
+		 	}
+		 	if (a < b) {
+		 			return 1;
+		 	}
+		 	if (a === b) {
+		 		return 0;
+		 	}
+		 }
+		arr1.sort(desc);
+		
+
+		document.write("reverse(): "+arr1);
+
+		console.log("sort():");
+		console.log(arr1);
+	</script>
+	<h1>concat()</h1>
+</body>
+</html>

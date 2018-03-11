@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Arrays JS</title>
+	<style>
+		h1 {
+			text-align: center; 
+		}
+		body {
+			width: 50%;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<h1>Arrays in Js</h1>
+	<script>
+		
+		function skipline(line) {
+			line = document.write("<br>");
+		}
+		function write(phrase){
+			phrase = document.write("<hr>");
+		}
+
+		var arr1 = new Array("Red", 10, 20.4);
+		var arr2 = Array("Blue", 12, 30.3, arr1);
+		var arr3 = Array("Orange", 10, 23.2, arr1, arr2);
+		var arr4 = Array(25,2018,1.33,"Black","Iury");
+
+		document.write("arr1: "+arr1[0]);
+		skipline();
+		document.write("arr2: "+arr2[0]);
+		skipline();
+		document.write("arr3: "+arr3[4]);
+		write();
+
+		document.write("Length(arr1): "+arr1.length);
+		write();
+		document.write("Length(arr2): "+arr2.length);
+		write();
+		document.write("Length(arr3): "+arr3.length);
+		write();
+		document.write("Length(arr4): "+arr4.length);
+		write();
+	</script>
+	<h1>Removing elements</h1>
+	<script>
+		arr1.length = 15648;
+		arr4.length = 2018;
+		
+		document.write("Length(arr1): "+arr1[0]);
+		write();
+		document.write("Length(arr4): "+arr4[4]);
+		write();
+	</script>
+</body>
+</html>
