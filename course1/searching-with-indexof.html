@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Arrays JS</title>
+	<style>
+		h1 {
+			text-align: center; 
+		}
+		body {
+			width: 50%;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+<!-- */
+	<h1>Searching with IndexOf</h1>
+	<script>
+		
+		function skipline(line) {
+			line = document.write("<br>");
+		}
+		function write(phrase){
+			document.write(phrase);
+		}
+
+		var arr1 = ["Orange","Blue","Red","Blue","Green"];
+		var ret = arr1.indexOf("Blue", 2);
+
+		document.write("Return: "+ ret +" Value: "+ arr1[ret]);
+
+		console.log(ret);
+	</script>
+ -->
+		<h1>Searching with lastIndexOf</h1>
+	<script>
+		
+		function skipline(line) {
+			line = document.write("<br>");
+		}
+		var arr1 = ["Orange","Blue","Red","Blue","Green"];
+		var ret = arr1.lastIndexOf("Green", 5);
+
+		document.write("Return: "+ ret +" Value: "+ arr1[ret]);
+
+		console.log(ret);
+
+		skipline();
+	</script>
+	<hr>
+	<h2>Search  in practice</h2>
+	<br>
+	<input type="text" id="search">
+	<button onclick="search();">search</button>
+	<br>
+	<strong>Result: </strong>
+	<br>
+	<span id="result"></span>
+	<script>
+
+	function search(){
+
+		var arr = ["a content of blog", "new of an article", "recipe for a cake", "programming tips"];
+		var search = document.getElementById('search').value;
+		var testKey = null;
+		var result = "";
+		for (var key in arr){
+			var auxArr = arr[key].split(" ");
+			 for(var key2 in auxArr) {
+			 		if(auxArr.indexOf(search) > -1) {
+			 			if (testKey != key) {
+			 				testKey = key;
+			 				result += "<p>" + arr[key] + "</p>";
+			 			}
+					}
+			 }
+		}
+
+		document.getElementById('result').innerHTML = result;
+	}
+	</script>
+</body>
+</html>

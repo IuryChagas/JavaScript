@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Arrays JS</title>
+	<style>
+		h1 {
+			text-align: center; 
+		}
+		body {
+			width: 50%;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<h1>forEach(callback[, thisObject])</h1>
+	<!-- <script>
+		if(3 < 2){
+			document.write("True!");
+		}else{
+			document.write("False!");
+		}
+	</script> -->
+<!-- 	<script>
+		function calc(n1,n2,op) {
+			if(op === "+"){
+				return n1 + n2;
+			}else if(op === "-"){
+				return n1 - n2;
+			}else if (op === "*"){
+				return n1 * n2;
+			}else if(op === "/"){
+				return n1 / n2;
+			}else {
+					return document.write("It's not an operation... Try again!<p />");
+			}
+		}
+
+		var opt = prompt("Qual Operador? ");
+		var firstN = parseInt(prompt("Qual o 1° Número? "));
+		var secoN = parseInt(prompt("Qual o 2° Número? "));
+
+		document.write("<strong>Result of Opearation is:</strong> "+calc(firstN,secoN,opt));
+	</script> -->
+	<script>
+		function calc(value,cash) {
+				if (value > cash){
+					return "Error --> Cash is below product value";
+				}
+				return "<strong>Change: $</strong>" + (cash - value);
+			}
+
+/*		var opt = prompt("Qual Opeardor? ");
+		var firstN = parseInt(prompt("Qual o 1° Número? "));
+		var secoN = parseInt(prompt("Qual o 2° Número? "));
+*/
+		document.write(calc(15.34,20));
+		console.log(calc(15.34,20));
+
+	</script>
+</body>
+</html>
