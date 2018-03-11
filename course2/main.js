@@ -1,28 +1,11 @@
-document.write("From external script");
-console.log("testing localhost!");
+var age = prompt("How old are you?");  /*parseInt(prompt("How old are you?"));*/
 
-var number = 0;
-var number1 = 1;
-var boolean = false;
-var floating = 0.00;
+var ageParse = parseInt(age);
 
-console.log(typeof number);
-
-number = "0" + number1;
-
-console.log(number);
-
-function myFunction () {
-	var number = 0.2 + 1;
-
-	console.log(number);
+if (age >= 18) {
+	document.write("☑ Your are autorized!");
+} else if (age < 18){
+	document.write("☒ Your are not autorized!");
+} else {
+	document.write("⚠ Your answer ( "+age+" ) is not a number, try again!");
 }
-
-myFunction();
-
-var myFunction = function() { // variable as function(){}
-	var number1 = 5.2 + 3;
-	console.log(number1);
-};
-
-myFunction();
