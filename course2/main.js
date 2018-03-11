@@ -1,59 +1,31 @@
-function show(phrase) {
-	var p = function() {
-		document.write("<p />");
-	}
-	p();
-	document.write(phrase);
+// btn Click Me
+var click_me = document.getElementById('click_me');
+
+click_me.addEventListener('click', fnClickMe);
+
+function fnClickMe(){
+	alert('You clicked me')
 }
 
-var arr = [
-	"Roadster",
-	"Red"
-];
+// Validate Number
 
-/*
-.push 	 --> add to end 
-.unshift --> add to top
+function validateNumber() {
+	var number = document.getElementById("number_val").value;
 
-.pop 	--> capt and rm from the front
-.shift 	--> capt and rm from the end
-.splice --> rm 
+	if (isNaN(number) || (number >= 1 && number <= 10)){
+		alert('input is not valid');
+	}else{
+		alert('input is valid');
+	}
+}
 
-.indexOf --> capt value in the index
-*/
+// box over
 
-var arr1 = [
-	"Elon Musk"
-]
-
-var result = arr.concat(arr1);
-
-console.log(result);
-show(result);
-
-arr.unshift("Tesla");
-console.log(arr);
-show(arr);
-
-arr.indexOf("Roadster");
-console.log(arr.indexOf("Roadster"));
-show("Roadster index Value: "+arr.indexOf("Roadster"));
-
-/*arr.splice(1,1);*/
-
-/*arr.pop();
-console.log(arr);
-show(arr);
-
-console.log(arr[0]);
-show("Indice [0]: "+arr[0]);
-
-arr.shift();
-console.log(arr);
-show(arr);
-
-arr.push("on space");
-console.log(arr[1]);
-show("Indice [1]: "+arr[1]);
-
-*/
+function over(argument) {
+	console.log("Over me!");
+	/*document.write("Over me!");*/
+	document.getElementById("bg").innerHTML = "<h1>On!</h1>";
+}
+	function out(argument) {
+		document.getElementById("bg").innerHTML = "<h1>Off!</h1>";
+	}
