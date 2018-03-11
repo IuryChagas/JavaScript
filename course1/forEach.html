@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Arrays JS</title>
+	<style>
+		h1 {
+			text-align: center; 
+		}
+		body {
+			width: 50%;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<h1>forEach(callback[, thisObject])</h1>
+	<script>
+		var arr = ["a content of blog", "new of an article", "recipe for a cake", "programming tips"];
+		arr.forEach(function(value,indice) {
+			document.write("<p><strong>indice:</strong> "+indice+" <strong>Value:</strong> "+value+"</p><p />");
+		});
+		document.write("<strong>Total of indices:</strong> "+arr.length);
+	</script>
+</body>
+</html>

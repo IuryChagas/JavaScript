@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Arrays JS</title>
+	<style>
+		h1 {
+			text-align: center; 
+		}
+		body {
+			width: 50%;
+			margin: 0 auto;
+		}
+		/** {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		main, section, span {
+			padding: 4px;
+			border: 1px solid #000;
+			width: 40px;
+			height: 40px;
+		}
+		main {
+			background-color: orange;
+		}
+		section {
+			background-color: blue;
+		}
+		span {
+			background-color: red;
+		}*/
+	</style>
+</head>
+<body>
+	<h1>Working with Switch</h1>
+	<script>
+/*		var color = prompt("Escolha uma cor para saber o código hexadecimal: ");
+		switch (color){
+			case "orange":
+				document.write("<strong>Color:</strong> <main>Orange</main>");
+				break;
+			case "blue":
+				document.write("<strong>Color:</strong> <section>Blue</section>");
+				break;
+			case "red":
+				document.write("<strong>Color:</strong> <span>Red</span>");
+				break;
+			default:
+				document.write("No color detected!");
+		}*/
+	</script>
+	<input type="text" id="weigth" placeholder=" weigth /kg">
+	<br>
+	<select id="fruits">
+		<option value="apple">apple</option>
+		<option value="watermelon">watermelon</option>
+		<option value="lemon">lemon</option>
+		<option value="">nenhum</option>
+	</select>
+	<br>
+	<button onclick="balance();">To Weigth</button>
+	<br>
+	<span id="result"></span>
+	<script>
+		function balance(argument) {
+			var fruits = document.getElementById('fruits').value;
+			var weigth = document.getElementById('weigth').value;
+			if(!weigth){
+				document.getElementById('result').innerHTML = "Please Fill Weigth!";
+				return;
+			}
+			switch (fruits){
+				case "apple":
+					document.getElementById('result').innerHTML = "$"+ weigth * 0.35;
+					break;
+				case "watermelon":
+					document.getElementById('result').innerHTML = "$"+ weigth * 0.59;
+					break;
+				case "lemon":
+					document.getElementById('result').innerHTML = "$"+ weigth * 0.16;
+					break;
+				default:
+					document.getElementById('result').innerHTML = "Product not registered!";
+			}
+		}
+	</script>
+</body>
+</html>
