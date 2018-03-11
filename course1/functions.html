@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Arrays JS</title>
+	<style>
+		h1 {
+			text-align: center; 
+		}
+		body {
+			width: 50%;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<h1>Working with function</h1>
+	<script>
+	function calc(nu1,nu2){
+		return parseInt(nu1) + parseInt(nu2);
+	}
+	document.write("Total Sum: "+calc(5,4)+"<p >");
+
+	document.write("======================================== <p />");
+
+	var factorial = function(n) {
+		var fac = 1;
+		for (var y = n; y >= 1; y--){
+			fac *= y;
+		}
+		return fac;
+	}
+	document.write("factorial(4) = "+factorial(4)+"<br>");
+	</script>
+</body>
+</html>
