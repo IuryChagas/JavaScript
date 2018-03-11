@@ -1,24 +1,39 @@
-var counter = prompt("choose a number: ");
-var i = 0;
+function userName(user) {
+	document.write("user name: ", user);
+}
+userName("yourName");
 
-while (i < counter){
-	document.write(i);
-	console.log(i);
-	i++;
-	document.write("<br>");
+function show(phrase) {
+	var p = function() {
+		document.write("<p />");
+	}
+	p();
+	document.write(phrase);
+}
+show("ok!");
+show("function testing");
+
+show("<hr>");
+/*
+(function cje(user){
+	show("Name: "+user);
+	console.log("Name: ", user);
+})(" Chagas");
+
+*/
+
+(function(work){
+	console.log("Testing: ", work);
+	return show("Testing: "+work);
+	/*return console.log("Testing: "+ work);*/
+})("it's Work!");
+
+
+login = prompt("What's your Name? ");
+
+function yourName(name) {
+	return "git-"+ name +".io";
 }
 
-
-	for (var n = 0; n < 10; n++) {
-		document.write(n);
-		console.log(n);
-	}
-
-document.write("<hr>");
-
-document.write("<h4>Array [ value , key]</h4>");
-
-[0,1,2,3,4,5,6].forEach(function(value, key) {
-	document.write("<br>");
-	document.write(value,key);
-});
+console.log(yourName(login));
+show(yourName(login));
