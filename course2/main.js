@@ -6,37 +6,54 @@ function show(phrase) {
 	document.write(phrase);
 }
 
-var prop1 = prompt("Define a car MODEL: ");
-var prop2 = prompt("Define a NAME: ");
-var prop3 = prompt("Define a COLOR: ");
+var arr = [
+	"Roadster",
+	"Red"
+];
 
-/*var obj = new Object();*/
+/*
+.push 	 --> add to end 
+.unshift --> add to top
 
-/*var obj = {
-	MODEL: prop1,
-	NAME : prop2,
-	COLOR: prop3
-};*/
+.pop 	--> capt and rm from the front
+.shift 	--> capt and rm from the end
+.splice --> rm 
 
-/*var obj = {};
+.indexOf --> capt value in the index
+*/
 
-obj.MODEL = prop1;
-obj.NAME  = prop2;
-obj.COLOR = prop3*/
+var arr1 = [
+	"Elon Musk"
+]
 
-var obj = {};
+var result = arr.concat(arr1);
 
-obj["MODEL"] = prop1,
-obj["NAME"] = prop2,
-obj["COLOR"] = prop3,
+console.log(result);
+show(result);
 
-obj.start = function(){
-	show("I'm ready! 🚘");
-	console.log("I'm ready! 🚘");
-}
+arr.unshift("Tesla");
+console.log(arr);
+show(arr);
 
-console.log(JSON.stringify(obj));
-console.log(obj);
-show("<h3> DEFINITIONS:</h3>"+JSON.stringify(obj));
-show("");
-obj.start();
+arr.indexOf("Roadster");
+console.log(arr.indexOf("Roadster"));
+show("Roadster index Value: "+arr.indexOf("Roadster"));
+
+/*arr.splice(1,1);*/
+
+/*arr.pop();
+console.log(arr);
+show(arr);
+
+console.log(arr[0]);
+show("Indice [0]: "+arr[0]);
+
+arr.shift();
+console.log(arr);
+show(arr);
+
+arr.push("on space");
+console.log(arr[1]);
+show("Indice [1]: "+arr[1]);
+
+*/
