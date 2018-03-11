@@ -1,8 +1,3 @@
-function userName(user) {
-	document.write("user name: ", user);
-}
-userName("yourName");
-
 function show(phrase) {
 	var p = function() {
 		document.write("<p />");
@@ -10,30 +5,38 @@ function show(phrase) {
 	p();
 	document.write(phrase);
 }
-show("ok!");
-show("function testing");
 
-show("<hr>");
-/*
-(function cje(user){
-	show("Name: "+user);
-	console.log("Name: ", user);
-})(" Chagas");
+var prop1 = prompt("Define a car MODEL: ");
+var prop2 = prompt("Define a NAME: ");
+var prop3 = prompt("Define a COLOR: ");
 
-*/
+/*var obj = new Object();*/
 
-(function(work){
-	console.log("Testing: ", work);
-	return show("Testing: "+work);
-	/*return console.log("Testing: "+ work);*/
-})("it's Work!");
+/*var obj = {
+	MODEL: prop1,
+	NAME : prop2,
+	COLOR: prop3
+};*/
 
+/*var obj = {};
 
-login = prompt("What's your Name? ");
+obj.MODEL = prop1;
+obj.NAME  = prop2;
+obj.COLOR = prop3*/
 
-function yourName(name) {
-	return "git-"+ name +".io";
+var obj = {};
+
+obj["MODEL"] = prop1,
+obj["NAME"] = prop2,
+obj["COLOR"] = prop3,
+
+obj.start = function(){
+	show("I'm ready! 🚘");
+	console.log("I'm ready! 🚘");
 }
 
-console.log(yourName(login));
-show(yourName(login));
+console.log(JSON.stringify(obj));
+console.log(obj);
+show("<h3> DEFINITIONS:</h3>"+JSON.stringify(obj));
+show("");
+obj.start();
