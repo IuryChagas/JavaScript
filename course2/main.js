@@ -1,11 +1,21 @@
 var age = prompt("How old are you?");  /*parseInt(prompt("How old are you?"));*/
 
-var ageParse = parseInt(age);
+var ageParser = parseInt(age);
 
-if (age >= 18) {
-	document.write("☑ Your are autorized!");
-} else if (age < 18){
-	document.write("☒ Your are not autorized!");
-} else {
-	document.write("⚠ Your answer ( "+age+" ) is not a number, try again!");
+switch (true) {
+	case (ageParser >= 18):
+		document.write('☑ You are authorized!');
+		break;
+
+	case (ageParser < 18):
+		document.write('☒ You are not authorized!');
+		break;
+
+	case (ageParser != 18):
+		document.write('⚠ Your answer ( '+age+' ) it is not a number, try again!');
+		break;
+
+	default:
+		document.write('default function');
+	break;
 }
