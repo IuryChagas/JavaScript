@@ -13,10 +13,11 @@ body {
 }
 button, #bg { cursor: pointer; }
 #bg {
-	background-color: #1987bf61;
+	/*background-color: #1987bf61; manipulation via js */
 	width: 12.5em;
 	height: 12.5em;
 	margin: 1em auto;
+	border: dashed .01em white;
 }
 h2 {
 	color: #fff;
