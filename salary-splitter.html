@@ -6,7 +6,35 @@
 </head>
 <body>
 	<script>
-		
+		var monthlyIncome = parseInt(prompt("What's your monthly income? "));
+
+		var fixedCosts = (monthlyIncome * 55)/100;
+			console.log("fixedCosts: $"+fixedCosts);
+
+		var retirement = (monthlyIncome * 10)/100;
+			console.log("retirement: $"+retirement);
+
+		var emergency = (monthlyIncome * 10)/100;
+			console.log("emergency: $"+emergency);
+
+		var education = (monthlyIncome * 10)/100;
+			console.log("education: $"+education);
+
+		var fun = (monthlyIncome * 10)/100;
+			console.log("fun: $"+fun);
+
+		var vacation = (monthlyIncome * 5)/100;
+			console.log("vacation: $"+vacation);
+
+			document.write("<h1>split your salary in:</h1>");
+			document.write("fixedCosts: $"+fixedCosts+"<br>");
+			document.write("retirement: $"+retirement+"<br>");
+			document.write("emergency: $"+emergency+"<br>");
+			document.write("education: $"+education+"<br>");
+			document.write("fun: $"+fun+"<br>");
+			document.write("vacation: $"+vacation+"<br>");
+
+			document.write("<h3>keep in discipline and we see you in the next try! :)</h3>");
 	</script>
 </body>
 </html>
