@@ -6,21 +6,17 @@
 </head>
 <body>
 	<script>
-		var nota = parseInt(prompt("Qual a nota do aluno(a): "));
-		var res;
+		var num = parseInt(prompt("Insira o 1° Valor: "));
+		var numFix = parseInt(prompt("Insira o 2° valor: "));
 
-		if ((nota >= 66)&&(nota <= 100)){
-			res="Nota: "+nota+"<br>Aluno(a) Passou!";
-		}else if (((nota >= 60)&&(nota <= 65))){
-			res=("Nota: "+nota+"<br>Aluno(a) em Recuperação!");
-		}else
-			if(nota <= 59){
-				res="Nota: "+nota+"<br>Aluno(a) Reprovou!";
-				if (nota <= 40){
-					res="Nota: "+nota+"<br>Aluno(a) Mitou na reprovação!";
-			}
-		}else {
-			res="Nota: "+nota+"<br> Nota Inválida!";
+		if (num > numFix){
+			res=(num+" é Maior que 20");
+		}else if(num < numFix){
+			res=(num+" é Menor que 20");
+		}else if(num == numFix){
+			res=(num+" é igual a 20");
+		}else{
+			res=(num+" Valor Inválido!");
 		}
 		document.write(res);
 	</script>
