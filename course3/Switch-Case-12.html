@@ -6,18 +6,35 @@
 </head>
 <body>
 	<script>
-		switch(){
+		var scores = parseInt(prompt("de 0 à 100 \n Qual foi sua pontuação? "));
+		var msg;
+
+		if (scores > 100) {
+			scores = 0;
+			document.write("invalid scores!<br>");
+		}
+		if ((scores == 100)||(scores >= 90)){
+			scores =  1;
+		}if ((scores == 85)||(scores >= 70)) {
+			scores = 2;
+		}if ((scores == 60)||(scores >= 55)) {
+			scores = 3;
+		}else {
+			document.write("Oops!<br>invalid data!<br>");
+		}
+
+		switch(scores){
 			case 1:
-				msg="";
+				msg="First position";
 				break;
 			case 2:
-				msg="";
+				msg="Second position";
 				break;
 			case 3:
-				msg="";
+				msg="Third position";
 				break;
 			default:
-				msg="";
+				msg="Not classified! :/";
 		}
 		document.write(msg);
 	</script>
