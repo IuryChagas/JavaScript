@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reviewing JavaScript studies</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script>
+		var nota = parseInt(prompt("Qual a nota do aluno(a): "));
+		var res;
+
+		if ((nota >= 66)&&(nota <= 100)){
+			res="Nota: "+nota+"<br>Aluno(a) Passou!";
+		}else if (((nota >= 60)&&(nota <= 65))){
+			res=("Nota: "+nota+"<br>Aluno(a) em Recuperação!");
+		}else
+			if(nota <= 59){
+				res="Nota: "+nota+"<br>Aluno(a) Reprovou!";
+				if (nota <= 40){
+					res="Nota: "+nota+"<br>Aluno(a) Mitou na reprovação!";
+			}
+		}else {
+			res="Nota: "+nota+"<br> Nota Inválida!";
+		}
+		document.write(res);
+	</script>
+</body>
+</html>
