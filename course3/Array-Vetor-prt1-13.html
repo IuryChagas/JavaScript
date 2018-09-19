@@ -6,20 +6,50 @@
 </head>
 <body>
 	<script>
-		// Array / Vetor - push();
-		var items=["knife","arrowhead","strings","flashlight","glove","keys", "wire"];
-		var backpack=[];
+		/* Array / Vetor - Array Class Methods;
 
-		backpack.push(4);
-		backpack.push(0);
-		backpack.push(2);
+		https://youtu.be/IqzCuR6_LaE
+
+		unshift() = adiciona um ou mais elementos no início de um array e retorna o número de elementos (propriedade length) atualizado.
+		push() = adiciona um ou mais elementos ao final de um array e retorna o novo comprimento desse array
+		splice() = altera o conteúdo de uma lista, adicionando novos elementos enquanto remove elementos antigos.
+		shift() = remove o primeiro elemento de um array e retorna esse elemento.
+		pop() = remove o último elemento de um array e retorna aquele elemento.
+
+		join() =
+		length() =
+		concat() =
+		reverse() =
+		indexOf() =
+		*/
+
+		var backpack=[], after;
+
+		backpack.push("knife");
+		backpack.push("arrowhead");
+		backpack.push("strings");
+		backpack.push("flashlight");
+		backpack.unshift("glove");
+		backpack.push("keys");
+		backpack.push("wire");
 
 		document.write("<h4>Backpack items:</h4>");
 
-		document.write(items[backpack[0]]+"<br>");
-		document.write(items[backpack[1]]+"<br>");
-		document.write(items[backpack[2]]+"<br>");
+		document.write(backpack[0]+"<br>");
+		document.write(backpack[1]+"<br>");
+		document.write(backpack[2]+"<br>");
+		document.write(backpack[3]+"<br>");
+		document.write(backpack[4]+"<br>");
+		document.write(backpack[5]+"<br>");
+		document.write(backpack[6]+"<br><hr>");
 
+		after = backpack.indexOf("keys");
+
+		if (after < 0) {
+			console.log("This item is not in the backpack! ");
+		} else {
+			console.log("This item is in the backpack. Position: ["+after+"]");
+		}
 	</script>
 </body>
 </html>
