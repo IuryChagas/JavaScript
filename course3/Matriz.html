@@ -6,6 +6,10 @@
 		body {
 			background-color: #282A2E;
 			color: #C5C8C6;
+			width: 50%;
+			margin: 0 auto;
+			text-align: center;
+/*			padding: 1em;*/
 		}
 		.center {
 			text-align: center;
@@ -21,29 +25,28 @@
 		
 		var backpack = new Array();
 
-		var	item1 = ["Strawberry", 7];
-			item2 = ["Pineapple", 5],
-			item3 = ["Banana", 3],
-			item4 = ["Orange", 16];
-			item5 = ["Apple", 4],
-			item6 = ["Lemon", 5];
-			item7 = ["Guava", 2]
+		var	item0 = ["Strawberry", 7];
+			item1 = ["Pineapple", 5],
+			item2 = ["Banana", 3],
+			item3 = ["Orange", 16];
+			item4 = ["Apple", 4],
+			item5 = ["Lemon", 5];
+			item6 = ["Guava", 2]
 
+		backpack.push(item0);
 		backpack.push(item1);
 		backpack.push(item2);
 		backpack.push(item3);
 		backpack.push(item4);
 		backpack.push(item5);
 		backpack.push(item6);
-		backpack.push(item7);
-			//				   Row|Col					 Row|Col
-		document.write(backpack[0] [0] + " = " + backpack[0] [1] + "<br>");
-		document.write(backpack[1] [0] + " = " + backpack[1] [1] + "<br>");
-		document.write(backpack[2] [0] + " = " + backpack[2] [1] + "<br>");
-		document.write(backpack[3] [0] + " = " + backpack[3] [1] + "<br>");
-		document.write(backpack[4] [0] + " = " + backpack[4] [1] + "<br>");
-		document.write(backpack[5] [0] + " = " + backpack[5] [1] + "<br>");
-		document.write(backpack[6] [0] + " = " + backpack[6] [1] + "<br>");
+
+		for(var row = 0; row < 7; row++){
+			for(var column = 0; column < 2; column++){
+				document.write(backpack[row][column]+" ");
+			}
+			document.write("<br>");
+		}
 	</script>
 </body>
 </html>
