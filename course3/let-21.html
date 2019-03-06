@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>loop DO WHILE</title>
+	<title>The Let</title>
 	<style type="text/css">body{background-color: #282A2E;color: #C5C8C6;font-family: sans-serif;}.center {text-align: center;}</style>
 </head>
 <body>
@@ -10,17 +10,14 @@
 		<cite>O sucesso advém de continuo esforço</cite>
 	</blockquote>
 	<script>
-		var n = 0;
-		
-		while(n<10){
-			document.write("JavaScript<br>");
-			n++;
-		};
+		var life = 42;
 
-		do{
-			document.write("**<br>");
-			n++;
-		}while(n < 10);
+		document.write("Life = "+life+"<br>");
+
+		if(life  == 42){
+			let life = 2018;
+			document.write(life+"<br>");
+		}
 	</script>
 </body>
 </html>
