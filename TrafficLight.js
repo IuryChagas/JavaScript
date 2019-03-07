@@ -1,19 +1,20 @@
+
 let light = "blue"; // Change to one of the colors: Green, Yellow or Red!
 
-if (light === "green") {
-    
-    console.log("move on...");
+switch(light) {
+    case "green":
+        console.log("move on...");
+    break;
 
-}else if (light === "yellow") {
+    case "yellow":
+        console.log("Attention!");
+    break;
 
-    console.log("Attention!");
+    case "red":
+        console.log("Stop.");
+    break;
 
-} else if (light === "red") {
-
-    console.log("Stop.");
-
-} else {
-
-    console.log("404 - no answer expected!");
+    default:
+        console.log("404 - no answer expected!");
 
 }
