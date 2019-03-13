@@ -8,6 +8,8 @@ class CalcController {
         // this._displayCalc = "0"; // encapsulamento de forma '_private'!
         this._currentDate;
         this.initialize();
+
+        this.initButtonsEvents();
     }
 
     initialize(){
@@ -23,7 +25,12 @@ class CalcController {
 
     initButtonsEvents(){
       let buttons = document.querySelectorAll('#buttons > g, #parts > g');
-        console.log(buttons);
+        // buttons vai ser monitorado por addEventListener do qual recebe ao menos dois parâmetros!
+        buttons.forEach((btn, index) => {
+            btn.addEventListener('click', e => {
+                console.log(btn.className.baseVal.replace("btn-"," "));
+            });
+        });
     }
 // métodos getters e setters
 
