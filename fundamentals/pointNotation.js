@@ -20,3 +20,15 @@ const obj3 = new Obj("Desk")
 console.log(obj2.name);
 console.log(obj3.name);
 obj3.exec();
+
+// Da para criar dinamicamente um atributo dentro de um objeto apenas usando o "."
+// veja o exemplo:
+
+const obj1 = {}
+ obj1.name = "Boll";  /* Objeto 'obj1' recebe o atributo 'name' com valor 'Boll' */
+
+ // Mesmo conceito de outra maneira usando '[]'
+ //obj1['name'] = "Boll2";
+
+ console.log(obj1.name);
+
