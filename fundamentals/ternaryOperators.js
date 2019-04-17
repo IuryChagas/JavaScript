@@ -2,13 +2,12 @@
 //  a Segunda é o return caso a expressão relacional for Verdadeira, "a divisão entre a 1° e 2° parte é marcarda pelo simbolo ?"
 //  a Terceira é o return caso a expressão relacional for Falsa, "a divisão entre a 2° e 3° parte é marcada pelo simbolo : "
 
-const result = note => {
-    return note >= 7 ? 'approved' : 'disapproved';
-}
+const result = achievement => achievement >= 100 ? 'profit' : 'loss';
 
-console.log(result(7.9));
-console.log(result(6.1));
+console.log(result(1900));
+console.log(result(75));
+console.log(result(99.99));
 
-// 1°) note >= 7
-// 2°) ? 'approved'
-// 3°) : 'disapproved'
+// 1°) achievement >= 100
+// 2°) ? 'profit'
+// 3°) : 'loss'
