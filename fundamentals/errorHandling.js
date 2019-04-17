@@ -17,8 +17,10 @@ function  printNameYelled(obj) {
         console.log(obj.name.toUpperCase() + '!!');
     } catch (e) {
         handleErros(e)
+    }finally {
+        console.log('Done')
     }
 }
 
-const obj = { nxme: 'Lazarento'};
+const obj = { name: 'Lazarento'};
 printNameYelled(obj);
