@@ -6,4 +6,6 @@ function personalFinances (goal1, goal2) {
         return {justPayTheBills, emergencyReservation, investment}
  }
 
+console.log(personalFinances(false, false));
+console.log(personalFinances(false, true));
 console.log(personalFinances(true, true));
