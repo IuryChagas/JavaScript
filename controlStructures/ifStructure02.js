@@ -7,5 +7,18 @@ function test1(num){
     console.log('Final')
 } //  resumidamente, o não uso da chaves pode ser uma boa opção APENAS quando a estrutura If tiver uma única sentença!
   //  Como conveção de código o ideal é usar sempre as chaves{}
-test1(6);
-test1(8);
+
+//test1(6);
+//test1(8);
+
+function test2(num) {
+    if(num > 7); { // ao usar os dois pontos, estou definindo vazio que o bloco console.log(num) não faz parte da sentença do if
+               // por isso mesmo que o valor de test2(6) é menor que 7, é visualizado no output!
+               // em outras palavras, o uso de ; é uma sentença de código vazio do qual esta atrelado ao if, separando do bloco console.log();
+               //  conclusão: don't do this!
+        console.log(num)
+    }
+}
+
+test2(6);
+test2(8);
