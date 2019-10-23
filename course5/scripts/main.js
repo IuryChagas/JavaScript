@@ -2,7 +2,12 @@ function clicked(){
     document.getElementById("thanks").innerHTML = "your action has been received!";
     console.log(document.getElementById("thanks"));
 }
-
+function redirect(){
+    window.open("https://github.com/IuryChagas/");  // redirect on another tab
+}
+function openInTab(){
+    window.location.href = "https://github.com/IuryChagas/"; // open in this tab
+}
 /* function sum(n1, n2){
     return n1 + n2;
 }
