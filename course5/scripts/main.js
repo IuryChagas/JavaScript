@@ -1,4 +1,41 @@
+/* function sum(n1, n2){
+    return n1 + n2;
+}
+console.log(">> n1 + n2 : "+ sum(15, 15));
 
+*/
+function validAge(age){
+    if(age >= 18){
+        console.log(">> Take the keys! Your age is: "+ age +" years old");
+        return true;
+    }else{
+        console.log(">> sorry access denied! Your age is: "+ age +" years old");
+        return false;
+    }
+
+}
+
+var age = prompt("How old you are? ");
+console.log(validAge(age));
+/*
+function validatorAge(age){
+    const call;
+    if(age >= 18){
+        console.log("Take the keys!");
+        const call = true;
+    }else{
+        console.log("sorry call to your Dad!");
+        const call = false;
+    }
+
+    return call;
+};
+
+var age = prompt("How old you are? ");
+console.log(validatorAge(age));
+*/
+
+/*
 var d = new Date();
 
 console.log(d);
@@ -8,8 +45,8 @@ console.log(d.getMonth()+1);
 console.log(d.getFullYear());
 console.log(d.getUTCHours());
 console.log(d.getTimezoneOffset());
+*/
 
-// https://web.digitalinnovation.one/course/programacao-para-internet-com-javascript/learning/73e70077-4510-4e95-87e2-4531514e6c2e
 /*
 
 var age = 27;
@@ -39,8 +76,6 @@ for(countf = 10; countf >= 0; countf--){
 
 
 
-
-/** https://web.digitalinnovation.one/course/programacao-para-internet-com-javascript/learning/c2f0215d-8643-45ed-a441-ec1669349bca  */
 
 /*
 
