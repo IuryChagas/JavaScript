@@ -1,9 +1,17 @@
+function clicked(){
+    document.getElementById("thanks").innerHTML = "your action has been received!";
+    console.log(document.getElementById("thanks"));
+}
+
 /* function sum(n1, n2){
     return n1 + n2;
 }
 console.log(">> n1 + n2 : "+ sum(15, 15));
 
 */
+/*
+
+
 function validAge(age){
     if(age >= 18){
         console.log(">> Take the keys! Your age is: "+ age +" years old");
@@ -17,6 +25,9 @@ function validAge(age){
 
 var age = prompt("How old you are? ");
 console.log(validAge(age));
+
+
+*/
 /*
 function validatorAge(age){
     const call;
