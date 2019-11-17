@@ -1,4 +1,5 @@
 <h1 align="center">Full Stack Web Development</h1>
+
   - [ ] Configuração do Ambiente 
   - [ ] Fundamentos
   - [ ] Estruturas de Controle
@@ -25,3 +26,5 @@
   - [ ] Outros Tópicos 
   - [ ] Projetos
   - [ ] Conclusão
+
+_Confira o curso completo em: [COD3R.com](https://www.cod3r.com.br/portal/courses 'Cod3r - Cursos de Programação Online')_
