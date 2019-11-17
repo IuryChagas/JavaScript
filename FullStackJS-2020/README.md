@@ -1,6 +1,6 @@
 <h1 align="center">Full Stack Web Development</h1>
 
-  - [ ] Configuração do Ambiente 
+  - [x] Configuração do Ambiente 
   - [ ] Fundamentos
   - [ ] Estruturas de Controle
   - [ ] Funções
