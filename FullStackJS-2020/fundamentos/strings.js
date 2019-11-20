@@ -41,4 +41,24 @@ console.log('Restante dos valores no indice à partir da posição {1}: '+ name.
 console.log('Restante dos valores no indice à partir da posição {4}: '+ name.substring(4));
 console.log('Restante dos valores no indice entre {R} e {h}: '+ name.substring(3,6));
 
+console.log('\n');
+// Substituir caracteres! Aqui estou substituindo Udemy para Td3my!
+
+var regex = /Udemy/gi;
+
+console.log('Original: '+ plataforma);
+console.log('Replaced: '+ plataforma.replace(regex, 'Td3my'));
+
+// Usando regex >> Substitua todos os 'd' = Digitos, por '#'
+let digitos = '0123456';
+console.log(digitos.replace(/\d/gi, '#'));
+
+console.log('\n');
+
+// Usando regex >> Substitua todos os Digitos e Letras por '#@'
+// regex sintax: \w/ = wole
+// regex sintax: /g = global
+console.log('Original: '+ plataforma);
+console.log('Replaced: '+ plataforma.replace(/\w/g, '#@'));
+
 console.log('\n\n');
