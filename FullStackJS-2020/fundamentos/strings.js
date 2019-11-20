@@ -35,4 +35,10 @@ console.log('Letra >> U <<: Posição no indice {'+ name.indexOf('u')+ '}');
 console.log('Letra >> R <<: Posição no indice {'+ name.indexOf('r')+ '}');
 console.log('Letra >> Y <<: Posição no indice {'+ name.indexOf('y')+ '}');
 
+// retorna o restante dos valores do indice
+console.log('Name: '+ name);
+console.log('Restante dos valores no indice à partir da posição {1}: '+ name.substring(1));
+console.log('Restante dos valores no indice à partir da posição {4}: '+ name.substring(4));
+console.log('Restante dos valores no indice entre {R} e {h}: '+ name.substring(3,6));
+
 console.log('\n\n');
