@@ -27,4 +27,12 @@ console.log('\n');
 // concatenação
 console.log('Plataforma: '.concat(plataforma).concat('!'));
 
+console.log('\n');
+
+// retorna a posição no indice
+console.log('Letra >> I <<: Posição no indice {'+ name.indexOf('I')+ '}');
+console.log('Letra >> U <<: Posição no indice {'+ name.indexOf('u')+ '}');
+console.log('Letra >> R <<: Posição no indice {'+ name.indexOf('r')+ '}');
+console.log('Letra >> Y <<: Posição no indice {'+ name.indexOf('y')+ '}');
+
 console.log('\n\n');
