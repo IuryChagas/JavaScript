@@ -22,4 +22,9 @@ console.log('Letra posição indice {5}: '+ name.charAt(5));
 // retorna o código do caractere conforme tabela unicode
 console.log('Caractere Unicode da posição {5}: '+ name.charCodeAt(5));
 
+console.log('\n');
+
+// concatenação
+console.log('Plataforma: '.concat(plataforma).concat('!'));
+
 console.log('\n\n');
