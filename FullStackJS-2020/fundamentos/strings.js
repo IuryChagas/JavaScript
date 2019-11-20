@@ -61,4 +61,11 @@ console.log('\n');
 console.log('Original: '+ plataforma);
 console.log('Replaced: '+ plataforma.replace(/\w/g, '#@'));
 
+console.log('\n');
+// convertendo string para estrutura em array
+console.log('Strings: Udemy,Iury,Chagas');
+console.log('Udemy,Iury,Chagas'.split(','));
+console.log('Udemy,Iury,Chagas'.split(/./)); // usando regex
+console.log('Udemy,Iury,Chagas'.split(/|/)); // usando regex
+
 console.log('\n\n');
