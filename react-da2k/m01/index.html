@@ -14,17 +14,22 @@
         }
     </style>
     <body>
+       <h1>Hello World</h1>
         <div id="app"></div>
         <!-- fontlinks: https://cdnjs.com/libraries/react/15.1.0 -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
-        
+
         <script>
             // Create element!
-            var h1 = React.createElement('h1', null, 'My First implementation on reactjs');
+            var h1 = React.createElement('h1', null, [
+	     React.createElement('span', null,'span text!'),
+	     React.createElement('p', null, 'paragraph text!'),
+	     React.createElement('span', null, React.createElement('i', null, 'new children of span2'))
+	     ]);
             // Render the element at DOM
             ReactDOM.render(h1, document.getElementById('app'));
-            
+
             console.log(h1);
         </script>
     </body>
