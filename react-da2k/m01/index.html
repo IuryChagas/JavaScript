@@ -21,14 +21,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
 
         <script>
-            // Create element!
-            var h1 = React.createElement('h1', null, [
-	     React.createElement('span', null,'span text!'),
-	     React.createElement('p', null, 'paragraph text!'),
-	     React.createElement('span', null, React.createElement('i', null, 'new children of span2'))
+            // create element in narrowly mode!
+            var h1 = React.DOM.h1(null, [
+	     React.DOM.span(null,'span text!'),
+	     React.DOM.p(null, 'paragraph text!'),
+	     React.DOM.span(null, React.DOM.i(null, 'new children of span2'))
 	     ]);
-// react.js:19500 Warning: Each child in an array or iterator should have a unique "key" prop. Check the top-level render call using <h1>.
-// See https://fb.me/react-warning-keys for more information.
 
             // Render the element at DOM
             ReactDOM.render(h1, document.getElementById('app'));
