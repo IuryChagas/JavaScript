@@ -19,3 +19,10 @@ const soma = (a, b) => {
 }
 
 soma(500,500);
+
+const raizQuadrada = (r) => { return r * r;}
+
+raizQuadrada(5);
+
+const raizQuadrada2 = t => t * t;
+console.log(raizQuadrada2(4));
