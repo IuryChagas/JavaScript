@@ -7,12 +7,12 @@ const destinationList = new Array(
 
 
 console.log("\n## Destinos disponíveis ##\n");
-console.log(`>> ${destinationList}\n`);
+//console.log(`>> ${destinationList}\n`);
 
 const buyerAge = 18;
 let accompanied = false;
-let purchasedTicket = false;
-const destiny = false;
+//let purchasedTicket = false;
+const destiny = 'São Paulo';
 const authorizedPurchase = (buyerAge >= 18 || accompanied == true );
 
 let count = 0;
@@ -20,7 +20,6 @@ let count = 0;
 while (count < destinationList.length ) {
     if (destinationList[count] == destiny ) {
         console.log(`Destino existe`);
-        destiny = 'São Paulo';
         break; 
     }
     console.log(`indice|${count}| > ${destinationList[count]}`);
@@ -29,3 +28,9 @@ while (count < destinationList.length ) {
 
 console.log("\nDestino existe: ", destiny);
 
+if (destiny && authorizedPurchase) {
+    console.log("status: Compra autorizada!");
+    console.log("Boa viagem!");
+}else {
+    console.log("Desculpe, houve um erro!");
+}
