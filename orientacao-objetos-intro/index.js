@@ -13,16 +13,15 @@ class ContaCorrente {
     sacar(valor){
         if (this._saldo >= valor) {
             this._saldo -= valor;
-        } else {
-            console.log("> Não é possível proseguir com esta operação!");
+            return valor;
         }
     }
     depositar(valor){
-        if (valor >= 0.1) {
-            this._saldo += valor;
-        } else {
-            console.log("> Não é possível realizar deposito de valor negativo.");
+        // if (valor <= 0.1) return; // tecnica de 'early return' no javascript! https://dev.to/jenniferlynparsons/early-returns-in-javascript-5hfb
+        if (valor <= 0.1) {
+            return;
         }
+        this._saldo += valor;
     }
 };
 
@@ -39,6 +38,10 @@ contaCorrenteRonisclay.depositar(100);
 contaCorrenteRonisclay.depositar(200);
 contaCorrenteRonisclay.depositar(-500);
 
-contaCorrenteRonisclay.sacar(590);
-console.log(contaCorrenteRonisclay.saldo);
 console.log(cliente1);
+
+const valorDeSaque = contaCorrenteRonisclay.sacar(100);
+console.log(`Valor do saque: $${valorDeSaque}`);
+
+const saldoAtual = contaCorrenteRonisclay._saldo;
+console.log(`Saldo atualizado: $${saldoAtual}`);
