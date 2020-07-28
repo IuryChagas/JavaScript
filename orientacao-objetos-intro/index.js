@@ -6,12 +6,22 @@ class Cliente { // classes
 
 class ContaCorrente {
     agencia;
-    saldo;
+    // https://github.com/tc39/proposal-class-fields#private-fields
+    // #saldo = 0;
+    _saldo = 0;
 
     sacar(valor){
-
-        if (this.saldo >= valor) {
-            this.saldo -= valor;
+        if (this._saldo >= valor) {
+            this._saldo -= valor;
+        } else {
+            console.log("> Não é possível proseguir com esta operação!");
+        }
+    }
+    depositar(valor){
+        if (valor >= 0.1) {
+            this._saldo += valor;
+        } else {
+            console.log("> Não é possível realizar deposito de valor negativo.");
         }
     }
 };
@@ -21,23 +31,14 @@ const cliente1 = new Cliente();
 cliente1.nome = "Ronisclay";
 cliente1.cpf = 11122233309;
 
-const cliente2 = new Cliente();
-
-cliente2.nome = "Gerenilda";
-cliente2.cpf = 88822233309;
-
 const contaCorrenteRonisclay = new ContaCorrente();
 
 contaCorrenteRonisclay.agencia = 0001;
-contaCorrenteRonisclay.saldo = 0;
 
+contaCorrenteRonisclay.depositar(100);
+contaCorrenteRonisclay.depositar(200);
+contaCorrenteRonisclay.depositar(-500);
+
+contaCorrenteRonisclay.sacar(590);
 console.log(contaCorrenteRonisclay.saldo);
-contaCorrenteRonisclay.saldo = 100;
-console.log(contaCorrenteRonisclay.saldo);
-
-contaCorrenteRonisclay.sacar(200);
-console.log(contaCorrenteRonisclay.saldo);
-
-
 console.log(cliente1);
-console.log(cliente2);
