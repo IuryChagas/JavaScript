@@ -1,47 +1,28 @@
-class Cliente { // classes
-    nome; // propriedades/atributos
-    cpf;
-    // ContaCorrente {}
-};
-
-class ContaCorrente {
-    agencia;
-    // https://github.com/tc39/proposal-class-fields#private-fields
-    // #saldo = 0;
-    _saldo = 0;
-
-    sacar(valor){
-        if (this._saldo >= valor) {
-            this._saldo -= valor;
-            return valor;
-        }
-    }
-    depositar(valor){
-        // if (valor <= 0.1) return; // tecnica de 'early return' no javascript! https://dev.to/jenniferlynparsons/early-returns-in-javascript-5hfb
-        if (valor <= 0.1) {
-            return;
-        }
-        this._saldo += valor;
-    }
-};
+import {Cliente} from "./Cliente.js";
+import {ContaCorrente} from "./ContaCorrente.js";
 
 const cliente1 = new Cliente();
 
 cliente1.nome = "Ronisclay";
 cliente1.cpf = 11122233309;
 
-const contaCorrenteRonisclay = new ContaCorrente();
+const conta1 = new ContaCorrente();
+conta1.cliente = cliente1;
+conta1.agencia = 1001;
 
-contaCorrenteRonisclay.agencia = 0001;
+conta1.depositar(500);
+console.log(conta1);
+// ================================
 
-contaCorrenteRonisclay.depositar(100);
-contaCorrenteRonisclay.depositar(200);
-contaCorrenteRonisclay.depositar(-500);
+const cliente2 = new Cliente();
+cliente2.nome = "Aline";
+cliente2.cpf = 7329452927;
 
-console.log(cliente1);
+const conta2 = new ContaCorrente();
+conta2.cliente = cliente2;
+conta2.agencia = 171;
 
-const valorDeSaque = contaCorrenteRonisclay.sacar(100);
-console.log(`Valor do saque: $${valorDeSaque}`);
-
-const saldoAtual = contaCorrenteRonisclay._saldo;
-console.log(`Saldo atualizado: $${saldoAtual}`);
+let valor = 200;
+conta1.transferir(valor, conta2);
+console.log(conta2);
+console.log(conta1);
