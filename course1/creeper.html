@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creeper - Minecraft</title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+    <script>
+        var screen = document.querySelector('canvas');
+        var brush = screen.getContext('2d');
+        brush.fillStyle = 'lightgrey';
+        brush.fillRect(0, 0, 600, 400);
+
+        brush.fillStyle = 'darkgreen';
+        brush.fillRect(100, 50, 350, 300);
+
+        brush.fillStyle = 'black';
+        brush.fillRect(140, 110, 90, 90);
+
+        brush.fillStyle = 'black';
+        brush.fillRect(300, 110, 90, 90);
+
+        brush.fillStyle = 'black';
+        brush.fillRect(230, 200, 70, 100);
+
+        brush.fillStyle = 'black';
+        brush.fillRect(180, 240, 50, 110);
+
+        brush.fillStyle = 'black';
+        brush.fillRect(300, 240, 50, 110);
+    </script>
+</body>
+</html>
