@@ -11,23 +11,21 @@
         var screen = document.querySelector('canvas');
         var brush = screen.getContext('2d');
 
-        function drawSquare(x, y, cor){
-
+        function drawCircle (x, y, cor){
             brush.fillStyle = cor;
-            brush.fillRect(x, y, 50, 50);
-            brush.fillStroke = 'black';
-            brush.strokeRect(x, y, 50, 50);
+            brush.beginPath();
+
+            brush.arc(x, y, 20, 0, 2 * 3.14);
+            brush.fill();
         }
 
-        for (let x = 0; x < 600; x += 50) {
+        drawCircle(60, 60, 'red');
+        drawCircle(60, 20, 'yellow');
+        drawCircle(20, 60, 'blue');
+        drawCircle(100, 60, 'black');
+        drawCircle(60, 100, 'orange');
 
-            drawSquare(x, 0, 'green');
-            drawSquare(x, 50, 'yellow');
-            drawSquare(x, 100, 'blue');
-            drawSquare(x, 150, 'white');
-            drawSquare(x, 200, 'blue');
-            drawSquare(x, 250, 'yellow');
-            drawSquare(x, 300, 'green');
+        function drawSquare(x, y, size, cor){
 
         }
     </script>
