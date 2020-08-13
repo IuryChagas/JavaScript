@@ -6,25 +6,44 @@
     <title>Canvas</title>
 </head>
 <body>
-    <canvas width="600" height="600"></canvas>
+    <canvas width="600" height="400"></canvas>
     <script>
-        var screen = document.querySelector('canvas');
-        var brush = screen.getContext('2d');
+        function drawSquare(x, y, wth, height, colour){
+            var screen = document.querySelector('canvas');
+            var brush = screen.getContext('2d');
 
-        function drawSquare(x, y, size, cor){
-            brush.fillStyle = cor;
-            brush.fillRect(x, y, size, size);
+            brush.fillStyle = colour;
+            brush.fillRect(x, y, wth, height);
             brush.fillStroke = 'black';
-            brush.strokeRect(x, y, size, size);
+            brush.strokeRect(x, y, wth, height);
         }
 
-        for (let x = 0; x <= 150; x += 50) {
-            drawSquare(x, 0, 50, 'darkgreen');
-            if (x >= 150) {
-                drawSquare(x, 0, 50, 'white');
-                break;
+        function printText(x, y, text){
+            var screen = document.querySelector('canvas');
+            var brush = screen.getContext('2d');
+
+            brush.font = '15px Georgia';
+            brush.fillStyle = 'black';
+            brush.fillText(text, x, y);
+        }
+
+        function drawBar (x, y, serie, colours, text){
+            printText(x, y - 10, text);
+
+            var sumHeight = 0;
+
+            for (var i = 0; i < serie.length; i++){
+                var height = serie[i];
+                drawSquare(x, y + sumHeight, 50, height, colours[i]);
+                sumHeight += height;
             }
         }
+        var colours = ['blue','green','yellow', 'red'];
+        var serie2015 = [50, 25, 20, 5];
+        var serie2016 = [65, 20, 13, 2];
+
+        drawBar(50, 50, serie2015, colours, '2015');
+        drawBar(150, 50, serie2016, colours, '2016');
     </script>
 </body>
 </html>
