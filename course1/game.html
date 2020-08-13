@@ -11,23 +11,23 @@
         var screen = document.querySelector('canvas');
         var brush = screen.getContext('2d');
 
-        function drawTriangle(xa, ya, xc, yc, cor){
-            brush.fillStyle = cor;
+        brush.fillStyle = 'grey';
+        brush.fillRect(0, 0, 600, 400);
+
+        function printPoint(event) {
+            var x = event.pageX - screen.offsetLeft;
+            var y = event.pageY - screen.offsetTop;
+
+            brush.fillStyle = 'blue';
             brush.beginPath();
-            brush.moveTo(xa, ya);
-            brush.lineTo(xa, yc);
-            brush.lineTo(xc, yc);
+            brush.arc(x, y, 10, 0, 2 * 3.14);
             brush.fill();
 
-            brush.fillStyle="white";
-            brush.beginPath();
-            brush.moveTo((6 * xa + xc) / 7, (9 * ya + 5 * yc) / 14);
-            brush.lineTo((6 * xa + xc) / 7, ( ya + 6 * yc ) / 7);
-            brush.lineTo((5 * xa + 9 * xc) / 14, (ya + 6 * yc ) / 7);
-            brush.fill();
+            console.log(event);
+            //alert(`${x} - ${y}`);
         }
 
-        drawTriangle(50, 50, 400, 400, 'black');
+        screen.onclick = printPoint;
     </script>
 </body>
 </html>
