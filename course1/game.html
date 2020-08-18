@@ -20,13 +20,22 @@
             var x = event.pageX - screen.offsetLeft;
             var y = event.pageY - screen.offsetTop;
 
+            var isShift = event.shiftKey;
+
+            if (isShift) {
+                isShift = 20;
+            } else {
+                isShift = 10;
+            }
+
             brush.fillStyle = colours[currentColor];
             brush.beginPath();
-            brush.arc(x, y, 10, 0, 2 * 3.14);
+            brush.arc(x, y, isShift, 0, 2 * 3.14);
             brush.fill();
 
             console.log(event);
             console.log(`coord: X: ${x} - coord: Y: ${y}`);
+
         }
         
         function changeColor() {
