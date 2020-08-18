@@ -40,15 +40,12 @@
         screen.oncontextmenu =  changeColor;
         screen.onmousemove = printPoint;
 
-        function activePrint () {
+        screen.onmousedown = function(){
             printf = true;
-        }
-        function inactivePrint () {
+        };
+        screen.onmouseup = function(){
             printf = false;
-        }
-
-        screen.onmousedown = activePrint;
-        screen.onmouseup = inactivePrint;
+        };
     </script>
 </body>
 </html>
