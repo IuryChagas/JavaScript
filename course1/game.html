@@ -15,27 +15,19 @@
         brush.fillRect(0, 0, 600, 400);
         var colours = ['blue', 'red', 'green'];
         var currentColor = 0;
-        var isShift = 10;
+        var printf = false;
 
         function printPoint(event) {
-            var x = event.pageX - screen.offsetLeft;
-            var y = event.pageY - screen.offsetTop;
+            if (printf) {
+                var x = event.pageX - screen.offsetLeft;
+                var y = event.pageY - screen.offsetTop;
 
-            if (event.shiftKey && event.altKey) { alert("Só aperte uma tecla por vez!") }
-            if(event.shiftKey && isShift + 10 <= 40){
-                isShift += 10;
-                console.log(isShift);
-            }else if (event.altKey && isShift -5 >= 10) {
-                isShift -= 5;
-                console.log(isShift);
+                brush.fillStyle = colours[currentColor];
+                brush.beginPath();
+                brush.arc(x, y, 10, 0, 2 * 3.14);
+                brush.fill();
             }
-
-            brush.fillStyle = colours[currentColor];
-            brush.beginPath();
-            brush.arc(x, y, isShift, 0, 2 * 3.14);
-            brush.fill();
         }
-        
         function changeColor() {
             currentColor++;
 
@@ -44,9 +36,19 @@
             }
             return false;
         }
+
         screen.oncontextmenu =  changeColor;
-        screen.onclick = printPoint;
-        
+        screen.onmousemove = printPoint;
+
+        function activePrint () {
+            printf = true;
+        }
+        function inactivePrint () {
+            printf = false;
+        }
+
+        screen.onmousedown = activePrint;
+        screen.onmouseup = inactivePrint;
     </script>
 </body>
 </html>
