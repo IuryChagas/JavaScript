@@ -15,17 +15,14 @@
         brush.fillRect(0, 0, 600, 400);
         var colours = ['blue', 'red', 'green'];
         var currentColor = 0;
+        var isShift = 10;
 
         function printPoint(event) {
             var x = event.pageX - screen.offsetLeft;
             var y = event.pageY - screen.offsetTop;
 
-            var isShift = event.shiftKey;
-
-            if (isShift) {
-                isShift = 20;
-            } else {
-                isShift = 10;
+            if (event.shiftKey) {
+                isShift += 10;
             }
 
             brush.fillStyle = colours[currentColor];
