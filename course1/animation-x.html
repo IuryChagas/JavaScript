@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation - S04 </title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+    <script>
+        var screen = document.querySelector('canvas');
+        var paintBrush = screen.getContext('2d');
+        paintBrush.fillStyle = '#c3c3c3';
+        paintBrush.fillRect(0, 0, 600, 400);
+
+        function printBall(x, y, radius){
+            paintBrush.fillStyle = 'blue';
+            paintBrush.beginPath();
+            paintBrush.arc(x, y, radius, 0, 2 * Math.PI);
+            paintBrush.fill();
+        }
+
+        function cleanScreen(){
+            paintBrush.clearRect(0, 0, 600, 400);
+        }
+
+        var x = 20;
+        var direction = 1;
+
+        function updateScreen(){
+
+            cleanScreen();
+
+            if (x > 590) {
+                direction = -1;
+            }else if(x < 10){
+                direction = 1;
+            }
+
+            printBall(x, 20, 10);
+            x = x + direction;
+
+        };
+        setInterval(updateScreen, 10);
+    </script>
+</body>
+</html>
