@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paint</title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+    <input type="color">
+    <script>
+        var screen = document.querySelector('canvas');
+        var brush = screen.getContext('2d');
+
+        brush.fillStyle = '#c0c0c0';
+        brush.fillRect(0, 0, 600, 400);
+        var palette = document.querySelector('input');
+        var printf = false;
+
+        function printPoint(event) {
+            if (printf) {
+                var x = event.pageX - screen.offsetLeft;
+                var y = event.pageY - screen.offsetTop;
+
+                brush.fillStyle = palette.value;
+                brush.beginPath();
+                brush.arc(x, y, 10, 0, 2 * 3.14);
+                brush.fill();
+            }
+        }
+
+        screen.onmousemove = printPoint;
+
+        screen.onmousedown = function(){
+            printf = true;
+        };
+        screen.onmouseup = function(){
+            printf = false;
+        };
+    </script>
+</body>
+</html>
