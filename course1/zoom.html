@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation - S04 - exerc 07</title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+    <script>
+        var screen = document.querySelector('canvas');
+        var paintBrush = screen.getContext('2d');
+        paintBrush.fillStyle = '#c3c3c3';
+        paintBrush.fillRect(0, 0, 600, 400);
+
+        function printBall(x, y, radius){
+            paintBrush.fillStyle = 'blue';
+            paintBrush.beginPath();
+            paintBrush.arc(x, y, radius, 0, 2 * Math.PI);
+            paintBrush.fill();
+        }
+
+        function cleanScreen(){
+            paintBrush.clearRect(0, 0, 600, 400);
+        }
+        var x = 100;
+        var y = 100;
+
+        var x1 = 300;
+        var y1 = 100;
+
+        var radius = 19;
+        var zoom = 0;
+
+        function updateScreen(){
+
+            cleanScreen();
+
+            if (radius > 30) {
+                zoom = -1;
+            }else if(radius < 20){
+                zoom = 1;
+            }
+            radius = radius + zoom;
+
+            printBall(x, y, radius);
+            printBall(x1, y1, radius);
+        };
+        setInterval(updateScreen, 20);
+    </script>
+</body>
+</html>
