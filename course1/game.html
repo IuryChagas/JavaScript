@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas</title>
+    <title>Thit the Target</title>
 </head>
 <body>
     <canvas width="600" height="400"></canvas>
@@ -11,56 +11,28 @@
         var screen = document.querySelector('canvas');
         var brush = screen.getContext('2d');
 
-        brush.fillStyle = '#c0c0c0';
+        brush.fillStyle = '#c3c3c3';
         brush.fillRect(0, 0, 600, 400);
 
-        var x = 100;
-        var y = 100;
+        var x = 255;
+        var y = 185;
         var radius = 10;
 
-        // Keyboard codes
-
-        var left = 37;
-        var up = 38;
-        var right = 39;
-        var down = 40;
-
-        // increaser rate
-
-        var rate = 10;
-
-        function printPoint(x, y, radius) {
-
-                brush.fillStyle = 'lightgreen';
-                brush.beginPath();
-                brush.arc(x, y, radius, 0, 2 * Math.PI);
-                brush.fill();
-        }
-        function cleanScreen(){
-            brush.clearRect(0, 0, 600, 400);
-        }
-
-        function updateScreen(){
-            cleanScreen();
-            printPoint(x, y, radius);
-        }
-
-        setInterval(updateScreen, 20);
-
-        function readKeyboard(keyboardEvent){
-            if (keyboardEvent.keyCode == left) {
-                x = x - rate;
-            }else if(keyboardEvent.keyCode == right){
-                x = x + rate;
-            }
-            if (keyboardEvent.keyCode == up){
-                y = y - rate;
-            }else if(keyboardEvent.keyCode == down){
-                y = y + rate;
-            }
-        }
-        document.onkeydown = readKeyboard;
-        console.log(readKeyboard);
+         function printCircle(x, y, radius, color){
+            brush.fillStyle = color;
+            brush.beginPath();
+            brush.arc(x, y, radius, 0, 2 * Math.PI);
+            brush.fill();
+         }
+         function cleanScreen (){
+             brush.clearRect(0, 0, 600, 400);
+         }
+         function printTargetDisc(x, y, radius){
+            printCircle(x, y, radius+20, 'red');
+            printCircle(x, y, radius+10, 'white');
+            printCircle(x, y, radius, 'red');
+         }
+         printTargetDisc(x, y, radius);
     </script>
 </body>
 </html>
