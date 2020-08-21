@@ -14,8 +14,8 @@
         brush.fillStyle = '#c3c3c3';
         brush.fillRect(0, 0, 600, 400);
 
-        var x = aleatoryPosition(600);
-        var y = aleatoryPosition(400);
+        var xPosition;
+        var yPosition;
         var radius = 10;
 
          function printCircle(x, y, radius, color){
@@ -35,7 +35,16 @@
          function aleatoryPosition (maximumValue){
              return Math.floor(Math.random() * maximumValue);
          }
-         printTargetDisc(x, y, radius);
+         printTargetDisc(xPosition, yPosition, radius);
+         function renderPage(){
+            cleanScreen();
+            xPosition = aleatoryPosition(600);
+            yPosition = aleatoryPosition(400);
+
+            printTargetDisc(xPosition, yPosition, radius);
+         }
+
+         setInterval(renderPage, 1000);
     </script>
 </body>
 </html>
