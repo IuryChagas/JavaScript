@@ -46,7 +46,10 @@
          function scoreboardAlert(event){
             var x = event.pageX - screen.offsetLeft;
             var y = event.pageY - screen.offsetTop;
-            alert('You Won!');
+            if (    (x > xPosition - radius) &&  (x < xPosition + radius)
+                &&  (y > yPosition - radius) &&  (y < yPosition + radius)   ){
+                    alert('☆彡(ノ^ ^)ノ You hit the target ヘ(^ ^ヘ)☆彡');
+                }
          }
          screen.onclick = scoreboardAlert;
          setInterval(renderPage, 1000);
