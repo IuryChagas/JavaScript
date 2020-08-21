@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <style>
+         h1{
+            text-align: center;
+            font-family: sans-serif;
+            margin: 0 auto;
+         }
+    </style>
+</head>
+<body>
+    <h1>Use the keyboard to control the bubble</h1>
+    <canvas width="600" height="400"></canvas>
+    <script>
+        var screen = document.querySelector('canvas');
+        var brush = screen.getContext('2d');
+
+        brush.fillStyle = '#c0c0c0';
+        brush.fillRect(0,0, 600, 400);
+
+        var x = 100;
+        var y = 100;
+        var radius = 10;
+
+        // Keyboard codes
+
+        var left = 37;
+        var up = 38;
+        var right = 39;
+        var down = 40;
+
+        // increaser rate
+
+        var rate = 10;
+
+        function printPoint(x, y, radius) {
+
+                brush.fillStyle = 'blue';
+                brush.beginPath();
+                brush.arc(x, y, radius, 0, 2 * Math.PI);
+                brush.fill();
+        }
+        function cleanScreen(){
+            brush.clearRect(150, 100, 600, 400);
+        }
+
+        function updateScreen(){
+            cleanScreen();
+            printPoint(x, y, radius);
+        }
+
+        setInterval(updateScreen, 20);
+
+        function readKeyboard(keyboardEvent){
+            if (keyboardEvent.keyCode == left) {
+                x = x - rate;
+            }else if(keyboardEvent.keyCode == right){
+                x = x + rate;
+            }
+            if (keyboardEvent.keyCode == up){
+                y = y - rate;
+            }else if(keyboardEvent.keyCode == down){
+                y = y + rate;
+            }
+        }
+        document.onkeydown = readKeyboard;
+        console.log(readKeyboard);
+    </script>
+</body>
+</html>
