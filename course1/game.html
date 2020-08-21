@@ -43,7 +43,12 @@
 
             printTargetDisc(xPosition, yPosition, radius);
          }
-
+         function scoreboardAlert(event){
+            var x = event.pageX - screen.offsetLeft;
+            var y = event.pageY - screen.offsetTop;
+            alert('You Won!');
+         }
+         screen.onclick = scoreboardAlert;
          setInterval(renderPage, 1000);
     </script>
 </body>
