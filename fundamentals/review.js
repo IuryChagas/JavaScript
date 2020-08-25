@@ -1,12 +1,15 @@
-console.log('trabalhando com variáveis');
+console.log('## Operações Aritiméticas ## ');
 
-const idade = 21;
+console.log(3+5);
+console.log(10 + 8 * 2);
+console.log((10 + 8) * 2);
 
-console.log(idade);
-console.log(idade + 2);
-console.log(idade / 2);
-console.log(idade - 2);
+console.log('year'+2020);
+console.log(15+"2"+"2");
+console.log(parseInt("15") + parseInt("2") + parseInt("2"));
 
-const idadeSomada = idade + 4;
+console.log("10" / "2");
 
-console.log(idadeSomada);
+console.log(6.5);
+console.log(6,5);
+console.log(parseFloat(6 / 2));
