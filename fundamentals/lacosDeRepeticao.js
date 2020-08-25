@@ -10,19 +10,18 @@ console.log(listaDeDestinos);
 const buyerAge = 23;
 const isAccompanied = false;
 const hasTicket = false;
-const destiny = "São Paulo";
+const destiny = "Curitiba";
+let availableDestination = false;
 
 const canBuy = buyerAge >= 18 || isAccompanied == true;
 
 let cont = 0;
 while(cont < listaDeDestinos.length){
     if (listaDeDestinos[cont] == destiny){
-        console.log('destino disponível');
-    }else{
-        console.log("destino indisponível");
+        availableDestination = true;
+        break;
     }
     cont++;
-
 }
-
+console.log(`Destino disponível: `, availableDestination);
 console.log(`\n> `+listaDeDestinos);
