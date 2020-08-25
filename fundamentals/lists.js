@@ -21,8 +21,5 @@ console.log(listaDeDestinos);
             // à partir da posição 1, delete 1 elemento!
 listaDeDestinos.splice(1,1);
     console.log(listaDeDestinos);
-            // à partir da posição 2, delete 1 elemento!
-listaDeDestinos.splice(2,1);
-    console.log(listaDeDestinos);
 
 console.log(`\n> `+listaDeDestinos[1]);
