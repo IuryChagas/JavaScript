@@ -10,18 +10,17 @@ class checkingAccount {
     withdraw(value){
         if (this._balance >= value) {
             this._balance -= value;
-            console.log("withdrawal value: ", value);
+            return value;
         }else{
-            console.log("> Insufficient balance, Invalid operation!");
+            return console.log("> Insufficient balance, Invalid operation!");
         }
     }
     deposit(value){
         if(value >= 1){
             this._balance += value;
-            console.log("deposit value: ", value);
-            console.log(`total balance: R$ ${this._balance}`);
+            return value;
         }else {
-            console.log("Invalid operation!");
+            return console.log("Invalid operation!");
         }
     }
 }
@@ -42,15 +41,14 @@ checkingAccountIuzy.agency = 1001;
 const checkingAccountDouglas = new checkingAccount();
 checkingAccountDouglas.agency = 1001;
 
-checkingAccountDouglas.deposit(100);
+let depositValue = checkingAccountDouglas.deposit(100);
+console.log("Deposit value: ", depositValue);
 console.log(client2, checkingAccountDouglas);
 
-checkingAccountDouglas.withdraw(50);
-
+let withdrawalValue = checkingAccountDouglas.withdraw(50);
+console.log("Withdrawal value: ", withdrawalValue);
 console.log(client2, checkingAccountDouglas);
 
-checkingAccountDouglas.deposit(3000);
-
-console.log(checkingAccountDouglas);
-
-console.log(checkingAccountDouglas);
+depositValue = checkingAccountDouglas.deposit(3000);
+console.log("Deposit value: ", depositValue);
+console.log(client2, checkingAccountDouglas);
