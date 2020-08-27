@@ -10,3 +10,5 @@
   "license": "ISC",
   "type": "module"
 }
+// para utilizar arquitetura em módulos no javascript, é preciso criar este arquivo json chamado package
+// definindo "type": "module" para o nodejs interpretar as Classes como módulos.
