@@ -7,22 +7,18 @@ class checkingAccount {
     agency;
     _balance = 0; // #private fields:   https://github.com/tc39/proposal-class-fields#private-fields 
 
+//  ### early return technique ####
+// é recomendavel  usar essa tecnica quando um método tem muitas verificações,
+// dessa forma na primeira ocorrência que não atender aos requisitos força um retorno para sair do método imediatamente.
+// dica: Fazer a lógica inversa. ex: se eu quero true, fazer o if capturar as exceções que caem em false.
     withdraw(value){
-        if (this._balance >= value) {
-            this._balance -= value;
-            return value;
-        }else{
-            return console.log("> Insufficient balance, Invalid operation!");
-        }
+        if (value > this._balance || value <= 0) return; // quando apenas uma expressão é comum não utilizar {}
+        this._balance -= value;
     }
     deposit(value){
-        if(value >= 1){
-            this._balance += value;
-            return value;
-        }else {
-            return console.log("Invalid operation!");
-        }
-    }
+        if(value <= 0) return;
+        this._balance += value;
+    }   
 }
 
 const client1 = new customer();
@@ -41,14 +37,9 @@ checkingAccountIuzy.agency = 1001;
 const checkingAccountDouglas = new checkingAccount();
 checkingAccountDouglas.agency = 1001;
 
-let depositValue = checkingAccountDouglas.deposit(100);
-console.log("Deposit value: ", depositValue);
-console.log(client2, checkingAccountDouglas);
+checkingAccountDouglas.deposit(100);
+checkingAccountDouglas.deposit(100);
+checkingAccountDouglas.deposit(100);
 
-let withdrawalValue = checkingAccountDouglas.withdraw(50);
-console.log("Withdrawal value: ", withdrawalValue);
-console.log(client2, checkingAccountDouglas);
-
-depositValue = checkingAccountDouglas.deposit(3000);
-console.log("Deposit value: ", depositValue);
-console.log(client2, checkingAccountDouglas);
+checkingAccountDouglas.withdraw(150);
+console.log(checkingAccountDouglas);
