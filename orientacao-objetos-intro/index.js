@@ -19,17 +19,5 @@ checkingAccountIuzy.transfer(200, checkingAccountDouglas);
 console.log(checkingAccountIuzy);
 console.log(checkingAccountDouglas);
 
-const checkingAccountChagas = new CheckingAccount();
-checkingAccountChagas.agency = 1003;
-checkingAccountChagas.client = null;
 
-// nulll - manually configured
-console.log(checkingAccountChagas);
-
-const checkingAccountIury = new CheckingAccount();
-checkingAccountIury.agency = 1003;
-checkingAccountIury.client.name = 'Iury';
-
-// undefined - by default
-console.log(checkingAccountIury);
 
