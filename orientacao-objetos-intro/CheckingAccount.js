@@ -16,6 +16,10 @@ export class CheckingAccount {
     get balance(){
         return this._balance;
     }
+    constructor(agency, client){
+        this.agency = agency;
+        this.client = client;
+    }
     withdraw(value){
         if (value > this._balance || value <= 0) return;
         this._balance -= value;
