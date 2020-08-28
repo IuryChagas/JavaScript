@@ -10,7 +10,7 @@ checkingAccountIuzy.deposit(500);
 const checkingAccountDouglas = new CheckingAccount(1001, client2);
 checkingAccountIuzy.transfer(200, checkingAccountDouglas);
 
-console.log(checkingAccountIuzy, checkingAccountDouglas);
-console.log("CPF: ", client2.cpf);
+console.log(checkingAccountIuzy);
+console.log(checkingAccountDouglas);
 
-
+console.log("Accounts number: ", CheckingAccount.accountsCounter);
