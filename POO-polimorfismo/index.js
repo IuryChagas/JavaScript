@@ -5,10 +5,14 @@ import {SavingsAccount} from "./SavingsAccount.js";
 
 const client1 = new Customer('Iury', 32987705158);
 
-const checkingAccountDouglas = new CheckingAccount(0, client1, 1001);
-checkingAccountDouglas.deposit(500);
+const checkingAccountIury = new CheckingAccount(0, client1, 1001);
+checkingAccountIury.deposit(500);
+checkingAccountIury.withdraw(100);
 
-console.log(checkingAccountDouglas);
+console.log(checkingAccountIury);
 
-const savingsAccount = new SavingsAccount(50, client1, 1001);
-console.log(savingsAccount);
+const savingsAccountIury = new SavingsAccount(0, client1, 1002);
+savingsAccountIury.deposit(50);
+savingsAccountIury.withdraw(10);
+
+console.log(savingsAccountIury);
