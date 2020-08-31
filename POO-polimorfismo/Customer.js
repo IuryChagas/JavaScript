@@ -1,7 +1,5 @@
 export class Customer{
-    _name;
-    _cpf;
-
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
     get name() { return this._name; }
     get cpf(){ return this._cpf; }
 
