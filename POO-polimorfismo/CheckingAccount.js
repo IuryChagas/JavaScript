@@ -10,10 +10,6 @@ export class CheckingAccount extends Account{
     withdraw(value){
 
         let rate = 1.1;
-        const withdrawalValue = rate * value;
-        if (this._balance >= withdrawalValue) {
-            this._balance -= withdrawalValue;
-            return withdrawalValue;
-        }
+        return super._withdraw(value, rate);
     }
 };

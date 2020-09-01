@@ -16,11 +16,16 @@ export class Account{
 
     withdraw(value){
         let rate = 1;
+        return this._withdraw(value, rate);
+
+    }
+    _withdraw(value, rate){
         const withdrawalValue = rate * value;
         if (this._balance >= withdrawalValue) {
             this._balance -= withdrawalValue;
             return withdrawalValue;
         }
+        return 0;
     }
 
     deposit(value){
