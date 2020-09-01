@@ -16,3 +16,6 @@ savingsAccountIury.deposit(50);
 savingsAccountIury.withdraw(10);
 
 console.log(savingsAccountIury);
+
+const accountTesting = new Account(10, client1, 42);
+console.log(accountTesting);
