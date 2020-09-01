@@ -1,12 +1,12 @@
+// abstracting classe
 export class Account{
     constructor(openingBalance, client, agency){
+        if(this.constructor == Account){
+            throw new Error("Você não deveria instanciar um objeto do tipo Account diretamente!\n")
+        }
         this._balance = openingBalance;
         this._client = client;
         this._agency = agency;
-
-        if(this.constructor == Account){
-            console.log("\nVocê não deveria instanciar um objeto do tipo Account diretamente!\n")
-        }
     }
 
     set client(value){
