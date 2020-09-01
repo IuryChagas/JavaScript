@@ -2,6 +2,7 @@ import {Customer} from "./Customer.js";
 import {Account} from "./Account.js";
 import {CheckingAccount} from "./CheckingAccount.js";
 import {SavingsAccount} from "./SavingsAccount.js";
+import {SalaryAccount} from "./SalaryAccount.js";
 
 const client1 = new Customer('Iury', 32987705158);
 
@@ -17,5 +18,8 @@ savingsAccountIury.withdraw(10);
 
 console.log(savingsAccountIury);
 
-const accountTesting = new Account(10, client1, 42);
-console.log(accountTesting);
+const client2 = new Customer('Douglas', 32987705154)
+const salaryaccount = new SalaryAccount(client2);
+salaryaccount.deposit(4700);
+salaryaccount.withdraw(3000);
+console.log(salaryaccount);

@@ -18,9 +18,9 @@ export class Account{
     get client(){ return this._client; }
     get balance(){ return this._balance; }
 
+    // abstract method
     withdraw(value){
-        let rate = 1;
-        return this._withdraw(value, rate);
+        throw new Error("O método withdraw da conta é abstrato, É obrigatório sobrescrevê-lo..");
 
     }
     _withdraw(value, rate){
