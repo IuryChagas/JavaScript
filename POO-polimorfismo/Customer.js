@@ -6,9 +6,10 @@ export class Customer{
      constructor(name, cpf, password){
         this._name = name;
         this._cpf = cpf;
-        this._password = password; 
+        this._password = password;
     }
-    authenticator(password){
-        return password == this._password;
+
+    authenticator(){
+        return true;
     }
 };
