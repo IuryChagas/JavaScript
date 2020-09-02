@@ -11,5 +11,6 @@ export class Customer{
 
     authenticator(){
         return true;
+        // https://web.archive.org/web/20110316093835/http://blog.michaeleee.com/2008/02/javascript-interfaces-and-duck-typing.html
     }
 };
