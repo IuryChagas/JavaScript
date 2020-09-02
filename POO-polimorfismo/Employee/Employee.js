@@ -5,5 +5,13 @@ export class Employee{
         this._cpf = income;
 
         this._bonus = 1;
+        this._password;
     }
+
+    get password(){
+        return this._password;
+    }
+     createPassword(password){
+         this._password = password;
+     }
 }

@@ -1,24 +1,16 @@
 import {Customer} from "./Customer.js";
-import {CheckingAccount} from "./Account/CheckingAccount.js";
-import {SavingsAccount} from "./Account/SavingsAccount.js";
-import {SalaryAccount} from "./Account/SalaryAccount.js";
+import {Manager} from "./Employee/Manager.js";
+import {Director} from "./Employee/Director.js";
+import {AuthenticatorSystem} from "./AuthenticatorSystem.js";
 
-const client1 = new Customer('Iury', 32987705158);
+const director = new Director("Chagas", 10000, 12345678900);
+director.createPassword("03691214");
 
-const checkingAccountIury = new CheckingAccount(0, client1, 1001);
-checkingAccountIury.deposit(500);
-checkingAccountIury.withdraw(100);
+const isLoggedIn2 = AuthenticatorSystem.login(director, "03691214");
+console.log("Director is Logged in: ", isLoggedIn2);
 
-console.log(checkingAccountIury);
+const manager = new Manager("Douglas", 5000, 82468101214);
+manager.createPassword("41219630");
 
-const savingsAccountIury = new SavingsAccount(0, client1, 1002);
-savingsAccountIury.deposit(50);
-savingsAccountIury.withdraw(10);
-
-console.log(savingsAccountIury);
-
-const client2 = new Customer('Douglas', 32987705154)
-const salaryaccount = new SalaryAccount(client2);
-salaryaccount.deposit(4700);
-salaryaccount.withdraw(3000);
-console.log(salaryaccount);
+const isLoggedIn1 = AuthenticatorSystem.login(manager, "41219630");
+console.log("Manager is Logged in: ", isLoggedIn1);
