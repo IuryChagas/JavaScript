@@ -1,5 +1,5 @@
 export class AuthenticatorSystem{
-    static login(employee, password){
-        return employee.password == password;
+    static login(authenticable, password){
+        return authenticable.authenticator(password);
     }
 }
