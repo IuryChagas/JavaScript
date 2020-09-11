@@ -1,9 +1,10 @@
-function Nrunner(num){
-    return Math.floor(Math.random() * num)+1;
+function accepter(age){
+    if (age >= 18) {
+        return console.log("access allowed!");
+    }else{
+        return console.log("access denied!");
+    }
 }
 
-console.log("max  (10): ", Nrunner(10));
-console.log("max (100): ", Nrunner(100));
-console.log("max:  (4): ", Nrunner(4));
-console.log("max: (15): ", Nrunner(15));
-
+accepter(21);
+accepter(17);
