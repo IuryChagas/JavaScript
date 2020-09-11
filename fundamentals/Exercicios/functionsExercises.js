@@ -1,13 +1,11 @@
-function dataTypeIdentifier(data){
-    if(typeof data === 'number') {
-        console.log("\nType of: Number");
-    }else if(typeof data === 'string'){
-        console.log("\nType of: String");
-    }else if(typeof data === 'boolean'){
-        console.log("\nType of: Boolean");
-    }
+function positiveConverter(num){
+    return console.log(Math.abs(num));
 }
 
-dataTypeIdentifier(42);
-dataTypeIdentifier("!");
-dataTypeIdentifier(true);
+positiveConverter(-42);
+positiveConverter(-2);
+positiveConverter(-1992);
+positiveConverter(0);
+positiveConverter(8);
+positiveConverter(19.21);
+positiveConverter(-13.8);
