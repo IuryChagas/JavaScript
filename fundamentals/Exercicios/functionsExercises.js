@@ -1,10 +1,11 @@
-function textCharCounter(text){
-    if (text.length > 10) {
-        return console.log("chars[",text.length,"] >> This text is too long");
-    }
-    return console.log("chars[",text.length,"] >> text within the limit");
+function exponentialFunction(baseNumber, ExponentNumber){
+    return console.log("\n>> result: ", baseNumber ** ExponentNumber)
 }
+exponentialFunction(2, 2);
+exponentialFunction(4,4);
 
-textCharCounter("Lorem ipsum");
-textCharCounter("ipsum");
-textCharCounter("100");
+function potencia(baseNumber, ExponentNumber){
+    return Math.pow(baseNumber, ExponentNumber)
+}
+console.log("\n>> result: ",potencia(3,2));
+console.log("\n>> result: ",potencia(5,2));
