@@ -1,11 +1,10 @@
-function positiveConverter(num){
-    return console.log(Math.abs(num));
+function textCharCounter(text){
+    if (text.length > 10) {
+        return console.log("chars[",text.length,"] >> This text is too long");
+    }
+    return console.log("chars[",text.length,"] >> text within the limit");
 }
 
-positiveConverter(-42);
-positiveConverter(-2);
-positiveConverter(-1992);
-positiveConverter(0);
-positiveConverter(8);
-positiveConverter(19.21);
-positiveConverter(-13.8);
+textCharCounter("Lorem ipsum");
+textCharCounter("ipsum");
+textCharCounter("100");
