@@ -1,17 +1,10 @@
-let numbers = [22, 35, 29, 1, 9];
-let informations = ["Iury", 12, true, 2, "Last value of array!"];
-let names = ["Chagas", "iury", "Madaline", "Camilla"];
+// ### MÉTODOS SÃO PROPRIEDADES QUE FUNCIONAM COMO FUNÇÕES ###
 
-console.log(numbers);
-console.log(informations);
-console.log(names);
+let brand = "king's Counselor";
+console.log(typeof brand);
+console.log(typeof brand.toUpperCase);
+console.log("\n",brand.toUpperCase());
+console.log("\n",brand.toLowerCase());
 
-console.log("\nName: ", names[3]);
-console.log(">>", informations[informations.length -1]);
-console.log(">>", informations[informations.length -3]);
-console.log(">>", typeof numbers);
-
-console.log(">>", numbers['length']); // length property
-console.log(">>", names[3].length); // length property
-
-// Quase todos os valores de javascript tem propriedades, menos null e undefined
+// string.propriedade
+// string.metodo()
