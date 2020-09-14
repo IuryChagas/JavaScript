@@ -1,17 +1,21 @@
-// Object: delete and create properties
+// Object: Podemos copiar propriedades de um obj para outro.
 
-let car = {
-    company: "Tesla",
-    electric: true,
-    engine: 3.0,
-    model: 3,
+let carA = {
+    propA_company: "Tesla",
+    propA_electric: true,
+    propA_engine: 3.0,
+    propA_model: 3,
 }
 
-console.log(car.model);
-delete car.model;
+let carB = {
+    propB_price: 46.500,
+    propB_absBrakes: true
+}
 
-console.log(car.model);
+Object.assign(carA, carB);
 
-car.sunroof = true;
+console.log("Car[A]:", carA);
 
-console.log(car.sunroof);
+Object.assign(carB, carA);
+
+console.log("Car[B]:", carB);
