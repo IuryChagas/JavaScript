@@ -1,19 +1,17 @@
-// OBJETOS É UMA COLEÇÃO DE PROPRIEDADES, PARCIDOS COM ARRAYS
+// Object: delete and create properties
 
-let User = {
-    name: "Iury",
-    occupation: "Developer",
-    age: 28,
+let car = {
+    company: "Tesla",
+    electric: true,
+    engine: 3.0,
+    model: 3,
+}
 
-    bio: function(){
-        console.log("Ready to grow!");
-    }
-};
+console.log(car.model);
+delete car.model;
 
-console.log("Name:", User.name);
-console.log("Age:", User.age);
-User.bio(); // <-- Método
+console.log(car.model);
 
-// [] = arrays
-// {} = objects
-// : = atribuição em objeto
+car.sunroof = true;
+
+console.log(car.sunroof);
