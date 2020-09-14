@@ -10,3 +10,8 @@ console.log("\nName: ", names[3]);
 console.log(">>", informations[informations.length -1]);
 console.log(">>", informations[informations.length -3]);
 console.log(">>", typeof numbers);
+
+console.log(">>", numbers['length']); // length property
+console.log(">>", names[3].length); // length property
+
+// Quase todos os valores de javascript tem propriedades, menos null e undefined
