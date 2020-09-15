@@ -1,0 +1,10 @@
+
+h2 {
+  text-align: center;
+  font-family: sans-serif;
+  color: #494949;
+}
+.grid {
+  margin: calc(50%/4) auto;
+  width: 25em;
+}
