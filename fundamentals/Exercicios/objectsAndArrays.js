@@ -1,27 +1,41 @@
-// Object: Podemos visualizar todas as chaves de um objeto com o método Keys() do Object
+// Object: Mutação (Mutability) - Um objeto pode herdar todas as características do outro, virando uma referência ao mesmo.
 
 let carA = {
-    propA_company: "Tesla",
-    propA_electric: true,
-    propA_engine: 3.0,
-    propA_model: 3,
+    company: "Tesla",
+    price: 46.500,
+    electric: true,
+    absBrakes: true,
+    model: 3
 }
 
-let carB = {
-    propB_price: 46.500,
-    propB_absBrakes: true
+carB  = carA;
+
+let carC = {
+    company: "Tesla",
+    price: 46.500,
+    electric: true,
+    absBrakes: true,
+    model: 3
 }
 
-Object.assign(carA, carB);
-console.log("Car[A]:", carA);
+console.log("carB == carA: ", carB == carA);
+console.log("carA == carB: ", carA == carB);
+console.log("carC == carB: ", carC == carB);
+console.log("carC == carA): ", carC == carA);
 
-Object.assign(carB, carA);
-console.log("Car[B]:", carB);
+console.log("\n==================\n");
 
-console.log("\n ======================================== \n");
+let avatar = {
+    name: "Pedro"
+}
 
-console.log(Object.keys(carA)); // para visualizar apenas as chaves sem os valores do objeto.
-console.log(carA);
+let avatar2 = avatar;
+console.log("avatar == avatar2: ", avatar == avatar2);
 
-console.log(Object.keys(carB));
-console.log(carB);
+let avatar3 = {
+    name: "Jose"
+}
+console.log("avatar3 == avatar: ", avatar3 == avatar);
+avatar2.name = "Laisla";
+console.log("avatar.name: ",avatar.name)
+console.log("avatar2 == avatar: ", avatar2 == avatar);
