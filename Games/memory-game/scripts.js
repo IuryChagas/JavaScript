@@ -51,14 +51,27 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const grid = document.querySelector('.grid');
+    let cardsChosen = [];
+    let cardsChosenId = [];
 
     function createBoard(){
         for (let i = 0; i < cardArray.length; i++){
             let card = document.createElement('img');
             card.setAttribute('src', 'imgs/blank.png');
             card.setAttribute('data-id', i);
+            card.addEventListener('click', flipcard);
             grid.appendChild(card);
         }
     }
+    function flipcard() {
+        let cardId = this.getAttribute('data-id');
+        cardsChosen.push(cardArray[cardId].name);
+        cardsChosenId.push(cardId);
+        this.setAttribute('src', cardArray[cardId].img);
+        if(cardsChosen.length === 2){
+            setTimeout(500);
+        };
+
+    };
     createBoard();
 })
