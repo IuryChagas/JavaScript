@@ -39,3 +39,54 @@ console.log("avatar3 == avatar: ", avatar3 == avatar);
 avatar2.name = "Laisla";
 console.log("avatar.name: ",avatar.name)
 console.log("avatar2 == avatar: ", avatar2 == avatar);
+
+let avatar4 = {
+    name: 'Douglas',
+    nickname: 'Iury',
+    age: 42,
+    walk: function(){
+        console.log("walking...");
+    }
+}
+console.log();
+
+console.log(avatar4['name']);
+avatar4.walk();
+
+console.log();
+
+let fruits = ['Orange', 'Strawberry', 'Pineapple'];
+console.log(fruits);
+
+console.log('method: length');
+console.log(fruits.length);
+
+console.log('method: toString() >> Convert to String');
+console.log(fruits.toString());
+
+console.log('method: push() >> to add new item at the end');
+fruits.push('Banana');
+console.log(fruits);
+
+console.log('method: unshift() >> to add a new item at the beginning');
+fruits.unshift('watermelon');
+console.log(fruits);
+
+console.log('method: join() >> to customize a concatenation');
+console.log(fruits.join(',\n'));
+
+
+console.log('method: shit() >> to remove first item');
+console.log('item removed: ~',fruits.shift(),'~');
+
+console.log(fruits);
+console.log('other item removed again!');
+fruits.shift();
+console.log(fruits);
+
+console.log('method: sort() >> to ordenate items');
+let fruitsAZ = ['Grapes','Kiwifruit','Acerola','Clementine','Figs','Watermelon','Banana','Durin']
+console.log(fruitsAZ.sort());
+
+console.log('method: reverse() >> to reverse the order of items');
+console.log(fruitsAZ.reverse())
