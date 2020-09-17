@@ -90,3 +90,15 @@ console.log(fruitsAZ.sort());
 
 console.log('method: reverse() >> to reverse the order of items');
 console.log(fruitsAZ.reverse())
+
+console.log('method: pop() >> to remove last item');
+console.log(fruitsAZ.pop());
+console.log(fruitsAZ);
+
+let nums = [0,1,2,3,4,5,6];
+
+console.log(nums.slice(0,2));
+console.log(nums.slice(4,6));
+console.log(nums.slice(2,5));
+console.log(nums.slice(3));
+console.log(nums.slice(-2));
