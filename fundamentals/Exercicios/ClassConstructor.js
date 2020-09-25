@@ -27,3 +27,18 @@ function Dog(race){
 
 let husky = new Dog('Husky');
 console.log('Dog Race:', husky.race);
+
+console.log("\n ####### Constructor with prototype method ####### \n");
+
+function Monkey(type){
+    this.type =  type;
+};
+
+Monkey.prototype.jump = function(){
+    console.log('jump!');
+};
+
+let chimpanzee = new Monkey('Chimpanzee');
+
+console.log(chimpanzee);
+chimpanzee.jump();
