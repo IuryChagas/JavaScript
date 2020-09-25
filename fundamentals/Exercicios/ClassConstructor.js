@@ -8,7 +8,7 @@ function createGuitar(body, strings, bridge){
     guitar.bridge = bridge;
     guitar.timbre = function(){
         console.log('\nTimbre Clean: ♫ ♩ ♫ ♪ ♫ ♪!');
-    }
+    };
 
     return guitar;
 };
@@ -18,3 +18,12 @@ let stratoCaster = createGuitar('wood', 7, 'bronze');
 console.log(stratoCaster);
 
 stratoCaster.timbre();
+
+console.log("\n ####### Constructor with 'new' ####### \n");
+
+function Dog(race){
+    this.race = race;
+};
+
+let husky = new Dog('Husky');
+console.log('Dog Race:', husky.race);
