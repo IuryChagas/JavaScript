@@ -16,3 +16,5 @@ let golden = new Dog('Golden Retriever');
 console.log(golden);
 // o symbol só é possivel acessar atraves do prototype
 console.log("Patas: ",Dog.prototype[patas]);
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
