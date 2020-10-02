@@ -18,3 +18,5 @@ let stringToJSON = JSON.parse(jsonToString);
 console.log("Type of stringToJSON: ", typeof stringToJSON);
 console.log("String to JSON: ", stringToJSON);
 console.log('Company: ', stringToJSON.brand);
+
+// https://www.json.org/json-en.html
