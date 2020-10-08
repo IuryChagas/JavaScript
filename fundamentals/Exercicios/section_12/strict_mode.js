@@ -51,5 +51,9 @@ conta.transferToCurrentAccount(500)
     console.log('Transferencia realizada >>> Novo saldo conta corrente: ',conta.currentAccountBalance)
     console.log('Atualização conta poupança >>> Saldo: ', conta.savingsAccountBalance)
 
-// strict mode must identify error
-delete Object.prototype;
+// strict mode must identify error only function context
+function test(){
+    oops = "using 'strict' only in the scope of the function";
+}
+
+test()
