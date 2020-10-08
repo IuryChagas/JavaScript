@@ -5,17 +5,11 @@ class Car{
         this.remainingFuel = remainingFuel;
     }
     drive(){
-        for(let i = 0; i < this.remainingFuel;){
-            console.log('Driving...')
-            this.remainingFuel -= 10;
+        let km = 15;
+        let fuelConsumption = this.remainingFuel / km;
+        this.remainingFuel -= fuelConsumption;
+        console.log(this.remainingFuel)
 
-            console.log(' >> Fuel level: ', this.remainingFuel)
-            if (this.remainingFuel == 0) {
-                console.log('\n>> Car stopped!')
-                console.log('>> You need to refuel!\n')
-                
-            }
-        }
     }
     refuel(value){
         console.log('>> Refueling, please wait!')
@@ -28,5 +22,13 @@ let carro = new Car('BMW', 'Black', 50)
     console.log(carro)
 
 carro.drive()
+carro.drive()
+carro.drive()
 carro.refuel(100)
+carro.refuel(110)
+carro.drive()
+carro.drive()
+carro.drive()
+carro.drive()
+carro.drive()
 carro.drive()
