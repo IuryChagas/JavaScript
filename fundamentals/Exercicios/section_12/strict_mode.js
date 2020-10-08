@@ -30,8 +30,7 @@ class Account{
     }
 }
 
-// strict mode must identify error
-conta = new Account(0, 0, 1.5)
+let conta = new Account(0, 0, 1.5)
 
 console.log(conta)
 conta.currentAccountDeposit(7500)
@@ -52,3 +51,5 @@ conta.transferToCurrentAccount(500)
     console.log('Transferencia realizada >>> Novo saldo conta corrente: ',conta.currentAccountBalance)
     console.log('Atualização conta poupança >>> Saldo: ', conta.savingsAccountBalance)
 
+// strict mode must identify error
+delete Object.prototype;
