@@ -6,23 +6,18 @@
     <title>Document - DOM</title>
 </head>
 <body>
-    <h1>DOM</h1>
-    <script>
-        function dragstart_handler(ev) {
-          // Add the target element's id to the data transfer object
-          ev.dataTransfer.setData("text/plain", ev.target.id)
-        }
-        window.addEventListener('DOMContentLoaded', () => {
-          // Get the element by id
-          const element = document.getElementById("p1");
-          // Add the ondragstart event listener
-          element.addEventListener("dragstart", dragstart_handler)
-        })
-        console.log(document)
-        console.log(document.body)
-    </script>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" target="_blank">Introduction to the DOM</a>      
-      <p id="p1" draggable="true">This element is draggable.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda eligendi ratione inventore esse nulla porro modi ipsum quam. Quidem expedita suscipit sit architecto omnis itaque laudantium accusamus totam quia reiciendis.</p>
+    <div>
+        <h1>DOM</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In excepturi unde quisquam et exercitationem similique nobis accusamus laborum fugit aliquam</p>
+    </div>
+    <div>
+        <h2>List of lorem ipsum 2</h2>
+        <ul>
+            <li>dolor sit</li>
+            <li>amet consectetur</li>
+            <li>adipisicing elit</li>
+        </ul>
+    </div>
 </body>
 </html>
+<script src="scripts.js"></script>
