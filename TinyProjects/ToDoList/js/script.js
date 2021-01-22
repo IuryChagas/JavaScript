@@ -24,8 +24,8 @@ class Todo {
         parentElement.remove()
 
     }
-    completeTask(){
-
+    completeTask(task){
+        task.classList.add('done')
     }
     addEvents(){
 
