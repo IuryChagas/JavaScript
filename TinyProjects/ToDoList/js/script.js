@@ -16,6 +16,33 @@ class Todo {
 
         tasksList.appendChild(template)
 
+        this.addEvents();
+    }
+    removeTask(task){
+
+        let parentElement = task.parentElement;
+        parentElement.remove()
+
+    }
+    completeTask(){
+
+    }
+    addEvents(){
+
+        let removeBtns = document.querySelectorAll('.fa-trash')
+
+        let removeBtn = removeBtns[removeBtns.length -1];
+
+        let doneBtns = document.querySelectorAll('.fa-check')
+        let doneBtn = doneBtns[doneBtns.length -1];
+
+        removeBtn.addEventListener('click', function () {
+            todo.removeTask(this)
+        })
+
+        doneBtn.addEventListener('click', function () {
+            todo.completeTask(this)
+        })
     }
 }
 
