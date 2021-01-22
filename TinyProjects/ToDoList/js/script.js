@@ -17,12 +17,13 @@ class Todo {
         tasksList.appendChild(template)
 
         this.addEvents();
+        this.checkTasks('add')
     }
     removeTask(task){
 
         let parentElement = task.parentElement;
         parentElement.remove()
-
+        this.checkTasks('remove')
     }
     completeTask(task){
         task.classList.add('done')
@@ -43,6 +44,21 @@ class Todo {
         doneBtn.addEventListener('click', function () {
             todo.completeTask(this)
         })
+    }
+    checkTasks(command){
+        let msg = document.querySelector('#empty-tasks')
+
+        if(command === 'add'){
+            this.totalTasks +=1;
+        }else if(command === 'remove'){
+            this.totalTasks -=1;
+        }
+
+        if(this.totalTasks == 1){
+            msg.classList.remove('hide')
+        }else{
+            msg.classList.add('hide')
+        }
     }
 }
 
