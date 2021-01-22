@@ -29,7 +29,9 @@ addBtn.addEventListener('click', function(event){
 
     let taskText = document.querySelector('#task')
 
-    todo.addTask(taskText.value)
+    if (taskText.value.trim()) {
+        todo.addTask(taskText.value)
+    }
 
     taskText.value = '';  
 
