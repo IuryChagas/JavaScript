@@ -14,9 +14,9 @@ const name = 'iury'
   - Crie uma função que ao ser invocada, exibe sua idade no console;
   - Dentro da função, declare uma let que armazena a sua idade;
   - Exiba sua idade no console, através da invocação da função;
-  - Do lado de fora da função exiba no console o valor da let que foi declarada  
+  - Do lado de fora da função exiba no console o valor da let que foi declarada
     dentro da função;
-  - Um erro com a mensagem "Uncaught ReferenceError: SUA_VARIÁVEL is not  
+  - Um erro com a mensagem "Uncaught ReferenceError: SUA_VARIÁVEL is not
     defined" será exibido no console;
   - Você sabe por que isso aconteceu?
 */
@@ -39,14 +39,13 @@ console.log(`Este erro ocorre pq a variável AGE, não existe no escopo ao qual 
     - name, que recebe o nome do carro;
     - brand, que recebe a marca do carro;
     - colors, que recebe 3 cores para o carro;
-    - isRunning, que recebe um boolean indicando se o carro está em movimento.  
-      Inicialmente, deve receber um boolean indicando que o carro não está em  
-      movimento;
-    - run, que é um método que faz o carro andar e retorna a mensagem  
+    - isRunning, que recebe um boolean indicando se o carro está em movimento.
+      Inicialmente, deve receber um boolean indicando que o carro não está em movimento;
+    - run, que é um método que faz o carro andar e retorna a mensagem
       "O NOME_DO_CARRO está em movimento";
-    - stop, que é um método que faz o carro parar e retorna a mensagem  
+    - stop, que é um método que faz o carro parar e retorna a mensagem
       "O NOME_DO_CARRO está parado";
-    - getColorsMessage, que é um método que retorna a mensagem  
+    - getColorsMessage, que é um método que retorna a mensagem
       "O NOME_DO_CARRO está disponível nas cores COR_01, COR_02 e COR_03".
 */
 console.info('\n### Etapa 04 - Exercício: 03 ###\n ')
@@ -54,16 +53,20 @@ console.info('\n### Etapa 04 - Exercício: 03 ###\n ')
 let car = {
   name: 'Model S',
   brand: 'Tesla',
-  colors: ['Grey', 'Black', 'Red'],
+  colors: ['Grey', 'Black', 'White', 'Red'],
   isRunning: false,
   run(){
+    this.isRunning = true
     console.log(`O ${this.name} está em movimento...`)
   },
   stop(){
+    this.isRunning = false
     console.log(`O ${this.name} está parado!`)
   },
   getColorsMessage(){
-    console.log(`O ${this.name} está disponível nas cores ${this.colors[0]}, ${this.colors[1]} e ${this.colors[2]}`)
+    let lastItem = this.colors[this.colors.length - 1]
+    let colors = this.colors.join(', ').replace(lastItem, `e ${lastItem}`)
+    console.log(`O ${this.name} está disponível nas cores ${colors}`)
   }
 }
 
@@ -76,6 +79,7 @@ console.log(car)
 console.info('\n### Etapa 04 - Exercício: 04 ###\n ')
 
 car.run()
+console.log('isRunning: ', car.isRunning)
 /*
   05
 
@@ -84,6 +88,7 @@ car.run()
 console.info('\n### Etapa 04 - Exercício: 05 ###\n ')
 
 car.stop()
+console.log('isRunning: ', car.isRunning)
 /*
   06
 
