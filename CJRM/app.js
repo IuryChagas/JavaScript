@@ -1,23 +1,20 @@
-const paragraph = document.querySelector('p')
-console.log(paragraph.innerText)
+const link = document.querySelector('a')
 
-paragraph.innerText += ' Texto adicionado via Script'
+console.log(link.getAttribute('href'))
 
-const paragraphs = document.querySelectorAll('p')
+link.setAttribute('href', 'https://br.linkedin.com/in/iurychagas')
 
-paragraphs.forEach((paragraph, index) => {
-    paragraph.innerText += ` Novo texto ${index + 1}`
-})
+console.log(link.getAttribute('href'))
 
-const div = document.querySelector('.content')
+const paragraphAttr = document.querySelector('p')
 
-div.innerHTML = '<h2>Novo h2</h2>'
+console.log("Elemento HTML:", paragraphAttr)
+console.log("Valor do elemento:", paragraphAttr.innerText)
+console.log("Classe CSS:", paragraphAttr.getAttribute('class'))
 
-console.log(div.innerHTML)
+console.log('\n::: Alterando o atributo do element HTML :::')
+paragraphAttr.setAttribute('class', 'success')
 
+console.log("\nparagraphAttr.setAttribute('class', 'success')")
 
-const people = ['Cristina', 'Grabriella', 'Hauro']
-
-people.forEach(person => {
-    div.innerHTML += `<p>${person}</p>`
-})
+console.log('\nAntiga classe: .error | Nova classe .'+paragraphAttr.getAttribute('class'))
