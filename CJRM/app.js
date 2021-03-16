@@ -1,30 +1,31 @@
-const link = document.querySelector('a')
+let paragraph = document.querySelector('p')
 
-console.log(link.getAttribute('href'))
+// console.log(paragraph)
+// console.log(paragraph.classList)
 
-link.setAttribute('href', 'https://br.linkedin.com/in/iurychagas')
+paragraph.classList.add('success')
 
-console.log(link.getAttribute('href'))
+paragraph.classList.remove('success')
 
-const paragraphAttr = document.querySelector('p')
+const paragraphs = document.querySelectorAll('p')
+ paragraphs.forEach( paragraph => {
+    console.log(paragraph.textContent)
 
-console.log("Elemento HTML:", paragraphAttr)
-console.log("Valor do elemento:", paragraphAttr.innerText)
-console.log("Classe CSS:", paragraphAttr.getAttribute('class'))
+    if (paragraph.textContent.includes('error')) {
+        paragraph.classList.add('error')
+    }
 
-console.log('\n::: Alterando o atributo do element HTML :::')
-paragraphAttr.setAttribute('class', 'success')
+    if(paragraph.textContent.includes('success')){
+        paragraph.classList.add('success')
+    }
+ })
 
-console.log("\nparagraphAttr.setAttribute('class', 'success')")
+ const title = document.querySelector('h1')
 
-console.log('\nAntiga classe: .error | Nova classe .'+paragraphAttr.getAttribute('class'))
+ // o método .toggle('') verifica se à a classe no elemento, caso negativo..
+ // ele adiciona tal classe.
+title.classList.toggle('test')
 
-let title = document.querySelector('h1')
-
-console.log(title)
-
-title.style.color = 'blue'
-title.style.fontSize = '4.5em'
-title.style.textAlign = 'center'
-title.style.fontFamily = 'sans-serif'
-title.style.textShadow = '15px 2px 12px grey'
+// Mas caso o elemento html já tenha tal classe, o método faz o efeito inverso
+// ele remove a classe
+title.classList.toggle('test')
