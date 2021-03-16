@@ -18,3 +18,13 @@ paragraphAttr.setAttribute('class', 'success')
 console.log("\nparagraphAttr.setAttribute('class', 'success')")
 
 console.log('\nAntiga classe: .error | Nova classe .'+paragraphAttr.getAttribute('class'))
+
+let title = document.querySelector('h1')
+
+console.log(title)
+
+title.style.color = 'blue'
+title.style.fontSize = '4.5em'
+title.style.textAlign = 'center'
+title.style.fontFamily = 'sans-serif'
+title.style.textShadow = '15px 2px 12px grey'
