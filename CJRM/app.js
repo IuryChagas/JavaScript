@@ -1,31 +1,18 @@
-let paragraph = document.querySelector('p')
+const article = document.querySelector('article')
 
-// console.log(paragraph)
-// console.log(paragraph.classList)
+console.log("article.children:", typeof article.children)
+console.log(article.children)
 
-paragraph.classList.add('success')
+console.log("article.children:", typeof Array.from(article.children))
+console.log(Array.from(article.children))
 
-paragraph.classList.remove('success')
 
-const paragraphs = document.querySelectorAll('p')
- paragraphs.forEach( paragraph => {
-    console.log(paragraph.textContent)
+Array.from(article.children).forEach( element => {
+    element.classList.add('article-element')
+})
 
-    if (paragraph.textContent.includes('error')) {
-        paragraph.classList.add('error')
-    }
+const titleH2 = document.querySelector('h2')
 
-    if(paragraph.textContent.includes('success')){
-        paragraph.classList.add('success')
-    }
- })
-
- const title = document.querySelector('h1')
-
- // o método .toggle('') verifica se à a classe no elemento, caso negativo..
- // ele adiciona tal classe.
-title.classList.toggle('test')
-
-// Mas caso o elemento html já tenha tal classe, o método faz o efeito inverso
-// ele remove a classe
-title.classList.toggle('test')
+console.log('Elemento Irmão do H2: ', titleH2.nextElementSibling)
+console.log('Elemento Pai do H2: ', titleH2.parentElement.parentElement)
+console.log('Elemento Irmão do Elemento pai do H2:', titleH2.parentElement.nextElementSibling)
