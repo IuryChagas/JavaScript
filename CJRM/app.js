@@ -14,16 +14,20 @@ list.forEach(li => {
         const clickedElement = event.target
 
         clickedElement.style.textDecoration = 'line-through'
+        console.log('cliclou na li')
         clickedElement.remove()
         
     })
 })
 
 btn.addEventListener('click', () => {
-    // ul.innerHTML += `<li>Novo Item</li>`
+
    const li = document.createElement('li')
    console.log(li)
    li.textContent = 'Novo Item'
-//    ul.prepend(li) // <-- adicionar no inicio
-    ul.append(li) // <--- adicionar ao final
+   ul.append(li)
+})
+
+ul.addEventListener('click', () => {
+    console.warn('Event bubbling occurrence: Collateral effect at UL')
 })
