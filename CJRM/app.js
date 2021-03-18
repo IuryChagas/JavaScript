@@ -15,6 +15,9 @@ list.forEach(li => {
 
         clickedElement.style.textDecoration = 'line-through'
         console.log('cliclou na li')
+
+        event.stopPropagation() // <- Stop Event bubbling propagation
+
         clickedElement.remove()
         
     })
