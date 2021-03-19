@@ -1,36 +1,24 @@
-const btn = document.querySelector('button')
+const paragraph = document.querySelector('.copy-me')
 
-console.log(btn)
+console.log(paragraph)
 
-const ul = document.querySelector('ul')
-const list = document.querySelectorAll('li')
 
-console.log(list)
-
-list.forEach(li => {
-    li.addEventListener('click', event => {
-        console.log('clicou em mim:', li)
-        console.log(event.target)
-        const clickedElement = event.target
-
-        clickedElement.style.textDecoration = 'line-through'
-        console.log('cliclou na li')
-
-        event.stopPropagation() // <- Stop Event bubbling propagation
-
-        clickedElement.remove()
-        
-    })
+paragraph.addEventListener('copy', ()=> {
+    console.log('Texto copiado: ')
 })
 
-btn.addEventListener('click', () => {
+const box = document.querySelector('.box')
 
-   const li = document.createElement('li')
-   console.log(li)
-   li.textContent = 'Novo Item'
-   ul.append(li)
+box.addEventListener('mousemove', event =>{
+
+    let position = `X: ${event.offsetX}  |  Y: ${event.offsetY}`
+
+    console.log(box.innerHTML = position)
 })
 
-ul.addEventListener('click', () => {
-    console.warn('Event bubbling occurrence: Collateral effect at UL')
+document.addEventListener('wheel', event => {
+    const pageX = event.pageX
+    const pageY = event.pageY
+
+    console.log(pageX, pageY)
 })

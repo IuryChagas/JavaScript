@@ -1,15 +1,13 @@
-ul {
-    padding: 0;
-}
 
-li {
-    list-style-type: none;
-    max-width: 12.5em;
-    padding: .5rem;
-    margin: .5rem 0;
-    background-color: #eee;
-    border: .05rem dotted #ddd;
-}
-li, button {
+.box {
+    width: 500px;
+    height: 500px;
+    margin: 10px 0;
+    background: #eee;
+    text-align: center;
+    padding: 20px;
+
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
