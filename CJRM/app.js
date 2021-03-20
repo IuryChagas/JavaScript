@@ -1,24 +1,27 @@
-const paragraph = document.querySelector('.copy-me')
+let button = document.querySelector('button')
+let popup = document.querySelector('.popup-wrapper')
 
-console.log(paragraph)
-
-
-paragraph.addEventListener('copy', ()=> {
-    console.log('Texto copiado: ')
+button.addEventListener('click', event => {
+    popup.style.display = 'block'
+    event.stopPropagation
 })
 
-const box = document.querySelector('.box')
+popup.addEventListener('click', event => {
+    const classNameOfClickedElement = event.target.classList[0]
 
-box.addEventListener('mousemove', event =>{
+    const targetItemsToClosePopUp = ['popup-close', 'popup-wrapper', 'popup-link']
 
-    let position = `X: ${event.offsetX}  |  Y: ${event.offsetY}`
+    const shouldClosePopup = targetItemsToClosePopUp.some(className => 
+        className === classNameOfClickedElement
+    )
 
-    console.log(box.innerHTML = position)
-})
+    // const shouldClosePopup = targetItemsToClosePopUp.forEach(classToClose => {
+    //     if (classToClose === classNameOfClickedElement) {
+    //         popup.style.display = 'none'
+    //     }
+    // })
 
-document.addEventListener('wheel', event => {
-    const pageX = event.pageX
-    const pageY = event.pageY
-
-    console.log(pageX, pageY)
+    if (shouldClosePopup) {
+        popup.style.display = 'none'
+    }
 })
