@@ -9,16 +9,18 @@ const div = document.querySelector('div')
 const elementsInsideDiv = Array.from(div.children)
 const h2 = document.querySelector('h2')
 
+const divChildren = event => {
+  event.stopPropagation()
+  h2.textContent = `Clicou no ${event.target.tagName.toLowerCase()}, filho da div.`
+}
+
 elementsInsideDiv.forEach(element => {
-  element.addEventListener('click', event => {
-    event.stopPropagation()
-    h2.textContent = `Clicou no ${event.target.tagName.toLowerCase()}, filho da div.`
-  })
+  element.addEventListener('click', divChildren)
 })
 
-div.addEventListener('click', () => {
+const clickedDiv = () => {
   h2.textContent = 'Clicou na div.'
-})
+}
 
 /*
   02
@@ -51,13 +53,12 @@ elementsInsideDiv.forEach(element => {
     seja exibida no console.
 */
 
-const h2Path = document.querySelector('h2')
 
 const logCopyMsg = event => {
   console.log("Texto copiado!")
 }
 
-h2Path.addEventListener('copy', logCopyMsg)
+
 
 /*
   05
@@ -77,7 +78,6 @@ const addCoordinates = ({offsetX, offsetY}) => {
   console.log(insertCoordinatesAtArea)
 }
 
-area.addEventListener('mousemove', addCoordinates)
 
 /*
   06
@@ -94,8 +94,6 @@ const changeColorEgg = event => {
   egg.style.backgroundColor ='lightgoldenrodyellow'
 
 }
-
-button.addEventListener('click', changeColorEgg)
 
 /*
   07
@@ -118,11 +116,14 @@ const people = [
   { id: 9, name: 'Hamilton Silva', profession: 'Advogado' }
 ]
 
-// const isAFrontEnder = people.some( person => person.profession === 'Front-end developer')
 
-// Destructuring assignment
 const isAFrontEnder = people.some( ({profession}) => profession === 'Front-end developer')
 
 if(isAFrontEnder){
   console.log('O array people contém, no mínimo, um(a) Front-end developer.')
 }
+
+div.addEventListener('click', clickedDiv)
+h2.addEventListener('copy', logCopyMsg)
+area.addEventListener('mousemove', addCoordinates)
+button.addEventListener('click', changeColorEgg)
