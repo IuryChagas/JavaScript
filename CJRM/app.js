@@ -1,27 +1,27 @@
-let button = document.querySelector('button')
-let popup = document.querySelector('.popup-wrapper')
+const form = document.querySelector('.signup-form')
+const userNameInput = document.querySelector('#username')
 
-button.addEventListener('click', event => {
-    popup.style.display = 'block'
-    event.stopPropagation
+form.addEventListener('submit', event => {
+    event.preventDefault()
+
+    // 3 formas de capturar os dados do submit do form
+    console.log(form.username.value)
+    console.log(userNameInput.value)
+    console.log(event.target.username.value)
 })
 
-popup.addEventListener('click', event => {
-    const classNameOfClickedElement = event.target.classList[0]
+const userName = 'iuryChagas'
+const pattern = /^[a-zA-Z0-9]{6,}$/
 
-    const targetItemsToClosePopUp = ['popup-close', 'popup-wrapper', 'popup-link']
 
-    const shouldClosePopup = targetItemsToClosePopUp.some(className => 
-        className === classNameOfClickedElement
-    )
+if (pattern) {
+    console.log("o teste da regex passou ^^ ")
+}else{
+    console.log("o teste da regex NÃO passou '~' ")
+}
+console.log(pattern.test(userName))
 
-    // const shouldClosePopup = targetItemsToClosePopUp.forEach(classToClose => {
-    //     if (classToClose === classNameOfClickedElement) {
-    //         popup.style.display = 'none'
-    //     }
-    // })
+const result = userName.search(pattern)
 
-    if (shouldClosePopup) {
-        popup.style.display = 'none'
-    }
-})
+// retorna a posição da string onde o padrão da expressão regular foi identificado!
+console.log(result)
