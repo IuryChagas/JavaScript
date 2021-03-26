@@ -18,12 +18,17 @@ form.addEventListener('submit', event => {
 */
 
 form.addEventListener('submit', event => {
+
+  let inputValue = form.input.value
+
   console.info('1#: form.input.value')
-  console.log(form.input.value)
+  console.log(inputValue)
 
   console.log('\n')
+  inputValue = event.target.input.value
+
   console.info('2#: event.target.input.value')
-  console.log(event.target.input.value)
+  console.log(inputValue)
 })
 
 /*
@@ -34,8 +39,10 @@ form.addEventListener('submit', event => {
   - Exiba no console o boolean no qual este teste resulta.
 */
 
-let pattern = /^documentation$/
-const match = 'documentation'
+const paragraph = document.querySelector('p')
+
+let pattern = /documentation/
+const match = paragraph.textContent
 
 console.log('isDocumentation: ', pattern.test(match))
 /*
@@ -79,19 +86,37 @@ console.log('isNASA:', NASAResult)
 
 const isRequired = /.{7,}/
 
-form.addEventListener('submit', event => {
+const clearInput = () => {
+  input.value = ''
+  input.focus()
+}
+
+const logMsg = message => {
+
+    console.log(message)
+    clearInput()
+
+  }
+const handleSubmit = event => {
 
   console.log()
 
+  const input = event.target.input
   const value = event.target.input.value
   const expression = isRequired.test(value)
 
   if (expression) {
-    return console.log("O valor inserido no input é válido =)")
-  }
-    return console.log("Valor inválido =(")
-})
 
+    logMsg("O valor inserido no input é válido =)")
+    return
+
+  }
+
+  logMsg("Valor inválido =(")
+
+}
+
+form.addEventListener('submit', handleSubmit)
 
 /*
   07
