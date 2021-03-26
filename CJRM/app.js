@@ -1,27 +1,36 @@
 const form = document.querySelector('.signup-form')
-const userNameInput = document.querySelector('#username')
+const feedback = document.querySelector('.feedback')
+const input = document.querySelector('input')
+
+const testUsername = username => {
+   return /^[a-zA-Z]{6,12}$/.test(username)
+}
 
 form.addEventListener('submit', event => {
     event.preventDefault()
 
-    // 3 formas de capturar os dados do submit do form
-    console.log(form.username.value)
-    console.log(userNameInput.value)
-    console.log(event.target.username.value)
+
+    const userName = event.target.username.value
+    const isAValidUserName = testUsername(userName)
+
+    if (isAValidUserName) {
+        feedback.textContent = 'UserName válido! :)'
+        return
+    }
+    feedback.textContent = 'UserName deve conter entre 6 e 12 caracteres e apenas letras'
+    console.error('Usuário inválido!')
+
 })
 
-const userName = 'iuryChagas'
-const pattern = /^[a-zA-Z0-9]{6,}$/
+form.username.addEventListener('keyup', event => {
+    const isAValidUserName = testUsername(event.target.value)
 
+    if (isAValidUserName) {
 
-if (pattern) {
-    console.log("o teste da regex passou ^^ ")
-}else{
-    console.log("o teste da regex NÃO passou '~' ")
-}
-console.log(pattern.test(userName))
+        console.log(input.setAttribute('class','success'))
+        return
+    }
 
-const result = userName.search(pattern)
-
-// retorna a posição da string onde o padrão da expressão regular foi identificado!
-console.log(result)
+    console.log(input.setAttribute('class','error'))
+    
+})

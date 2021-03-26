@@ -15,3 +15,11 @@ input, button {
 }
 
 button { cursor: pointer }
+
+.success {
+    background-color: rgb(183, 233, 208);
+}
+
+.error {
+    background-color: rgb(218, 161, 157);
+}
