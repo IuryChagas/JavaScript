@@ -1,36 +1,24 @@
-const form = document.querySelector('.signup-form')
-const feedback = document.querySelector('.feedback')
-const input = document.querySelector('input')
+const correctAnswers = ['B','B','B','B']
 
-const testUsername = username => {
-   return /^[a-zA-Z]{6,12}$/.test(username)
-}
+const form = document.querySelector('.quiz-form')
 
-form.addEventListener('submit', event => {
+
+form.addEventListener('submit', event =>{
     event.preventDefault()
 
-
-    const userName = event.target.username.value
-    const isAValidUserName = testUsername(userName)
-
-    if (isAValidUserName) {
-        feedback.textContent = 'UserName válido! :)'
-        return
-    }
-    feedback.textContent = 'UserName deve conter entre 6 e 12 caracteres e apenas letras'
-    console.error('Usuário inválido!')
-
-})
-
-form.username.addEventListener('keyup', event => {
-    const isAValidUserName = testUsername(event.target.value)
-
-    if (isAValidUserName) {
-
-        console.log(input.setAttribute('class','success'))
-        return
-    }
-
-    console.log(input.setAttribute('class','error'))
+    let score = 0
+    const userAnswers = [
+        form.inputQuestion1.value,
+        form.inputQuestion2.value,
+        form.inputQuestion3.value,
+        form.inputQuestion4.value
+    ]
+    console.log(userAnswers)
     
+    userAnswers.forEach( (userAnswer, index) => {
+        if (userAnswer === correctAnswers[index]) {
+            score += 25
+        }
+    })
+    console.log(score)
 })
