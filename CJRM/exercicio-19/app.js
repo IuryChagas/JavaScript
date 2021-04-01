@@ -44,8 +44,12 @@ form.addEventListener('submit', event => {
         if (response === recommendedLanguages[index]) {
             score += 25
         }
-        
     })
+
+    setTimeout(() => {
+        scrollTo(0, 0)
+    }, 2000)
+
     finalResult.querySelector('span').textContent = `${score}%`
     finalResult.classList.remove('d-none')
 })
