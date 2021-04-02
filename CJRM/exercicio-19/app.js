@@ -22,27 +22,36 @@ Link do repositório do curso: https://github.com/roger-melo-treinamentos/curso-
 Ps: se você não conseguiu fazer tudo o que foi pedido acima, abra a issue mesmo assim =)
 */
 
-const form = document.querySelector('form')
+const form = document.querySelector('.quiz-form')
 const input = document.querySelector('input')
 const finalResult = document.querySelector('.result')
 
-const recommendedLanguages = ['A','B', 'B', 'B']
+const recommendedLanguages = ['A','B', 'A', 'B', 'A', 'A']
 
 form.addEventListener('submit', event => {
     event.preventDefault()
 
+    const firstOption = form.inputQuestion1.value
+    const secondOption = form.inputQuestion2.value
+    const thirdOption = form.inputQuestion3.value
+    const fourthOption = form.inputQuestion4.value
+    const fifthOption = form.inputQuestion5.value
+    const sixthOption = form.inputQuestion6.value
+
     const userChoices = [
-        form.inputQuestion1.value,
-        form.inputQuestion2.value,
-        form.inputQuestion3.value,
-        form.inputQuestion4.value
+        firstOption,
+        secondOption,
+        thirdOption,
+        fourthOption,
+        fifthOption,
+        sixthOption
     ]
 
     let score = 0
 
     userChoices.forEach( (response, index) => {
         if (response === recommendedLanguages[index]) {
-            score += 25
+            score += 16
         }
     })
 
@@ -52,14 +61,20 @@ form.addEventListener('submit', event => {
     finalResult.classList.remove('d-none')
 
     let counter = 0
-
+    let finalScore = ``
     const timer = setInterval(() => {
 
         if (counter === score) {
             clearInterval(timer)
         }
 
-        finalResult.querySelector('span').textContent = `${counter}%`
+        if (counter !== 96) {
+            finalScore = `${counter}.66%`
+        }else if (counter === 96){
+            finalScore = `${counter += 4}%`
+        }
+
+        finalResult.querySelector('span').textContent = `${finalScore}`
         counter++
     }, 10)
 })
