@@ -18,6 +18,28 @@ setTimeout(()=>{
   console.log('Um segundo e meio se passaram desde que a página foi carregada')
 }, 1500)
 
+setTimeout(message => {
+  console.log('### Version: 02 ###')
+  console.log(message)
+}, 3000, "Um segundo e meio se passaram desde que o 1° Timeout foi concluído")
+
+let msg = "Um segundo e meio se passaram desde que o 2° Timeout foi concluído"
+
+const logMsg = (msg) => {
+  console.log('### Version: 03 ###')
+  console.log(msg)
+}
+
+setTimeout(logMsg, 4500, msg)
+
+setTimeout(()=>{
+  console.log('### Version: 04 ###')
+},6000)
+
+msg = "Um segundo e meio se passaram desde que o 3° Timeout foi concluído"
+
+setTimeout(console.log, 6000, msg)
+
 /* 
   03
 
@@ -25,26 +47,30 @@ setTimeout(()=>{
   - O clique no botão "Parar contador" deve fazer com que o contador exiba 0.
 */
 
-const counterStart = document.querySelector('.button-init-counter')
-const counterStop = document.querySelector('.button-stop-counter')
+const startButton = document.querySelector('.button-init-counter')
+const stopButton = document.querySelector('.button-stop-counter')
 let counter = document.querySelector('.counter-container')
 
-let timer = () => {}
-let number = 0
+let timer = null
+const incrementCounter = () => {
+  const incrementedCounter = Number(counter.textContent) + 1
+  counter.textContent = incrementedCounter
+}
 
-counterStart.addEventListener('click', event =>{
+const stopCounter = () => {
+  clearInterval(timer)
+  counter.textContent = number = 0
+}
 
-  timer = setInterval(() => {
-    counter.textContent = number
-    number++
-  }, 200)
+startButton.addEventListener('click', event =>{
+
+  timer = setInterval(incrementCounter, 200)
 
 })
 
-counterStop.addEventListener('click', event=>{
+stopButton.addEventListener('click', event=>{
 
-  clearInterval(timer)
-  counter.textContent = number = 0
+  stopCounter()
 
 })
 
