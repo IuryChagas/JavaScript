@@ -24,42 +24,43 @@ Ps: se você não conseguiu fazer tudo o que foi pedido acima, abra a issue mesm
 
 const form = document.querySelector('.quiz-form')
 const input = document.querySelector('input')
-const finalResult = document.querySelector('.result')
+const finalScoreContainer = document.querySelector('.final-score-container')
 
 const recommendedLanguages = ['A','B', 'A', 'B', 'A', 'A']
+let score = 0
 
-form.addEventListener('submit', event => {
-    event.preventDefault()
+const getUserAnswers = () => {
+    let userChoices = []
 
-    const firstOption = form.inputQuestion1.value
-    const secondOption = form.inputQuestion2.value
-    const thirdOption = form.inputQuestion3.value
-    const fourthOption = form.inputQuestion4.value
-    const fifthOption = form.inputQuestion5.value
-    const sixthOption = form.inputQuestion6.value
+    recommendedLanguages.forEach((_, index) => {
+        const userAnswer = form[`inputQuestion${index +1}`].value 
+        userChoices.push(userAnswer)
 
-    const userChoices = [
-        firstOption,
-        secondOption,
-        thirdOption,
-        fourthOption,
-        fifthOption,
-        sixthOption
-    ]
+    })
 
-    let score = 0
+    return userChoices
+}
 
+const calculateUserScore = userChoices => {
     userChoices.forEach( (response, index) => {
-        if (response === recommendedLanguages[index]) {
+        const isUserChoiceCorrect = response === recommendedLanguages[index]
+
+        if (isUserChoiceCorrect) {
             score += 16
         }
     })
+}
+const showFinalScore = () =>{
+    scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    })
 
-    scrollTo(0, 0)
-
-    finalResult.querySelector('span').textContent = `${score}%`
-    finalResult.classList.remove('d-none')
-
+    finalScoreContainer.querySelector('span').textContent = `${score}%`
+    finalScoreContainer.classList.remove('d-none')
+}
+const animateFinalScore = () =>{
     let counter = 0
     let finalScore = ``
     const timer = setInterval(() => {
@@ -74,7 +75,17 @@ form.addEventListener('submit', event => {
             finalScore = `${counter += 4}%`
         }
 
-        finalResult.querySelector('span').textContent = `${finalScore}`
+        finalScoreContainer.querySelector('span').textContent = `${finalScore}`
         counter++
     }, 10)
+}
+
+form.addEventListener('submit', event => {
+    event.preventDefault()
+
+    const userChoices = getUserAnswers()
+
+    calculateUserScore(userChoices)
+    showFinalScore()
+    animateFinalScore()
 })
