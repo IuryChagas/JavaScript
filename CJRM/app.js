@@ -1,32 +1,37 @@
-const numbers = [1, 2, 3]
+const randomNumbers = [36, 99, 37, 63, 19, 17, 2]
 
-console.info('## Array original ##')
-console.log(numbers)
+console.log(randomNumbers)
 
-console.info('## Array Modificado por .map() ##')
-const doubleNumbers = numbers.map( item => item * 2)
-console.log(doubleNumbers)
-
-const products = [
-    { name: 'Mouse Sem Fio', price: 30 },
-    { name: 'Pen Drive', price: 25 },
-    { name: 'Cartucho de Tinta', price: 50 },
-    { name: 'Suporte Ergonômico para Notebook', price: 23 },
-    { name: 'Repetidor de Sinal Wi-Fi', price: 44 }
-  ]
-
-const saleProduct = products.map(product => {
-    if (product.price >= 30) {
-        return {
-            name: product.name,
-            price: product.price / 2
-        }
+const numbersGreaterThan37 = randomNumbers.filter( item => {
+    if (item >= 37) {
+        return item
     }
-    return product
 })
 
-console.info("## Original Object ##")
-console.log(products)
+const numbersLessThan20 = randomNumbers.filter( number => number <= 20)
 
-console.info("## New Object wth .map() ##")
-console.log(saleProduct)
+console.log(numbersGreaterThan37)
+console.log(numbersLessThan20)
+
+console.log(
+    {
+        randomNumbers,
+        numbersGreaterThan37,
+        numbersLessThan20
+    }
+)
+
+const users = [
+    { name: 'Ada Lovelace', premium: true },
+    { name: 'Grace Hopper', premium: false },
+    { name: 'Alan Turing', premium: true },
+    { name: 'Linus Torvalds', premium: false },
+    { name: 'Margaret Hamilton', premium: true }
+  ]
+
+console.log(users)
+
+console.info("## Return only premium users: ##")
+
+const usersPremium = users.filter(user => user.premium === true)
+console.log(usersPremium)
