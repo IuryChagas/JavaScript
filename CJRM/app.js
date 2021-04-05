@@ -1,37 +1,32 @@
-const randomNumbers = [36, 99, 37, 63, 19, 17, 2]
+const numbers = [1, 2, 3]
 
-console.log(randomNumbers)
 
-const numbersGreaterThan37 = randomNumbers.filter( item => {
-    if (item >= 37) {
-        return item
-    }
-})
+const sumNumbers = numbers.reduce((accumulator, item) => accumulator + item, 0)
 
-const numbersLessThan20 = randomNumbers.filter( number => number <= 20)
+console.info("## Soma dos números de um Array ##")
+console.log(sumNumbers)
 
-console.log(numbersGreaterThan37)
-console.log(numbersLessThan20)
-
-console.log(
-    {
-        randomNumbers,
-        numbersGreaterThan37,
-        numbersLessThan20
-    }
-)
-
-const users = [
-    { name: 'Ada Lovelace', premium: true },
-    { name: 'Grace Hopper', premium: false },
-    { name: 'Alan Turing', premium: true },
-    { name: 'Linus Torvalds', premium: false },
-    { name: 'Margaret Hamilton', premium: true }
+const phaseScores = [
+    { name: 'Vinicius Costa', score: 337 },
+    { name: 'Roger Melo', score: 43 },
+    { name: 'Alfredo Braga', score: 234 },
+    { name: 'Pedro H. Silva', score: 261 },
+    { name: 'Ana Paula Rocha', score: 491 },
+    { name: 'Vinicius Costa', score: 167 },
+    { name: 'Roger Melo', score: 137 },
+    { name: 'Alfredo Braga', score: 135 },
+    { name: 'Ana Paula Rocha', score: 359 },
+    { name: 'Pedro H. Silva', score: 133 }
   ]
 
-console.log(users)
+const rogerTotalScores = phaseScores.reduce((accumulator, phaseScores) => {
+    if (phaseScores.name === 'Roger Melo') {
+        accumulator += phaseScores.score
+    }
 
-console.info("## Return only premium users: ##")
+    return accumulator
+}, 0)
 
-const usersPremium = users.filter(user => user.premium === true)
-console.log(usersPremium)
+
+console.info("## Soma da pontuação apenas de um Jogador ##")
+console.log(rogerTotalScores)
