@@ -1,24 +1,32 @@
-const correctAnswers = ['B','B','B','B']
+const numbers = [1, 2, 3]
 
-const form = document.querySelector('.quiz-form')
+console.info('## Array original ##')
+console.log(numbers)
 
+console.info('## Array Modificado por .map() ##')
+const doubleNumbers = numbers.map( item => item * 2)
+console.log(doubleNumbers)
 
-form.addEventListener('submit', event =>{
-    event.preventDefault()
+const products = [
+    { name: 'Mouse Sem Fio', price: 30 },
+    { name: 'Pen Drive', price: 25 },
+    { name: 'Cartucho de Tinta', price: 50 },
+    { name: 'Suporte Ergonômico para Notebook', price: 23 },
+    { name: 'Repetidor de Sinal Wi-Fi', price: 44 }
+  ]
 
-    let score = 0
-    const userAnswers = [
-        form.inputQuestion1.value,
-        form.inputQuestion2.value,
-        form.inputQuestion3.value,
-        form.inputQuestion4.value
-    ]
-    console.log(userAnswers)
-    
-    userAnswers.forEach( (userAnswer, index) => {
-        if (userAnswer === correctAnswers[index]) {
-            score += 25
+const saleProduct = products.map(product => {
+    if (product.price >= 30) {
+        return {
+            name: product.name,
+            price: product.price / 2
         }
-    })
-    console.log(score)
+    }
+    return product
 })
+
+console.info("## Original Object ##")
+console.log(products)
+
+console.info("## New Object wth .map() ##")
+console.log(saleProduct)
