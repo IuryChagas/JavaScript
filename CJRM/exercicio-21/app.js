@@ -7,11 +7,7 @@
 
 const randomNumbers = [10, 30, 15, 25, 50, 40, 5]
 
-const oddNumbers = randomNumbers.filter(item => {
-  if (item % 2 !== 0) {
-    return item 
-  } 
-})
+const oddNumbers = randomNumbers.filter(item => item % 2 !== 0)
 
 console.info('\n### Etapa 08 - Exercício: 01 ###\n ')
 console.log(oddNumbers)
@@ -66,10 +62,12 @@ const cart = [
   { name: 'Death Stranding', price: 149.99 }
 ]
 
-const gameTitles = cart.map(game => `- ${game.name}\n` )
+const productlist = cart.reduce((accumulator, product) => {
+  return `${accumulator}- ${product.name}\n`
+}, '')
 
 console.info('\n### Etapa 08 - Exercício: 04 ###\n ')
-console.log(`${gameTitles}\n`.replaceAll(',',''))
+console.log(productlist)
 
 /*
   - Nome 1
@@ -98,11 +96,7 @@ const tarantinoMovies = [
   { name: 'Kill Bill: Volume 1', release: 2003 }
 ]
 
-const filmsBefore2000 = tarantinoMovies.filter(movie => {
-  if (movie.release < 2000) {
-    return movie
-  }
-})
+const filmsBefore2000 = tarantinoMovies.filter(movie => movie.release < 2000)
 
 console.info('\n### Etapa 08 - Exercício: 05 ###\n ')
 console.log(filmsBefore2000)
@@ -124,9 +118,7 @@ const tvShows = [
   { name: 'Watchmen', releaseYear: 2019 }
 ]
 
-const titleTvShows = tvShows.map(tvShow => {
-  return tvShow.name
-})
+const titleTvShows = tvShows.map(tvShow => tvShow.name)
 
 console.info('\n### Etapa 08 - Exercício: 06 ###\n ')
 console.log(titleTvShows)
