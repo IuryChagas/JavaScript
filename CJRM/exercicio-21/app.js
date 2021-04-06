@@ -7,7 +7,8 @@
 
 const randomNumbers = [10, 30, 15, 25, 50, 40, 5]
 
-const oddNumbers = randomNumbers.filter(item => item % 2 !== 0)
+const getOddNumbers = item => item % 2 !== 0
+const oddNumbers = randomNumbers.filter(getOddNumbers)
 
 console.info('\n### Etapa 08 - Exercício: 01 ###\n ')
 console.log(oddNumbers)
@@ -19,12 +20,9 @@ console.log(oddNumbers)
 
 const crazyNumbers = [937, 5, 395, 402, 501, 333, 502, 781, 3, 691]
 
-const numbersLessThan501 = crazyNumbers.reduce((acc, item, _)=>{
-    if (item < 501) {
-      acc += 1
-    }
-    return acc
-}, 0)
+const countNumberLessThan501 = (acc, item, _) => item < 501 ? ++acc : acc
+
+const numbersLessThan501 = crazyNumbers.reduce(countNumberLessThan501, 0)
 
 console.info('\n### Etapa 08 - Exercício: 02 ###\n ')
 console.log(numbersLessThan501)
@@ -61,10 +59,9 @@ const cart = [
   { name: 'Resident Evil 2', price: 119.90 },
   { name: 'Death Stranding', price: 149.99 }
 ]
-
-const productlist = cart.reduce((accumulator, product) => {
-  return `${accumulator}- ${product.name}\n`
-}, '')
+                              // destructuring assignment javascript
+const productlist = cart.reduce(( accumulator, { name } ) => 
+  `${accumulator}- ${name}\n`, '')
 
 console.info('\n### Etapa 08 - Exercício: 04 ###\n ')
 console.log(productlist)
@@ -95,8 +92,8 @@ const tarantinoMovies = [
   { name: 'À Prova de Morte', release: 2007 },
   { name: 'Kill Bill: Volume 1', release: 2003 }
 ]
-
-const filmsBefore2000 = tarantinoMovies.filter(movie => movie.release < 2000)
+                                  // destructuring assignment javascript
+const filmsBefore2000 = tarantinoMovies.filter(( { release } ) => release < 2000)
 
 console.info('\n### Etapa 08 - Exercício: 05 ###\n ')
 console.log(filmsBefore2000)
@@ -117,8 +114,8 @@ const tvShows = [
   { name: 'House M.D.', releaseYear: 2004 },
   { name: 'Watchmen', releaseYear: 2019 }
 ]
-
-const titleTvShows = tvShows.map(tvShow => tvShow.name)
+                      // destructuring assignment javascript
+const titleTvShows = tvShows.map( ({ name }) => name)
 
 console.info('\n### Etapa 08 - Exercício: 06 ###\n ')
 console.log(titleTvShows)
