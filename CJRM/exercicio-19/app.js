@@ -29,17 +29,8 @@ const finalScoreContainer = document.querySelector('.final-score-container')
 const recommendedLanguages = ['A','B', 'A', 'B', 'A', 'A']
 let score = 0
 
-const getUserAnswers = () => {
-    let userChoices = []
-
-    recommendedLanguages.forEach((_, index) => {
-        const userAnswer = form[`inputQuestion${index +1}`].value 
-        userChoices.push(userAnswer)
-
-    })
-
-    return userChoices
-}
+const getUserAnswers = () => recommendedLanguages.map((_, index) => 
+        form[`inputQuestion${index +1}`].value)
 
 const calculateUserScore = userChoices => {
     userChoices.forEach( (response, index) => {
