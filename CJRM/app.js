@@ -1,32 +1,35 @@
-const numbers = [1, 2, 3]
+// Exemplo 1: Ordenando por strings
+const names = ['Christian','Alfredo', 'Beatriz', 'Edson']
 
+names.sort()
 
-const sumNumbers = numbers.reduce((accumulator, item) => accumulator + item, 0)
+console.log(names)
 
-console.info("## Soma dos números de um Array ##")
-console.log(sumNumbers)
+// Exemplo 2: Ordenando Objetos
 
-const phaseScores = [
-    { name: 'Vinicius Costa', score: 337 },
-    { name: 'Roger Melo', score: 43 },
-    { name: 'Alfredo Braga', score: 234 },
-    { name: 'Pedro H. Silva', score: 261 },
-    { name: 'Ana Paula Rocha', score: 491 },
-    { name: 'Vinicius Costa', score: 167 },
-    { name: 'Roger Melo', score: 137 },
-    { name: 'Alfredo Braga', score: 135 },
-    { name: 'Ana Paula Rocha', score: 359 },
-    { name: 'Pedro H. Silva', score: 133 }
-  ]
+const theBigFamily = [
+    { name: 'Lineu', score: 20 },
+    { name: 'Nenê', score: 10 },
+    { name: 'Tuco', score: 50 },
+    { name: 'Bebel', score: 30 },
+    { name: 'Agostinho', score: 70 }
+]
 
-const rogerTotalScores = phaseScores.reduce((accumulator, phaseScores) => {
-    if (phaseScores.name === 'Roger Melo') {
-        accumulator += phaseScores.score
+theBigFamily.sort((item1, item2) => {
+    if (item1.score > item2.score) {
+        return -1
+    }else if (item2.score > item1.score) {
+        return 1
     }
+    return 0
+})
 
-    return accumulator
-}, 0)
+console.log(theBigFamily)
 
 
-console.info("## Soma da pontuação apenas de um Jogador ##")
-console.log(rogerTotalScores)
+// Exemplo 3: Ordenando números
+const scores = [10, 50, 20, 5, 35, 70, 45]
+
+scores.sort((score1, score2) => score1 - score2)
+
+console.log(scores)
