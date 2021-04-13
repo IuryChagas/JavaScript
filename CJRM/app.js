@@ -1,15 +1,19 @@
-const books = [
-    { name: 'Código Limpo', price: 30 },
-    { name: 'O milagre da manhã', price: 5 },
-    { name: 'Alice no País das Maravilhas', price: 10 },
-    { name: 'Quem Pensa Enriquece', price: 50 },
-    { name: 'O livro da ciência', price: 40 }
-  ]
+const todoContainer = document.querySelector('.todos-container')
+const formAddTodo = document.querySelector('.form-add-todo')
 
 
-const booksOnSale = books
-    .filter( ({ price }) =>  price > 20)
-    .map(({name, price}) =>
-        `O preço do livro "${name}" caiu para ${price}\n`)
+formAddTodo.addEventListener('submit', event => {
+  event.preventDefault()
 
-console.log(booksOnSale)
+  const inputValue = event.target.add.value.trim()
+
+  if (inputValue.length) {
+    todoContainer.innerHTML += `
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span>${inputValue}</span>
+      <i class="far fa-trash-alt delete"></i>
+    </li>
+    `
+    event.target.reset()
+  }
+})
