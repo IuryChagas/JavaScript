@@ -7,12 +7,14 @@
 */
 console.info('\n### Etapa 08 - Exercício: 01 ###\n ')
 
+const getArrayCopy = array => array.map(item => item)
+
 const names = ['Elaine', 'Caio', 'André', 'Dário']
 
-let orderedNames = names.map(name => name).sort()
+let namesInAlphabeticalOrder = getArrayCopy(names).sort()
 
 console.log('Original Array: ', names)
-console.log('New Array: ', orderedNames)
+console.log('New Array: ', namesInAlphabeticalOrder)
 
 /*
   02
@@ -30,11 +32,11 @@ const characters = [
   { id: 04, name: 'Mufasa' }
 ]
 
-const sortById = characters
-  .map(user => ({ id: user.id, name: user.name}))
-  .sort(( user1, user2 ) => user1.id - user2.id)
+const charactersOrderedById = characters
+  .map(({ id, name}) => ({ id, name }))
+  .sort(( item1, item2 ) => item1.id - item2.id)
 
-console.log('Original Array: ', characters, 'New Array: ', sortById)
+console.log('Original Array: ', characters, 'New Array: ', charactersOrderedById)
 
 /*
   03
@@ -47,10 +49,10 @@ console.info('\n### Etapa 08 - Exercício: 03 ###\n ')
 
 const numbers = [41, 15, 63, 349, 25, 22, 143, 64, 59, 291]
 
-const orderedNumbers = numbers.map(item => item).sort((num1, num2) => num1 - num2)
+const numbersInAscendingOrder = getArrayCopy(numbers).sort((num1, num2) => num1 - num2)
 
 console.log('Original Array: ', numbers)
-console.log('New Array: ', orderedNumbers)
+console.log('New Array: ', numbersInAscendingOrder)
 /*
   04
 
@@ -74,8 +76,10 @@ console.info('\n### Etapa 08 - Exercício: 05 ###\n ')
 
 const people = ['Cauã', 'Alfredo', 'Bruno']
 
-const sortByZ = people.map( name => name ).sort().reverse()
-const sortByA = sortByZ.map( name => name ).sort()
+const sortByZ = getArrayCopy(people).sort()
+const sortByA = getArrayCopy(sortByZ).sort()
+
+sortByZ.reverse()
 
 console.log('people', people)
 console.log('sortByA', sortByA)
@@ -95,10 +99,11 @@ const ingredients = ['vinho', 'tomate', 'cebola', 'cogumelo']
 const cookedIngredients = ingredients.reduce((acc, item, index, array) => {
   const correctWordGender = /a$/.test(item) ? 'cozida' : 'cozido'
 
-  if (index === array.length - 1){
-   return acc + `${item} ${correctWordGender}`
-  }
-  return acc + `${item} ${correctWordGender}, `
+  const isLastItem = index === array.length - 1
+  const ingredientMessage = `${item} ${correctWordGender}`
+
+  return isLastItem ? acc + ingredientMessage : acc + `${ingredientMessage}, `
+
 }, '')
 
 console.log(cookedIngredients)
@@ -124,8 +129,8 @@ const topBrazilmovies = [
 ]
 
 const peopleWhoWatchedDisney = topBrazilmovies
-  .filter(movie => movie.distributedBy === 'Disney')
-  .reduce((accumulator, item)=> accumulator + item.peopleAmount, 0)
+  .filter(({ distributedBy }) => distributedBy === 'Disney')
+  .reduce((accumulator, { peopleAmount })=> accumulator + peopleAmount, 0)
 
 console.log(peopleWhoWatchedDisney)
 
@@ -151,12 +156,12 @@ const pets = [
 ]
 
 const dogsInHumanAge = pets
-  .filter(pet => pet.type === 'Dog')
-  .map( dog => ({ 
-    name: dog.name,
-    age: dog.age * 7,
-    gender: dog.gender,
-    type: dog.type
+  .filter(({ type }) => type === 'Dog')
+  .map( ({ name, age, gender, type }) => ({ 
+    name,
+    age: age * 7,
+    gender,
+    type
   }))
 
 console.log(dogsInHumanAge)
@@ -171,7 +176,7 @@ console.info('\n### Etapa 08 - Exercício: 09 ###\n ')
 const ul = document.querySelector('.list-group')
 
 const movieNames = topBrazilmovies
-  .reduce((acc, movie) => acc + `<li>${movie.title}</li>`, '')
+  .reduce((acc, { title }) => acc + `<li>${title}</li>`, '')
 
 ul.innerHTML = movieNames
 
