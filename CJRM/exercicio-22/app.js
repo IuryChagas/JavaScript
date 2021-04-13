@@ -31,11 +31,10 @@ const characters = [
 ]
 
 const sortById = characters
-  .map(user => user)
+  .map(user => ({ id: user.id, name: user.name}))
   .sort(( user1, user2 ) => user1.id - user2.id)
 
-console.log('Original Array: ', characters)
-console.log('New Array: ', sortById)
+console.log('Original Array: ', characters, 'New Array: ', sortById)
 
 /*
   03
@@ -61,14 +60,7 @@ console.info('\n### Etapa 08 - Exercício: 04 ###\n ')
 
 const randomNumbers = [10, 5, 0, 40, 60, 10, 20, 70]
 
-const firstNumberGreaterThan50 = randomNumbers
-  .sort((num1, num2) => num2 - num1)
-  .reduce((acc, item)=>{
-      if (item > 50) {
-        acc = item
-      }
-      return acc
-    },0)
+const firstNumberGreaterThan50 = randomNumbers.find( number => number > 50)
 
 console.log(firstNumberGreaterThan50)
 /*
@@ -82,14 +74,8 @@ console.info('\n### Etapa 08 - Exercício: 05 ###\n ')
 
 const people = ['Cauã', 'Alfredo', 'Bruno']
 
-const sortByZ = people.map( name => name )
+const sortByZ = people.map( name => name ).sort().reverse()
 const sortByA = sortByZ.map( name => name ).sort()
-
-sortByZ.sort((nam1, nam2) => {
-  if (nam1 > nam2) {
-    return -1
-  }
-})
 
 console.log('people', people)
 console.log('sortByA', sortByA)
@@ -106,14 +92,16 @@ console.info('\n### Etapa 08 - Exercício: 06 ###\n ')
 
 const ingredients = ['vinho', 'tomate', 'cebola', 'cogumelo']
 
-const nwString = ingredients.map(string => {
-  if (string[string.length - 1] === 'a') {
-   return string += ' cozida'
-  }
-  return string += ' cozido'
-})
+const cookedIngredients = ingredients.reduce((acc, item, index, array) => {
+  const correctWordGender = /a$/.test(item) ? 'cozida' : 'cozido'
 
-console.log(`${nwString.toString().replaceAll(',',', ')}`)
+  if (index === array.length - 1){
+   return acc + `${item} ${correctWordGender}`
+  }
+  return acc + `${item} ${correctWordGender}, `
+}, '')
+
+console.log(cookedIngredients)
 /*
   07
   
@@ -135,12 +123,9 @@ const topBrazilmovies = [
   { title: 'Dona Flor e Seus Dois Maridos', peopleAmount: 10735524, distributedBy: 'Embrafilme' }
 ]
 
-const peopleWhoWatchedDisney = topBrazilmovies.reduce((accumulator, { peopleAmount, distributedBy }, _) => {
-  if (distributedBy === 'Disney') {
-    accumulator += peopleAmount
-  }
-  return accumulator
-}, 0)
+const peopleWhoWatchedDisney = topBrazilmovies
+  .filter(movie => movie.distributedBy === 'Disney')
+  .reduce((accumulator, item)=> accumulator + item.peopleAmount, 0)
 
 console.log(peopleWhoWatchedDisney)
 
@@ -165,17 +150,16 @@ const pets = [
   { name: 'Chico', age: 6, gender: 'Male', type: 'Dog' }
 ]
 
-const dogs = pets.filter((pet) => {
-    if (pet.type === 'Dog') {
-      return {
-        name: pet.name,
-        age: pet.age *= 7,
-        gender: pet.gender
-      }
-    }
-})
+const dogsInHumanAge = pets
+  .filter(pet => pet.type === 'Dog')
+  .map( dog => ({ 
+    name: dog.name,
+    age: dog.age * 7,
+    gender: dog.gender,
+    type: dog.type
+  }))
 
-console.log(dogs)
+console.log(dogsInHumanAge)
 /*
   09
   
@@ -184,15 +168,14 @@ console.log(dogs)
 */
 console.info('\n### Etapa 08 - Exercício: 09 ###\n ')
 
-const url = document.querySelector(".list-group")
+const ul = document.querySelector('.list-group')
 
-const insertTitlesOnHtml = (movie)=>{
-  const li = document.createElement('li')
-  url.insertAdjacentElement('afterend', li)
-  li.textContent = movie.title
-}
+const movieNames = topBrazilmovies
+  .reduce((acc, movie) => acc + `<li>${movie.title}</li>`, '')
 
-topBrazilmovies.map(insertTitlesOnHtml)
+ul.innerHTML = movieNames
+
+console.log(movieNames)
 
 /*
   10
