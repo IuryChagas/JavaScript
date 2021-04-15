@@ -27,16 +27,12 @@ const people = [
   { firstName: 'Eric', lastName: 'Silva', score: 82 }
 ]
 
-const sortedByScore = people
-  .map( people => {
-    return {
-      firstName: people.firstName,
-      lastName: people.lastName,
-      score: people.score
-    }
-  }).sort((firstScore, secondScore) => firstScore.score - secondScore.score)
+const peopleOrderedByScore = people
+  .map( ({firstName, lastName, score}) => ({ firstName, lastName, score }))
+  .sort((firstScore, secondScore) => firstScore.score - secondScore.score)
 
-console.log(sortedByScore)
+console.log('Original Array: ', people)
+console.log('New Array: ', peopleOrderedByScore)
 /*
   03
 
@@ -50,7 +46,7 @@ console.info('\n### Etapa 09 - Exercício: 03 ###\n ')
 
 const animals = ['cão', 'gato', 'boi', 'leão', 'gnu', 'alce', 'ema']
 
-const onlyThreeLetters = item => item.length === 3
+const onlyThreeLetters = ({ length }) => length === 3
 
 const selectedAnimals = animals.filter(onlyThreeLetters)
 
@@ -65,7 +61,7 @@ console.log(selectedAnimals)
 */
 console.info('\n### Etapa 09 - Exercício: 04 ###\n ')
 
-const quantityOfChars = animals.map(animal => animal.length)
+const quantityOfChars = animals.map(({ length }) => length)
 
 console.log(quantityOfChars)
 // debugger
@@ -87,7 +83,7 @@ const friends = [
   { id: 5, name: 'Solange', nearMe: false }
 ]
 
-const friendsNearMe = friends.filter( friend => friend.nearMe)
+const friendsNearMe = friends.filter( ({ nearMe }) => nearMe)
 const nameOfFriendsNearMe = friendsNearMe.map( ({ name }) => name)
 
 console.log(friendsNearMe)
@@ -101,8 +97,9 @@ console.info('\n### Etapa 09 - Exercício: 06 ###\n ')
 
 const numbers = [46, 86, 212, 29, 51, 9, 25, 42, 81]
 
-const oddNumbers = numbers.filter( number => number % 2 !== 0)
-const oddNumberTotals = oddNumbers.reduce( (acc, oddnumber) => acc + oddnumber, 0)
+const oddNumberTotals = numbers
+  .filter( number => number % 2 !== 0)
+  .reduce( (acc, oddnumber) => acc + oddnumber, 0)
 
 console.log('Odd Numbers Totals: ', oddNumberTotals)
 
@@ -129,8 +126,8 @@ const data = [{
   population: 263991379
 }]
 
-const countryPopulation = data.filter( data => data.country !== 'China')
-const totalPopulationOfCountries = countryPopulation
-  .reduce((acc, country) => acc + country.population, 0)
+const countryPopulation = data
+  .filter( ({ country }) => country !== 'China')
+  .reduce((acc, { population }) => acc + population, 0)
 
 console.log('Total Popularion: ', totalPopulationOfCountries)
