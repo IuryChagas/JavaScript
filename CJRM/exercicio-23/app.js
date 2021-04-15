@@ -130,4 +130,4 @@ const countryPopulation = data
   .filter( ({ country }) => country !== 'China')
   .reduce((acc, { population }) => acc + population, 0)
 
-console.log('Total Popularion: ', totalPopulationOfCountries)
+console.log('Total Popularion: ', countryPopulation)
