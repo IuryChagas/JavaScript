@@ -1,4 +1,4 @@
-const todoContainer = document.querySelector('.todos-container')
+const todosContainer = document.querySelector('.todos-container')
 const formAddTodo = document.querySelector('.form-add-todo')
 
 
@@ -8,7 +8,7 @@ formAddTodo.addEventListener('submit', event => {
   const inputValue = event.target.add.value.trim()
 
   if (inputValue.length) {
-    todoContainer.innerHTML += `
+    todosContainer.innerHTML += `
     <li class="list-group-item d-flex justify-content-between align-items-center">
       <span>${inputValue}</span>
       <i class="far fa-trash-alt delete"></i>
@@ -16,4 +16,14 @@ formAddTodo.addEventListener('submit', event => {
     `
     event.target.reset()
   }
+})
+
+todosContainer.addEventListener('click', event => {
+  const clickedElement = event.target
+  const hasDelete = Array.from(clickedElement.classList).includes('delete')
+
+  if(hasDelete){
+    clickedElement.parentElement.remove()
+  }
+
 })
