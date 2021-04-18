@@ -1,24 +1,31 @@
+const past = new Date('May 1 2020 7:47:00')
 const present = new Date()
 
-console.log(present)
-console.log('Year: ', present.getFullYear())
-console.log('Month: ', present.getMonth(), '<-- Zer0 base')
-console.log('Day of Month: ', present.getDate())
-console.log('Day of Week: ', present.getDay(), ' "Sabado" <-- Zer0 base')
-console.log('Hour:', present.getHours())
-console.log('Minutes:', present.getMinutes())
-console.log('Seconds:', present.getSeconds())
-console.log('Milliseconds:', present.getMilliseconds())
+console.log('Timestamp:', present.getTime(), past)
+console.log('Timestamp:', present.getTime(), past.getTime())
+const difference = present.getTime() - past.getTime()
+
+console.log('Timestamp:', difference)
 
 
-console.log(typeof present, present)
+const seconds = Math.round(difference / 1000)
 
-const concatedDate = `${present.getDate()}/0${present.getMonth()}/${present.getFullYear()}`
+console.log({ seconds })
 
-console.log('Concated Date: ', concatedDate)
+const minutes = Math.round(seconds / 60)
 
-console.log('Timestamp:', present.getTime(), 'Milliseconds since 1970')
+console.log({ minutes })
 
-console.log('toDateString: ', present.toDateString())
-console.log('toTimeString: ', present.toTimeString())
-console.log('toLocaleString: ', present.toLocaleString())
+const hours = Math.round(minutes / 60)
+
+console.log({ hours })
+
+const days = Math.round(hours / 24)
+
+console.log({ days })
+
+console.log(`Vídeo criado há ${days} dias`)
+
+const timestamp = 1618711221430
+
+console.log(new Date(timestamp))
