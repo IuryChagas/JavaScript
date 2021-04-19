@@ -7,13 +7,15 @@
 */
 console.info('\n### Etapa 11 - Exercício: 01 ###\n ')
 
+const formatTimeUnit = unit => String(unit).length === 1 ? `0${unit}` : unit
+
 const userDate = 'Mon Apr 19 2021 14:47:21'
 
 const date = new Date(userDate)
 
 const formatDate = date => {
-  const day = String(date.getDate()).length === 1 ? `0${String(date.getDate() +1)}` : String(date.getDate())
-  const month = String(date.getMonth()).length === 1 ? `0${String(date.getMonth() +1)}` : String(date.getMonth())
+  const day = formatTimeUnit(date.getDate())
+  const month = formatTimeUnit(date.getMonth() +1)
   const year = String(date.getFullYear())
 
   return `${day}/${month}/${year}`
@@ -30,81 +32,40 @@ console.log(formatDate(date))
 */
 console.info('\n### Etapa 11 - Exercício: 02 ###\n ')
 
+const weekDays = [
+  `domingo`,
+  `segunda-feira`,
+  `terça-feira`,
+  `quarta-feira`,
+  `quinta-feira`,
+  `sexta-feira`
+]
+
+const months = [
+  `Janeiro`,
+  `Fevereiro`,
+  `Março`,
+  `Abril`,
+  `Maio`,
+  `Junho`,
+  `Julho`,
+  `Agosto`,
+  `Setembro`,
+  `Outubro`,
+  `Novembro`,
+  `Dezembro`
+]
+
 const dataFormat = date => {
 
-  const hours = String(date.getHours()).length === 1 ? `0${String(date.getHours())}` : String(date.getHours())
-  const minutes = String(date.getMinutes()).length === 1 ? `0${String(date.getMinutes())}` : String(date.getMinutes())
-  const weekDay = String(date.getDate())
-  let dayMonth = date.getDay() +1
-  let month = date.getMonth() +1
+  const hours = formatTimeUnit(date.getHours())
+  const minutes = formatTimeUnit(date.getMinutes())
+  const weekDay = weekDays[date.getDay()]
+  const monthDay = date.getDate()
+  const month = months[date.getMonth()]
   const year = String(date.getFullYear())
 
-  switch (dayMonth) {
-    case 1:
-      dayMonth = `Domingo`
-      break;
-    case 2:
-      dayMonth = `Segunda`
-      break;
-    case 3:
-      dayMonth = `Terça`
-      break;
-    case 4:
-      dayMonth = `Quarta`
-      break;
-    case 5:
-      dayMonth = `Quinta`
-      break;
-    case 6:
-      dayMonth = `Sexta`
-      break;
-    default:
-      dayMonth = `Oops!`
-      break;
-  }
-  switch (month) {
-    case 1:
-      month = `Janeiro`
-      break;
-    case 2:
-      month = `Fevereiro`
-      break;
-    case 3:
-      month = `Março`
-      break;
-    case 4:
-      month = `Abril`
-      break;
-    case 5:
-      month = `Maio`
-      break;
-    case 6:
-      month = `Junho`
-      break;
-    case 7:
-      month = `Julho`
-      break;
-    case 8:
-      month = `Agosto`
-      break;
-    case 9:
-      month = `Setembro`
-      break;
-    case 10:
-      month = `Outubro`
-      break;
-    case 11:
-      month = `Novembro`
-      break;
-    case 12:
-      month = `Dezembro`
-      break;
-    default:
-      month = `Oops!`
-      break;
-  }
-
-  const timeStamps = `${hours}:${minutes} - ${dayMonth}, ${weekDay} de ${month} de ${year}`
+  const timeStamps = `${hours}:${minutes} - ${monthDay}, ${weekDay} de ${month} de ${year}`
 
   return console.log(timeStamps)
 }
@@ -121,9 +82,10 @@ console.info('\n### Etapa 11 - Exercício: 03 ###\n ')
 
 const user = { id: 42, isVerified: true }
 
-const {id, isVerified} = user
+const { id, isVerified } = user
 
 console.log(id, isVerified)
+
 /*
   04
 
@@ -142,6 +104,7 @@ const { name: nameA } = robotA
 const { name: nameB } = robotB
 
 console.log(nameA, nameB)
+
 /*
   05
 
@@ -150,13 +113,14 @@ console.log(nameA, nameB)
   - O valor dessas propriedades deve ser o mesmo das consts "a", "b" e "c";
   - Exiba o objeto no console.
 */
+
 console.info('\n### Etapa 11 - Exercício: 05 ###\n ')
 
 const a = 'a'
 const b = 'b'
 const c = 'c'
 
-console.log({a, b, c})
+console.log({ a, b, c })
 
 /*
   06
@@ -173,11 +137,7 @@ const updateSomething = ( { target, property, willChange } ) => {
     willChange = 'valor desejado'
   }
 
-  useDataSomewhereElse({
-    target,
-    property,
-    willChange
-  })
+  useDataSomewhereElse({ target, property, willChange })
 }
 
 updateSomething({ target: '1', property: '2', willChange: 'valor indesejado' })
@@ -194,22 +154,14 @@ const clockContainer = document.querySelector('.clock-container')
 
 const updateClock = () => {
   const present = new Date()
-  const hours = present.getHours()
-  const minutes = present.getMinutes()
-  const seconds = present.getSeconds()
 
-  const clocker = (hours, minutes, seconds) => {
-    const arr = []
-    arr.push(hours)
-    arr.push(minutes)
-    arr.push(seconds)
+  const hours = formatTimeUnit(present.getHours())
+  const minutes = formatTimeUnit(present.getMinutes())
+  const seconds = formatTimeUnit(present.getSeconds())
 
-    return arr.map(item => `<span>${String(item).length === 1 ? `0${item}` : item}</span> :`)
-  }
+  const setTimerUnit = (unit) => `<span>${unit}</span>`
 
-  const clockHTML = clocker(hours, minutes, seconds)
-  
-  clockContainer.innerHTML = clockHTML
+  clockContainer.innerHTML = `${setTimerUnit(hours)} : ${setTimerUnit(minutes)} : ${setTimerUnit(seconds)}`
 }
 
 setInterval(updateClock, 1000)
