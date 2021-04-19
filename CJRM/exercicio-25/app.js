@@ -23,6 +23,8 @@ const months = [
 
 months.reduce((_, item, index) => item === 'Fevereiro' ?  console.log(index, item) : 'oops', '')
 
+console.log(months.indexOf('Fevereiro'))
+
 /*
   02
 
@@ -51,7 +53,7 @@ console.log({ year })
 */
 console.info('\n### Etapa 10 - Exercício: 04 ###\n ')
 
-past = new Date(1618699174414)
+past = new Date('january 17 2020 21:17:00')
 
 console.log({ past })
 
@@ -62,13 +64,8 @@ console.log({ past })
 */
 console.info('\n### Etapa 10 - Exercício: 05 ###\n ')
 
-const difference = present.getTime() - past.getTime()
-const pastSeconds = Math.round(difference / 1000)
-const pastMinutes = Math.round(pastSeconds / 60)
-const pastHours = Math.round(pastMinutes / 60)
+const pastHours = past.getHours()
 
-console.log('Seconds: ', pastSeconds)
-console.log('Minutes: ', pastMinutes)
 console.log('pastHours: ', pastHours)
 
 /*
@@ -79,7 +76,7 @@ console.log('pastHours: ', pastHours)
 */
 console.info('\n### Etapa 10 - Exercício: 06 ###\n ')
 
-const futureDate = new Date(1619999174414)
+const futureDate = new Date('May 4 2021 00:00:00')
 
 console.log({ futureDate })
 
@@ -90,21 +87,13 @@ console.log({ futureDate })
 */
 console.info('\n### Etapa 10 - Exercício: 07 ###\n ')
 
-const pastDays = Math.round(pastHours / 24)
-console.log({ pastDays })
+const difference =  futureDate.getTime() - past.getTime() 
+const differenceInDays = Math.round(difference / 1000 / 60 / 60 / 24)
 
-const differenceF =  futureDate.getTime() - past.getTime() 
-const futureSeconds = Math.round(differenceF / 1000)
-const futureMinutes = Math.round(futureSeconds / 60)
-const futureHours = Math.round(futureMinutes / 60)
-const futureDay = Math.round(futureHours / 24)
+console.log(difference)
+console.log(differenceInDays)
 
-console.log('Seconds: ', futureSeconds)
-console.log('Minutes: ', futureMinutes)
-console.log('futureHours: ', futureHours)
-console.log('futureDay: ', futureDay)
 
-const futureDays = Math.round()
 /*
   08
   
