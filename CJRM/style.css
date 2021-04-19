@@ -1,23 +1,18 @@
-.container {
-    max-width: 400px;
-  }
-  
-  input[type=text],
-  input[type=text]:focus {
-    color: #fff;
-    border: none;
-    background: rgba(0,0,0,0.2);
-    max-width: 400px;
-  }
-  
-  .todos-container li {
-    background: #484E53;
-  }
-  
-  i[data-trash] {
-    cursor: pointer;
-  }
+body {
+  background-color: #121214;
+}
 
-  .hidden {
-    display: none;
-  }
+.clock-container {
+  font-size: 4em;
+  text-align: center;
+  margin: 200px auto 0;
+  color: #e1e1e6;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.clock-container span {
+  padding: 20px;
+  background-color: #6833e4;
+  border-radius: 10px;
+
+}
