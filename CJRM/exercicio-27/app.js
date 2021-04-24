@@ -126,33 +126,27 @@ console.info('\n### Etapa 11 - Exercício: 07 ###\n ')
 let booksBox = {
   spaces: 5,
   booksIn: 0,
-  add (num) {
-    if (num + this.booksIn > this.spaces && this.booksIn === this.spaces) {
-      return console.log(`A caixa já está cheia!`)
+  addBooks (booksQuantity) {
+    const availableSpaces = booksBox.spaces - booksBox.booksIn
+    const bookInPluralOrSingular = booksQuantity === 1 ? `livro` : `livros`
+    const capacityInPluralOrSingular = booksQuantity === 1 ? `cabe` : `cabem`
+
+    if (booksQuantity > availableSpaces) {
+      return `A caixa já está cheia`
     }
 
-    if (num + this.booksIn <= this.spaces) {
-      this.booksIn += num
-
-      if (this.booksIn === 1) {
-        return console.log(`Já há ${this.booksIn} livro na caixa!`)
-      }
-
-      return console.log(`Já há ${this.booksIn} livros na caixa!`)
+    if (this.booksIn + booksQuantity > availableSpaces) {
+      return `Só ${capacityInPluralOrSingular} mais ${availableSpaces} ${bookInPluralOrSingular}`
     }
-    if (num + this.booksIn > this.spaces || this.spaces < this.booksIn) {
+  
+    this.booksIn += booksQuantity
 
-      if (this.spaces - this.booksIn === 1) {
-        return console.log(`Só cabe mais ${this.spaces - this.booksIn} livro`)
-      }
-      return console.log(`Só cabem mais ${this.spaces - this.booksIn} livros`)
-    }
+    return `Já há ${this.booksIn} ${bookInPluralOrSingular} na caixa`
   }
-
 }
 
-let newBooks = booksBox.add(1)
-    // newBooks = booksBox.add(2)
-    // newBooks = booksBox.add(1)
+console.log(booksBox.addBooks(3))
+console.log(booksBox.addBooks(1))
+
 console.log(booksBox)
 
