@@ -1,15 +1,13 @@
-console.log(1)
-console.log(2)
+const request = new XMLHttpRequest()
 
-setTimeout(()=>{
-    console.log('função de callback executada!')
-}, 2000)
+request.addEventListener('readystatechange', ()=> {
+    // console.log(request, request.readyState)
+    if (request.readyState === 4) {
+        console.log(request.responseText)
+    }
+})
 
-console.log(3)
-console.log(4)
+request.open('GET', 'https://jsonplaceholder.typicode.com/todos')
+request.send()
 
-
-
-fetch('https://jsonplaceholder.typicode.com/todos/1')
-    .then( response => response.json())
-    .then( json => console.log(json))
+// console.log(request)
