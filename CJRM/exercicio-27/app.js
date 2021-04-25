@@ -125,28 +125,41 @@ console.info('\n### Etapa 11 - Exercício: 07 ###\n ')
 
 let booksBox = {
   spaces: 5,
-  booksIn: 0,
-  addBooks (booksQuantity) {
-    const availableSpaces = booksBox.spaces - booksBox.booksIn
-    const bookInPluralOrSingular = booksQuantity === 1 ? `livro` : `livros`
-    const capacityInPluralOrSingular = booksQuantity === 1 ? `cabe` : `cabem`
+  booksIn: 0
+}
+const getPluralOrSingular = (quantity, singular, plural) => {
+  return quantity === 1 ? singular : plural
+} 
 
-    if (booksQuantity > availableSpaces) {
-      return `A caixa já está cheia`
-    }
+const getAvailableSpacesMessage = (spaces, booksIn) => {
+  const availableSpaces = spaces - booksIn
+  const capacityInPluralOrSingular = getPluralOrSingular(availableSpaces, `cabe`, `cabem`)
+  const bookInPluralOrSingular = getPluralOrSingular(availableSpaces, `livro`, `livros`)
 
-    if (this.booksIn + booksQuantity > availableSpaces) {
-      return `Só ${capacityInPluralOrSingular} mais ${availableSpaces} ${bookInPluralOrSingular}`
-    }
-  
-    this.booksIn += booksQuantity
-
-    return `Já há ${this.booksIn} ${bookInPluralOrSingular} na caixa`
-  }
+  return `Só ${capacityInPluralOrSingular} mais ${availableSpaces} ${bookInPluralOrSingular}`
 }
 
+booksBox.addBooks = booksQuantity => {
+  const { spaces } = booksBox
+  let isBoxFilled = booksBox.booksIn === spaces
+  const boxSpacesAreNotEnough = booksBox.booksIn + booksQuantity > spaces
+
+  if (isBoxFilled) {
+    return `A caixa já está cheia`
+  }
+
+  if (boxSpacesAreNotEnough) {
+    return getAvailableSpacesMessage(spaces, booksBox.booksIn)
+  }
+
+  booksBox.booksIn += booksQuantity
+
+  const bookInPluralOrSingular = getPluralOrSingular(booksBox.booksIn,`livro`,`livros`)
+  return `Já há ${booksBox.booksIn} ${bookInPluralOrSingular} na caixa`
+}
+
+console.log(booksBox.addBooks(4))
 console.log(booksBox.addBooks(3))
-console.log(booksBox.addBooks(1))
 
 console.log(booksBox)
 
