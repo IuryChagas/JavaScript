@@ -6,7 +6,8 @@ const getTodos = callback => {
         const requestNotSuccess = request.readyState === 4
 
         if (requestSuccess) {
-            callback(null, request.responseText)
+            const data = JSON.parse(request.responseText)
+            callback(null, data)
             return
         }
         
@@ -15,12 +16,9 @@ const getTodos = callback => {
         }
     })
 
-    request.open('GET', 'https://jsonplaceholder.typicode.com/todos')
+    request.open('GET', './todos.json')
     request.send()
 }
-console.log(1)
-console.log(2)
-console.log(3)
 
 getTodos((error, data) => {
     if (error) {
@@ -29,6 +27,3 @@ getTodos((error, data) => {
     }
     console.log(data)
 })
-
-console.log(4)
-console.log(5)
