@@ -20,11 +20,14 @@ console.info('\n### Etapa 11 - Exercício: 01 ###\n ')
 // const request = new XMLHttpRequest()
 
 // request.addEventListener('readystatechange', ()=>{
-//   if (request.readyState === 4 && request.status === 200) {
+//   const isRequestSuccess = request.readyState === 4 && request.status === 200
+//   const isRequestNotSuccess = request.readyState === 4
+
+//   if (isRequestSuccess) {
 //     console.log(request.responseText)
 //     return
 //   }
-//   if (request.readyState === 4) {
+//   if (isRequestNotSuccess) {
 //     console.log('Não foi possível obter os dados do pokemon')
 //   }
 // })
@@ -99,9 +102,7 @@ person.walk = meters => {
 }
 const meters = [12, 35, 7, 680]
 
-meters.forEach( route => {
-  return person.walk(route)
- })
+meters.forEach( route => person.walk(route))
 
 console.log('Caminhando:', person.isWalking," -> ", person.walkedMeters,'metros')
 
@@ -159,16 +160,12 @@ const truthyOrFalsyValidator = value => {
 }
 
 const falsyValues = [false, 0, "", null, undefined, NaN]
-
-falsyValues.forEach( value => {
-  return console.warn(truthyOrFalsyValidator(value))
-})
+const logFalsyValues = value => console.warn(truthyOrFalsyValidator(value))
+falsyValues.forEach(logFalsyValues)
 
 const truthyValues = [true, 1, " ", ':)', "lorem...", 42, Object, () =>{}, {}, [], -1293840]
-
-truthyValues.forEach(value =>{
-  return console.log(truthyOrFalsyValidator(value))
-})
+const logTruthyValues = value => console.log(truthyOrFalsyValidator(value))
+truthyValues.forEach(logTruthyValues)
 
 /*
   07
@@ -209,7 +206,7 @@ const getBook = bookTitle => {
     }
   }
 
-  return bookTitle === undefined ? books : books[bookTitle]
+  return books[bookTitle] || books
 }
 
 console.log(
