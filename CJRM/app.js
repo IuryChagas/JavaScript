@@ -1,4 +1,4 @@
-const getTodos = callback => {
+const getTodos = (url, callback) => {
     const request = new XMLHttpRequest()
 
     request.addEventListener('readystatechange', ()=>{
@@ -16,14 +16,17 @@ const getTodos = callback => {
         }
     })
 
-    request.open('GET', './todos.json')
+    request.open('GET', url)
     request.send()
 }
 
-getTodos((error, data) => {
-    if (error) {
-        console.log(error)
-        return
-    }
+getTodos('./json/todos.json', (error, data) => {
+
     console.log(data)
+    getTodos('./json/todos-02.json', (error, data) => {
+        console.log(data)
+        getTodos('./json/todos-03.json', (error, data)=> {
+            console.log(data)
+        })
+    })
 })
