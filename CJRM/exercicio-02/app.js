@@ -87,7 +87,7 @@ console.log(js)
 console.info("## Exercise >> 06")
 
 const mozilla = 'Mozilla Developer Network'
-const mdn = mozilla.replace('Mozilla Developer Network', 'MDN')
+const mdn = mozilla[0] + mozilla[8] + mozilla[18]
 
 console.log(mdn)
 
@@ -151,7 +151,7 @@ console.log('\n')
 */
 console.info("## Exercise >> 11")
 
-console.log(winterMessage.lastIndexOf('v'))
+console.log(winterMessage.indexOf('v'))
 
 
 /*
@@ -171,7 +171,7 @@ console.log(winterMessage.lastIndexOf('n'))
 console.info("## Exercise >> 13")
 const harryPotterAuthor = 'J.K. Rowling'
 
-console.log(harryPotterAuthor.slice(0,3))
+console.log(harryPotterAuthor.slice(0, 4))
 
 /*
 14 - Comente o console.log acima, e,
@@ -262,7 +262,7 @@ console.log(allEpisodes)
 */
 console.info("## Exercise >> 20")
 
-const bookMessage = "'O Conto da Aia' é um dos livros mais vendidos da década."
+const bookMessage = '\'O Conto da Aia\' é um dos livros mais vendidos da década.'
 console.log(bookMessage)
 
 /*
@@ -278,7 +278,7 @@ console.log(bookMessage)
 console.info("## Exercise >> 21")
 
 const name = 'walter white'
-let newName = name.replaceAll('w','W')
+let newName = name[0].toUpperCase() + name.slice(1,6) + ' ' + name[7].toUpperCase() + name.slice(8, 12)
 
 console.log(newName)
 
@@ -293,6 +293,6 @@ console.log(newName)
 */
 console.info("## Exercise >> 22")
 
-newName = `${newName}`
+newName = `${name.replaceAll('w','W')}`
 
 console.log(newName)
