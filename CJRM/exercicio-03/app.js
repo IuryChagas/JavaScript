@@ -5,12 +5,25 @@
 - Linke este arquivo, app.js;
 - Inicie o seu servidor local e abra o console do browser.
 */
+console.info("## Exercise >> 01")
+
+let checklist = `
+- [x] - Declare uma marcação HTML básica nele.
+- [x] - Modifique a linguagem para português do Brasil.
+- [x] - Remova as meta tags desnecessárias.
+- [x] - Modifique o title para "Exercício 01".
+- [x] - E linke este arquivo, app.js, antes do fechamento da tag body.
+`
+console.log(checklist,'\n')
 
 /*
 02 - Armazene um array vazio em uma let "brazilianFoods";
 */
+console.info("## Exercise >> 02")
 
 let brazilianFoods = []
+
+console.log(brazilianFoods)
 
 /*
 03 - Use o método adequado para adicionar os 3 seguintes itens ao array:
@@ -21,9 +34,11 @@ let brazilianFoods = []
 
 - Exiba a brazilianFoods no console.
 */
+console.info("## Exercise >> 03")
 
 brazilianFoods.push('Coxinha', null, 'Brigadeiro')
-// console.log(brazilianFoods)
+
+console.table(brazilianFoods)
 
 /*
 04 - Comente o console.log acima e:
@@ -32,9 +47,11 @@ brazilianFoods.push('Coxinha', null, 'Brigadeiro')
 array "brazilianFoods" (null) seja substituído por "Pão de Queijo";
 - Exiba apenas o 2º item desse array no console.
 */
+console.info("## Exercise >> 04")
 
 brazilianFoods[1] = 'Pão de Queijo'
-// console.log(brazilianFoods[1])
+
+console.table(brazilianFoods)
 
 /*
 05 - Comente o console.log acima e:
@@ -48,11 +65,11 @@ número diretamente;
 mas sem digitar os nomes das comidas diretamente;
 - Exiba a foodsInfo no console.
 */
+console.info("## Exercise >> 05")
 
-const foodsInfo = `Até aqui, o array "brazilianFoods" possui ${brazilianFoods.length} itens: ${brazilianFoods[0]}, ${brazilianFoods[1]} e ${brazilianFoods[2]}.`
+const foodsInfo = `Até aqui, o array \"brazilianFoods\" possui ${brazilianFoods.length} itens: ${brazilianFoods[0]}, ${brazilianFoods[1]} e ${brazilianFoods[2]}.`
 
-// console.log(foodsInfo)
-
+console.log(foodsInfo)
 /*
 06 - Comente o console.log acima e:
 
@@ -64,12 +81,13 @@ itens "Lilica" e "Matilda";
 "maleDogNames" e "femaleDogNames";
 - Exiba a "dogNames" no console.
 */
+console.info("## Exercise >> 06")
 
 const maleDogNames = ['Chico', 'Zeca']
-const femaleDogNames = ['Lilica', 'Metilda']
-
+const femaleDogNames = ['Lilica', 'Matilda']
 let dogNames = maleDogNames.concat(femaleDogNames)
-// console.log(dogNames)
+
+console.table(dogNames)
 
 /*
 07 - Comente o console.log acima e:
@@ -79,9 +97,9 @@ let dogNames = maleDogNames.concat(femaleDogNames)
 - Utilize o método adequado para fazer isso;
 - O resultado deve ser: "nome1, nome2, nome3, nome4".
 */
+console.info("## Exercise >> 07")
 
-// console.log(dogNames.join(', '))
-
+console.log(dogNames.join(', '))
 /*
 08 - Comente o console.log acima e:
 
@@ -94,9 +112,11 @@ utilizando o método adequado para isso;
 - O console deve continuar exibindo o último item do array, que  
 agora é "Lilica".
 */
+console.info("## Exercise >> 08")
 
 dogNames.pop()
-// console.log(dogNames[dogNames.length-1])
+
+console.log(dogNames[dogNames.length -1])
 
 /*
 09 - Comente o console.log acima e:
@@ -109,12 +129,17 @@ apenas as letras iniciais dos nomes do array "dogNames";
 - Não digite as letras diretamente;
 - Exiba a "initials" no console.
 */
+console.info("## Exercise >> 09")
+
 dogNames.push('Nina')
- console.log(dogNames)
 
-const initials = `${dogNames[0].slice(0,1)+dogNames[1].slice(0,1) + dogNames[2].slice(0,1) + dogNames[3].slice(0,1)}`
+console.log(dogNames)
 
-// console.log(initials)
+const initials = `${dogNames[0].slice(0,1)}${dogNames[1].slice(0,1)}${dogNames[2].slice(0,1)}${dogNames[3].slice(0,1)}`
+const initials0 = `${dogNames[0][0]}${dogNames[1][0]}${dogNames[2][0]}${dogNames[3][0]}`
+
+console.log('arr[]str[]:', initials0)
+console.log('.slice(): ', initials)
 
 /*
 10 - Comente o console.log acima e:
@@ -122,8 +147,9 @@ const initials = `${dogNames[0].slice(0,1)+dogNames[1].slice(0,1) + dogNames[2].
 - Exiba a "initials" no console, mas com todas as letras minúsculas;
 - Utilize o método adequado para isso.
 */
+console.info("## Exercise >> 10")
 
-// console.log(initials.toLowerCase())
+console.log(initials.toLowerCase())
 
 /*
 11 - Comente o console.log acima e:
@@ -140,10 +166,11 @@ constante que você criou.
 
 'A SOBREMESA é um doce à base de coco, tradicional na América Latina e em Angola.'
 */
+console.info("## Exercise >> 11")
 
-const dessert = `${dogNames[0].slice(3,dogNames[0].length) + dogNames[1].slice(2,dogNames[0].length) + dogNames[3].slice(2,dogNames[2].length)}`
-// console.log(dessert)
-// console.log(`A ${dessert.replace('n', 'd')} é um doce à base de coco, tradicional na América Latina e em Angola.`)
+const dessert = `${dogNames[0].slice(3)}${dogNames[1].slice(2)}${dogNames[3].slice(2)}`.replace('n', 'd')
+
+console.log(`'A ${dessert} é um doce à base de coco, tradicional na América Latina e em Angola.'`)
 
 /*
 12 - Comente o console.log acima e:
@@ -157,7 +184,12 @@ elevado ao cubo, faça o 2º item do array receber todo o valor que ele
 já tem, mais 4;
 - Agora, o resultado exibido no console deve ser 729.
 */
+console.info("## Exercise >> 12")
 
 let oddNumbers = [3, 5, 7]
+
+console.log(oddNumbers[1] ** 3)
+
 oddNumbers[1] += 4
+
 console.log(oddNumbers[1] ** 3)
