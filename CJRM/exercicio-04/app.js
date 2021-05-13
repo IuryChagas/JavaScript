@@ -12,11 +12,13 @@
 
   "Minhas 3 séries favoritas são: SÉRIE_01, SÉRIE_02 e SÉRIE_03."
 */
-console.info('\n### Etapa 02 - Exercício: 01 ###\n ')
+console.info("## Exercise >> 01")
 
-const my3FavoriteTVShows = ['Game Of Thrones','Mr. Robot','Westworld']
-const sentence = `Minhas 3 séries favoritas são:  ${my3FavoriteTVShows.join(', ')}`.replace(', W', ' e W')
+const my3FavoriteTVShows = ["Game of Thrones", "Westworld", "Ballers"]
 
+const sentence = `"Minhas 3 séries favoritas são: ${my3FavoriteTVShows.join(', ').replace(', B', ' e B')}."`
+
+console.log(my3FavoriteTVShows)
 console.log(sentence)
 
 /*
@@ -25,10 +27,10 @@ console.log(sentence)
   - Exiba no console um boolean indicando se o array de séries que você criou  
     possui 3 itens.
 */
-console.info('\n### Etapa 02 - Exercício: 02 ###\n ')
+console.info("## Exercise >> 02")
 
-// console.log('02 - ',Boolean(my3FavoriteTVShows.length === 3))
 console.log(my3FavoriteTVShows.length === 3)
+
 /*
   03 - Comente o console.log() acima e:
 
@@ -38,10 +40,9 @@ console.log(my3FavoriteTVShows.length === 3)
   - Utilize o método adequado para fazer essa verificação;
   - Exiba no console o boolean que a "isRandomTVShowIncluded" recebeu.
 */
-console.info('\n### Etapa 02 - Exercício: 03 ###\n ')
+console.info("## Exercise >> 03")
 
 const randomTVShow = 'Watchmen'
-//const isRandomTVShowIncluded = Boolean(randomTVShow.includes(my3FavoriteTVShows[0] || my3FavoriteTVShows[1], my3FavoriteTVShows[2]));
 const isRandomTVShowIncluded = my3FavoriteTVShows.includes(randomTVShow)
 
 console.log(isRandomTVShowIncluded)
@@ -56,12 +57,11 @@ console.log(isRandomTVShowIncluded)
 
   "O tipo de dado que a const "isRandomTVShowIncluded" armazena é: TIPO_DE_DADO."
 */
-console.info('\n### Etapa 02 - Exercício: 04 ###\n ')
+console.info("## Exercise >> 04")
 
-const typeSentence = `O tipo de dado que a const "isRandomTVShowIncluded" armazena é: ${typeof isRandomTVShowIncluded}`
+const typeSentence = `"O tipo de dado que a const "isRandomTVShowIncluded" armazena é: ${typeof isRandomTVShowIncluded}"`
 
 console.log(typeSentence)
-
 /*
   05 - Comente o console.log() acima e:
 
@@ -75,20 +75,12 @@ console.log(typeSentence)
   "A string que a "typeSentence" armazena tem mais de NÚMERO_DE_CARACTERES  
   caracteres? BOOLEAN."
 */
-console.info('\n### Etapa 02 - Exercício: 05 ###\n ')
-let booleanOperator
-if(typeSentence.length > 39){
-  booleanOperator = false
-}else {
-  booleanOperator = true
-}
-let isTrueOrFalse = String(booleanOperator).replace('f','F')
+console.info("## Exercise >> 05")
 
-console.log(`
+const numbers = 39
+const isBoolean = typeSentence.length === numbers
 
-"A string que a "typeSentence" armazena tem mais de ${39} caracteres? ${isTrueOrFalse}."
-
-`)
+console.log(` "A string que a "typeSentence" armazena tem mais de ${numbers} caracteres? ${String(typeSentence.length > numbers).replace('t', 'T')}."`)
 
 /*
   06 - Comente o console.log() acima e:
@@ -99,14 +91,10 @@ console.log(`
   "Todos os NÚMERO_DE_ITENS itens do array "falsyValues" são falsy. Inclusive o  
   BOOLEAN."
 */
-console.info('\n### Etapa 02 - Exercício: 06 ###\n ')
+console.info("## Exercise >> 06")
 
 const falsyValues = [0, "", false, '', ``, null, undefined, NaN]
-
-console.log(`
-    Todos os ${falsyValues.length} itens do array "falsyValues" são falsy. Inclusive o ${Boolean()}.
-`)
-
+console.log(`"Todos os ${falsyValues.length} itens do array "falsyValues" são falsy. Inclusive o ${falsyValues[2]}."`)
 /*
   07 - Comente o console.log() acima e:
 
@@ -115,12 +103,13 @@ console.log(`
     em boolean.
   - Você sabe por que essa conversão resultou em true?
 */
-console.info('\n### Etapa 02 - Exercício: 07 ###\n ')
+console.info("## Exercise >> 07")
 
 const crazyOperation = null + 1
+
 const crazyConversion = Boolean(crazyOperation)
 
-console.log(crazyConversion, ` Pois o valor ${1} é truthy! `)
+console.log(crazyConversion)
 
 /*
   08 - Comente o console.log() acima e:
@@ -134,12 +123,13 @@ console.log(crazyConversion, ` Pois o valor ${1} é truthy! `)
   "A soma entre o 1º e o 3º item de "ages" é menor ou igual a 92. Essa afirmação  
   é: BOOLEAN."
 */
-console.info('\n### Etapa 02 - Exercício: 08 ###\n ')
+console.info("## Exercise >> 08")
 
 const ages = [31, 82, 61, 11]
 const agesSum = ages[0] + ages[2]
 
-// console.log(`A soma entre o 1º e o 3º item de "ages" é menor ou igual a 92. Essa afirmação é:`, Boolean(agesSum <= 92))
+console.log(`"A soma entre o 1º e o 3º item de "ages" é menor ou igual a 92. Essa afirmação é: ${agesSum <= 92}."`)
+
 
 /*
   09 - Comente o console.log() acima e:
@@ -149,10 +139,11 @@ const agesSum = ages[0] + ages[2]
   - Essa expressão deve resultar em false.
   - Exiba a "isNotAString" no console.
 */
-console.info('\n### Etapa 02 - Exercício: 09 ###\n ')
+console.info("## Exercise >> 09")
 
-const isNotAString = Boolean(typeof randomTVShow !== typeof String())
+const isNotAString = typeof randomTVShow !== typeof String()
 console.log(isNotAString)
+
 /*
   10 - Comente o console.log() acima e:
 
@@ -160,13 +151,8 @@ console.log(isNotAString)
     o número 8 existe no array;
   - Não utilize o método includes desta vez.
 */
-console.info('\n### Etapa 02 - Exercício: 10 ###\n ')
+console.info("## Exercise >> 10")
 
 const evenNumbers = [0, 2, 4, 6, 8, 10]
 
-for (let i = 0; i < evenNumbers.length; i++) {
-  const element = evenNumbers[i];
-  if (element === 8) {
-      console.log(true)
-  }
-}
+console.log(evenNumbers.indexOf(8) !== -1)
