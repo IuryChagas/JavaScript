@@ -20,11 +20,12 @@
     4
     5
 */
-console.info('\n### Etapa 02 - Exercício: 01 ###\n ')
+console.info("## Exercise >> 01")
 let i = 0
-while (i <= 5) {
-    console.log(i)
-    i++
+
+while(i <= 5) {
+  console.log(i)
+  i++
 }
 
 /*
@@ -32,10 +33,11 @@ while (i <= 5) {
 
   - Utilizando um for loop, faça o mesmo que foi pedido no exercício 01.
 */
-console.info('\n### Etapa 02 - Exercício: 02 ###\n ')
+console.info("## Exercise >> 02")
 
-for (let index = 0; index <= 5; index++) {
-    console.log(index)
+for(i = 0; i <= 5;){
+  console.log(i)
+  i++
 }
 
 /*
@@ -48,10 +50,11 @@ for (let index = 0; index <= 5; index++) {
 
   "Esta é a Xª vez que esta frase é exibida no console."
 */
-console.info('\n### Etapa 02 - Exercício: 03 ###\n ')
+console.info("## Exercise >> 03")
 
-for (let i = 1; i <= 10; i++) {
-    console.log(`Esta é a ${i}ª vez que esta frase é exibida no console.`)
+for(i = 1; i <= 10;){
+  console.log(`"Esta é a ${i}ª vez que esta frase é exibida no console."`)
+  i++
 }
 
 /*
@@ -63,15 +66,19 @@ for (let i = 1; i <= 10; i++) {
     cities com todas as letras maiúsculas, utilizando o for loop.
   - Para ver se deu certo, exiba o upperCaseCities no console.
 */
-console.info('\n### Etapa 02 - Exercício: 04 ###\n ')
+console.info("## Exercise >> 04")
 
 const cities = ['São Paulo', 'Rio de Janeiro', 'Minas Gerais']
+
 let upperCaseCities = []
 
-for (let i = 0; i < cities.length; i++) {
-    upperCaseCities.push(cities[i].toUpperCase())
+for(let iterator = 0; iterator < cities.length;){
+  upperCaseCities.push(cities[iterator].toUpperCase())
+  iterator++
 }
+
 console.log(upperCaseCities)
+
 /*
   05 - Comente o console.log acima e:
 
@@ -80,17 +87,16 @@ console.log(upperCaseCities)
   - O template deve ser exibido apenas uma vez no console e o resultado deve ser:
     <li>João Grilo</li><li>Chicó</li><li>Rosinha</li>
 */
-console.info('\n### Etapa 02 - Exercício: 05 ###\n ')
+console.info("## Exercise >> 05")
 
 const names = ['João Grilo', 'Chicó', 'Rosinha']
 
-let templateHTML = ``
+let template = ``
 
-for (let index = 0; index < names.length; index++) {
-    templateHTML += `<li>${names[index]}</li>`
+for(let i = 0; i < names.length; i++){
+  template += `<li>${names[i]}</li>`
 }
-
-console.log(templateHTML)
+console.log(template)
 
 /*
   06 - Comente o console.log acima e:
@@ -100,17 +106,16 @@ console.log(templateHTML)
   - Exiba no console um boolean indicando se o total dessa soma é 337;
   - O console deve exibir true.
 */
-console.info('\n### Etapa 02 - Exercício: 06 ###\n ')
+console.info("## Exercise >> 06")
 
 const numbers = ['91', '5', '30', '97', '83', '31']
-
 let total = 0
 
-for (let i = 0; i < numbers.length; i++) {
-    let toNumberConverter = Number(numbers[i])
-    total += toNumberConverter
+for (let intetator = 0; intetator < numbers.length; intetator++) {
+   total += Number(numbers[intetator])
 }
-console.log(total, total === 337)
+  console.log(total === 337)
+
 /*
   07 - Comente o console.log acima.
 
@@ -128,7 +133,7 @@ console.log(total, total === 337)
 
   Dica: você pode colocar um loop dentro do outro, ou seja, aninhá-los. =)
 */
-console.info('\n### Etapa 02 - Exercício: 07 ###\n ')
+console.info("## Exercise >> 07")
 
 const arrays = [
   [4, 32, 8],
@@ -137,14 +142,10 @@ const arrays = [
   [2, 8, 4]
 ]
 
-total = 0
-
-for (let i = 0; i < arrays.length; i++) {
-    for (let index = 0; index < arrays[i].length; index++) {
-        let element = arrays[i][index];
-        total += element
-    }
+let totals = 0
+for(let iterator = 0; iterator < arrays.length; iterator++){
+  for(let accumulator = 0; accumulator < arrays[iterator].length; accumulator++){
+    totals += arrays[iterator][accumulator]
+  }
 }
-
-console.log(total)
-
+console.log(totals)
