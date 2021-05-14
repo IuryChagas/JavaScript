@@ -186,12 +186,15 @@ const oddNumbers = []
 
 for (let i = 0; i < randomNumbers.length; i++) {
   const number = randomNumbers[i]
-  if(number % 2 === 0){
+  const isEvenNumber = number % 2 === 0
+
+  if(isEvenNumber){
     evenNumbers.push(number)
   }else{
     oddNumbers.push(number)
   }
 }
+
 const oddNumbersString = oddNumbers.join(', ').replace(', 3', ' e 3')
 const evenNumbersString = evenNumbers.join(', ').replace(' 5', ' e 5')
 
