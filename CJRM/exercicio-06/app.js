@@ -22,19 +22,25 @@
   - Se nenhuma das duas frutas existirem no array, exiba no console a mensagem  
     "Nem pera nem abacaxi existem no array "fruits".".
 */
-console.info('\n### Etapa 02 - Exercício: 01 ###\n ')
+console.info("## Exercise >> 01")
 
 const fruits = ['morango', 'banana', 'mamão']
 
-if (fruits.includes('abacaxi')) {
-  console.log("A string 'abacaxi' existe no array  fruits.")
-}else if(fruits.includes('pera')){
-  console.log("A string 'pera' existe no array fruits.")
-}else{
-  console.log("Nem pera nem abacaxi existem no array 'fruits'.")
+let message = ``
+const hasPineapple = fruits.includes('abacaxi')
+const hasPear = fruits.includes('pera')
+
+if(hasPineapple){
+  message = "A string \"abacaxi\" existe no array fruits."
+}else if(hasPear){
+  message = "A string \"pera\" existe no array fruits."
+}else {
+  message = "Nem pera nem abacaxi existem no array \"fruits\""
 }
 
-/*
+console.log(message)
+
+  /*
   02
 
   - Armazene em uma constante apenas a hora atual na qual você está fazendo este  
@@ -46,19 +52,16 @@ if (fruits.includes('abacaxi')) {
   Obs.: tanto a expressão do lado esquerdo quanto a do lado direito do operador  
   lógico precisam ter a constante especificada. Exemplo: hour > x && hour < y.
 */
-console.info('\n### Etapa 02 - Exercício: 02 ###\n ')
+console.info("## Exercise >> 02")
 
-const currentHour = 20.45
-const isMorning = currentHour > 0 && currentHour < 12
-const isAfternoon = currentHour >= 12 && currentHour <= 18
-const isNight = currentHour > 18
+const currentHour = 22.50 
 
-if(isMorning){
-  console.log('Bom dia!')
-}else if(isAfternoon){
-  console.log('Boa tarde!')
-}else if(isNight){
-  console.log('Boa noite!')
+if (currentHour >= 0.00 && currentHour <= 11.59) {
+  console.log("Bom dia!")
+}else if (currentHour >= 12.00 && currentHour <= 18.00) {
+  console.log("Boa tarde!")
+}else if (currentHour) {
+  console.log("Boa noite!")
 }
 
 /*
@@ -74,22 +77,20 @@ if(isMorning){
   - Agora, teste diferentes idades para se certificar que a condição do `if`  
     também está funcionando.
 */
+console.info("## Exercise >> 03")
 
-console.info('\n### Etapa 02 - Exercício: 03 ###\n ')
-
-const myAge = 21
-let priceMsg = null
-
+const myAge = 42
 const isChild = myAge <= 7
 const isOlder = myAge >= 65
 
-if(isChild || isOlder){
-  priceMsg = "Para você, a entrada é grátis!"
-  console.log(priceMsg)
-}else{
-  priceMsg = "A entrada é R$ 30,00."
-  console.log(priceMsg)
+message = ""
+
+if (isChild || isOlder) {
+ message = "Para você, a entrada é grátis!"
+}else {
+  message = "A entrada é R$ 30,00."
 }
+console.log(message)
 
 /*
   04
@@ -99,23 +100,23 @@ if(isChild || isOlder){
   - Exiba o novo array no console;
   - O resultado deve ser: [34, 46, 90, 25, 11, 89, 76].
 */
-console.info('\n### Etapa 02 - Exercício: 04 ###\n ')
+console.info("## Exercise >> 04")
 
 const numbers = [7, 92, 34, 46, 90, 25, 11, 3, 89, 76, 99]
+const newArray = []
 
-let numbersBetween11And90 = []
+for (let iterator = 0; iterator < numbers.length; iterator++) {
 
-for(let i = 0; i < numbers.length; i++){
+  const element = numbers[iterator]
+  const numbersBetween11and90 = element >= 11 && element <= 90
 
-  const selectedNumbers = numbers[i] >= 11 && numbers[i] <= 90
-
-  if(selectedNumbers){
-    numbersBetween11And90.push(numbers[i])
+  if(numbersBetween11and90){
+    newArray.push(element)
   }
 
 }
-console.log(numbersBetween11And90)
 
+console.log(newArray)
 
 /*
   05
@@ -129,33 +130,38 @@ console.log(numbersBetween11And90)
 
   "O crazyArray tem X booleans, X números e X strings."
 */
-console.info('\n### Etapa 02 - Exercício: 05 ###\n ')
+console.info("## Exercise >> 05")
 
 const crazyArray = [true, 869, 'oi', 71, false, 83, '35', true, 397, 'js', false]
 
-let amountBooleanType = 0
-let amountNumberType = 0
-let amountStringType = 0
+let booleans = null
+let integers = null
+let strings = null
 
-for(let i = 0; i < crazyArray.length; i++){
+for (let iterator = 0; iterator < crazyArray.length; iterator++) {
 
-  const typeOfItem = typeof crazyArray[i]
+  const element = crazyArray[iterator]
+  const isTypeOfBoolean = typeof element === typeof Boolean()
+  const isTypeOfNumber = typeof element === typeof Number()
+  const isTypeOfString = typeof element === typeof String()
 
-  let isBoolean = typeOfItem === typeof Boolean()
-  let isNumber = typeOfItem === typeof Number()
-  let isString = typeOfItem === typeof String()
-
-  if (isBoolean) {
-    amountBooleanType += 1
-  }else if(isNumber){
-    amountNumberType += 1
-  }else if(isString){
-    amountStringType += 1
+  if(isTypeOfBoolean){
+    booleans += 1
   }
 
-}
-console.log(`O crazyArray tem ${amountBooleanType} booleans, ${amountNumberType} números e ${amountStringType} strings.`)
+  if(isTypeOfNumber) {
+    integers += 1
+  }
 
+  if(isTypeOfString) {
+    strings += 1
+  }
+  
+  message = `"O crazyArray tem ${booleans} booleans, ${integers} números e ${strings} strings."`
+
+}
+
+console.log(message)
 /*
   06
 
@@ -172,29 +178,21 @@ console.log(`O crazyArray tem ${amountBooleanType} booleans, ${amountNumberType}
 
   "Numeros ímpares: XX, XX e XX. Números pares: XX, XX e XX."
 */
-console.info('\n### Etapa 02 - Exercício: 06 ###\n ')
+console.info("## Exercise >> 06")
 
 const randomNumbers = [73, 4, 67, 10, 31, 58]
-
-const evenNumber = []
+const evenNumbers = []
 const oddNumbers = []
 
 for (let i = 0; i < randomNumbers.length; i++) {
-
   const number = randomNumbers[i]
-  const isEvenNumbers = number % 2 === 0
-
-  if (isEvenNumbers) {
-    evenNumber.push(number)
-  }else {
+  if(number % 2 === 0){
+    evenNumbers.push(number)
+  }else{
     oddNumbers.push(number)
   }
 }
+const oddNumbersString = oddNumbers.join(', ').replace(', 3', ' e 3')
+const evenNumbersString = evenNumbers.join(', ').replace(' 5', ' e 5')
 
-console.log('even:', evenNumber)
-console.log('odd:', oddNumbers)
-
-const evenNumberString = evenNumber.join(', ').replace(', 5', ' e 5')
-const oddNumbersString = oddNumbers.join(', ').replace(', 3',' e 3')
-
-console.log(`Numeros ímpares: ${oddNumbersString}. Números pares: ${evenNumberString}`)
+console.log(`"Numeros ímpares: ${oddNumbersString}. Números pares: ${evenNumbersString}."`)
