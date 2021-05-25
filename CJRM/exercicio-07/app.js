@@ -1,51 +1,12 @@
-console.log()
-const scores = [50,0,25,0,30,100,20,10]
-
-for (let i = 0; i < scores.length; i++) {
-  if(scores[i] === 0){
-    continue
-  }
-
-  console.log(`Sua pontuação: ${scores[i]}`)
-
-  if(scores[i] === 100){
-    console.log(`\nParabéns, você atingiu a pontuação máxima\n`)
-    break
-  }
-}
-console.log('\n----------------\n')
-
-const grade = 'E'
-
-switch (grade) {
-  case 'A':
-    console.log(`Você tirou um ${grade}`)
-    break;
-  case 'B':
-    console.log(`Você tirou um ${grade}`)
-    break;
-  case 'C':
-    console.log(`Você tirou um ${grade}`)
-    break;
-  case 'D':
-    console.log(`Você tirou um ${grade}`)
-    break;
-  case 'E':
-    console.log(`Você tirou um ${grade}`)
-    break;
-  default:
-    console.log(`Nota inválida!`)
-}
-
-console.log('\n----------------\n')
 /*
   01
 
   - Inverta o valor dos booleans do console.log() abaixo;
   - O resultado exibido no console deve ser: false true.
 */
-console.info('\n### Etapa 02 - Exercício: 01 ###\n ')
+console.info("## Exercise >> 01")
 
+console.log(true, false)
 console.log(!true, !false)
 
 /*
@@ -56,17 +17,15 @@ console.log(!true, !false)
     animals.";
   - Se existir, exiba no console a mensagem "Existe um leão no array animals.".
 */
+console.info("## Exercise >> 02")
 
-console.info('\n### Etapa 02 - Exercício: 02 ###\n ')
-
-const animals = ['macaco', 'tucano', 'elefante', 'pavão', 'hipopótamo', '']
+const animals = ['macaco', 'tucano', 'elefante', 'pavão', 'hipopótamo']
 
 if (!animals.includes('leão')) {
   console.log("Leão não existe no array animals.")
-}else{
+} else {
   console.log("Existe um leão no array animals.")
 }
-
 
 /*
   03
@@ -78,19 +37,20 @@ if (!animals.includes('leão')) {
   
   "A soma ultrapassou 400. Até aqui, o valor atual é RESULTADO_DA_SOMA."
 */
-console.info('\n### Etapa 02 - Exercício: 03 ###\n ')
+console.info("## Exercise >> 03")
 
 const randomNumbers = [59, 61, 73, 57, 35, 73, 21, 87, 43]
+let total = null
+const limit = 400
 
-let limit = 400
-let sum = 0
+for (let index = 0; index < randomNumbers.length; index++) {
+  total += randomNumbers[index]
 
-for (let i = 0; i < randomNumbers.length; i++) {
-  sum += randomNumbers[i]
-  if (sum > limit) {
-   console.log(`A soma ultrapassou ${limit}. Até aqui, o valor atual é ${sum}.`)
+  if (total > limit) {
+    console.log(`A soma ultrapassou ${limit}. Até aqui, o valor atual é ${total}`)
     break
   }
+
 }
 
 /*
@@ -101,20 +61,20 @@ for (let i = 0; i < randomNumbers.length; i++) {
     concatenada;
   - Exiba a frase no console.
 */
-console.info('\n### Etapa 02 - Exercício: 04 ###\n')
+console.info("## Exercise >> 04")
 
 const sentence = ['A', 'certeza', 'dúvida', 'é', 'o', 'princípio', 'da', 'sabedoria.']
+let phrase = ``
 
-let modifiedSentence = ''
-
-for(var i = 0; i < sentence.length; i++){
-  let key = sentence[i]
-  if (key !== 'certeza') {
-    modifiedSentence += `${key} `
+for (let index = 0; index < sentence.length; index++) {
+  const word = sentence[index] 
+  if (word.includes('certeza')) {
+    continue
   }
+  phrase += word.concat(' ')
 }
 
-console.log(modifiedSentence)
+console.log(phrase)
 
 /*
   05
@@ -130,46 +90,53 @@ console.log(modifiedSentence)
       - O array foi iterado por XX vezes.
   "
 */
-console.info('\n### Etapa 02 - Exercício: 05 ###\n')
+console.info("## Exercise >> 05")
 
 const randomValues = [57, false, 'JS', [], true, 'HTML', 31, null, false, 'CSS', 97, true, 'Git', 11, 'sticker', false, 'GitHub', true, null]
 
-let amountArrayIteration = 0
-let amountStringType = 0
-let amountBooleanType = 0
-let firstFourStrings = []
-let lastItem = firstFourStrings.length -1
+let stringTypeQuantity = 0
+let arrayOfStrings = []
+let booleanTypeQuantity = 0
+let arrayIterationQuantity = 0
+let message = ``
+
 for (let i = 0; i < randomValues.length; i++) {
-  let isTypeOfString = typeof randomValues[i] === typeof String()
-  let isTypeOfBoolean = typeof randomValues[i] === typeof Boolean()
-  let newItem = randomValues[i]
 
-  if(isTypeOfString){
+  const item = randomValues[i]
+  const isTypeOfString = typeof item === 'string'
+  const isTypeOfBoolean = typeof item === 'boolean'
 
-    amountStringType += 1
-    firstFourStrings.push(newItem)
-
-    if (firstFourStrings.length === 4) {
-      break
-    }
-  }else if (isTypeOfBoolean) {
-    amountBooleanType  += 1
+  if (stringTypeQuantity === 4) {
+    break
   }
-  amountArrayIteration += 1
+
+  if (isTypeOfString) {
+    stringTypeQuantity++
+    arrayOfStrings.push(item)
+  }
+
+  if (isTypeOfBoolean) {
+    booleanTypeQuantity++
+  }
+  arrayIterationQuantity++
 }
+const lastItem = arrayOfStrings[arrayOfStrings.length -1]
 
-let concatenationOfArray = firstFourStrings.join(', ').toString().replace(`, ${lastItem}`, ` e ${lastItem}`)
+message = `
+3 informações sobre o array randomValues:
+  - As primeiras 4 strings são ${arrayOfStrings.join(', ').replace(`${lastItem}`, ` e ${lastItem}`)};
+  - Até que as primeiras 4 strings fossem iteradas, ${booleanTypeQuantity} booleans foram iterados;
+  - O array foi iterado por ${arrayIterationQuantity} vezes.
 
-console.log(`
-  3 informações sobre o array randomValues:
-  - As primeiras 4 strings são ${concatenationOfArray};
-  - Até que as primeiras 4 strings fossem iteradas, ${amountBooleanType} booleans foram iterados;
-  - O array foi iterado por ${amountArrayIteration} vezes.
-`)
+`
+
+
+console.log(message)
+
 /*
   06
 
-  - Descomente a constante abaixo e atribua a ela algum tipo de bebida. Exemplo:  
+  - Descomente a constante abaixo atribua a ela algum tipo de bebida. Exemplo:  
     água, refrigerante ou suco;
   - Utilize um switch statement com cases para essas 3 possibilidades de bebida;
   - Se o tipo da bebida é água, atribua à uma variável a mensagem "Substância 
@@ -185,24 +152,27 @@ console.log(`
   - Exiba a mensagem no console. Teste também as outras possibilidades de tipo  
     da bebida além da que você escolheu.
 */
-console.info('\n### Etapa 02 - Exercício: 06 ###\n\n')
+console.info("## Exercise >> 06")
 
-const drinkType = `café`
+const drinkType = 'água'
+let drinkMessage = null
 
 switch (drinkType) {
-  case 'água':
-    console.log('Substância química cujas moléculas são formadas por dois átomos de hidrogênio e um de oxigênio.')
+  case `água`:
+    drinkMessage = `Substância química cujas moléculas são formadas por dois átomos de hidrogênio e um de oxigênio.`
     break
-  case 'refrigerante':
-    console.log('Bebida não alcoólica e não fermentada, fabricada industrialmente, à base de água mineral e açúcar.')
+  case `refrigerante`:
+    drinkMessage = `Bebida não alcoólica e não fermentada, fabricada industrialmente, à base de água mineral e açúcar.`
     break
-  case 'suco':
-    console.log('Bebida produzida do líquido extraído de frutos.')
+  case `suco`:
+    drinkMessage = `Bebida produzida do líquido extraído de frutos.`
     break
   default:
-    console.log('Bebida desconhecida.')
+    drinkMessage = `Bebida desconhecida.`
     break
 }
+
+console.log(drinkMessage)
 /*
   07
 
@@ -210,10 +180,10 @@ switch (drinkType) {
   - Depois de escrever o switch, modifique o valor da declaração da const "a"  
     para testar o switch que você escreveu.
 */
-console.info('\n### Etapa 02 - Exercício: 07 ###\n\n')
+console.info("## Exercise >> 07")
 
-const a = 0
-let msg = `O valor de "a" é `
+const number = 3
+
 // if (a === 0) {
 //   console.log(`O valor de "a" é ${a}`)
 // } else if (a === 1) {
@@ -222,14 +192,15 @@ let msg = `O valor de "a" é `
 //   console.log('O valor de "a" é qualquer número, exceto 0 e 1')
 // }
 
-switch (a) {
+message = `O valor de "a" é ${number}`
+
+switch (number) {
   case 0:
-    console.log(msg,`${a}`)
-    break
+    console.log(message)
+    break;
   case 1:
-    console.log(msg,`${a}`)
-    break
+    console.log(message)
+    break;
   default:
-    console.log(msg,'qualquer número, exceto 0 e 1')
-    break
+    console.log('O valor de "number" é qualquer número, exceto 0 e 1')
 }
