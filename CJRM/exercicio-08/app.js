@@ -6,14 +6,15 @@
   - Previna que esses parâmetros recebam undefined;
   - Exiba o resultado no console, sem inserir um console.log() dentro da função.
 */
-console.info('\n### Etapa 03 - Exercício: 01 ###\n ')
+console.info("## Exercise >> 01")
 
-function multiplier(num1 = null, num2 = null){
-  return num1 * num2;
+function multiplier(firstNumber = 0, SecondNumber = 0) {
+  return firstNumber * SecondNumber
 }
 
-let muiltp = multiplier(2,13)
-console.log(muiltp)
+let result  = multiplier(40, 5)
+
+console.log(result)
 
 /*
   02
@@ -22,13 +23,16 @@ console.log(muiltp)
     **function expression** que retorne o resultado da **divisão** entre esses  
     2 números.
 */
-console.info('\n### Etapa 03 - Exercício: 02 ###\n ')
+console.info("## Exercise >> 02")
 
-let divider = function(param1 = 0, param2 = 0) {
-  return param1 / param2
+const divisor = (firstNumber = 0, secondNumber = 0) => {
+  return firstNumber / secondNumber
 }
 
-console.log(divider(12, 2))
+result = divisor(40, 5)
+
+console.log(result)
+
 /*
   03
 
@@ -41,17 +45,17 @@ console.log(divider(12, 2))
 
   "Esta é a Xª vez que essa string é exibida."
 */
-console.info('\n### Etapa 03 - Exercício: 03 ###\n ')
+console.info("## Exercise >> 03")
 
-function parameterPrinter(param = null) {
-  return param
+function showNumber(params = 'Valor como argumento é obrigatório!') {
+  return params
 }
 
-for (let index = 1; index <= 7; index++) {
-  let message = `Esta é a ${index}ª vez que essa string é exibida.`
-  let printLn = parameterPrinter(message)
+for (let iterator = 1; iterator <= 7; iterator++) {
+  
+  const message = `Esta é a ${showNumber(iterator)}ª vez que essa string é exibida.`
 
-  console.log(printLn)
+  console.log(message)
 }
 
 /*
@@ -64,25 +68,24 @@ for (let index = 1; index <= 7; index++) {
   - Exiba o novo array no console, sem inserir um console.log() dentro da  
     função.
 */
-console.info('\n### Etapa 03 - Exercício: 04 ###\n ')
+console.info("## Exercise >> 04")
 
 const millennialWords = ['lol', 'yolo', 'troll', 'stalkear', 'selfie', 'influencer', 'crush', 'fitness', 'hater', 'bae', 'random', 'kawaii', 'outfit', 'mood', 'fail']
 
-let stringsUpperCase = function (arrOfString = null) {
-  let newArrOfString = []
-  for (let i = 0; i < arrOfString.length; i++) {
-    
-    let item = arrOfString[i];
-    const wordInUpperCase = item.toUpperCase()
+function StringsToUpperCase(array = []) {
+  const newArray = []
 
-    newArrOfString.push(wordInUpperCase)
+  for (let index = 0; index < array.length; index++) {
+    const word = array[index]
+    newArray.push(word.toUpperCase())
+    
   }
-  return newArrOfString
+  return newArray
 }
 
-let showNewArry = stringsUpperCase(millennialWords)
+const millennialWordsInUpperCase = StringsToUpperCase(millennialWords)
 
-console.log(showNewArry)
+console.log(millennialWordsInUpperCase)
 
 /*
   05
@@ -94,31 +97,30 @@ console.log(showNewArry)
 
   "O array "randomNumbers" possui XX números, sendo XX positivos e XX negativos."
 */
-console.info('\n### Etapa 03 - Exercício: 05 ###\n ')
+console.info("## Exercise >> 05")
 
 const randomNumbers = [-2, 93, 34, -1, 1, 93, 11, -7, 47, -3]
 
-function numberValueChecker(param = null) {
+const isPositiveNumbers = function (number = 0) {
+  return number >= 1
+}
 
-  let positiveNumberQuantity = 0
-  let negativeNumberQuantity = 0
+let positiveNumbersQuantity = 0
+let negativeNumbersQuantity = 0
 
-  for (let i = 0; i < param.length; i++) {
-    const isPositiveNumber = param[i] > 0
+for (let index = 0; index < randomNumbers.length; index++) {
+  const isPositiveNumber = isPositiveNumbers(randomNumbers[index])
 
-    if (isPositiveNumber) {
-      positiveNumberQuantity++
-    }else{
-      negativeNumberQuantity++
-    }
-
+  if (isPositiveNumber) {
+    positiveNumbersQuantity++
+  }else {
+    negativeNumbersQuantity++
   }
-
-  return `O array "randomNumbers" possui ${param.length} números, sendo ${positiveNumberQuantity} positivos e ${negativeNumberQuantity} negativos.`
 
 }
 
-console.log(numberValueChecker(randomNumbers))
+console.log( `O array "randomNumbers" possui ${randomNumbers.length} números, sendo ${positiveNumbersQuantity} positivos e ${negativeNumbersQuantity} negativos.`)
+
 /*
   06
 
@@ -128,33 +130,32 @@ console.log(numberValueChecker(randomNumbers))
   - Exiba o novo array no console, sem inserir um console.log() dentro da  
     função.
 */
-console.info('\n### Etapa 03 - Exercício: 06 ###\n ')
 
-function getOddNumbers(arrOfValues) {
-  let arrayOfOddNumbers = []
-  for (let i = 0; i < arrOfValues.length; i++) {
+console.info("## Exercise >> 06")
 
-    const number = arrOfValues[i]
-    const isOddNumber = !(number % 2 === 0)
+const getOddNumbers = arr => {
+  const oddNumbers = []
+  for (let iterator = 0; iterator < arr.length; iterator++) {
 
-    if(isOddNumber){
-      arrayOfOddNumbers.push(number)
+    const number = arr[iterator]
+    const isOddNumber = number % 2 !== 0
+
+    if (isOddNumber) { 
+      oddNumbers.push(number)
     }
-    
+
   }
-  return arrayOfOddNumbers
+  return oddNumbers
 }
 
-console.log(
-  getOddNumbers([83, 52, 31, 73, 98, 37, 61, 56, 12, 24, 35, 3, 34, 80, 42])
-)
+const arrayWithOddNumbers = getOddNumbers([83, 52, 31, 73, 98, 37, 61, 56, 12, 24, 35, 3, 34, 80, 42])
 
+console.log(arrayWithOddNumbers)
 /*
   07
 
   - Forme uma frase com o array abaixo e exiba-a no console.
 */
-console.info('\n### Etapa 03 - Exercício: 07 ###\n ')
 
 const functions = [
   function () { return 'Plymouth' },
@@ -187,29 +188,13 @@ const functions = [
   function () { return 'Ocidentais.' }
 ]
 
-let phrase = function(arrayOfStrings){
-  let outputPhrase = []
+console.info("## Exercise >> 07")
 
-  for (let index = 0; index < arrayOfStrings.length; index++) {
-    outputPhrase.push(arrayOfStrings[index]())
-  }
-  return outputPhrase.toString()
-}
+let phrase = ``
 
-console.log(phrase(functions))
-
-
-console.log('\n |------------Correção!-----------| \n')
-
-let sentence = ''
 for (let i = 0; i < functions.length; i++) {
-  
-  const string = `${functions[i]()} `
-  sentence += string
-
+  const element = functions[i]
+  phrase += element().concat(' ')
 }
 
-console.log(
-  sentence,
-  '\n'
-)
+console.log(phrase)
