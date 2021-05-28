@@ -14,15 +14,15 @@
 */
 console.info("## Exercise >> 01")
 
-function convertToString (value) {
+// function convertToString (value) {
+//   return String(value)
+// }
+
+const convertToString = value => {
   return String(value)
 }
 
-const convertToString2 = value => {
-  return String(value)
-}
-
-console.log(convertToString2(true))
+console.log(convertToString(true))
 
 /*
   02
@@ -66,7 +66,7 @@ console.info("## Exercise >> 04")
 
 const returnIndexOf = (char, string) => {
   return console.log(`${string}: ${char.toUpperCase()} index:{${string.indexOf(char)}}`)
-  }
+}
 
 
 string = 'JavaScript'
@@ -81,13 +81,7 @@ returnIndexOf('p', string)
 console.info("## Exercise >> 05")
 
 const arrayContainItem = (item, array) => {
-  let hasItem = false
-  array.forEach(element => {
-    if (element.toLowerCase() === item.toLowerCase()) {
-      hasItem = true
-    }
-  })
-  return console.log(hasItem)
+  return console.log(array.includes(item))
 }
 
 const arrTest = ['JavaScript', 'Node', 'React', 'Angular']
@@ -130,7 +124,21 @@ console.log(
   - Crie uma função que retorna se o valor passado como argumento em sua  
     invocação é null.
 */
+console.info("## Exercise >> 08")
 
+const isNull = value => value === null
+
+let test = null
+
+console.log(
+  isNull(test)
+)
+
+test = 'null'
+
+console.log(
+  isNull(test)
+)
 /*
   09
 
@@ -141,6 +149,19 @@ console.log(
     argumento a função que exibe seu nome no console e veja se o nome realmente  
     foi exibido.
 */
+console.info("## Exercise >> 09")
+
+const executeCallback = callback =>{
+  callback()
+}
+
+const showName = () => {
+  return console.log('Iury Chagas')
+}
+
+executeCallback(
+  showName
+)
 
 /*
   10
@@ -152,7 +173,31 @@ console.log(
   - Faça com que a invocação da função descrita no 1º item deste exercício (10)  
     resulte no triplo de 33.
 */
+console.info("## Exercise >> 10")
 
+// const invokCallback = callback =>{
+//   const multipleTo3 = value =>{
+//     return value * 3
+//   }
+  
+//   callback(multipleTo3(11))
+// }
+
+// invokCallback( num =>{
+//   console.log(num)
+// })
+
+const invokCallback = (number, callback) => {
+  return callback(number)
+}
+
+const multipleTo = number => {
+  return number * 3
+}
+
+console.log(
+  invokCallback(33, multipleTo)
+)
 /*
   11
 
@@ -161,8 +206,18 @@ console.log(
   
   "O Xº item do array [X, X, X] é X."
 */
+console.info("## Exercise >> 11")
 
 const numbers = [1, 2, 3]
+
+const showNumbersInfo = (item, index, array) => {
+  const itemPosition = index + 1
+  const arrayItems = array.join(', ')
+
+  return console.log(`O ${itemPosition}º item do array [${arrayItems}] é ${item}.`)
+}
+
+numbers.forEach(showNumbersInfo)
 
 /*
   12
@@ -171,13 +226,20 @@ const numbers = [1, 2, 3]
   - Após a conversão, verifique se a cópia do array lettersCopy realmente foi  
     criada.
 */
+console.info("## Exercise >> 12")
 
 const letters = ['v', 'e', 'p']
 let lettersCopy = []
 
-for (let i = 0; i < letters.length; i++) {
-  lettersCopy.push(letters[i])
-}
+// for (let i = 0; i < letters.length; i++) {
+//   lettersCopy.push(letters[i])
+// }
+
+letters.forEach(item =>{
+  lettersCopy.push(item)
+})
+
+console.log(lettersCopy)
 
 /*
   13
@@ -196,6 +258,7 @@ for (let i = 0; i < letters.length; i++) {
     <section data-js="section"></section>
   </article>
 */
+console.info("## Exercise >> 13")
 
 const section = document.querySelector('[data-js="section"]')
 
@@ -208,7 +271,13 @@ const review = [
 
 let paragraphs = ''
 
-// section.innerHTML = paragraphs
+const createParagraphs = paragraph => {
+  paragraphs += `<p>${paragraph}</p>`
+}
+
+review.forEach(createParagraphs)
+
+section.innerHTML = paragraphs
 
 /*
   14
@@ -230,3 +299,28 @@ let paragraphs = ''
     pelo restante da quantidade de pessoas que curtiram o post (além das duas  
     pessoas já mencionadas no início da mensagem).
 */
+console.info("## Exercise >> 14")
+
+const getLikesPost = (array = []) => {
+
+  const firstUser =  array[0]
+  const secondName = array[1]
+  const totalNamesMinusTwo =  array.length - 2
+
+  switch (array.length) {
+    case 0:
+      return `Ninguém curtiu isso.`
+    case 1:
+      return `${firstUser} curtiu isso.`
+    case 2:
+      return `${array.join(' e ')}, curtiram isso.`
+    case 3:
+      return `${array.join(' e ').replace(`${array[0]} e `, `${array[0]}, `)}, curtiram isso.`
+    default:
+      return `${firstUser}, ${secondName} e mais ${totalNamesMinusTwo} pessoas curtiram isso`
+  }
+}
+
+console.log(
+  getLikesPost(['Rafaela', 'Iury', 'Melanie', 'Camilla', 'Daiane', 'Jessica'])
+)
