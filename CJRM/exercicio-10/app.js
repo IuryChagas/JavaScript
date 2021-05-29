@@ -12,7 +12,7 @@
 console.info("## Exercise >> 01")
 
 const cat = {
-  "name": "gato",
+  "name": "Mitião",
   "age": 7,
   "color": "grey",
   "bestFriends": ["Banguela", "Preta"],
@@ -57,13 +57,13 @@ console.log(cat.age)
 */
 console.info("## Exercise >> 04")
 
-const addNewFriend = name => {
-  cat.bestFriends.push(name)
+const addNewFriend = (name, object) => {
+  object.bestFriends.push(name)
 }
 
-addNewFriend('Mitião')
+addNewFriend('Cinzala', cat)
 
-console.log(cat.bestFriends)
+console.table(cat.bestFriends)
 /*
   05
 
@@ -74,11 +74,11 @@ console.log(cat.bestFriends)
 */
 console.info("## Exercise >> 05")
 
-const addNewColor = colorName => {
-  cat['color'] = `["${cat.color}", "${colorName}"]`
+const modifyColor = (object, color) => {
+  object.color += ` and ${color}`
 }
 
-addNewColor('White')
+modifyColor(cat, 'white')
 
 console.log(
   cat['color']
@@ -92,9 +92,7 @@ console.log(
 */
 console.info("## Exercise >> 06")
 
-const isObject = item => {
-  return typeof item === 'object'
-}
+const isObject = item => typeof item === 'object'
 
 console.log(
   isObject(cat)
@@ -111,7 +109,7 @@ console.log(
 console.info("## Exercise >> 07")
 
 const dog = {
-  "name": "dog",
+  "name": "Black",
   "age": 7,
   "color": "Caramel",
   "bestFriends": ["Banguela", "Preta", "Mitião"],
@@ -119,13 +117,17 @@ const dog = {
     return `Wau Wau!`
   }
 }
-const showAgesOfCatAndDog = () => {
+const getAgeMessage = (cat, dog) => {
+
   const sumOfAges = cat.age + dog.age
-  return `A soma das idades de ${cat.name} e ${dog.name} é ${sumOfAges}.`
+  const dogName = dog.name
+  const catName = cat.name
+
+  return `A soma das idades de ${catName} e ${dogName} é ${sumOfAges}.`
 }
 
 console.log(
-  showAgesOfCatAndDog()
+  getAgeMessage(cat, dog)
 )
 /*
   08
@@ -144,7 +146,6 @@ const isAnSUV = car => {
   return SuvCars.includes(car)
 }
 
-
 console.log(isAnSUV('Honda Civic'))
 console.log(isAnSUV('Ford EcoSport'))
 
@@ -162,15 +163,46 @@ console.log(isAnSUV('Ford EcoSport'))
 */
 console.info("## Exercise >> 09")
 
-const typeOfJS = type => {
-  const typeOfObjs = {
+const getTypeDefinition = type => {
+  const obj = {
     null: 'Seta, explicitamente, uma variável sem valor.',
     undefined: 'Representa um valor não-setado.',
     object: 'Arrays, Datas, Objetos literais, Funções, etc.'
   }
-  return typeOfObjs[type]
+  return obj[type]
 }
 
 console.log(
-  typeOfJS('object')
+  "null: ", getTypeDefinition('null')
+)
+
+console.log(
+  "undefined: ", getTypeDefinition('undefined')
+)
+
+console.log(
+  "object: ", getTypeDefinition('object')
+)
+
+console.info("\n#### Solução diferente para o mesmo problema ####")
+console.log('\n')
+
+const getTypeDescriptionOf = type => {
+  return {
+    null: 'Seta, explicitamente, uma variável sem valor.',
+    undefined: 'Representa um valor não-setado.',
+    object: 'Arrays, Datas, Objetos literais, Funções, etc.'
+  }[type]
+}
+
+console.log(
+  "null: ", getTypeDefinition('null')
+)
+
+console.log(
+  "undefined: ", getTypeDefinition('undefined')
+)
+
+console.log(
+  "object: ", getTypeDefinition('object')
 )
