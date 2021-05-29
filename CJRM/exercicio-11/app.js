@@ -78,8 +78,8 @@ const name = `MyName`
 console.info("## Exercise >> 02")
 
 const getAge = () => {
-  let name = 'My name'
-  return console.log(name)
+  let age = 41
+  return console.log(41)
 }
 
 getAge()
@@ -117,15 +117,22 @@ const car = {
     return `isRunning: ${this.isRunning} >> O ${this.name} está parado`
   },
   getColorMessage(){
-    return `O ${this.name} está disponível nas cores ${this.colors.join(', ').replace(`, ${this.colors[this.colors.length -1]}`,` e ${this.colors[this.colors.length -1]}`)}`
+    const lastColor = this.colors[this.colors.length -1]
+    const colors = this.colors.join(', ').replace(`, ${lastColor}`,` e ${lastColor}`)
+
+    return `O ${this.name} está disponível nas cores ${colors}`
   }
 }
+
+console.info(car)
 
 /*
   04
 
   - Faça o carro andar e exiba no console se ele realmente está em movimento.
 */
+console.info("## Exercise >> 04")
+
 console.log(
   car.run()
 )
@@ -135,6 +142,8 @@ console.log(
 
   - Faça o carro parar e exiba no console se ele realmente está parado.
 */
+console.info("## Exercise >> 05")
+
 car['isRunning'] = false
 console.log(
   car.stop()
@@ -144,6 +153,8 @@ console.log(
 
   - Exiba, no console, a mensagem com as cores do carro.
 */
+console.info("## Exercise >> 06")
+
 console.log(
   car.getColorMessage()
 )
@@ -153,6 +164,8 @@ console.log(
   - Exiba, no console, a mensagem "O carro é um MARCA_DO_CARRO NOME_DO_CARRO";
   - Utilize a notação de colchetes para acessar as propriedades do carro.
 */
+console.info("## Exercise >> 07")
+
 console.log(
   `O carro é um ${car['brand']} ${car['name']}`
 )
