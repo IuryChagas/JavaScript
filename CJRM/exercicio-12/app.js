@@ -1,3 +1,46 @@
+console.info(
+  `
+  \n########################### EXPLANATION: Objects in arrays ###########################
+  
+  `
+)
+
+let user = {
+  name: 'Anonymous undefined of names',
+  age: 43,
+  email: 'anonymouser@provider.undef',
+  city: 'Boston',
+  blogPosts: [
+    {"title": "Empadão de frango", "likes": 31},
+    {"title": "4 receitas de purê de batata", "likes": 29}
+  ],
+  login: function () {
+      console.log('connected user!')
+  },
+  logout: function (){
+      console.log('desconnected user!')
+  },
+  
+  logBlogPosts () {
+      console.log(`${this.name} wrote these recipes`)
+      
+        this.blogPosts.forEach( post =>{
+          console.log(post.title,"com", post.likes, "likes")
+        })
+        
+        // this.blogPosts[0].title, this.blogPosts[0].likes      
+  }
+}
+
+user.logBlogPosts()
+
+console.info(
+  `
+  \n###########################     EXERCISES CHAPTER 12    ###########################
+  
+  `
+)
+
 /*
   01
 
@@ -11,7 +54,7 @@
   
   - Todos os filmes e diretores do array devem constar na lista.
 */
-console.info('\n### Etapa 05 - Exercício: 01 ###\n ')
+console.info("## Exercise >> 01")
 
 const best2019Movies = [
   { title: 'Parasita', directedBy: 'Bong Joon-ho' },
@@ -28,57 +71,16 @@ const best2019Movies = [
   { title: 'A Vida Invisível', directedBy: 'Karim Aïnouz' }
 ]
 
-console.log(`\n## version 00\n\n`)
-function paragraph(title, director){
-  return `    - ${title}, dirigido por ${director}`
-}
+let message = ``
 
-console.log(`Segundo o site Omelete, os melhores filmes de 2019 são:`)
-for (let index = 0; index < best2019Movies.length; index++) {
-  best2019Movies[index]
+best2019Movies.forEach( movie =>{
+  message += `Segundo o site Omelete, os melhores filmes de 2019 são:
+  - ${movie.title}, dirigido por ${movie.directedBy}`
 
-  let movieTitle = best2019Movies[index].title
-  let moviesDirector = best2019Movies[index].directedBy
-
-  let message = paragraph(`${movieTitle}`, `${moviesDirector}`).toString()
-
-  console.log(message)
-
-}
-
-console.log(`\n## Refactoring 01 \n\n`)
-console.log(`Segundo o site Omelete, os melhores filmes de 2019 são:`)
-for (let iterator = 0; iterator < best2019Movies.length; iterator++) {
-  let object = iterator
-
-  let movie = best2019Movies[object].title
-  let director = best2019Movies[object].directedBy
-
-  console.log(`   - ${movie}, dirigido por ${director}`)
-}
-
-console.log(`\n## Refactoring 02 \n\n`)
-
-console.log(`Segundo o site Omelete, os melhores filmes de 2019 são:`)
-
-best2019Movies.forEach((movie) => {
-  let title = movie.title
-  let director = movie.directedBy
-
-  console.log(`   - ${title}, dirigido por ${director}`)
+  return message
 })
 
-console.log(`\n## Exercise correction:\n\n`)
-
-let msg = `Segundo o site Omelete, os melhores filmes de 2019 são:`
-let generateMsg = movie => {
-  msg += `
-    - ${movie.title}, dirigido por ${movie.directedBy}`
-}
-
-best2019Movies.forEach(generateMsg)
-
-console.log(msg)
+console.log(message)
 
 /*
   02
@@ -93,7 +95,7 @@ console.log(msg)
   
   - As 4 linhas da mensagem, podem ser exibidas separadamente.
 */
-console.info('\n### Etapa 05 - Exercício: 02 ###\n ')
+console.info("## Exercise >> 02")
 
 const youtubeUser = {
   name: 'Roger Melo',
@@ -101,54 +103,38 @@ const youtubeUser = {
   videos: {
     total: 111,
     recentVideos: [
-        { title: 'Introdução ao TDD - Parte 02 | JavaScript | Jest', length: '28:28' },
-        { title: 'Introdução ao TDD | JavaScript | Jest', length: '19:29' },
-        { title: 'Higher-order Functions | JavaScript', length: '47:38' }
-      ],
-      showRecentVideos (){
-        console.log(`\n## version 00\n\n`)
-          console.log(`Vídeos recentes de Roger Melo:`)
-          for (let i = 0; i < this.recentVideos.length; i++) {
-            const videoTitle = this.recentVideos[i].title;
-            console.log(videoTitle)    
-          }
-
-        console.log(`\n## Refactoring 01 \n\n`)
-          console.log(`Vídeos recentes de Roger Melo:`)
-          this.recentVideos.forEach(video => {
-            console.log(video.title)
-          })
-      }
+      { title: 'Introdução ao TDD - Parte 02 | JavaScript | Jest', length: '28:28' },
+      { title: 'Introdução ao TDD | JavaScript | Jest', length: '19:29' },
+      { title: 'Higher-order Functions | JavaScript', length: '47:38' }
+    ]
+  },
+  recentVideosMessage:  function(){
+    this.videos.recentVideos.forEach(video => video.title)
   },
   about: {
     description: '🔥 Ensino as pessoas a alcançarem a fluência em JavaScript! 🔥',
     socialNetworks: {
       twitter: 'https://twitter.com/rogermelodev',
-      gitHub: 'https://github.com/Roger-Melo' 
+      gitHub: 'https://github.com/Roger-Melo'
     },
-  country: 'Brasil'
-  },
-  getRecentVideo(){
-    console.log(`\n## Exercise correction:\n\n`)
-    console.log(`Vídeos recentes de ${this.name}:`)
-    let getTitleVideo = video => {
-      console.log(video.title)
-    }
-    this.videos.recentVideos.forEach(getTitleVideo)
+    country: 'Brasil'
   }
 }
 
-youtubeUser.videos.showRecentVideos()
-youtubeUser.getRecentVideo()
+console.log(
+  youtubeUser.recentVideosMessage()
+)
 
 /*
   03
 
   - Exiba o valor do PI no console.
 */
-console.info('\n### Etapa 05 - Exercício: 03 ###\n ')
+console.info("## Exercise >> 03")
 
-console.log(Math.PI)
+console.log(
+  Math.PI
+)
 
 
 /*
@@ -157,43 +143,51 @@ console.log(Math.PI)
   - Arredonde o número que a constante abaixo armazena para 9 e exiba-o no  
     console.
 */
-console.info('\n### Etapa 05 - Exercício: 04 ###\n ')
+console.info("## Exercise >> 04")
 
 const firstNumber = 8.3
 
-console.log(Math.ceil(firstNumber))
+console.log(
+  Math.ceil(firstNumber)
+)
 /*
   05
 
   - Arredonde o número que a constante abaixo armazena para 4, utilizando a  
     forma padrão, e exiba-o no console.
 */
-console.info('\n### Etapa 05 - Exercício: 05 ###\n ')
+console.info("## Exercise >> 05")
 
 const secondNumber = 3.5
 
-console.log(Math.round(secondNumber))
+console.log(
+  Math.round(secondNumber)
+)
 /*
   06
 
   - Arredonde o número que a constante abaixo armazena para 8 e exiba-o no  
     console.
 */
-console.info('\n### Etapa 05 - Exercício: 06 ###\n ')
+console.info("## Exercise >> 06")
 
 const thirdNumber = 8.9
 
-console.log(Math.floor(thirdNumber))
+console.log(
+  Math.floor(thirdNumber)
+)
 /*
   07
 
   - Exiba no console o número abaixo com a parte decimal removida.
 */
-console.info('\n### Etapa 05 - Exercício: 07 ###\n ')
+console.info("## Exercise >> 07")
 
 const fourthNumber = 5.5
 
-console.log(Math.trunc(fourthNumber))
+console.log(
+  Math.trunc(fourthNumber)
+)
 
 /*
   08
@@ -201,8 +195,16 @@ console.log(Math.trunc(fourthNumber))
   - A cada vez que o index.html for carregado, exiba no console um número  
     aleatório de 0 à 10, incluindo 0 e 10.
 */
-console.info('\n### Etapa 05 - Exercício: 08 ###\n ')
+console.info("## Exercise >> 08")
 
-let randomNumber = Math.random()
+console.log(
+  Math.round(Math.random() * 10)
+)
 
-console.log(Math.round(randomNumber * 10))
+// or...
+
+const randomNumber = Math.random()
+
+console.log(
+  Math.round(randomNumber * 10)
+)
