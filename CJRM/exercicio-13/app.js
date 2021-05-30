@@ -1,3 +1,10 @@
+console.info(
+  `
+  \n###########################     EXERCISES CHAPTER 13    ###########################
+  
+  `
+)
+
 /*
   01
 
@@ -7,44 +14,18 @@
 
   "NOME_DO_GATO é um gato COR_DO_GATO de IDADE_DO_GATO anos."
 */
-console.info('\n### Etapa 05 - Exercício: 01 ###\n ')
+console.info("## Exercise >> 01")
 
-console.log(`\n## version 00\n\n`)
 const getCatInfo = () => {
-  const name = 'Mitião'
-  let age = 5
+  const name = 'Marcos'
+  let age = 3
   const color = 'Cinza'
-  return {name: name, age: age, color: color}
-}
- 
-let  outputMessage = `${getCatInfo().name} é um gato ${getCatInfo().color} de ${getCatInfo().age} anos.`
-
-console.log(outputMessage)
-
-console.log(`\n## Refactoring 01 \n\n`)
-
-const catName = getCatInfo().name
-const catAge = getCatInfo().age
-const catColor = getCatInfo().color
-
-outputMessage = `${catName} é um gato ${catAge} de ${catColor} anos.`
-
-console.log(outputMessage)
-
-console.log(`\n## Refactoring 02 \n\n`)
-getCatInfo2 = () => {
-  const name = 'Mitião'
-  let age = 5
-  const color = 'Cinza'
-
-  return {name, color, age} // <-- Initializer notation
+  return `${name} é um gato ${color} de ${age} anos.`
 }
 
-let {name, color, age} = getCatInfo2() // <-- Destructuring assignment
-
-outputMessage = `${name} é um gato ${color} de ${age} anos.`
-
-console.log(outputMessage)
+console.log(
+  getCatInfo()
+)
 
 /*
   02
@@ -53,21 +34,23 @@ console.log(outputMessage)
     exibir no console a string que a const movie armazena, com todas as letras  
     maiúsculas.
 */
-console.info('\n### Etapa 05 - Exercício: 02 ###\n ')
+console.info("## Exercise >> 02")
 
-const external = () => {
+const externalFunction = () => {
   const movie = 'Parasite'
 
   const internal = () => {
     const extraInternal = () => {
-      movie.toUpperCase()
+      console.log(movie.toUpperCase())
     }
-    return extraInternal()
+
+    extraInternal()
   }
-  return internal()
+
+  internal()
 }
 
-console.log(external())
+externalFunction()
 
 /*
   03
@@ -77,11 +60,14 @@ console.log(external())
 
   Dica: procure pelo método reverse, no MDN.
 */
-console.info('\n### Etapa 05 - Exercício: 03 ###\n ')
+console.info("## Exercise >> 03")
 
 let randomNumbers = [3, 2, 1]
 
-console.log(randomNumbers.reverse())
+console.log(
+  randomNumbers.reverse()
+)
+
 /*
   04
 
@@ -89,18 +75,19 @@ console.log(randomNumbers.reverse())
 
   Dica: procure pelo método shift, no MDN.
 */
-console.info('\n### Etapa 05 - Exercício: 04 ###\n ')
+
+console.info("## Exercise >> 04")
 
 let crazyArray = [
   { prop1: '1', prop2: '2' },
   function getMessage () { return 'hi' },
   [ 5, 96, 53  ]
 ]
-
 crazyArray.shift()
 
-console.log(crazyArray)
-
+console.log(
+  crazyArray
+)
 /*
   05
 
@@ -109,7 +96,7 @@ console.log(crazyArray)
 
   Dica: procure pelo método find, no MDN.
 */
-console.info('\n### Etapa 05 - Exercício: 05 ###\n ')
+console.info("## Exercise >> 05")
 
 const dogs = [
   { name: 'Olivia', age: 3, gender: 'Female', breed: 'Maltês' },
@@ -118,25 +105,12 @@ const dogs = [
   { name: 'Zequinha', age: 7, gender: 'Male', breed: 'Poodle' },
   { name: 'Xica', age: 6, gender: 'Female', breed: 'Chihuahua' }
 ]
-console.log(`\n## version 00\n\n`)
-dogs.forEach((element) => {
-  if (element.name === 'Zequinha') {
-    console.log(element.name)
-  }
-})
 
-console.log(`\n## Refactoring 01 \n\n`)
-dogs.find( obj => {
-  if (obj.name == 'Zequinha') {
-    console.log(obj.name)
-  }
-})
+const hasZequinhaDog = dogs.find( dog => dog.name === 'Zequinha')
 
-console.log(`\n## Refactoring 02 \n\n`)
-const pet = dogs.find(dog => dog.name === 'Zequinha')
-
-console.log(pet)
-
+console.log(
+  hasZequinhaDog
+)
 /*
   06
 
@@ -145,10 +119,33 @@ console.log(pet)
     página, através da classe dele;
   - Exiba a referência do título principal no console.
 
-*/
-console.info('\n### Etapa 05 - Exercício: 06 ###\n ')
+  <section>
+    <article>
+      <h1 class="main-title">Curiosidades sobre o filme Jurassic Park</h1>
 
-let mainTitle = document.querySelector('.main-title')
+      <ul>
+        <li>
+          <h2 class="secondary-title">Direto das páginas do livro</h2>
+          <p>No livro Parque dos Dinossauros, de Michael Crichton, o personagem John Hammond anuncia orgulhoso que o guia turístico do parque é o ator Richard Kiley, conhecido nos Estados Unidos. No filme, o diretor Steven Spielberg convidou o próprio Kiley para interpretar a si mesmo nesta cena.</p>
+        </li>
+
+        <li>
+          <h2 class="secondary-title">Passou adiante</h2>
+          <p>O ator William Hurt chegou a ser convidado para interpretar o Dr. Alan Grant, mas recusou o papel sem nem mesmo ler o roteiro original do filme.</p>
+        </li>
+
+        <li>
+          <h2 class="secondary-title">Sistemas operacionais do parque</h2>
+          <p>Nos diversos softwares que aparecem em Jurassic Park foram utilizadas várias linguagens. Pode-se notar que um dos programas utilizados no parque foi escrito em Pascal, em um dos monitores percebe-se a utilização do sistema UNIX e a interface gráfica utilizada é a 3D File System Navigator, da Sillicon Graphics.</p>
+        </li>
+      </ul>
+    </article>
+  </section>
+*/
+console.info("## Exercise >> 06")
+
+const mainTitle = document.querySelector('.main-title')
+
 console.log(mainTitle)
 /*
   07
@@ -157,8 +154,8 @@ console.log(mainTitle)
     página, através da classe deles;
   - Exiba esse NodeList no console.
 */
-console.info('\n### Etapa 05 - Exercício: 07 ###\n ')
+console.info("## Exercise >> 07")
 
-let secondaryTitles = document.querySelectorAll('.secondary-title')
+const secondaryTitles = document.querySelectorAll('.secondary-title')
 
 console.log(secondaryTitles)
