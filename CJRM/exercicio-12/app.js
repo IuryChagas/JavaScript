@@ -73,12 +73,14 @@ const best2019Movies = [
 
 let message = ``
 
-best2019Movies.forEach( movie =>{
+const generateMovieMessage = movie =>{
   message += `Segundo o site Omelete, os melhores filmes de 2019 são:
   - ${movie.title}, dirigido por ${movie.directedBy}`
 
   return message
-})
+}
+
+best2019Movies.forEach(generateMovieMessage)
 
 console.log(message)
 
@@ -108,9 +110,6 @@ const youtubeUser = {
       { title: 'Higher-order Functions | JavaScript', length: '47:38' }
     ]
   },
-  recentVideosMessage:  function(){
-    this.videos.recentVideos.forEach(video => video.title)
-  },
   about: {
     description: '🔥 Ensino as pessoas a alcançarem a fluência em JavaScript! 🔥',
     socialNetworks: {
@@ -118,12 +117,15 @@ const youtubeUser = {
       gitHub: 'https://github.com/Roger-Melo'
     },
     country: 'Brasil'
+  },
+  recentVideosMessage (){
+    console.log(`Vídeos recentes de ${this.name}`)
+    this.videos.recentVideos.forEach(video => console.log(video.title))
   }
 }
 
-console.log(
-  youtubeUser.recentVideosMessage()
-)
+youtubeUser.recentVideosMessage()
+
 
 /*
   03
@@ -135,7 +137,6 @@ console.info("## Exercise >> 03")
 console.log(
   Math.PI
 )
-
 
 /*
   04
