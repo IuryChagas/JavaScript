@@ -1,26 +1,40 @@
+console.info(
+  `
+  \n########################### EXPLANATION: Event bubbling and Event delegation ###########################
+  
+  `
+)
+
+console.info(
+  `
+  \n###########################     EXERCISES CHAPTER 16    ###########################
+
+  `
+)
+
 /*
   01
 
   - Faça com que ao clicar em um dos elementos dentro da div, a mensagem  
     'Clicou na div.' não seja exibida no console.
 */
+console.info("## Exercise >> 01")
 
 const div = document.querySelector('div')
 const elementsInsideDiv = Array.from(div.children)
-const h2 = document.querySelector('h2')
-
-const divChildren = event => {
-  event.stopPropagation()
-  h2.textContent = `Clicou no ${event.target.tagName.toLowerCase()}, filho da div.`
-}
 
 elementsInsideDiv.forEach(element => {
-  element.addEventListener('click', divChildren)
+
+  element.addEventListener('click', event => {
+    event.stopPropagation()
+    logMessage('Clicou no filho da div.')
+  })
+
 })
 
-const clickedDiv = () => {
-  h2.textContent = 'Clicou na div.'
-}
+div.addEventListener('click', () => {
+  logMessage('Clicou na div.')
+})
 
 /*
   02
@@ -29,14 +43,13 @@ const clickedDiv = () => {
     exibida no console seja "Clicou no NOME_DA_TAG_COM_LETRAS_MINÚSCULAS, filho
     da div.".
 */
+console.info("## Exercise >> 02")
+
 elementsInsideDiv.forEach(element => {
-  const showClickMsg = event => {
-    console.log('Clicou no', event.target.tagName.toLowerCase(),' filho da div.')
-  }
-
-  element.addEventListener('click', showClickMsg)
+  element.addEventListener('click', event => {
+    console.log(event.target.tagName.toLowerCase())
+  })
 })
-
 /*
   03
 
@@ -44,7 +57,15 @@ elementsInsideDiv.forEach(element => {
   - Faça com que a mensagem de clique na div e a mensagem de clique em algum
     filho da div, ao invés de ser exibida no console, seja inserida neste h2.
 */
+console.info("## Exercise >> 03")
 
+const container = document.querySelector('div')
+const h2 = document.createElement('h2')
+container.insertAdjacentElement('afterend', h2)
+
+function logMessage(msg){
+  return h2.textContent = msg
+}
 
 /*
   04
@@ -52,13 +73,11 @@ elementsInsideDiv.forEach(element => {
   - Faça com que quando o texto do h2 for copiado, a mensagem "Texto copiado!"  
     seja exibida no console.
 */
+console.info("## Exercise >> 04")
 
-
-const logCopyMsg = event => {
+h2.addEventListener('copy', event => {
   console.log("Texto copiado!")
-}
-
-
+})
 
 /*
   05
@@ -67,17 +86,13 @@ const logCopyMsg = event => {
     o texto que ela tem por 
     "Eixo X: COORDENADA_EIXO_X | Eixo Y: COORDENADA_EIXO_Y".
 */
+console.info("## Exercise >> 05")
 
-const area = document.querySelector('.egg')
-const addCoordinates = ({offsetX, offsetY}) => {
+const egg = document.querySelector('.egg')
 
-  let coordinates = `Eixo X: ${offsetX} | Eixo Y: ${offsetY}`
-
-  let insertCoordinatesAtArea = area.textContent = coordinates
-
-  console.log(insertCoordinatesAtArea)
-}
-
+egg.addEventListener('mousemove', event => {
+  egg.textContent =  `Eixo X: ${event.offsetX} | Eixo Y: ${event.offsetY}`
+})
 
 /*
   06
@@ -86,14 +101,15 @@ const addCoordinates = ({offsetX, offsetY}) => {
     clicado.
 */
 
+console.info("## Exercise >> 06")
+
 const button = document.querySelector('button')
 
-const changeColorEgg = event => {
-
-  const egg = document.querySelector('.egg')
-  egg.style.backgroundColor ='lightgoldenrodyellow'
-
+const changeEggColor = () => {
+  egg.style.backgroundColor =  'lightgoldenrodyellow'
 }
+
+button.addEventListener('click', changeEggColor)
 
 /*
   07
@@ -103,6 +119,7 @@ const changeColorEgg = event => {
 
     "O array people contém, no mínimo, um(a) Front-end developer."
 */
+console.info("## Exercise >> 07")
 
 const people = [
   { id: 1, name: 'Pedro Henrique', profession: 'Dentista' },
@@ -116,14 +133,12 @@ const people = [
   { id: 9, name: 'Hamilton Silva', profession: 'Advogado' }
 ]
 
+people.some( ( { profession } )=> {
+  const isSomePersonFrontendDeveloper = profession === 'Front-end developer'
 
-const isAFrontEnder = people.some( ({profession}) => profession === 'Front-end developer')
+  if (isSomePersonFrontendDeveloper) {
+    console.log(`"O array people contém, no mínimo, um(a) ${profession}."`)
+  }
 
-if(isAFrontEnder){
-  console.log('O array people contém, no mínimo, um(a) Front-end developer.')
-}
+})
 
-div.addEventListener('click', clickedDiv)
-h2.addEventListener('copy', logCopyMsg)
-area.addEventListener('mousemove', addCoordinates)
-button.addEventListener('click', changeColorEgg)
