@@ -1,3 +1,16 @@
+console.info(
+  `
+  \n########################### EXPLANATION: Parents, Children and Siblings ###########################
+  
+  `
+)
+
+console.info(
+  `
+  \n###########################     EXERCISES CHAPTER 15    ###########################
+  
+  `
+)
 /*
   01
 
@@ -5,52 +18,52 @@
     uma classe 'video';
   - Exiba no console os elementos filhos da ul com a classe já inserida.
 */
-console.info('\n### Etapa 05 - Exercício: 01 ###\n ')
 
-let ul = document.querySelector('ul')
+console.info("## Exercise >> 01")
 
-const lisOfUl = ul.children
+const ul = document.querySelector(".videos")
+console.log(ul)
 
-const addVideoClass = li => {
-  li.classList.add('video')
-}
+const lis = Array.from(ul.children)
+const insertVideoClass = li => li.setAttribute('class', 'videos')
 
-const convertToArray = Array.from(lisOfUl)
+lis.forEach(insertVideoClass)
 
-convertToArray.forEach(addVideoClass)
-
-console.log(ul.children[0])
 /*
   02
 
   - Usando a propriedade adequada, descubra quem é o elemento pai do h2
     e exiba-o no console;
 */
-console.info('\n### Etapa 05 - Exercício: 02 ###\n ')
+console.info("## Exercise >> 02")
 
 const h2 = document.querySelector('h2')
 
-console.log('O elemento Pai do <H2> é: ', h2.parentElement)
+console.log(h2)
+console.log(h2.parentElement)
 
 /*
   03
 
   - Descubra quem é o próximo elemento irmão do h1 e exiba-o no console;
 */
-console.info('\n### Etapa 05 - Exercício: 03 ###\n ')
+console.info("## Exercise >> 03")
 
 const h1 = document.querySelector('h1')
 
-console.log('O elemento irmão do <h1> é: ', h1.nextElementSibling)
+console.log(h1)
+console.log(h1.nextElementSibling)
 
 /*
   04
 
   - Descubra quem é o irmão anterior da ul e exiba-o no console;
 */
-console.info('\n### Etapa 05 - Exercício: 04 ###\n ')
+console.info("## Exercise >> 04")
 
-console.log('O elemento irmão anterior da <ul> é: ', ul.previousElementSibling)
+console.log(ul)
+console.log(ul.previousElementSibling)
+
 
 /*
   05
@@ -58,36 +71,31 @@ console.log('O elemento irmão anterior da <ul> é: ', ul.previousElementSibling
   - Quando um clique acontecer em alguma das lis, faça com que a li clicada seja  
     exibida no console.
 */
-console.info('\n### Etapa 05 - Exercício: 05 ###\n ')
+console.info("## Exercise >> 05")
 
-let HTMLCollectionToArray = Array.from(lisOfUl)
+const lists = document.querySelectorAll('li')
 
-const getEventClick = li => {
-  li.addEventListener('click', ()=> {
-    console.log(li)
-  })
-}
-
-HTMLCollectionToArray.forEach(getEventClick)
-
-// ## Refactoring 01
-
-const showClickedLi = event =>{
+const showClickedLi = event => {
   console.log(event.target)
 }
 
-const getClickTarget = li => {
-  li.addEventListener('click', showClickedLi)
-}
+const addClickEvent = li => li.addEventListener('click', showClickedLi)
 
-HTMLCollectionToArray.forEach(getClickTarget)
+lists.forEach(addClickEvent)
+
+console.info(`
+lis.forEach(li => li.addEventListener('click', event => {
+  console.log(event.target)
+}))
+
+`)
 /*
   06
 
   - Quando o botão for clicado, adicione o nome dos vídeos abaixo dentro da ul;
   - Cada nome deve estar dentro de uma li.
 */
-console.info('\n### Etapa 05 - Exercício: 06 ###\n ')
+console.info("## Exercise >> 06")
 
 const videos = [{
   name: 'Como o promise all funciona | JavaScript',
@@ -102,36 +110,28 @@ const videos = [{
 
 const button = document.querySelector('button')
 
-button.addEventListener('click', () => {
+const insertVideoLi = ({ name }) => {
+  let newLis = `<li>${name}</li>`
+  ul.innerHTML += newLis
+}
 
-  videos.forEach( ( { name }) => {
+const handleClickButton = event => {
+  videos.forEach(insertVideoLi)  
+}
 
-    let ul = document.querySelector('ul')
-    let li = document.createElement('li')
-    let addVideoTitleAtList = li.textContent += `${name}`
-    let addCssClass = li.classList.add('video')
-    let addListAtUl = ul += ul.append(li)
-
-    addVideoTitleAtList
-    addCssClass
-    addListAtUl
-
-  })
-  console.log(ul)
-
-})
+button.addEventListener('click', handleClickButton)
 
 /*
-  07 
+  07
 
   - Se um clique no h1 acontecer, faça com que todos os elementos dentro do body 
     sejam removidos.
 */
-console.info('\n### Etapa 05 - Exercício: 07 ###\n ')
+console.info("## Exercise >> 07")
 
-let removeBody = ()=>{
-  const body = document.querySelector('body')
+const body = document.querySelector('body')
+
+h1.addEventListener('click', event => {
+  console.log(body.children)
   body.innerHTML = ''
-}
-
-h1.addEventListener('click', removeBody)
+})
