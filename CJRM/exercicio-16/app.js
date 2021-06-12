@@ -22,19 +22,36 @@ console.info("## Exercise >> 01")
 
 const div = document.querySelector('div')
 const elementsInsideDiv = Array.from(div.children)
+const h2 = document.querySelector('h2')
+const egg = document.querySelector('.egg')
+const button = document.querySelector('button')
 
-elementsInsideDiv.forEach(element => {
+const showClickedElement = ({ target: { tagName }}) => {
+  const clickedElementName = tagName.toLowerCase()
+  if ( clickedElementName === 'div' ) {
+    h2.textContent = 'Clicou na div.'
+    return
+  }
 
-  element.addEventListener('click', event => {
-    event.stopPropagation()
-    logMessage('Clicou no filho da div.')
-  })
+  h2.textContent = `Clicou no ${tagName.toLowerCase()}, filho da div.`
+}
 
-})
+const logCopyMessage = () => {
+  console.log("Texto copiado!")
+}
 
-div.addEventListener('click', () => {
-  logMessage('Clicou na div.')
-})
+const showCoordinates = ({ offsetX, offsetY }) => {
+  egg.textContent =  `Eixo X: ${offsetX} | Eixo Y: ${offsetY}`
+}
+
+const changeEggColor = event => {
+  egg.style.backgroundColor =  'lightgoldenrodyellow'
+}
+
+div.addEventListener('click', showClickedElement)
+h2.addEventListener('copy', logCopyMessage)
+egg.addEventListener('mousemove', showCoordinates)
+button.addEventListener('click', changeEggColor)
 
 /*
   02
@@ -50,6 +67,7 @@ elementsInsideDiv.forEach(element => {
     console.log(event.target.tagName.toLowerCase())
   })
 })
+
 /*
   03
 
@@ -59,14 +77,6 @@ elementsInsideDiv.forEach(element => {
 */
 console.info("## Exercise >> 03")
 
-const container = document.querySelector('div')
-const h2 = document.createElement('h2')
-container.insertAdjacentElement('afterend', h2)
-
-function logMessage(msg){
-  return h2.textContent = msg
-}
-
 /*
   04
 
@@ -74,10 +84,6 @@ function logMessage(msg){
     seja exibida no console.
 */
 console.info("## Exercise >> 04")
-
-h2.addEventListener('copy', event => {
-  console.log("Texto copiado!")
-})
 
 /*
   05
@@ -88,12 +94,6 @@ h2.addEventListener('copy', event => {
 */
 console.info("## Exercise >> 05")
 
-const egg = document.querySelector('.egg')
-
-egg.addEventListener('mousemove', event => {
-  egg.textContent =  `Eixo X: ${event.offsetX} | Eixo Y: ${event.offsetY}`
-})
-
 /*
   06
 
@@ -102,14 +102,6 @@ egg.addEventListener('mousemove', event => {
 */
 
 console.info("## Exercise >> 06")
-
-const button = document.querySelector('button')
-
-const changeEggColor = () => {
-  egg.style.backgroundColor =  'lightgoldenrodyellow'
-}
-
-button.addEventListener('click', changeEggColor)
 
 /*
   07
@@ -133,12 +125,8 @@ const people = [
   { id: 9, name: 'Hamilton Silva', profession: 'Advogado' }
 ]
 
-people.some( ( { profession } )=> {
-  const isSomePersonFrontendDeveloper = profession === 'Front-end developer'
+const isSomePersonFrontEndDeveloper = people.some( ({ profession }) => profession === 'Front-end developer')
 
-  if (isSomePersonFrontendDeveloper) {
-    console.log(`"O array people contém, no mínimo, um(a) ${profession}."`)
-  }
-
-})
-
+if (isSomePersonFrontEndDeveloper) {
+  console.log("O array people contém, no mínimo, um(a) Front-end developer.")
+}
