@@ -1,14 +1,42 @@
+console.info(
+  `
+  \n###########################     EXERCISES CHAPTER 17   ###########################
+
+  `
+)
 /*
   01
 
   - No envio do form, faça com que a página não seja recarregada.
 */
+console.info("## Exercise >> 01")
 
 const form = document.querySelector('form')
 
-form.addEventListener('submit', event => {
+const clearInput = () => {
+  input.value = ''
+  input.focus()
+}
+
+const logMessage = (message) => {
+  console.log(message)
+  clearInput()
+}
+const handleSubmit = event => {
   event.preventDefault()
-})
+  const input = event.target.input
+  const regexPattern = /[a-zA-Z0-9]{7,11}/.test(input.value)
+  const isValidValue = regexPattern
+
+  if (isValidValue) {
+    logMessage(`${input.value} => "O valor inserido no input é válido =)"`)
+    return
+  }
+
+  logMessage(`"Valor inválido =("`)
+}
+
+form.addEventListener('submit', handleSubmit)
 
 /*
   02
@@ -16,20 +44,7 @@ form.addEventListener('submit', event => {
   - No envio do form obtenha, através do objeto event, o texto inserido no  
     input e exiba-o no console.
 */
-
-form.addEventListener('submit', event => {
-
-  let inputValue = form.input.value
-
-  console.info('1#: form.input.value')
-  console.log(inputValue)
-
-  console.log('\n')
-  inputValue = event.target.input.value
-
-  console.info('2#: event.target.input.value')
-  console.log(inputValue)
-})
+console.info("## Exercise >> 02")
 
 /*
   03
@@ -38,13 +53,14 @@ form.addEventListener('submit', event => {
     index.html;
   - Exiba no console o boolean no qual este teste resulta.
 */
+console.info("## Exercise >> 03")
 
-const paragraph = document.querySelector('p')
+const regex = /documentation/
+const href = document.querySelector('a')
+const result = regex.test(href.textContent)
 
-let pattern = /documentation/
-const match = paragraph.textContent
+console.log(result)
 
-console.log('isDocumentation: ', pattern.test(match))
 /*
   04
 
@@ -52,24 +68,28 @@ console.log('isDocumentation: ', pattern.test(match))
   - A regex não deve conter (literalmente) os caracteres B99;
   - Teste se o match aconteceu e exiba o resultado no console.
 */
+console.info("## Exercise >> 04")
 
 const B99message = 'E o Terry Crews faz tudo, inclusive tocar a abertura de B99 na flauta'
 
-pattern = /[B9]{3}/
+const B99 = /[A-Z0-9]{3}/
+const B99Result = B99.test(B99message)
 
-console.log('isB99: ', pattern.test(B99message))
+console.log(B99Result)
+
 /*
   05
 
   - Modifique (manualmente) o valor que a const word armazena para que o  
     resultado do teste entre a regex e a string exibido no console seja true.
 */
+console.info("## Exercise >> 05")
 
 const word = 'NASA'
 const NASARegex = /^[A-Z]{4}$/
 const NASAResult = NASARegex.test(word)
 
-console.log('isNASA:', NASAResult)
+console.log(NASAResult)
 
 /*
   06
@@ -83,40 +103,7 @@ console.log('isNASA:', NASAResult)
     - "a[b@X7c" é um valor válido, pois contém 7 caracteres;
     - "jozeti" não é um valor válido, pois contém 6 caracteres.
 */
-
-const isRequired = /.{7,}/
-
-const clearInput = () => {
-  input.value = ''
-  input.focus()
-}
-
-const logMsg = message => {
-
-    console.log(message)
-    clearInput()
-
-  }
-const handleSubmit = event => {
-
-  console.log()
-
-  const input = event.target.input
-  const value = event.target.input.value
-  const expression = isRequired.test(value)
-
-  if (expression) {
-
-    logMsg("O valor inserido no input é válido =)")
-    return
-
-  }
-
-  logMsg("Valor inválido =(")
-
-}
-
-form.addEventListener('submit', handleSubmit)
+console.info("## Exercise >> 06")
 
 /*
   07
@@ -129,18 +116,4 @@ form.addEventListener('submit', handleSubmit)
     - "0xY79aYx54e" é um valor válido, pois contém 11 letras e números;
     - "eich_1961" não é um valor válido, pois contém um caractere especial.
 */
-
-const regex = /^[a-zA-Z0-9]{7,11}$/
-
-form.addEventListener('submit', event => {
-
-  console.log()
-
-  const value = event.target.input.value
-  const expression = regex.test(value)
-
-  if (expression) {
-    return console.log("passou!")
-  }
-    return console.log("Não Passou! =(")
-})
+console.info("## Exercise >> 07")
