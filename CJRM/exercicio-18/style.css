@@ -10,7 +10,7 @@
 
 .username-success-feedback {
   margin-bottom: 2.5rem;
-  color: blue;
+  color: green;
 }
 
 .submit-help-feedback {
@@ -20,5 +20,5 @@
 
 .submit-success-feedback {
   margin-bottom: 2.5rem;
-  color: green;
+  color: blue;
 }
