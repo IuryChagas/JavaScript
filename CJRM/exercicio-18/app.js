@@ -31,37 +31,73 @@ console.info("## Exercise >> 01")
 
 const form = document.querySelector('form')
 const inputUserName = document.querySelector('#username')
-const paragraph = document.createElement('p')
+const button = document.querySelector('button')
 
-const createParagraphMessage = (msg, styleFeedback) => {
-  paragraph.setAttribute('class', styleFeedback)
-  paragraph.textContent = msg
-  inputUserName.insertAdjacentElement('afterend', paragraph)
+const paragraphUsernameFeedback = document.createElement('p')
+const paragraphSubmitFeedback = document.createElement('p')
 
-}
-const validPattern = /^[a-zA-Z]{6,}$/
+paragraphSubmitFeedback.setAttribute('data-feedback', 'submit-feedback')
 
-
-const feedBackSuccess = () => {
-  const msg = 'Username válido =)'
-  const styleCssSuccess = `username-success-feedback`
-  createParagraphMessage(msg, styleCssSuccess)
-}
-const feedBackError = () => {
-  const msg = 'O valor deve conter no mínimo 6 caracteres, com apenas letras maiúsculas e/ou minúsculas'
-  const styleCssError = `username-help-feedback`
-  createParagraphMessage(msg, styleCssError)
+const invalidUsernameInfo = {
+  paragraph: paragraphUsernameFeedback,
+  text: 'O valor deve conter no mínimo 6 caracteres, com apenas letras maiúsculas e/ou minúsculas',
+  className: 'username-help-feedback',
+  previousSibling: inputUserName
 }
 
-inputUserName.addEventListener('input', event => {
-  const isValidPattern = validPattern.test(event.target.value)
+const validUsernameInfo = {
+  paragraph: paragraphUsernameFeedback,
+  text: 'Username válido =)',
+  className: 'username-success-feedback',
+  previousSibling: inputUserName
+}
 
-  if (isValidPattern) {
-    feedBackSuccess()
+const invalidSubmitInfo = {
+  paragraph: paragraphSubmitFeedback,
+  text: 'Por favor, insira um username válido',
+  className: 'submit-help-feedback',
+  previousSibling: button
+}
+
+const validSubmitInfo = {
+  paragraph: paragraphSubmitFeedback,
+  text:'Dados enviados =)',
+  className: 'submit-success-feedback',
+  previousSibling: button
+}
+
+const insertParagraphIntoDOM = paragraphInfo => {
+  const { paragraph, text, className, previousSibling } = paragraphInfo
+  paragraph.textContent = text
+  paragraph.setAttribute('class', className)
+  previousSibling.insertAdjacentElement('afterend', paragraph)
+}
+
+const removeSubmitParagraph = () => {
+  const paragraphSubmitFeedbackExists = document.querySelector('[data-feedback="submit-feedback"]')
+
+  if (paragraphSubmitFeedbackExists) {
+    paragraphSubmitFeedback.remove()
+  }
+}
+
+const testUserName = inputValue => /^[a-zA-Z]{6,}$/.test(inputValue)
+
+const showUsernameInfo = event => {
+  const isUserNameValid = testUserName(event.target.value)
+
+  removeSubmitParagraph()
+
+  if (!isUserNameValid) {
+    insertParagraphIntoDOM(invalidUsernameInfo)
     return
   }
-  feedBackError()
-})
+
+  insertParagraphIntoDOM(validUsernameInfo)
+}
+
+inputUserName.addEventListener('input', showUsernameInfo)
+
 /*
   02
 
@@ -73,24 +109,23 @@ inputUserName.addEventListener('input', event => {
   - Use as classes disponíveis no arquivo style.css para colorir o parágrafo;
   - Não insira o parágrafo manualmente no index.html.
 */
+console.info("## Exercise >> 02")
 
-const insertParagraph = (styleFeedback, message) => {
-  paragraph.setAttribute('class', styleFeedback)
-  paragraph.textContent = message
-}
-
-form.addEventListener('submit', event => {
+const showSubmitInfo = event => {
   event.preventDefault()
- 
-  if(validPattern.test(inputUserName.value)){
-    const msg = 'Dados enviados =)'
-    insertParagraph('submit-success-feedback', msg)
+
+  const isUserNameValid = testUserName(inputUserName.value)
+
+  if (!isUserNameValid) {
+    insertParagraphIntoDOM(invalidSubmitInfo)
     return
   }
 
-  const msg = 'Por favor, insira um username válido'
-  insertParagraph('submit-help-feedback', msg)
-})
+  insertParagraphIntoDOM(validSubmitInfo)
+}
+
+form.addEventListener('submit', showSubmitInfo)
+
 /*
   03
 
@@ -111,3 +146,19 @@ form.addEventListener('submit', event => {
   Spoiler alert: este tipo de exercício será frequente em etapas mais avançadas  
   do curso, onde falaremos sobre TDD. Vá se aquecendo =D
 */
+
+console.info("## Exercise >> 03")
+
+const some = (arrayParam, funcParam) => {
+  
+  for (let iterator = 0; iterator < arrayParam.length; iterator++) {
+    if (funcParam(arrayParam[iterator])) {
+      return true
+    }
+  }
+  return false
+}
+
+console.log(
+  some([1, 2, 3], item => item === 15)
+)
