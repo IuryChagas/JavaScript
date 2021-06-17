@@ -1,3 +1,10 @@
+console.info(
+    `
+    \n###########################     EXERCISES CHAPTER 19   ###########################
+  
+    `
+)
+
 /*
 Este exercício será um pouquinho diferente dos anteriores.
 
@@ -22,66 +29,46 @@ Link do repositório do curso: https://github.com/roger-melo-treinamentos/curso-
 Ps: se você não conseguiu fazer tudo o que foi pedido acima, abra a issue mesmo assim =)
 */
 
-const form = document.querySelector('.quiz-form')
-const input = document.querySelector('input')
-const finalScoreContainer = document.querySelector('.final-score-container')
+console.info("## Exercise >> 01")
 
-const recommendedLanguages = ['A','B', 'A', 'B', 'A', 'A']
-let score = 0
+const correctAnswers = ['A', 'B', 'A', 'B', 'A', 'A']
 
-const getUserAnswers = () => recommendedLanguages.map((_, index) => 
-        form[`inputQuestion${index +1}`].value)
-
-const calculateUserScore = userChoices => {
-    userChoices.forEach( (response, index) => {
-        const isUserChoiceCorrect = response === recommendedLanguages[index]
-
-        if (isUserChoiceCorrect) {
-            score += 16
-        }
-    })
-}
-const showFinalScore = () =>{
-    scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-    })
-
-    finalScoreContainer.querySelector('span').textContent = `${score}%`
-    finalScoreContainer.classList.remove('d-none')
-}
-const animateFinalScore = () =>{
-    let counter = 0
-    let finalScore = ``
-    const timer = setInterval(() => {
-
-        if (counter === score) {
-            clearInterval(timer)
-        }
-
-        if (counter !== 96) {
-            finalScore = `${counter}.66%`
-        }else if (counter === 96){
-            finalScore = `${counter += 4}%`
-        }
-
-        finalScoreContainer.querySelector('span').textContent = `${finalScore}`
-        counter++
-    }, 10)
-}
-
-const resetUserScore = () => {
-    score = 0
-}
+const form = document.querySelector('form')
+const scoreBoard = document.querySelector('.final-score-container')
 
 form.addEventListener('submit', event => {
     event.preventDefault()
+    let score = 0
+    const userAnswers = [
+        form.inputQuestion1.value,
+        form.inputQuestion2.value,
+        form.inputQuestion3.value,
+        form.inputQuestion4.value,
+        form.inputQuestion5.value,
+        form.inputQuestion6.value
+    ]
+    correctAnswers.forEach( (correctAnswer, index) => {
+        if (correctAnswer === userAnswers[index]) {
+            score += 16
+        }
+    })
 
-    const userChoices = getUserAnswers()
+    scrollTo(0, 0)
 
-    resetUserScore()
-    calculateUserScore(userChoices)
-    showFinalScore()
-    animateFinalScore()
+    scoreBoard.classList.remove('d-none')
+
+    let counter = 0
+
+    const timer = setInterval(()=>{
+        if (counter === score) {
+            if (counter === 96) {
+                counter = 100
+            }
+            clearInterval(timer)
+        }
+
+        const span = document.querySelector("p > span")
+        span.textContent = Math.trunc(counter)+`%`
+        counter++
+    }, 10)
 })
