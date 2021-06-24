@@ -1,77 +1,59 @@
+console.info(
+  `
+  \n###########################     EXERCISES CHAPTER 20   ###########################
+
+  `
+)
+
 /* 
   01
 
   - Insira apenas o css do bootstrap no index.html.
 */
+console.info("## Exercise >> 01")
 
+console.log(`
+  -[x] Insira apenas o css do bootstrap no index.html.
+
+`)
 /* 
   02
 
   - Após um segundo e meio do carregamento da página, exiba no console a  
     mensagem "Um segundo e meio se passaram desde que a página foi carregada".
 */
-
-const container = document.querySelector('.container')
-
 setTimeout(()=>{
-  console.log('### Version: 01 ###')
-  console.log('Um segundo e meio se passaram desde que a página foi carregada')
+  console.info("## Exercise >> 02")
+  console.log(`
+    "Um segundo e meio se passaram desde que a página foi carregada"
+  `)
 }, 1500)
-
-setTimeout(message => {
-  console.log('### Version: 02 ###')
-  console.log(message)
-}, 3000, "Um segundo e meio se passaram desde que o 1° Timeout foi concluído")
-
-let msg = "Um segundo e meio se passaram desde que o 2° Timeout foi concluído"
-
-const logMsg = (msg) => {
-  console.log('### Version: 03 ###')
-  console.log(msg)
-}
-
-setTimeout(logMsg, 4500, msg)
-
-setTimeout(()=>{
-  console.log('### Version: 04 ###')
-},6000)
-
-msg = "Um segundo e meio se passaram desde que o 3° Timeout foi concluído"
-
-setTimeout(console.log, 6000, msg)
-
 /* 
   03
 
   - Faça o contador do index.html funcionar;
   - O clique no botão "Parar contador" deve fazer com que o contador exiba 0.
 */
+console.info("## Exercise >> 03")
 
-const startButton = document.querySelector('.button-init-counter')
-const stopButton = document.querySelector('.button-stop-counter')
-let counter = document.querySelector('.counter-container')
+const stopCounter = document.querySelector('.button-stop-counter')
+let number = document.querySelector('h1')
+const initCounter = document.querySelector('.button-init-counter')
+let timer = 0
 
-let timer = null
-const incrementCounter = () => {
-  const incrementedCounter = Number(counter.textContent) + 1
-  counter.textContent = incrementedCounter
-}
+initCounter.onclick =('click', event => {
+  let counter = 0
+  timer = setInterval(() => {
+    number.textContent = counter++      
+  }, 100)
 
-const stopCounter = () => {
-  clearInterval(timer)
-  counter.textContent = number = 0
-}
-
-startButton.addEventListener('click', event =>{
-
-  timer = setInterval(incrementCounter, 200)
+  console.log(timer, event.target)
 
 })
 
-stopButton.addEventListener('click', event=>{
-
-  stopCounter()
-
+stopCounter.addEventListener('click', event => {
+  clearInterval(timer)
+  console.log(timer, event.target)
 })
 
 /* 
@@ -81,12 +63,17 @@ stopButton.addEventListener('click', event=>{
   - Adicione mais 2 alternativas em cada pergunta do quiz.
 */
 
+console.info("## Exercise >> 04")
+
+
 /* 
   05
 
   - Modifique a ordem das alternativas corretas. Ou seja, faça com que a  
     alternativa correta das perguntas não seja apenas a alternativa "B".
 */
+console.info("## Exercise >> 05")
+
 
 /* 
   06
@@ -98,6 +85,7 @@ stopButton.addEventListener('click', event=>{
       funções isoladas;
     - Depois, cuide da legibilidade das funções.
 */
+console.info("## Exercise >> 06")
 
 /* 
   07
@@ -119,3 +107,6 @@ stopButton.addEventListener('click', event=>{
   você pode hospedá-la no Netlify seguindo este tutorial: 
   https://www.youtube.com/playlist?list=PLlAbYrWSYTiMGMxQf9JSoZUU1rgVpGPth
 */
+
+console.info("## Exercise >> 07")
+
