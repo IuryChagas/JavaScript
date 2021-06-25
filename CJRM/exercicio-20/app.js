@@ -22,12 +22,22 @@ console.log(`
   - Após um segundo e meio do carregamento da página, exiba no console a  
     mensagem "Um segundo e meio se passaram desde que a página foi carregada".
 */
-setTimeout(()=>{
-  console.info("## Exercise >> 02")
-  console.log(`
-    "Um segundo e meio se passaram desde que a página foi carregada"
-  `)
-}, 1500)
+// const infoTask = () => console.info("## Exercise >> 02")
+const msg = "Um segundo e meio se passaram desde que a página foi carregada"
+
+// const logMessage = () => {
+//   infoTask()
+//   console.log(`
+//     ${msg}
+//   `)
+// }
+
+// setTimeout(()=>{
+//   logMessage()
+// }, 1000, logMessage)
+
+setTimeout(console.info, 1000, "## Exercise >> 02")
+setTimeout(console.log, 1500, msg)
 /* 
   03
 
@@ -36,25 +46,34 @@ setTimeout(()=>{
 */
 console.info("## Exercise >> 03")
 
-const stopCounter = document.querySelector('.button-stop-counter')
 let number = document.querySelector('h1')
-const initCounter = document.querySelector('.button-init-counter')
-let timer = 0
+let timer = null
+const buttonInitCounter = document.querySelector('.button-init-counter')
+const buttonStopCounter = document.querySelector('.button-stop-counter')
+const resetCounter = document.querySelector('.button-reset-counter')
 
-initCounter.onclick =('click', event => {
-  let counter = 0
-  timer = setInterval(() => {
-    number.textContent = counter++      
-  }, 100)
-
-  console.log(timer, event.target)
-
-})
-
-stopCounter.addEventListener('click', event => {
+const stopCounter = () => {
   clearInterval(timer)
-  console.log(timer, event.target)
+}
+
+const incrementCounter = () => {
+  const incrementedCounter = Number(++number.textContent)
+  number.textContent = incrementedCounter
+}
+
+buttonInitCounter.addEventListener('click', event => {
+  timer = setInterval(incrementCounter, 500)
 })
+
+buttonStopCounter.addEventListener('click', event => {
+  stopCounter()
+})
+
+resetCounter.addEventListener('click', event => {
+  stopCounter()
+  number.textContent = 0
+})
+
 
 /* 
   04
