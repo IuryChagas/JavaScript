@@ -1,27 +1,32 @@
 const form = document.querySelector('form')
 const scoreboard = document.querySelector('.final-score-container')
-const finalResult = document.querySelector('.display-4')
+const finalResult = scoreboard.querySelector('span')
 const correctAnswers = ['A', 'B', 'A', 'B', 'A', 'A']
 let score = null
 
 const getUserAnswers = () => {
-    const userchoices = [
-        form.inputQuestion1,
-        form.inputQuestion2,
-        form.inputQuestion3,
-        form.inputQuestion4,
-        form.inputQuestion5,
-        form.inputQuestion6
-    ]
+    let userchoices = []
+
+    correctAnswers.forEach((__, index) => {
+
+        const userAnswer = form[`inputQuestion${index +1}`].value
+        userchoices.push(userAnswer)
+
+    })
+
     return userchoices
 }
 
 const calculateUserScore = userAnswers => {
-    correctAnswers.forEach((answer, index) => {
-        if (answer === userAnswers[index].value) {
+
+    userAnswers.forEach((userAnswer, index) => {
+        const isUserChoiceCorrect = userAnswer === correctAnswers[index]
+
+        if (isUserChoiceCorrect) {
             score += 100 / correctAnswers.length
         }
     })
+
 }
 
 const showScoreBoard = () => {
@@ -38,7 +43,7 @@ const animatePageScroll = () => {
 
 const animateFinalResult = () => {
     let counter = 0
-    
+
     const timer = setInterval(()=>{
 
         if (counter === Math.trunc(score)) {
@@ -62,4 +67,5 @@ form.addEventListener('submit', event => {
     animatePageScroll()
 
     animateFinalResult()
+
 })
