@@ -53,7 +53,11 @@ form.addEventListener('submit', event => {
         }
     })
 
-    scrollTo(0, 0)
+    scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    })
 
     scoreBoard.classList.remove('d-none')
 
