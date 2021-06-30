@@ -1,31 +1,36 @@
+console.info(
+  `
+  \n###########################     EXERCISES CHAPTER 21   ###########################
+
+  `
+)
+
 /*
   01
 
   - Gere um novo array com apenas os números ímpares do array abaixo e exiba 
     o novo array no console.
 */
+console.info("## Exercise >> 01")
 
 const randomNumbers = [10, 30, 15, 25, 50, 40, 5]
 
-const getOddNumbers = item => item % 2 !== 0
-const oddNumbers = randomNumbers.filter(getOddNumbers)
-
-console.info('\n### Etapa 08 - Exercício: 01 ###\n ')
+const oddNumbers = randomNumbers.filter( number => {
+  return number % 2 !== 0
+})
 console.log(oddNumbers)
+
 /*
   02
 
   - Exiba no console quantos números abaixo de 501 o array abaixo possui.
 */
+console.info("## Exercise >> 02")
 
 const crazyNumbers = [937, 5, 395, 402, 501, 333, 502, 781, 3, 691]
 
-const countNumberLessThan501 = (acc, item, _) => item < 501 ? ++acc : acc
-
-const numbersLessThan501 = crazyNumbers.reduce(countNumberLessThan501, 0)
-
-console.info('\n### Etapa 08 - Exercício: 02 ###\n ')
-console.log(numbersLessThan501)
+const bellowNumbersOf501 = crazyNumbers.filter( number => number < 501 )
+console.log(bellowNumbersOf501)
 
 /*
   03
@@ -33,14 +38,13 @@ console.log(numbersLessThan501)
   - Gere um novo array com cada um dos números abaixo elevados ao quadrado e 
     exiba o novo array no console.
 */
+console.info("## Exercise >> 03")
 
 const numbers = [5, 7, 3]
 
-const squareNumbers = numbers.map(number => number ** 2)
+const quadrupleNumbers = numbers.map( number => number * 4)
 
-console.info('\n### Etapa 08 - Exercício: 03 ###\n ')
-console.log(squareNumbers)
-
+console.log(quadrupleNumbers)
 /*
   04
 
@@ -51,6 +55,7 @@ console.log(squareNumbers)
   Dica: para quebrar linha, você pode usar dentro da string o caractere 
   especial \n.
 */
+console.info("## Exercise >> 04")
 
 const cart = [
   { name: 'Dark Souls III', price: 95.03 },
@@ -59,18 +64,19 @@ const cart = [
   { name: 'Resident Evil 2', price: 119.90 },
   { name: 'Death Stranding', price: 149.99 }
 ]
-                              // destructuring assignment javascript
-const productlist = cart.reduce(( accumulator, { name } ) => 
-  `${accumulator}- ${name}\n`, '')
-
-console.info('\n### Etapa 08 - Exercício: 04 ###\n ')
-console.log(productlist)
 
 /*
   - Nome 1
   - Nome 2
   - Nome 3
 */
+
+const nameGames = cart.reduce( (title, game )=> {
+  title += `- ${game.name}\n`
+  return title
+}, ``)
+
+console.log(nameGames)
 
 /*
   05
@@ -79,6 +85,7 @@ console.log(productlist)
     antes do ano 2000;
   - Exiba o novo array no console.
 */
+console.info("## Exercise >> 05")
 
 const tarantinoMovies = [
   { name: 'Bastardos inglórios', release: 2009 },
@@ -92,18 +99,17 @@ const tarantinoMovies = [
   { name: 'À Prova de Morte', release: 2007 },
   { name: 'Kill Bill: Volume 1', release: 2003 }
 ]
-                                  // destructuring assignment javascript
-const filmsBefore2000 = tarantinoMovies.filter(( { release } ) => release < 2000)
 
-console.info('\n### Etapa 08 - Exercício: 05 ###\n ')
-console.log(filmsBefore2000)
+const moviesSelected = tarantinoMovies.filter( obj => obj.release < 2000)
 
+console.table(moviesSelected)
 /*
   06
 
   - Gere um novo array que contém apenas os nomes das séries abaixo;
   - Exiba o novo array no console.    
 */
+console.info("## Exercise >> 06")
 
 const tvShows = [
   { name: 'Breaking Bad', releaseYear: 2008 },
@@ -114,15 +120,20 @@ const tvShows = [
   { name: 'House M.D.', releaseYear: 2004 },
   { name: 'Watchmen', releaseYear: 2019 }
 ]
-                      // destructuring assignment javascript
-const titleTvShows = tvShows.map( ({ name }) => name)
 
-console.info('\n### Etapa 08 - Exercício: 06 ###\n ')
-console.log(titleTvShows)
+const tvShowsTitles = tvShows.reduce((acc, obj)=> {
+  return acc += `- ${obj.name}\n`
+   
+}, ``)
 
+console.log(tvShowsTitles)
 /*
   07
 
   - Observe os loops da sua versão do quiz e considere se, baseado no que foi  
     visto nessa aula, você deve refatorá-los.
 */
+
+console.info("## Exercise >> 07")
+
+console.info(` - refatore o quiz utilizando alguns desses novos metodos!`)
