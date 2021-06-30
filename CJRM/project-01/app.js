@@ -52,6 +52,10 @@ const resetUserScore = () => {
     return score = 0
 }
 
+const resetUserAnswers = event => {
+    event.target.reset()
+}
+
 form.addEventListener('submit', event => {
     event.preventDefault()
 
@@ -67,4 +71,5 @@ form.addEventListener('submit', event => {
 
     animateFinalResult()
 
+    resetUserAnswers(event)
 })
