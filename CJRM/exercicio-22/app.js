@@ -18,6 +18,9 @@ const booksOnSale = books
 
 console.table(booksOnSale)
 
+const getArrayCopy = array => {
+  return array.map( item => item )
+}
 /*
   01
 
@@ -29,9 +32,9 @@ console.info("## Exercise >> 01")
 
 const names = ['Caio', 'André', 'Dário']
 
-const namesOrdenated = names.map( name => name ).sort()
+const namesInAlphabeticalOrder = getArrayCopy(names).sort()
 
-console.table(namesOrdenated)
+console.table(namesInAlphabeticalOrder)
 console.table(names)
 
 /*
@@ -50,11 +53,11 @@ const characters = [
   { id: 04, name: 'Mufasa' }
 ]
 
-const charactersOrdenated = characters.map( char => ({ id: char.id, name: char.name }))
+const charactersOrderedById = characters
+        .map( ({ id, name }) => ({ id, name }))
+        .sort( (char1, char2) => char1.id - char2.id)
 
-charactersOrdenated.sort( (char1, char2) => char1.id - char2.id)
-
-console.table(charactersOrdenated)
+console.table(charactersOrderedById)
 console.table(characters)
 /*
   03
@@ -67,11 +70,10 @@ console.info("## Exercise >> 03")
 
 const numbers = [41, 15, 63, 349, 25, 22, 143, 64, 59, 291]
 
-numbersOrdenated = numbers.map( number => number )
+const numbersInAscendingOrder = getArrayCopy(numbers)
+                                  .sort((number1, number2) => number1 - number2)
 
-numbersOrdenated.sort((number1, number2) => number1 - number2)
-
-console.log(numbersOrdenated)
+console.log(numbersInAscendingOrder)
 
 /*
   04
@@ -96,11 +98,9 @@ console.info("## Exercise >> 05")
 
 const people = ['Cauã', 'Alfredo', 'Bruno']
 
-const invertedOrdenate = people.map( person => person )
+const namesInReverseAlphabeticalOrder = getArrayCopy(people).sort().reverse()
 
-invertedOrdenate.sort().reverse()
-
-console.table({ people, invertedOrdenate })
+console.table({ people, namesInReverseAlphabeticalOrder })
 
 /*
   06
@@ -114,13 +114,12 @@ console.info("## Exercise >> 06")
 const ingredients = ['vinho', 'tomate', 'cebola', 'cogumelo']
 
 const phrase = ingredients.reduce((string, ingredient, index, arr) => {
-  // const correctWordGender = /a$/.test(ingredient) ? 'cozida' : 'cozido'
-  const genderClassification = ingredient[ingredient.length - 1] === 'a' ? 'cozida' : 'cozido'
-  
-  if (index === arr.length -1) {
-    return string + `${ingredient} ${genderClassification}` 
-  }
-  return string + `${ingredient} ${genderClassification}, `
+ const correctWordGender = /a$/.test(ingredient) ? 'cozida' : 'cozido'
+ const isLastItem = index === arr.length -1
+ const ingredientMessage = `${ingredient} ${correctWordGender}`
+
+ return  isLastItem ? string + ingredientMessage : string + `${ingredientMessage}, ` 
+
 }, ``)
 
 console.log(phrase)
@@ -172,12 +171,8 @@ const pets = [
   { name: 'Chico', age: 6, gender: 'Male', type: 'Dog' }
 ]
 
-const dogs = pets.filter( ({ type }) => type === 'Dog').map( dog =>  ({
-    name: dog.name,
-    age: dog.age * 7,
-    gender: dog.gender,
-    type: dog.type
-}))
+const dogs = pets.filter( ({ type }) => type === 'Dog')
+                 .map( ({ name, age, gender, type }) =>  ({ name, age: age * 7, gender, type }))
 
 console.table(dogs)
 /*
@@ -189,14 +184,15 @@ console.table(dogs)
 console.info("## Exercise >> 09")
 const ul = document.querySelector('.list-group')
 
-let templateHTML = ``
+let li = ''
 
-topBrazilmovies.map( ({ title })=> {
-  templateHTML += `<li>${title}</li>`
-})
+const movieTitles = topBrazilmovies
+  .reduce( (stringify, movie) => stringify + `<li>${movie.title}</li>`, ``)
 
-ul.innerHTML = templateHTML
-console.log(templateHTML)
+li = movieTitles
+ul.innerHTML = li
+
+console.log(li)
 
 /*
   10
