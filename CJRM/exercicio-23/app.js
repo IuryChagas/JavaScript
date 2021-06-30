@@ -14,8 +14,9 @@ console.info(
 console.info("## Exercise >> 01")
 
 const myString = '    JS      '
+const trimmedString = myString.trim()
 
-console.log(myString.trim())
+console.log(trimmedString)
 
 /*
   02
@@ -34,8 +35,9 @@ const people = [
   { firstName: 'Eric', lastName: 'Silva', score: 82 }
 ]
 
-const playersInAscendingOrder = people.map( ({ firstName, lastName, score }) => ({ firstName, lastName, score }))
-      playersInAscendingOrder.sort( (player01, player02)=> player01.score - player02.score)
+const playersInAscendingOrder = people
+        .map( ({ firstName, lastName, score }) => ({ firstName, lastName, score }))
+        .sort( (player01, player02)=> player01.score - player02.score)
 
 console.log({people, playersInAscendingOrder})
 // debugger
@@ -53,9 +55,7 @@ console.info("## Exercise >> 03")
 
 const animals = ['cão', 'gato', 'boi', 'leão', 'gnu', 'alce', 'ema']
 
-const animalWithOnly3Chars = animals.filter( animal => {
-  return animal.length === 3
-})
+const animalWithOnly3Chars = animals.filter( ({ length }) => length === 3)
 
 console.log({animals, animalWithOnly3Chars})
 // debugger
@@ -68,9 +68,10 @@ console.log({animals, animalWithOnly3Chars})
 */
 console.info("## Exercise >> 04")
 
-const quantityLettersEachAnimal = animals.map( animal => animal.length)
+const quantityLettersEachAnimal = animals.map( ({ length }) => length )
 console.log(quantityLettersEachAnimal)
 // debugger
+
 /*
   05
 
@@ -88,7 +89,7 @@ const friends = [
   { id: 5, name: 'Solange', nearMe: false }
 ]
 
-const friendsNearMe = friends.filter( friend => friend.nearMe).map( ({ name }) => name)
+const nameOfFriendsNearMe = friends.filter( friend => friend.nearMe).map( ({ name }) => name)
 // debugger
 
 /*
@@ -101,9 +102,10 @@ console.info("## Exercise >> 06")
 
 const numbers = [46, 86, 212, 29, 51, 9, 25, 42, 81]
 
-const oddNumbersTotal = numbers.filter( number => number % 2 !== 0)
-                              .reduce((total, oddNumber) => total + oddNumber, 0)
+const oddNumbersTotal = numbers.filter( number => number % 2)
+                               .reduce((total, oddNumber) => total + oddNumber, 0)
 // debugger
+
 /*
   07
 
@@ -127,7 +129,7 @@ const data = [{
 }]
 
 const populationTotal = data
-  .filter( ({ country, population }) => country !== "China" ? population : undefined)
+  .filter( ({ country, __ }) => country !== "China")
   .reduce((total, { population })=> total += population, 0)
 
 console.log(populationTotal)
