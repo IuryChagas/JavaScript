@@ -5,16 +5,9 @@ const correctAnswers = ['A', 'B', 'A', 'B', 'A', 'A']
 let score = null
 
 const getUserAnswers = () => {
-    let userchoices = []
-
-    correctAnswers.forEach((__, index) => {
-
-        const userAnswer = form[`inputQuestion${index +1}`].value
-        userchoices.push(userAnswer)
-
-    })
-
-    return userchoices
+    return correctAnswers.map( (__, index) => {
+        return form[`inputQuestion${index +1}`].value
+    } )
 }
 
 const calculateUserScore = userAnswers => {
