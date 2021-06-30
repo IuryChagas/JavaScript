@@ -15,9 +15,11 @@ console.info("## Exercise >> 01")
 
 const randomNumbers = [10, 30, 15, 25, 50, 40, 5]
 
-const oddNumbers = randomNumbers.filter( number => {
+const getOddNumbers = number => {
   return number % 2 !== 0
-})
+}
+
+const oddNumbers = randomNumbers.filter(getOddNumbers)
 console.log(oddNumbers)
 
 /*
@@ -29,8 +31,14 @@ console.info("## Exercise >> 02")
 
 const crazyNumbers = [937, 5, 395, 402, 501, 333, 502, 781, 3, 691]
 
-const bellowNumbersOf501 = crazyNumbers.filter( number => number < 501 )
-console.log(bellowNumbersOf501)
+const countNumbersLessThan501 = (accumulator, number) => {
+
+  return number < 501 ? ++accumulator : accumulator
+
+}
+
+const numbersLessThan501 = crazyNumbers.reduce(countNumbersLessThan501, 0)
+console.log('numbersLessThan501:', numbersLessThan501)
 
 /*
   03
@@ -42,7 +50,7 @@ console.info("## Exercise >> 03")
 
 const numbers = [5, 7, 3]
 
-const quadrupleNumbers = numbers.map( number => number * 4)
+const quadrupleNumbers = numbers.map( number => number ** 2 )
 
 console.log(quadrupleNumbers)
 /*
@@ -71,10 +79,7 @@ const cart = [
   - Nome 3
 */
 
-const nameGames = cart.reduce( (title, game )=> {
-  title += `- ${game.name}\n`
-  return title
-}, ``)
+const nameGames = cart.reduce( (title, { name } ) => `${title}- ${name}\n`, ``)
 
 console.log(nameGames)
 
@@ -100,7 +105,7 @@ const tarantinoMovies = [
   { name: 'Kill Bill: Volume 1', release: 2003 }
 ]
 
-const moviesSelected = tarantinoMovies.filter( obj => obj.release < 2000)
+const moviesSelected = tarantinoMovies.filter( ({ release }) => release < 2000 )
 
 console.table(moviesSelected)
 /*
@@ -121,12 +126,9 @@ const tvShows = [
   { name: 'Watchmen', releaseYear: 2019 }
 ]
 
-const tvShowsTitles = tvShows.reduce((acc, obj)=> {
-  return acc += `- ${obj.name}\n`
-   
-}, ``)
+const tvShowsTitles = tvShows.map( ({ name }) => name)
 
-console.log(tvShowsTitles)
+console.table(tvShowsTitles)
 /*
   07
 
