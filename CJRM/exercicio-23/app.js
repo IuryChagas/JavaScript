@@ -1,10 +1,17 @@
+console.info(
+  `
+  \n###########################     EXERCISES CHAPTER 23   ###########################
+
+  `
+)
+
 /*
   01
 
   - Exiba no console apenas as letras que a "myString" contém;
   - Não modifique a string manualmente.
 */
-console.info('\n### Etapa 09 - Exercício: 01 ###\n ')
+console.info("## Exercise >> 01")
 
 const myString = '    JS      '
 
@@ -18,7 +25,7 @@ console.log(myString.trim())
   - Não modifique o array original;
   - Exiba o array ordenado no console.
 */
-console.info('\n### Etapa 09 - Exercício: 02 ###\n ')
+console.info("## Exercise >> 02")
 
 const people = [
   { firstName: 'Estevão', lastName: 'Rodriguez', score: 90 },
@@ -27,12 +34,12 @@ const people = [
   { firstName: 'Eric', lastName: 'Silva', score: 82 }
 ]
 
-const peopleOrderedByScore = people
-  .map( ({firstName, lastName, score}) => ({ firstName, lastName, score }))
-  .sort((firstScore, secondScore) => firstScore.score - secondScore.score)
+const playersInAscendingOrder = people.map( ({ firstName, lastName, score }) => ({ firstName, lastName, score }))
+      playersInAscendingOrder.sort( (player01, player02)=> player01.score - player02.score)
 
-console.log('Original Array: ', people)
-console.log('New Array: ', peopleOrderedByScore)
+console.log({people, playersInAscendingOrder})
+// debugger
+
 /*
   03
 
@@ -42,15 +49,15 @@ console.log('New Array: ', peopleOrderedByScore)
       final que os exercícios pedem. Após resolver um exercício, remova o 
       debugger antes de partir para o próximo.
 */
-console.info('\n### Etapa 09 - Exercício: 03 ###\n ')
+console.info("## Exercise >> 03")
 
 const animals = ['cão', 'gato', 'boi', 'leão', 'gnu', 'alce', 'ema']
 
-const onlyThreeLetters = ({ length }) => length === 3
+const animalWithOnly3Chars = animals.filter( animal => {
+  return animal.length === 3
+})
 
-const selectedAnimals = animals.filter(onlyThreeLetters)
-
-console.log(selectedAnimals)
+console.log({animals, animalWithOnly3Chars})
 // debugger
 
 /*
@@ -59,13 +66,11 @@ console.log(selectedAnimals)
   - Baseado no array "animals", gere um novo array com a quantidade de letras do 
     nome de cada animal. Ex.: [6, 8, 2].
 */
-console.info('\n### Etapa 09 - Exercício: 04 ###\n ')
+console.info("## Exercise >> 04")
 
-const quantityOfChars = animals.map(({ length }) => length)
-
-console.log(quantityOfChars)
+const quantityLettersEachAnimal = animals.map( animal => animal.length)
+console.log(quantityLettersEachAnimal)
 // debugger
-
 /*
   05
 
@@ -73,7 +78,7 @@ console.log(quantityOfChars)
     dos amigos que moram perto (que contém a propriedade "nearMe" armazenando 
     true).
 */
-console.info('\n### Etapa 09 - Exercício: 05 ###\n ')
+console.info("## Exercise >> 05")
 
 const friends = [
   { id: 1, name: 'João', nearMe: true },
@@ -83,34 +88,29 @@ const friends = [
   { id: 5, name: 'Solange', nearMe: false }
 ]
 
-const friendsNearMe = friends.filter( ({ nearMe }) => nearMe)
-const nameOfFriendsNearMe = friendsNearMe.map( ({ name }) => name)
+const friendsNearMe = friends.filter( friend => friend.nearMe).map( ({ name }) => name)
+// debugger
 
-console.log(friendsNearMe)
 /*
   06
 
   - Através do encadeamento de 2 métodos, obtenha a soma só dos números ímpares 
     do array abaixo.
 */
-console.info('\n### Etapa 09 - Exercício: 06 ###\n ')
+console.info("## Exercise >> 06")
 
 const numbers = [46, 86, 212, 29, 51, 9, 25, 42, 81]
 
-const oddNumberTotals = numbers
-  .filter( number => number % 2 !== 0)
-  .reduce( (acc, oddnumber) => acc + oddnumber, 0)
-
-console.log('Odd Numbers Totals: ', oddNumberTotals)
-
+const oddNumbersTotal = numbers.filter( number => number % 2 !== 0)
+                              .reduce((total, oddNumber) => total + oddNumber, 0)
+// debugger
 /*
   07
 
   - Através do encadeamento de 2 métodos, obtenha a soma da população de todos  
     países, exceto a China.
 */
-
-console.info('\n### Etapa 09 - Exercício: 07 ###\n ')
+console.info("## Exercise >> 07")
 
 const data = [{
   country: 'China',
@@ -126,8 +126,8 @@ const data = [{
   population: 263991379
 }]
 
-const countryPopulation = data
-  .filter( ({ country }) => country !== 'China')
-  .reduce((acc, { population }) => acc + population, 0)
+const populationTotal = data
+  .filter( ({ country, population }) => country !== "China" ? population : undefined)
+  .reduce((total, { population })=> total += population, 0)
 
-console.log('Total Popularion: ', countryPopulation)
+console.log(populationTotal)
