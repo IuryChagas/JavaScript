@@ -1,10 +1,17 @@
-/*
-  01
+console.info(
+  `
+  \n###########################   EXERCISES CHAPTER 25   ###########################
 
-  - Exiba no console o index da 1ª (e única) ocorrência do mês "Fevereiro" do 
-    array "months".
+  `
+)
+
+/*
+01
+
+- Exiba no console o index da 1ª (e única) ocorrência do mês "Fevereiro" do 
+array "months".
 */
-console.info('\n### Etapa 10 - Exercício: 01 ###\n ')
+console.info("## Exercise >> 01")
 
 const months = [
   'Janeiro',
@@ -20,53 +27,54 @@ const months = [
   'Novembro',
   'Dezembro'
 ]
+const indexOfMonth = months.indexOf('Fevereiro')
 
-months.reduce((_, item, index) => item === 'Fevereiro' ?  console.log(index, item) : 'oops', '')
-
-console.log(months.indexOf('Fevereiro'))
-
+console.log(indexOfMonth)
 /*
   02
 
   - Crie um objeto de data que represente o momento presente;
   - Exiba o objeto no console.
 */
-console.info('\n### Etapa 10 - Exercício: 02 ###\n ')
+console.info("## Exercise >> 02")
 
 const present = new Date()
 
-console.log({ present })
+console.log({ "present": typeof present, present })
+
 /*
   03
 
   - Baseado no objeto que você acabou de criar, exiba o ano atual no console.
 */
-console.info('\n### Etapa 10 - Exercício: 03 ###\n ')
+console.info("## Exercise >> 03")
 
-const year = present.getFullYear()
-console.log({ year })
+const currentyear = present.getFullYear()
+
+console.log(currentyear)
+
 /*
   04
 
   - Crie um objeto de data que represente um momento passado;
   - Exiba o objeto no console.
 */
-console.info('\n### Etapa 10 - Exercício: 04 ###\n ')
+console.info("## Exercise >> 04")
 
-past = new Date('january 17 2020 21:17:00')
+const past = new Date('Sun Aug 01 1982 20:02:18')
 
-console.log({ past })
+console.log(past)
 
 /*
   05
 
   - Exiba, no console, a hora do objeto que você acabou de criar.
 */
-console.info('\n### Etapa 10 - Exercício: 05 ###\n ')
+console.info("## Exercise >> 05")
 
-const pastHours = past.getHours()
+const pastHour = past.getHours()
+console.log(pastHour)
 
-console.log('pastHours: ', pastHours)
 
 /*
   06
@@ -74,25 +82,28 @@ console.log('pastHours: ', pastHours)
   - Crie um objeto de data que represente um momento futuro;
   - Exiba o objeto no console.
 */
-console.info('\n### Etapa 10 - Exercício: 06 ###\n ')
+console.info("## Exercise >> 06")
 
-const futureDate = new Date('May 4 2021 00:00:00')
+const future = new Date('Wed Sep 28 2022 10:00:00')
 
-console.log({ futureDate })
-
+console.log(future)
 /*
   07
 
   - Exiba no console a quantidade de dias entre o momento futuro e o passado.
 */
-console.info('\n### Etapa 10 - Exercício: 07 ###\n ')
+console.info("## Exercise >> 07")
 
-const difference =  futureDate.getTime() - past.getTime() 
-const differenceInDays = Math.round(difference / 1000 / 60 / 60 / 24)
+const diff = future.getTime() - past.getTime()
 
-console.log(difference)
-console.log(differenceInDays)
+const seconds = Math.round(diff / 1000)
+const minutes = Math.round(seconds / 60)
+const hours = Math.round(minutes / 60)
+const days = Math.round(hours / 24)
+const years = Math.round(days / 365)
 
+console.table({ diff, seconds, minutes, hours, days, years })
+console.log(`A quantidade de dias entre o momento futuro '2022' e o momento passado '1982' é de ${days} de diferença, equivalente a ${years} anos.`)
 
 /*
   08
