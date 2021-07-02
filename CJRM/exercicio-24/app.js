@@ -63,3 +63,4 @@ console.info("## Exercise >> 03")
 */
 console.info("## Exercise >> 04")
 
+console.log(`- [x] Refatore a implementação da remoção do to-do`)
