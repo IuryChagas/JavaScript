@@ -13,38 +13,20 @@
     <header class="text-center text-light my-4">
       <h1 class="mb-4">To-do List</h1>
       <form class="form-search">
-        <input class="form-control m-auto" type="text" name="search" placeholder="Buscar to-do" autofocus />
+        <input class="form-control m-auto text-center" type="text" name="search" placeholder="Buscar tarefa" autofocus />
       </form>
     </header>
 
     <ul class="todos-container list-group mx-auto text-light">
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <i class="far fa-check-circle"></i>
-        <span>Assistir Breaking Bad</span>
-        <i class="far fa-trash-alt delete"></i>
+      <li class="list-group-item d-flex justify-content-between align-items-center" data-todo="Adicione suas tarefas aqui">
+        <i class="fas fa-check-double" data-done="Adicione suas tarefas aqui"></i>
+        <span>Adicione suas tarefas aqui</span>
+        <i class="far fa-trash-alt" data-trash="Adicione suas tarefas aqui"></i>
       </li>
-
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <i class="fas fa-check-double"></i>
-        <span>Planejar aulas</span>
-        <i class="far fa-trash-alt delete"></i>
-      </li>
-
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <i class="far fa-check-square"></i>
-        <span>Fazer exercícios físicos</span>
-        <i class="far fa-trash-alt delete"></i>
-      </li>
-
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <i class="fas fa-check-square"></i>
-        <span>Fazer exercícios físicos</span>
-        <i class="far fa-trash-alt delete"></i>
-      </li>
-
     </ul>
+
     <form class="form-add-todo text-center my-4">
-      <label class="text-light">Adicionar to-do</label>
+      <label class="text-light">Adicionar tarefa</label>
       <input class="form-control m-auto" type="text" name="add" />
     </form>
   </div>

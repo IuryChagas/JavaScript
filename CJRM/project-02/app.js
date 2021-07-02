@@ -1,61 +1,98 @@
-const addTask = document.querySelector('.form-add-todo')
-const containerTasks = document.querySelector('.todos-container')
-const inputSearch = document.querySelector('.form-search input')
+const formAddTask = document.querySelector('.form-add-todo')
+const tasksContainer = document.querySelector('.todos-container')
+const inputSearchTask = document.querySelector('.form-search input')
 
-addTask.addEventListener('submit', event => {
-    event.preventDefault()
+const addTask = (thisEvent, inputValue) => {
+ 
+    if (inputValue.length) {
 
-    const inputValidationClear = event.target.add.value.trim()
-    const inputFormatValidation = inputValidationClear.toLowerCase()
-    const isValidInput = inputFormatValidation.length
-    if (isValidInput) {
-
-        console.log(inputFormatValidation)
-        const templateTask = `
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-        <i class="far fa-check-square"></i>
-        <span>${inputValidationClear}</span>
-        <i class="far fa-trash-alt delete"></i>
+        tasksContainer.innerHTML += `
+        <li class="list-group-item d-flex justify-content-between align-items-center" data-todo="${inputValue}">
+        <i class="fas fa-check-double" data-done="${inputValue}"></i>
+        <span>${inputValue}</span>
+        <i class="far fa-trash-alt" data-trash="${inputValue}"></i>
         </li>
         `
-        containerTasks.innerHTML += templateTask
-        event.target.reset()
-    }
-})
-
-containerTasks.addEventListener('click', event => {
-    const clickedElement = event.target.classList
-    const identifyTrashIcon = Array.from(clickedElement).includes('delete')
-    const identifyParentElement = event.target.closest('li')
-
-    if (identifyTrashIcon && identifyParentElement) {
-        identifyParentElement.remove()
-        console.log('remoção realizada com sucesso!')
+        thisEvent.target.reset()
     }
 
-})
+}
+const completeTask = clickedElement => {
 
-inputSearch.addEventListener('input', event => {
+    const done = clickedElement.dataset.done
+    const task = document.querySelector(`[data-todo="${done}"]`)
+
+    if (done) {
+        task.classList.toggle('done')
+    }
+
+}
+
+const removeTask = clickedElement => {
+
+    const trashDataValue = clickedElement.dataset.trash
+    const task = document.querySelector(`[data-todo="${trashDataValue}"]`)
+
+    if(trashDataValue){
+        task.remove()
+    }
+
+}
+
+const filterTasks = (allTasks, inputValue, returnMatchedTasks) => allTasks
+    .filter( li => {
+                const matchedTasks = li.textContent.toLowerCase().trim().includes(inputValue)
+                return returnMatchedTasks ? matchedTasks : !matchedTasks
+            }
+    )
+
+const manipulateClasses = (tasks, classToAdd, classToRemove) => {
+
+    tasks.forEach( li => (
+        li.classList.remove(classToRemove),
+        li.classList.add(classToAdd)
+    ))
+
+}
+
+const hideTasks = (allTasks, inputValue) => {
+
+  const tasksToHide =  filterTasks(allTasks, inputValue, false)
+    manipulateClasses(tasksToHide, 'hidden', 'd-flex')
+
+}
+
+const showTasks = (allTasks, inputValue) => {
+
+    const tasksToShow = filterTasks(allTasks, inputValue, true)
+    manipulateClasses(tasksToShow, 'd-flex', 'hidden')
+
+}
+
+formAddTask.addEventListener('submit', event => {
     event.preventDefault()
 
-    const inputValidationClear = event.target.value.trim()
-    const inputFormatValidation = inputValidationClear.toLowerCase()
-    const ulChildren = Array.from(containerTasks.children)
+    const inputValue = event.target.add.value.trim()
+    addTask(event, inputValue)
 
-    ulChildren.filter( li => {
-        return !li.textContent.toLowerCase().trim().includes(inputFormatValidation)
-    }).forEach( li => {
-        li.classList.remove('d-flex')
-        li.classList.add('hidden')
-        return
-    })
+})
 
-    ulChildren.filter( li => {
-        return li.textContent.toLocaleLowerCase().trim().includes(inputFormatValidation)
-    }).forEach( li => {
-        li.classList.remove('hidden')
-        li.classList.add('d-flex')
-        return
-    })
+tasksContainer.addEventListener('click', event => {
+
+    const clickedElement = event.target
+
+    completeTask(clickedElement)
+    removeTask(clickedElement)
+
+})
+
+inputSearchTask.addEventListener('input', event => {
+    event.preventDefault()
+
+    const allTasks = Array.from(tasksContainer.children)
+    const inputValue = event.target.value.trim().toLowerCase()
+
+    hideTasks(allTasks, inputValue)
+    showTasks(allTasks, inputValue)
 
 })

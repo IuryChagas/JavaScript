@@ -1,4 +1,3 @@
-style
 .container {
     max-width: 400px;
 }
@@ -15,10 +14,16 @@ input[type=text]:focus {
   background: #484E53;
 }
 
-.delete {
+i[data-trash], i[data-done] {
   cursor: pointer;
 }
+i[data-trash]:hover, i[data-done]:hover { color: #fff }
 
 .hidden {
   display: none;
+}
+
+.done {
+  color: #808080;
+  text-decoration: line-through;
 }
