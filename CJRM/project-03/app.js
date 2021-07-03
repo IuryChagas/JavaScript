@@ -1,21 +1,22 @@
 const clockContainer = document.querySelector('.clock-container')
 
+const formatTimeUnit = unit => String(unit).length === 1 ? `0${unit}` : unit
+
+const getClockHTML = (seconds, minutes, hours) => `
+    <span>${formatTimeUnit(hours)}</span> :
+    <span>${formatTimeUnit(minutes)}</span> :
+    <span>${formatTimeUnit(seconds)}</span>
+`
+
 const updateClock = () => {
 
     const present = new Date()
-    const seconds = present.getSeconds()
-    const minutes = present.getMinutes()
-    const hours = present.getHours()
+    const seconds = formatTimeUnit(present.getSeconds())
+    const minutes = formatTimeUnit(present.getMinutes())
+    const hours = formatTimeUnit(present.getHours())
 
-    const clockFormatter = (hours, minutes, seconds) => {
-            const time = [hours, minutes, seconds]
-                .map( time =>
-                    `<span>${String(time).length === 1 ? `0${String(time)}` : String(time)}</span>`)
-                .join(' : ')
+    clockContainer.innerHTML = getClockHTML(seconds, minutes, hours)
 
-            return time
-    }
-    clockContainer.innerHTML = clockFormatter(hours, minutes, seconds)
 }
 
 setInterval(updateClock, 1000)
