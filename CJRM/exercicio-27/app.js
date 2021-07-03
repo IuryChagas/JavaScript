@@ -1,18 +1,28 @@
+// console.info(
+//   `
+//   \n###########################   EXERCISES CHAPTER 27   ###########################
+
+//   `
+// )
+
+console.info("## Exercise >> 01")
+
 /*
   01
 
   - Implemente um código assíncrono entre os console.log() abaixo.
 */
-console.info('\n### Etapa 11 - Exercício: 01 ###\n ')
 
 console.log('Linha 1')
 console.log('Linha 2')
 console.log('Linha 3')
-console.log(' ... ')
-setTimeout(() => console.log('Linha 4 - Callback concluído!'), 2000)
+
+setTimeout(()=> console.log('Linha 4 <-- Callback'), 1000)
+
 console.log('Linha 5')
-console.log(' ... ')
-setTimeout(() => console.log('Linha 6 - Callback concluído!'), 1000)
+
+setTimeout(()=> console.log('Linha 6 <-- Callback'), 1500)
+
 console.log('Linha 7')
 console.log('Linha 8')
 
@@ -22,83 +32,85 @@ console.log('Linha 8')
   - Descomente o código abaixo e crie a função que fará a string dentro da 
     "logGreeting" ser exibida no console.
 */
-console.info('\n### Etapa 11 - Exercício: 02 ###\n ')
+setTimeout(()=> console.info("\n## Exercise >> 02 "), 2000)
 
 function logGreeting (name) {
   console.log(`olá, ${name}`)
 }
-setTimeout( name => {
-  name = 'Iury Chagas'
-  logGreeting(name)
-}, 3000)
+const x = () => {
+  setTimeout(()=> logGreeting('Iury'), 2000)
+}
+
+x(logGreeting)
 
 /*
   03
 
   - O código abaixo possui uma parte que pode ser isolada. Isole-a.
 */
-console.info('\n### Etapa 11 - Exercício: 03 ###\n ')
+setTimeout(()=> console.info("\n## Exercise >> 03 "), 2100)
 
 const numbers = [3, 4, 10, 20]
-const getLessThanFive = num => num < 5
-const lesserThanFive = numbers.filter(getLessThanFive)
 
-console.log(lesserThanFive)
+const returnNumber = num => num < 5
+
+const lesserThanFive = numbers.filter(returnNumber)
+
+setTimeout(()=> console.log(lesserThanFive), 2200)
 
 /*
   04
 
   - Refatore o código abaixo.
 */
-console.info('\n### Etapa 11 - Exercício: 04 ###\n ')
+setTimeout(()=> console.info("\n## Exercise >> 04 "), 2200)
 
 const prices = [12, 19, 7, 209]
-let totalPrice = 0
-const getTotalPrice = (acc, price, _) => acc + price
 
-totalPrice = prices.reduce(getTotalPrice, 0)
+// for (let i = 0; i < prices.length; i++) {
+//   totalPrice += prices[i]
+// }
 
-console.log(`Preço total: ${totalPrice}`)
+let totalPrice = prices.reduce((totalPrice, number)=> totalPrice += number, 0)
+
+setTimeout(()=> console.log(`Preço total: ${totalPrice}`), 2400)
 
 /*
-  05
+   05
 
-  - Abaixo da declaração do objeto "car", modifique a cor do carro para 'azul';
-  - Não insira `car.color = azul`.
+   - Abaixo da declaração do objeto "car", modifique a cor do carro para 'azul';
+   - Não insira `car.color = azul`.
 */
-console.info('\n### Etapa 11 - Exercício: 05 ###\n ')
+setTimeout(()=> console.info("\n## Exercise >> 05 "), 2500)
 
 let car = { color: 'amarelo' }
 
-let { color } = car
+car["color"] = 'Azul'
 
-color = 'Azul'
-
-console.log("color: ", color, "| obj car.color: ", car)
+setTimeout(()=> console.log(car), 2500)
 
 /*
   06
 
-  - Crie uma função que recebe 3 argumentos;
-  - Se um dos 3 argumentos não for passado na invocação, a string 'A função 
-    deve ser invocada com 3 argumentos' deve ser retornada;
-  - Se todos os argumentos forem passados, retorne a string 'A função foi 
-    invocada com 3 argumentos'.
+   - Crie uma função que recebe 3 argumentos;
+   - Se um dos 3 argumentos não for passado na invocação, a string 'A função 
+     deve ser invocada com 3 argumentos' deve ser retornada;
+   - Se todos os argumentos forem passados, retorne a string 'A função foi 
+     invocada com 3 argumentos'.
 */
+setTimeout(()=> console.info("\n## Exercise >> 06 "), 2600)
 
-console.info('\n### Etapa 11 - Exercício: 06 ###\n ')
+const functionTest = (arg1 = undefined, arg2 = undefined, arg3 = undefined)=> {
 
+  const requiredArguments = [arg1, arg2, arg3]
 
-const myFunc = (arg1, arg2, arg3) => { 
-  const isSomeParameterUndefined = [arg1, arg2, arg3].includes(undefined)
-
-  return !isSomeParameterUndefined 
-  ? 'A função foi invocada com 3 argumentos'
-  : 'A função deve ser invocada com 3 argumentos'
-
+  return requiredArguments.reduce((msg, arg) => {
+    return arg == undefined ? msg = 'A função deve ser invocada com 3 argumentos' : msg = 'A função foi invocada com 3 argumentos'
+  }, '')
+  
 }
 
-console.log(myFunc())
+setTimeout(()=> console.log(functionTest()), 2600)
 
 /*
   07
@@ -121,45 +133,45 @@ console.log(myFunc())
     - Se couber somente mais um livro, mostre a palavra "livro" (no singular) 
       na frase acima.
 */
-console.info('\n### Etapa 11 - Exercício: 07 ###\n ')
+setTimeout(()=> console.info("\n## Exercise >> 07 "), 2700)
 
 let booksBox = {
   spaces: 5,
-  booksIn: 0
-}
-const getPluralOrSingular = (quantity, singular, plural) => {
-  return quantity === 1 ? singular : plural
-} 
+  booksIn: 0,
+  addBook (quantity) {
 
-const getAvailableSpacesMessage = (spaces, booksIn) => {
-  const availableSpaces = spaces - booksIn
-  const capacityInPluralOrSingular = getPluralOrSingular(availableSpaces, `cabe`, `cabem`)
-  const bookInPluralOrSingular = getPluralOrSingular(availableSpaces, `livro`, `livros`)
+    if (quantity <= (this.spaces - this.booksIn)) {
 
-  return `Só ${capacityInPluralOrSingular} mais ${availableSpaces} ${bookInPluralOrSingular}`
-}
+      this.booksIn += quantity
+      return `Já há ${this.booksIn} livros na caixa`
+    }
 
-booksBox.addBooks = booksQuantity => {
-  const { spaces } = booksBox
-  let isBoxFilled = booksBox.booksIn === spaces
-  const boxSpacesAreNotEnough = booksBox.booksIn + booksQuantity > spaces
+    if (quantity > (this.spaces - this.booksIn) && (this.spaces - this.booksIn) !== 0) {
 
-  if (isBoxFilled) {
-    return `A caixa já está cheia`
+      if (this.spaces - this.booksIn === 1) {
+        return `Só cabe mais ${this.spaces - this.booksIn} livro`
+      }
+      return `Só cabem mais ${this.spaces - this.booksIn} livros`
+    }
+    if(this.spaces - this.booksIn === 0) {
+      return "A caixa já está cheia"
+    }
+
   }
-
-  if (boxSpacesAreNotEnough) {
-    return getAvailableSpacesMessage(spaces, booksBox.booksIn)
-  }
-
-  booksBox.booksIn += booksQuantity
-
-  const bookInPluralOrSingular = getPluralOrSingular(booksBox.booksIn,`livro`,`livros`)
-  return `Já há ${booksBox.booksIn} ${bookInPluralOrSingular} na caixa`
 }
 
-console.log(booksBox.addBooks(4))
-console.log(booksBox.addBooks(3))
+setTimeout(()=> console.log(
+  booksBox.addBook(3)
+), 2900)
 
-console.log(booksBox)
+setTimeout(()=> console.log(
+  booksBox.addBook(5)
+), 2900)
 
+setTimeout(()=> console.log(
+  booksBox.addBook(2)
+), 2900)
+
+setTimeout(()=> console.log(
+  booksBox.addBook(2)
+), 2900)
