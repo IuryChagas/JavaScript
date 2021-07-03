@@ -1,28 +1,37 @@
+console.info(
+  `
+  \n###########################   EXERCISES CHAPTER 26   ###########################
+
+  `
+)
+
 /*
-  01
+01
 
-  - Crie uma função que recebe uma data por parâmetro e retorna a data na 
-    formatação "DD/MM/AAAA". Exemplo: 03/07/2021;
-  - Não utilize a date-fns.
+- Crie uma função que recebe uma data por parâmetro e retorna a data na 
+formatação "DD/MM/AAAA". Exemplo: 03/07/2021;
+- Não utilize a date-fns.
 */
-console.info('\n### Etapa 11 - Exercício: 01 ###\n ')
+console.info("## Exercise >> 01")
 
-const formatTimeUnit = unit => String(unit).length === 1 ? `0${unit}` : unit
+const actualDate = date => {
+  let day = String(date.getDate())
+  let month = String(date.getMonth())
+  let year = String(date.getFullYear())
 
-const userDate = 'Mon Apr 19 2021 14:47:21'
+  const concatenateDay = day.length === 1 ? `0${day}` : day
+  const concatenateMonth = month.length === 1 ? `0${month}` : month
 
-const date = new Date(userDate)
-
-const formatDate = date => {
-  const day = formatTimeUnit(date.getDate())
-  const month = formatTimeUnit(date.getMonth() +1)
-  const year = String(date.getFullYear())
-
-  return `${day}/${month}/${year}`
+  const message = `${concatenateDay}/${concatenateMonth}/${year}`
+  
+  return message
 }
 
-console.log(formatDate(date))
+const data = new Date()
 
+console.log(
+  actualDate(data)
+)
 /*
   02
 
@@ -30,47 +39,34 @@ console.log(formatDate(date))
     data na formatação: "03:07 - domingo, 7 de junho de 2020";
   - Não utilize a date-fns.
 */
-console.info('\n### Etapa 11 - Exercício: 02 ###\n ')
 
-const weekDays = [
-  `domingo`,
-  `segunda-feira`,
-  `terça-feira`,
-  `quarta-feira`,
-  `quinta-feira`,
-  `sexta-feira`
-]
+console.info("## Exercise >> 02")
 
-const months = [
-  `Janeiro`,
-  `Fevereiro`,
-  `Março`,
-  `Abril`,
-  `Maio`,
-  `Junho`,
-  `Julho`,
-  `Agosto`,
-  `Setembro`,
-  `Outubro`,
-  `Novembro`,
-  `Dezembro`
-]
+const dataTime = date => {
+  
+  let hs = date.getHours()
+  let min = date.getMinutes()
+  let dayOfWeek = date.getDay()
+  let dayOfMonth = date.getDate()
+  let month   = date.getMonth() //`++`
+  let year = date.getFullYear()
 
-const dataFormat = date => {
+  const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']
+  const weekday = weekDays.filter( (day, index) => index === dayOfWeek ? day : undefined)
 
-  const hours = formatTimeUnit(date.getHours())
-  const minutes = formatTimeUnit(date.getMinutes())
-  const weekDay = weekDays[date.getDay()]
-  const monthDay = date.getDate()
-  const month = months[date.getMonth()]
-  const year = String(date.getFullYear())
+  const months = [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro' ]
+  const monthOfYear = months.filter( (actualMonth, index) => index === month ? actualMonth : undefined)
 
-  const timeStamps = `${hours}:${minutes} - ${monthDay}, ${weekDay} de ${month} de ${year}`
-
-  return console.log(timeStamps)
+  const stringf = `${hs}:${min} - ${weekday}, ${dayOfMonth} de ${monthOfYear} de ${year}`
+  return stringf
 }
 
-dataFormat(new Date())
+const present = new Date()
+
+console.log(
+  dataTime(present)
+)
+
 /*
   03
 
@@ -78,7 +74,7 @@ dataFormat(new Date())
   - Exiba os valores lado a lado, no console;
   - Não modifique a declaração da const user.
 */
-console.info('\n### Etapa 11 - Exercício: 03 ###\n ')
+console.info("## Exercise >> 03")
 
 const user = { id: 42, isVerified: true }
 
@@ -95,13 +91,13 @@ console.log(id, isVerified)
   - Exiba os valores das consts lado a lado, no console;
   - Não modifique a declaração das consts "robotA" e "robotB".
 */
-console.info('\n### Etapa 11 - Exercício: 04 ###\n ')
+console.info("## Exercise >> 04")
 
 const robotA = { name: 'Bender' }
 const robotB = { name: 'HAL 9000' }
 
-const { name: nameA } = robotA
-const { name: nameB } = robotB
+const nameA = { name } = robotA
+const nameB = { name } = robotB
 
 console.log(nameA, nameB)
 
@@ -114,7 +110,7 @@ console.log(nameA, nameB)
   - Exiba o objeto no console.
 */
 
-console.info('\n### Etapa 11 - Exercício: 05 ###\n ')
+console.info("## Exercise >> 05")
 
 const a = 'a'
 const b = 'b'
@@ -127,17 +123,21 @@ console.log({ a, b, c })
 
   - Refatore o código abaixo.
 */
-console.info('\n### Etapa 11 - Exercício: 0 ###\n ')
 
-const useDataSomewhereElse = value => console.log(value)
+console.info("## Exercise >> 06")
 
-const updateSomething = ( { target, property, willChange } ) => {
+const useDataSomewhereElse = value => value
 
-  if (willChange === 'valor indesejado') {
-    willChange = 'valor desejado'
-  }
+const updateSomething = ({target, property, willChange}) => {
 
-  useDataSomewhereElse({ target, property, willChange })
+  willChange === 'valor indesejado' ? willChange = 'valor desejado' : undefined
+
+  useDataSomewhereElse({
+    target,
+    property,
+    willChange
+  })
+
 }
 
 updateSomething({ target: '1', property: '2', willChange: 'valor indesejado' })
@@ -148,20 +148,23 @@ updateSomething({ target: '1', property: '2', willChange: 'valor indesejado' })
   - O código abaixo é o mesmo do relógio digital que implementamos na aula 
     passada. Refatore-o.
 */
-console.info('\n### Etapa 11 - Exercício: 0 ###\n ')
+console.info("## Exercise >> 06")
 
 const clockContainer = document.querySelector('.clock-container')
 
 const updateClock = () => {
   const present = new Date()
+  const hours = present.getHours()
+  const minutes = present.getMinutes()
+  const seconds = present.getSeconds()
 
-  const hours = formatTimeUnit(present.getHours())
-  const minutes = formatTimeUnit(present.getMinutes())
-  const seconds = formatTimeUnit(present.getSeconds())
+  const clockHTML = `
+    <span>${String(hours).length === 1 ? `0${hours}` : hours}</span> :
+    <span>${String(minutes).length === 1 ? `0${minutes}` : minutes}</span> :
+    <span>${String(seconds).length === 1 ? `0${seconds}` : seconds}</span>
+  `
 
-  const setTimerUnit = (unit) => `<span>${unit}</span>`
-
-  clockContainer.innerHTML = `${setTimerUnit(hours)} : ${setTimerUnit(minutes)} : ${setTimerUnit(seconds)}`
+  clockContainer.innerHTML = clockHTML
 }
 
 setInterval(updateClock, 1000)
