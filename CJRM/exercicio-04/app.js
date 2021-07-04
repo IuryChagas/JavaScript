@@ -62,6 +62,7 @@ console.info("## Exercise >> 04")
 const typeSentence = `"O tipo de dado que a const "isRandomTVShowIncluded" armazena é: ${typeof isRandomTVShowIncluded}"`
 
 console.log(typeSentence)
+
 /*
   05 - Comente o console.log() acima e:
 
