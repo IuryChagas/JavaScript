@@ -52,9 +52,9 @@ setTimeout(()=> console.info("\n## Exercise >> 03 "), 2100)
 
 const numbers = [3, 4, 10, 20]
 
-const returnNumber = num => num < 5
+const getLessThanFive = num => num < 5
 
-const lesserThanFive = numbers.filter(returnNumber)
+const lesserThanFive = numbers.filter(getLessThanFive)
 
 setTimeout(()=> console.log(lesserThanFive), 2200)
 
@@ -71,7 +71,8 @@ const prices = [12, 19, 7, 209]
 //   totalPrice += prices[i]
 // }
 
-let totalPrice = prices.reduce((totalPrice, number)=> totalPrice += number, 0)
+const getTotalPrice = (totalPrice, price) => totalPrice += price
+let totalPrice = prices.reduce(getTotalPrice, 0)
 
 setTimeout(()=> console.log(`Preço total: ${totalPrice}`), 2400)
 
@@ -85,9 +86,10 @@ setTimeout(()=> console.info("\n## Exercise >> 05 "), 2500)
 
 let car = { color: 'amarelo' }
 
-car["color"] = 'Azul'
+let secondCar = car
+secondCar["color"] = 'Azul'
 
-setTimeout(()=> console.log(car), 2500)
+setTimeout(() => console.log(secondCar), 2500)
 
 /*
   06
@@ -100,17 +102,17 @@ setTimeout(()=> console.log(car), 2500)
 */
 setTimeout(()=> console.info("\n## Exercise >> 06 "), 2600)
 
-const functionTest = (arg1 = undefined, arg2 = undefined, arg3 = undefined)=> {
+const myFunction = (param1, param2, param3)=> {
 
-  const requiredArguments = [arg1, arg2, arg3]
+  const requiredArguments = [param1, param2, param3]
 
-  return requiredArguments.reduce((msg, arg) => {
-    return arg == undefined ? msg = 'A função deve ser invocada com 3 argumentos' : msg = 'A função foi invocada com 3 argumentos'
-  }, '')
-  
+  return requiredArguments.includes(undefined)
+    ? 'A função deve ser invocada com 3 argumentos'
+    : 'A função foi invocada com 3 argumentos'
+
 }
 
-setTimeout(()=> console.log(functionTest()), 2600)
+setTimeout(()=> console.log(myFunction('', ()=>{})), 2600)
 
 /*
   07
@@ -138,40 +140,38 @@ setTimeout(()=> console.info("\n## Exercise >> 07 "), 2700)
 let booksBox = {
   spaces: 5,
   booksIn: 0,
-  addBook (quantity) {
+  addBooks (quantity) {
 
-    if (quantity <= (this.spaces - this.booksIn)) {
+    const availableSpaces = this.spaces - this.booksIn
+    const fitPluralOrSingular = availableSpaces === 1 ? 'cabe' : 'cabem'
+    const bookPluralOrSingular = availableSpaces === 1 ? 'livro' : 'livros'
 
-      this.booksIn += quantity
-      return `Já há ${this.booksIn} livros na caixa`
+    if (this.booksIn === this.spaces) {
+      return 'A caixa já está cheia'
     }
 
-    if (quantity > (this.spaces - this.booksIn) && (this.spaces - this.booksIn) !== 0) {
+    if (quantity + this.booksIn > this.spaces) {
+      return `Só ${fitPluralOrSingular} mais ${this.spaces - this.booksIn} ${bookPluralOrSingular}`
+    }
 
-      if (this.spaces - this.booksIn === 1) {
-        return `Só cabe mais ${this.spaces - this.booksIn} livro`
-      }
-      return `Só cabem mais ${this.spaces - this.booksIn} livros`
-    }
-    if(this.spaces - this.booksIn === 0) {
-      return "A caixa já está cheia"
-    }
+    this.booksIn += quantity
+    return `Já há ${this.booksIn} ${bookPluralOrSingular} na caixa`
 
   }
 }
 
 setTimeout(()=> console.log(
-  booksBox.addBook(3)
+  booksBox.addBooks(3)
 ), 2900)
 
 setTimeout(()=> console.log(
-  booksBox.addBook(5)
+  booksBox.addBooks(5)
 ), 2900)
 
 setTimeout(()=> console.log(
-  booksBox.addBook(2)
+  booksBox.addBooks(2)
 ), 2900)
 
 setTimeout(()=> console.log(
-  booksBox.addBook(2)
+  booksBox.addBooks(2)
 ), 2900)
