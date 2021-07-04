@@ -1,9 +1,9 @@
-// console.info(
-//   `
-//   \n###########################   EXERCISES CHAPTER 27   ###########################
+console.info(
+  `
+  \n###########################   EXERCISES CHAPTER 27   ###########################
 
-//   `
-// )
+  `
+)
 
 console.info("## Exercise >> 01")
 
@@ -135,43 +135,59 @@ setTimeout(()=> console.log(myFunction('', ()=>{})), 2600)
     - Se couber somente mais um livro, mostre a palavra "livro" (no singular) 
       na frase acima.
 */
+
 setTimeout(()=> console.info("\n## Exercise >> 07 "), 2700)
 
 let booksBox = {
-  spaces: 5,
-  booksIn: 0,
-  addBooks (quantity) {
+    spaces: 5,
+    booksIn: 0,
+    addBooks (quantity){
+      const { spaces } = booksBox
 
-    const availableSpaces = this.spaces - this.booksIn
-    const fitPluralOrSingular = availableSpaces === 1 ? 'cabe' : 'cabem'
-    const bookPluralOrSingular = availableSpaces === 1 ? 'livro' : 'livros'
+      const isBoxFilled = this.booksIn === spaces
+      const boxSpacesAreNotEnough = spaces < this.booksIn + quantity
 
-    if (this.booksIn === this.spaces) {
-      return 'A caixa já está cheia'
+      const getPluralOrSingular = (quantity, singular, plural) => {
+        return quantity === 1 ? singular : plural
+      }
+
+      const getAvailableSpacesMessage = (spaces, booksIn) => {
+        let availableSpaces = spaces - booksIn
+        const bookPluralOrSingular = getPluralOrSingular(availableSpaces, `livro`, `livros`)
+        const fitPluralOrSingular = getPluralOrSingular(availableSpaces, `cabe`, `cabem`)
+        return `Só ${fitPluralOrSingular} mais ${availableSpaces} ${bookPluralOrSingular}`
+      }
+
+      if (isBoxFilled) {
+        return `A caixa já está cheia`
+      }
+
+      if (boxSpacesAreNotEnough) {
+        return getAvailableSpacesMessage(spaces, this.booksIn)
+      }
+
+      this.booksIn += quantity
+
+      const bookPluralOrSingular = getPluralOrSingular(this.booksIn, 'livro', 'livros')
+
+      return `Já há ${this.booksIn} ${bookPluralOrSingular} na caixa`
     }
-
-    if (quantity + this.booksIn > this.spaces) {
-      return `Só ${fitPluralOrSingular} mais ${this.spaces - this.booksIn} ${bookPluralOrSingular}`
-    }
-
-    this.booksIn += quantity
-    return `Já há ${this.booksIn} ${bookPluralOrSingular} na caixa`
-
-  }
 }
 
-setTimeout(()=> console.log(
-  booksBox.addBooks(3)
-), 2900)
+const customConsoleLog = (BooksQuantityToAdd) => {
+ 
+  setTimeout(()=> console.log(
+    booksBox.addBooks(BooksQuantityToAdd)
+  ), 2900)
+  
+  setTimeout(()=> console.log(
+    booksBox
+  ), 2900)
 
-setTimeout(()=> console.log(
-  booksBox.addBooks(5)
-), 2900)
+}
 
-setTimeout(()=> console.log(
-  booksBox.addBooks(2)
-), 2900)
-
-setTimeout(()=> console.log(
-  booksBox.addBooks(2)
-), 2900)
+customConsoleLog(7)
+customConsoleLog(4)
+customConsoleLog(2)
+customConsoleLog(1)
+customConsoleLog(2)
