@@ -1,41 +1,47 @@
+console.info(
+  `
+  \n###########################   EXERCISES CHAPTER 28   ###########################
+
+  `
+)
+
 /*
-  01
+01
 
-  - Crie um objeto de request;
-  - Abra este website https://pokeapi.co/;
-  - Baseado no exemplo de endpoint exibido no website, abra uma requisição do 
-    tipo GET para obter dados do pokémon 'pikachu';
-  - Envie a requisição e trackeie ela usando o listener de evento adequado;
-  - Verifique se o estado da requisição representa que a operação foi completada
-    e se o status http do request indica que a requisição foi bem sucedida;
-  - Se as condições do item acima forem atendidas, exiba no console o texto da 
-    resposta que a requisição obteve;
-  - Se apenas a 1ª condição for atendida (o estado da requisição representa que 
-    a operação foi completada), exiba no console a mensagem 'Não foi possível 
-    obter os dados do pokémon';
+- Crie um objeto de request;
+- Abra este website https://pokeapi.co/;
+- Baseado no exemplo de endpoint exibido no website, abra uma requisição do 
+tipo GET para obter dados do pokémon 'pikachu';
+- Envie a requisição e trackeie ela usando o listener de evento adequado;
+- Verifique se o estado da requisição representa que a operação foi completada
+e se o status http do request indica que a requisição foi bem sucedida;
+- Se as condições do item acima forem atendidas, exiba no console o texto da 
+resposta que a requisição obteve;
+- Se apenas a 1ª condição for atendida (o estado da requisição representa que 
+  a operação foi completada), exiba no console a mensagem 'Não foi possível 
+  obter os dados do pokémon';
   - Teste também a verificação do item acima.
-*/
-console.info('\n### Etapa 11 - Exercício: 01 ###\n ')
+  */
+console.info("## Exercise >> 01")
 
-// const request = new XMLHttpRequest()
+const request = new XMLHttpRequest()
 
-// request.addEventListener('readystatechange', ()=>{
-//   const isRequestSuccess = request.readyState === 4 && request.status === 200
-//   const isRequestNotSuccess = request.readyState === 4
+request.addEventListener('readystatechange', ()=> {
+  if (request.readyState === 4 && request.status === 200) {
+    console.log('Status: ', request.status)
+    console.log(request.responseText)
+  }
+  if (request.readyState == 4 && request.status === 404) {
+    console.log('Status:', request.status)
+    console.log('Não foi possível obter os dados do pokémon')
+  }
+})
 
-//   if (isRequestSuccess) {
-//     console.log(request.responseText)
-//     return
-//   }
-//   if (isRequestNotSuccess) {
-//     console.log('Não foi possível obter os dados do pokemon')
-//   }
-// })
+request.open('GET', 'https://pokeapi.co/api/v2/pokemon/pikachuf')
+request.send()
 
-// request.open('GET', 'https://pokeapi.co/api/v2/pokemon/pikachu')
-// request.send()
 
-// console.log(request)
+
 
 /*
   02
@@ -51,20 +57,20 @@ console.info('\n### Etapa 11 - Exercício: 01 ###\n ')
     - Se você está andando (boolean iniciado em false);
     - Quantos metros você caminhou (number iniciado em 0).
 */
-console.info('\n### Etapa 11 - Exercício: 02 ###\n ')
 
-let person = {
-  name: 'Pierluigi',
-  lastName: 'Piazzi',
-  gender: 'male',
-  age: 60,
-  height: 1,
-  weight: 96,
+console.info("## Exercise >> 02")
+
+const personalInfo = {
+  name: '',
+  lastName: '',
+  gender: '',
+  age: 0,
+  height: 0,
+  weight: 0,
   isWalking: false,
-  walkedMeters: 0
+  metersWalked: 0
 }
 
-console.log(person)
 /*
   03
 
@@ -73,17 +79,20 @@ console.log(person)
   - A cada vez que o método é invocado, 1 deve ser somado à idade atual;
   - Após criar o método, adicione 5 anos à idade do objeto.
 */
-console.info('\n### Etapa 11 - Exercício: 03 ###\n ')
+console.info("## Exercise >> 03")
 
-person.incrementAge = () => {
-  return person.age += 1
+personalInfo.addAge = (number) => {
+  personalInfo['age'] += 1 
 }
 
-for (let i = 0; i < 5; i++) {
-  person.incrementAge()
-}
+personalInfo.addAge()
+personalInfo.addAge()
+personalInfo.addAge()
+personalInfo.addAge()
+personalInfo.addAge()
 
-console.log(person.age)
+console.log('age:', personalInfo['age'])
+
 /*
   04
 
@@ -94,17 +103,19 @@ console.log(person.age)
   - Após criar o método, faça a pessoa caminhar alguns metros, invocando o 
     método 4x, com diferentes metragens passadas por parâmetro.
 */
-console.info('\n### Etapa 11 - Exercício: 04 ###\n ')
+console.info("## Exercise >> 04")
 
-person.walk = meters => {
-  person.isWalking = true
-  return person.walkedMeters += meters
+personalInfo.walk = meters => {
+  personalInfo['isWalking'] = true
+  return `isWalking: ${personalInfo["isWalking"]}\nwalkdMeters ${personalInfo.metersWalked += meters}m\n`
+
 }
-const meters = [12, 35, 7, 680]
 
-meters.forEach( route => person.walk(route))
+console.log( personalInfo.walk(04)  )
+console.log( personalInfo.walk(02) )
+console.log( personalInfo.walk(06)  )
+console.log( personalInfo.walk(19) )
 
-console.log('Caminhando:', person.isWalking," -> ", person.walkedMeters,'metros')
 
 /*
   05
@@ -122,26 +133,23 @@ console.log('Caminhando:', person.isWalking," -> ", person.walkedMeters,'metros'
     - Se a quantidade de metros caminhados for 1, substitua "metros" por 
       "metro", no singular.
 */
-console.info('\n### Etapa 11 - Exercício: 05 ###\n ')
+console.info("## Exercise >> 05")
 
-person.greetings = () => {
-  const getSingularOrPluralSintax = (quantity, singular, plural) => {
-    return quantity === 1 ? singular : plural
-  }
+personalInfo.message = () => {
+  const { name, lastName, gender, age, height, weight, isWalking, metersWalked } = personalInfo
+  const fullname = name +' '+ lastName
 
-  const {name, lastName, gender, age, height, weight, walkedMeters} = person
-
-  const correctGender = gender === 'male' ? 'o' : `a`
-  const year = getSingularOrPluralSintax(age, 'ano', 'anos')
-  const meters = getSingularOrPluralSintax(height, 'metro', 'metros')
-  const km = getSingularOrPluralSintax(walkedMeters, 'metro', 'metros')
-
-  return console.log(
-    `Oi. Eu sou ${correctGender} ${name} ${lastName}, tenho ${age} ${year}, ${height} ${meters} de altura, peso ${weight} quilos e, só hoje, eu já caminhei ${walkedMeters} ${km}.'`
-  )
+  return `Oi. Eu sou o ${fullname}, tenho ${age} anos, ${height} metros de altura, peso PESO ${weight}Kg e, só hoje, eu já caminhei ${metersWalked} metros.`
 }
+personalInfo.name = 'Chris'
+personalInfo.lastName = 'Brishgliario'
+personalInfo.age = 32
+personalInfo.height = 1.84
+personalInfo.weight = 96
 
-person.greetings()
+console.log(
+  personalInfo.message()
+)
 /*
   06
 
@@ -153,19 +161,25 @@ person.greetings()
     valor truthy;
     - Faça isso até que 7 valores truthy sejam passados.
 */
-console.info('\n### Etapa 11 - Exercício: 06 ###\n ')
+console.info("## Exercise >> 06")
 
-const truthyOrFalsyValidator = value => {
-  return Boolean(value) ? `${value} is Truthy` : `${value} is Falsy`
-}
+const truthyOrFalsyValue = value => console.log(`${value}:`, Boolean(value))
 
-const falsyValues = [false, 0, "", null, undefined, NaN]
-const logFalsyValues = value => console.warn(truthyOrFalsyValidator(value))
-falsyValues.forEach(logFalsyValues)
+truthyOrFalsyValue("")
+truthyOrFalsyValue('')
+truthyOrFalsyValue(0)
+truthyOrFalsyValue(undefined)
+truthyOrFalsyValue(null)
+truthyOrFalsyValue(NaN)
+truthyOrFalsyValue(false)
 
-const truthyValues = [true, 1, " ", ':)', "lorem...", 42, Object, () =>{}, {}, [], -1293840]
-const logTruthyValues = value => console.log(truthyOrFalsyValidator(value))
-truthyValues.forEach(logTruthyValues)
+truthyOrFalsyValue(1)
+truthyOrFalsyValue(()=>{})
+truthyOrFalsyValue(" ")
+truthyOrFalsyValue(` `)
+truthyOrFalsyValue(true)
+truthyOrFalsyValue({})
+truthyOrFalsyValue([])
 
 /*
   07
@@ -185,33 +199,5 @@ truthyValues.forEach(logTruthyValues)
 
   Dica: propriedades de objetos podem ser declaradas como strings.
 */
-console.info('\n### Etapa 11 - Exercício: 07 ###\n ')
 
-const getBook = bookTitle => {
-  const books = {
-    'Introduction to Computing': {
-      pages: 266,
-      author: 'David Evans',
-      publisher: 'CreateSpace Independent Publishing Platform'
-    },
-    'Explorations in Computing': {
-      pages: 439,
-      author: 'John S. Conery',
-      publisher: 'Chapman and Hall'
-    },
-    'Design Patterns': {
-      pages: 416,
-      author: 'Erich Gamma',
-      publisher: 'Addison-Wesley Professional'
-    }
-  }
-
-  return books[bookTitle] || books
-}
-
-console.log(
-  getBook('Introduction to Computing')
-)
-console.log(
-  getBook()
-)
+console.info("## Exercise >> 07")
