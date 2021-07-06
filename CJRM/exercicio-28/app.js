@@ -30,18 +30,18 @@ request.addEventListener('readystatechange', ()=> {
   if (request.readyState === 4 && request.status === 200) {
     console.log('Status: ', request.status)
     console.log(request.responseText)
+    return
   }
+
   if (request.readyState == 4 && request.status === 404) {
     console.log('Status:', request.status)
     console.log('Não foi possível obter os dados do pokémon')
   }
+
 })
 
 request.open('GET', 'https://pokeapi.co/api/v2/pokemon/pikachuf')
 request.send()
-
-
-
 
 /*
   02
@@ -81,16 +81,14 @@ const personalInfo = {
 */
 console.info("## Exercise >> 03")
 
-personalInfo.addAge = (number) => {
-  personalInfo['age'] += 1 
+personalInfo.incrementAge = (number) => {
+  personalInfo['age']++
 }
 
-personalInfo.addAge()
-personalInfo.addAge()
-personalInfo.addAge()
-personalInfo.addAge()
-personalInfo.addAge()
-
+for (let iterator = 0; iterator < 5; iterator++) {
+  personalInfo.incrementAge()  
+}
+ 
 console.log('age:', personalInfo['age'])
 
 /*
@@ -111,11 +109,9 @@ personalInfo.walk = meters => {
 
 }
 
-console.log( personalInfo.walk(04)  )
-console.log( personalInfo.walk(02) )
-console.log( personalInfo.walk(06)  )
-console.log( personalInfo.walk(19) )
+const meters = [4, 2, 6, 19]
 
+meters.forEach( meters => console.log(personalInfo.walk(meters)))
 
 /*
   05
@@ -137,14 +133,27 @@ console.info("## Exercise >> 05")
 
 personalInfo.message = () => {
   const { name, lastName, gender, age, height, weight, isWalking, metersWalked } = personalInfo
+ 
   const fullname = name +' '+ lastName
+ 
+  const pluralOrSingular = (value, type) => {
+    if(value === 1){
+      return value +' '+ type
+    }
+    return value + ` ${type}s`
+  }
+  const genderOfPersonInfo = personalInfo.gender === 'F' ? 'a' : 'o'
+  const myAge = pluralOrSingular(age, 'ano')
+  const myHeight = pluralOrSingular(height, 'metro')
+  const distance = metersWalked
 
-  return `Oi. Eu sou o ${fullname}, tenho ${age} anos, ${height} metros de altura, peso PESO ${weight}Kg e, só hoje, eu já caminhei ${metersWalked} metros.`
+  return `Oi. Eu sou ${genderOfPersonInfo} ${fullname}, tenho ${myAge}, ${myHeight} de altura, peso ${weight}Kg e, só hoje, eu já caminhei ${distance} metros.`
 }
 personalInfo.name = 'Chris'
 personalInfo.lastName = 'Brishgliario'
-personalInfo.age = 32
-personalInfo.height = 1.84
+personalInfo.gender = 'M'
+personalInfo.age = 35
+personalInfo.height = 1.83
 personalInfo.weight = 96
 
 console.log(
