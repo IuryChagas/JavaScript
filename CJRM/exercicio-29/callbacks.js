@@ -1,4 +1,4 @@
-const getTodos = callback => {
+const getTodos = (url, callback) => {
 
     const request = new XMLHttpRequest()
 
@@ -7,7 +7,8 @@ const getTodos = callback => {
     const badRequest = request.readyState === 4 && request.status === 404
 
         if (successfulRequest) {
-            callback(null, `status: ${request.status} - ${request.responseText}` )
+            const data = JSON.parse(request.responseText)
+            callback( null, data )
             return
         }
         if (badRequest) {
@@ -15,16 +16,19 @@ const getTodos = callback => {
         }
     })
 
-    request.open('GET', 'https://jsonplaceholder.typicode.com/todos')
+    request.open('GET', url)
     request.send()
 }
 
-getTodos((error, data) => {
-
-    if (error) {
-        console.log(error, ` - Não foi possível obter os dados`)
-        return
-    }
-
+getTodos('../json/todos.json',(error, data) => {
     console.log(`responseBody: `, data)
+    getTodos('../json/todos-02.json',(error, data) => {
+        console.log(`responseBody: `, data)
+        getTodos('../json/todos-03.json',(error, data) => {
+            console.log(`responseBody: `, data)
+            getTodos('../json/todos-04.json',(error, data) => {
+                console.log(`responseBody: `, data)
+            })
+        })
+    })
 })

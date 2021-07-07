@@ -10,5 +10,17 @@
     {
         "myKey": "Another value",
         "mykey2": null
+    },
+    {
+        "myKey": "Another value",
+        "mykey2": [
+            {
+                "myKey1": false,
+                "myKey2": 0,
+                "myKey3": "",
+                "myKey4": null
+            }
+
+        ]
     }
 ]

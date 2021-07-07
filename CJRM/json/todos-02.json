@@ -9,6 +9,6 @@
     },
     {
         "myKey": "Another value",
-        "mykey2": null
+        "mykey2": false
     }
 ]

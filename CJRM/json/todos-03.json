@@ -6,9 +6,5 @@
     {
         "mykey": "Other value",
         "myKey2": true
-    },
-    {
-        "myKey": "Another value",
-        "mykey2": null
     }
 ]
