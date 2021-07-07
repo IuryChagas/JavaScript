@@ -27,20 +27,23 @@ console.info("## Exercise >> 01")
 const request = new XMLHttpRequest()
 
 request.addEventListener('readystatechange', ()=> {
-  if (request.readyState === 4 && request.status === 200) {
+  const isRequestOk = request.readyState === 4 && request.status === 200
+  const isRequestNotOk = request.readyState == 4 && request.status === 404
+
+  if (isRequestOk) {
     console.log('Status: ', request.status)
     console.log(request.responseText)
     return
   }
 
-  if (request.readyState == 4 && request.status === 404) {
+  if (isRequestNotOk) {
     console.log('Status:', request.status)
     console.log('Não foi possível obter os dados do pokémon')
   }
 
 })
 
-request.open('GET', 'https://pokeapi.co/api/v2/pokemon/pikachuf')
+request.open('GET', 'https://pokeapi.co/api/v2/pokemon/pikachuQ')
 request.send()
 
 /*
@@ -81,7 +84,7 @@ const personalInfo = {
 */
 console.info("## Exercise >> 03")
 
-personalInfo.incrementAge = (number) => {
+personalInfo.incrementAge = () => {
   personalInfo['age']++
 }
 
@@ -111,7 +114,7 @@ personalInfo.walk = meters => {
 
 const meters = [4, 2, 6, 19]
 
-meters.forEach( meters => console.log(personalInfo.walk(meters)))
+meters.forEach( meters => console.log(personalInfo.walk(meters)) )
 
 /*
   05
@@ -174,21 +177,14 @@ console.info("## Exercise >> 06")
 
 const truthyOrFalsyValue = value => console.log(`${value}:`, Boolean(value))
 
-truthyOrFalsyValue("")
-truthyOrFalsyValue('')
-truthyOrFalsyValue(0)
-truthyOrFalsyValue(undefined)
-truthyOrFalsyValue(null)
-truthyOrFalsyValue(NaN)
-truthyOrFalsyValue(false)
+const falsyValues = ["", 0, undefined, null, NaN, false]
+const truthyValues = [" ", 1, ()=>{}, true, [], {}, -1]
 
-truthyOrFalsyValue(1)
-truthyOrFalsyValue(()=>{})
-truthyOrFalsyValue(" ")
-truthyOrFalsyValue(` `)
-truthyOrFalsyValue(true)
-truthyOrFalsyValue({})
-truthyOrFalsyValue([])
+console.info('\n##### Falsy Values #####')
+falsyValues.forEach( value => truthyOrFalsyValue( value ) )
+
+console.info('\n##### Truthy Values #####')
+truthyValues.forEach( value => truthyOrFalsyValue( value ) )
 
 /*
   07
@@ -210,3 +206,26 @@ truthyOrFalsyValue([])
 */
 
 console.info("## Exercise >> 07")
+
+const getBooks = bookTitle => {
+  const books = {
+    'Clean Code': {
+      pagesTotal: 431,
+      author: 'Robert C. Martin,  Michael C. Feathers, Timothy R. Ottinger',
+      publisher: 'Prentice Hall PTR'
+    },
+    'The Mythical Man-Month': {
+      pagesTotal: 336,
+      author: 'Fred Brooks',
+      publisher: 'Addison-Wesley'
+    },
+    'The Pragmatic Programmer': {
+      pagesTotal: 352,
+      author: 'Dave Thomas, Andy Hunt',
+      publisher: 'Addison-Wesley'
+    }
+  }
+  return books[bookTitle] || books
+}
+
+console.table(getBooks('Clean Code'))
