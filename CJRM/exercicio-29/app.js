@@ -25,12 +25,16 @@ const getPokemon = (url, callback) => {
   const request = new XMLHttpRequest()
 
   request.addEventListener('readystatechange', () => {
-    if (request.readyState === 4 && request.status === 200) {
+    const successRequest = request.readyState === 4 && request.status === 200
+    const errorRequest = request.readyState === 4 && request.status === 404
+
+    if (successRequest) {
       const data = JSON.parse(request.responseText)
       callback(null, data)
       return
     }
-    if (request.readyState === 4 && request.status === 404) {
+
+    if (errorRequest) {
       const error = JSON.parse(request.status)
       callback(error, null)
       return
@@ -40,33 +44,25 @@ const getPokemon = (url, callback) => {
   request.open('GET', url)
   request.send()
 }
-let pokemonName = 'bulbasaur'
 
-getPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, (error, data)=>{
-  if (data) {
-    const pokemon = data["name"].toUpperCase()
-    console.log('Pokemon obtido: ', pokemon)
-    pokemonName = 'charmander'
-    getPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, (error, data)=>{
-      if (data) {
-        const pokemon = data["name"].toUpperCase()
-        console.log('Pokemon obtido: ', pokemon)
-        pokemonName = 'squirtle'
-        getPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, (error, data)=>{
-          if (data) {
-            const pokemon = data["name"].toUpperCase()
-            console.log('Pokemon obtido: ', pokemon)
-            return
-          }
-          console.log('status: ', error, " - Não foi possível obter o Pokémon")
-        })
-        return
-      }
-      console.log('status: ', error, " - Não foi possível obter o Pokémon")
+const logPokemonData = (error, data) => {
+  return error ? console.log('status: ', error, " - Não foi possível obter o Pokémon") : console.log('Pokemon obtido: ', data["name"].toUpperCase()) 
+}
+
+const getPokemonUrl = name => `https://pokeapi.co/api/v2/pokemon/${name}`
+
+const squirtle = getPokemonUrl('squirtle')
+const bulbasaur = getPokemonUrl('bulbasaur')
+const charmander = getPokemonUrl('charmander')
+
+getPokemon(squirtle, (error, data) => {
+  logPokemonData(error, data)
+  getPokemon(bulbasaur, (error, data) => {
+    logPokemonData(error, data)
+    getPokemon(charmander, (error, data) => {
+      logPokemonData(error, data)
     })
-    return
-  }
-  console.log('status: ', error, " - Não foi possível obter o Pokémon")
+  })
 })
 
 /*
@@ -93,10 +89,15 @@ getPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, (error, data)=>{
 setTimeout(()=> console.info("## Exercise >> 02"), 500)
 
 const map = (arr, func) => {
-  for (let i = 0; i < arr.length; i++) {
-    const number = arr[i]
-    return func(number)
-  }
+    const newArray = []
+
+    const addNewItemToNewArray = number => {
+      const newItem = func(number)
+      newArray.push(newItem)
+    }
+
+    arr.forEach(addNewItemToNewArray)
+    return newArray
 }
 
 setTimeout(()=> {
@@ -130,10 +131,18 @@ setTimeout(()=> {
   - Faça as duas const x coexistirem, sem modificar o nome de qualquer uma 
     delas.
 */
-setTimeout(()=> console.info("## Exercise >> 04"), 520)
+setTimeout(()=> console.info("## Exercise >> 04"), 515)
 
-{const x = 'x'}
+const getX = () => {
+  const x = 'x'
+  return x
+}
+
 const x = 'y'
+
+setTimeout(()=> {
+  console.log(x, getX())
+}, 515)
 
 /*
   05
@@ -166,7 +175,7 @@ setTimeout(()=> {
 */
 setTimeout(()=> console.info("## Exercise >> 06"), 530)
 
-const convertToHex = (color) => {
+const convertToHex = color => {
   
   const hexadecimalColors = {
     "black": '#000',
@@ -186,11 +195,13 @@ const convertToHex = (color) => {
   return hexadecimalColors[color] ? hexadecimalColorMessage : parameterNotFound
 }
 
+const colors = [ "black", "blue", "green", "violet", "purple", "brown", "red", "dark Orange", "yellofw", "white light"]
+const logColorMessage = color => console.log(convertToHex(color))
+
 setTimeout(()=> {
-  console.log(
-    convertToHex("yellofw")
-  )
+  colors.forEach( logColorMessage )
 }, 530)
+
 /*
   07
 
@@ -216,8 +227,13 @@ const people = [
   { id: 73, name: 'Aline', age: 19, federativeUnit: 'Brasília' }
 ]
 
+const createOrIncrementAgeFrequency = (acc, { age }) => {
+  acc[age] = acc[age] + 1 || 1 
+  return acc
+}
+
+const agesFrequency = people.reduce( createOrIncrementAgeFrequency, {} )
+
 setTimeout(()=> {
-  console.log(
-    `:(`
-  )
+  console.log(agesFrequency)
 }, 540)
