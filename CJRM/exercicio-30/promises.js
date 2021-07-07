@@ -1,4 +1,4 @@
-const getTodos = url => new Promise( (resolve, reject) => {
+const getPokemon = url => new Promise( (resolve, reject) => {
 
     const request = new XMLHttpRequest()
 
@@ -7,18 +7,12 @@ const getTodos = url => new Promise( (resolve, reject) => {
         const error = request.readyState === 4 && request.status === 404
 
         if (success) {
-            const data = {
-                "status": request.status,
-                "data": JSON.parse(request.responseText)
-            }
+            const data = JSON.parse(request.responseText)
             resolve(data)
         }
 
         if (error) {
-            const data = {
-                "status": JSON.parse(request.status),
-            }
-            reject(data)
+            reject('Não foi possível completar a requisição')
         }
     })
 
@@ -27,6 +21,16 @@ const getTodos = url => new Promise( (resolve, reject) => {
 
 })
 
-getTodos('../json/todos.json')
-    .then( data => console.log('Dados obtidos com sucesso - ', data) )
-    .catch( error => console.log(error, ' - Não foi possível completar a requisição') )
+getPokemon('https://pokeapi.co/api/v2/pokemon/bulbasaur')
+    .then( bulbasaur => {
+        console.log(bulbasaur)
+        return getPokemon('https://pokeapi.co/api/v2/pokemon/charizard')
+    })
+    .then( charizard => {
+        console.log(charizard)
+        return getPokemon('https://pokeapi.co/api/v2/pokemon/pikachu')
+    })
+    .then( pikachu => {
+        console.log(pikachu)
+    })
+    .catch( error => console.log(error) )
