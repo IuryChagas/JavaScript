@@ -15,17 +15,17 @@ console.info(
 */
 console.info("## Exercise >> 01")
 
-const getProfile = async () => {
-  const response = await fetch('https://api.github.com/users/iurychagas')
+const getGitHubProfile = async username => {
+  const response = await fetch(`https://api.github.com/users/${username}`)
   return await response.json()
 }
 
-const getMyProfile = async () => {
-  const myProfile = await getProfile()
-  console.log(myProfile)
+const logMyGitHubProfile = async username => {
+  return console.log(await getGitHubProfile(username))
 }
 
-getMyProfile()
+logMyGitHubProfile('iurychagas')
+
 /*
   02
 
@@ -38,15 +38,10 @@ setTimeout( ()=> {
 }, 10)
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-const numbersDividedby2Or3 = numbers.filter( number => {
-  if (number % 2 === 0 && number % 3 === 0) {
-    return number
-  }
-})
+const divisibleBy2Or3 = numbers.filter( number => number % 2 === 0 || number % 3 === 0 )
 
 setTimeout( ()=> {
-  console.table({ numbersDividedby2Or3 })
+  console.table({ divisibleBy2Or3 })
 }, 10)
 
 /*
@@ -66,14 +61,18 @@ setTimeout( ()=> {
   console.info("\n## Exercise >> 03")
 }, 10)
 
-const syllables = ['i', 'u', 'ry']
+const name1 = ['i', 'u', 'ry']
+const name2 = ['Ra', 'fa', 'ela']
+const name3 = ['Na', 'tá', 'lia']
 
-const teste = syllables.map( syllable => {
-  return `P${syllable}`
-})
+const getNameInPLanguage = name => {
+  return name.reduce( (acc, syllable) => acc = `${acc}P${syllable}`, ``)
+}
 
 setTimeout( ()=> {
-  console.log(teste.join('').toUpperCase())
+  console.log(getNameInPLanguage(name1)),
+  console.log(getNameInPLanguage(name2)),
+  console.log(getNameInPLanguage(name3))
 }, 10)
 
 /*
@@ -94,17 +93,19 @@ setTimeout( ()=> {
   console.info("\n## Exercise >> 04")
 }, 10)
 
-const myFirstName = 'Iury'.split('')
+const name = 'Iury'
 
-const splitName = myFirstName.reduce( (message, letter, position) => {
-  message += `"${letter.toUpperCase()}" é a ${++position}ª letra do meu nome.\n`
-  return message
-}, ``)
-
-setTimeout( ()=> {
-  console.log(myFirstName)
-  console.log(splitName)
-}, 10)
+const logSplittedName = name => {
+  const splittedName = name
+  
+  splittedName.split('').forEach( (letter, position) => {
+    return setTimeout( ()=> {
+      console.log(`"${letter.toUpperCase()}" é a ${++position}ª letra do meu nome.`)
+    }, 10)
+    
+  })
+}
+  logSplittedName(name)
 
 /*
   05
@@ -122,13 +123,13 @@ setTimeout( ()=> {
   console.info("\n## Exercise >> 05")
 }, 10)
 
-const object = {
-  name: '',
-  lastName: '',
-  age: 0
+const person = {
+  name: 'Iury',
+  lastName: 'Chagas',
+  age: 42
 }
 
-const arrayFrom = Object.keys(object)
+const arrayFrom = Object.keys(person)
 
 setTimeout( ()=> {
   console.log(arrayFrom)
@@ -152,16 +153,12 @@ setTimeout( ()=> {
 
 const scores = [100, 90, 85, 100, 60, 85, 100, 90, 55, 75, 60]
 
-const occurrenceOfValue = (array, value) => {
-
-  const getOcurrences = (occurrence, number) => occurrence += number === value
-  const defaultValue = 0
-
-  return array.reduce( getOcurrences, defaultValue)
+const getOccurrencesOf = (array, value) => {
+    return array.reduce((occurrence, number) =>  value === number  ? occurrence + 1 : occurrence, 0)
 }
 
 setTimeout( ()=> {
-  console.log(occurrenceOfValue(scores, 100))
+  console.log(getOccurrencesOf(scores, 100))
 }, 10)
 
 /*
@@ -186,3 +183,28 @@ setTimeout( ()=> {
   Dica: lembre-se que o método filter inclui o item em questão no novo array 
   que está sendo gerado **apenas** se a função retorna um valor truthy.
 */
+setTimeout( ()=> {
+  console.info("\n## Exercise >> 07")
+}, 10)
+
+const filter = (array, func) => {
+  let newArray = []
+
+  const filterItem = (number, index) => {
+    const itemShouldBeAdded = func(number, index, array)
+
+    if (itemShouldBeAdded) newArray.push(number)
+  }
+
+  array.forEach(filterItem)
+
+  return newArray
+} 
+
+setTimeout( ()=> { 
+  console.log(filter([1, 2, 3], item => item)),
+  console.log(filter([0, 1, 2], item => item)),
+  console.log(filter([1, 2, 3], item => item < 2)),
+  console.log(filter([1, 2, 3, 5], (item, index) => item === index + 1)),
+  console.log(filter([1, 2, 3, 2, 1, 5], (item, index, array) => index === array.indexOf(item)))
+}, 10)
