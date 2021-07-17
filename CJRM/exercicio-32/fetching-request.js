@@ -1,6 +1,5 @@
 const getUsers = async ()=> await
-    fetch('https://jsonplaceholder.typicode.com/users')
-        .then( response => response.json() )
+    ( await fetch('https://jsonplaceholder.typicode.com/users') ).json()
 
 const logUsers = async ()=> {
     const users = await getUsers()
