@@ -1,8 +1,15 @@
 const getUsers = async ()=> {
     try {
-        return await ( await fetch('../json/todos.json') ).json()
+        const response = await fetch('../json/to!%20dos.json')
+
+        if (!response.ok) {
+            throw new Error('Não foi possível obter os dados')
+        }
+
+        return response.json()
+
     } catch (error) {
-        console.error(error.message)
+        console.error(error)
     }
 }
 
