@@ -1,0 +1,30 @@
+html {
+  font-size: 20px;
+  line-height: 1.6;
+  font-family: Roboto, sans-serif;
+  background-color: #00bcd4ed;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+body {
+  width: 30%;
+  margin: 0 auto;
+}
+form {
+  margin: 1rem 0;
+}
+input {
+  text-align: center;
+}
+img {
+  width: 100%;
+  max-width: 100%;
+}
+button {
+  cursor: pointer;
+  background-color: #f47621;
+}
