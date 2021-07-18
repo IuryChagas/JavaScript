@@ -29,51 +29,56 @@ console.info(
 */
 
 const form = document.querySelector('form')
-const gifsContainer = document.querySelector('.contents')
-const giphyApiKey = `tEt0n9T7FWAJhCmn1Ux9N7kQgf9kyoyS`
+const GIFSContainer = document.querySelector('div')
 
-const setEndPointURL = (apiKey, gifName) => {
-  const endPoint = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${gifName}&limit=1&offset=0&rating=g&lang=en`
-  return endPoint
-}
+const APIKey = `tEt0n9T7FWAJhCmn1Ux9N7kQgf9kyoyS`
 
-const setImageGif = (url, alt, title) => {
+const getGIPHYApiUrl = GIFName => `https://api.giphy.com/v1/gifs/search?api_key=${APIKey}&q=${GIFName}&limit=1&offset=0&rating=g&lang=en`
+
+const generateGIFImg = (downsizedGIFUrl, GIFData) => {
   const img = document.createElement('img')
 
-  img.setAttribute('src', url)
-  img.setAttribute('alt', alt)
-  img.setAttribute('title', title)
-  
+  img.setAttribute('src', downsizedGIFUrl)
+  img.setAttribute('title', GIFData.data[0].title)
+
   return img
 }
 
-const insertGifAtContentContainer = (position, img) => {
-  return gifsContainer.insertAdjacentElement(position, img)
-}
-
-form.addEventListener('submit', async event => {
-  event.preventDefault()
-  const inputValue = event.target.search.value
-
-  const endPoint = setEndPointURL(giphyApiKey, inputValue)
-
+const fetchGIF = async inputValue => {
   try {
-    const response = await fetch(endPoint)
-    
+    const GIPHYApiUrl =   getGIPHYApiUrl(inputValue)
+    const response = await fetch(GIPHYApiUrl)
+
     if (!response.ok) {
       throw new Error('Não foi possível obter os dados')
     }
 
-    const gifDataObject = await response.json()
-    const gifURL = gifDataObject.data[0].images.downsized.url
-    const gifTitle = gifDataObject.data[0].title
-
-    const img = setImageGif(gifURL, gifTitle, gifTitle)
-    insertGifAtContentContainer('afterbegin', img)
+    return response.json()
 
   } catch (error) {
-    console.error(error)
+    console.error(`Erro: ${error.message}`)
+  }
+}
+
+const insertGIFIntoDOM = async (inputValue) => {
+
+  const GIFData = await fetchGIF(inputValue)
+
+  if (GIFData) {
+    const downsizedGIFUrl = GIFData.data[0].images.downsized.url
+    const img = generateGIFImg(downsizedGIFUrl, GIFData)
+
+    GIFSContainer.insertAdjacentElement('afterbegin', img)
+
+    form.reset()
   }
 
-  event.target.reset()
+}
+
+form.addEventListener('submit', async event => {
+  event.preventDefault()
+
+  const inputValue = event.target.search.value
+  insertGIFIntoDOM(inputValue)
+
 })
