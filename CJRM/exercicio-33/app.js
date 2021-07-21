@@ -14,7 +14,6 @@ console.info(
 console.info("## Exercise >> 01")
 
 console.log(book)
-console.log(' - [x] invertido a ordem de request do javascript no index.html')
 
 /*
   02
@@ -27,12 +26,10 @@ console.log(' - [x] invertido a ordem de request do javascript no index.html')
 */
 console.info("## Exercise >> 02")
 
-const swap = ([item1, _, item3]) => [item3, item1]
-
-const array = ['1º item', '2º item', '3º item']
+const swap = ([item1, , item3]) => [item3, item1]
 
 console.log(
-  swap(array)
+  swap(["item01", "item02", "item3"])
 )
 
 /*
@@ -49,7 +46,7 @@ const topics = [
   { id: 3, name: 'Carreiras'}
 ]
 
-const [, , { name }] = topics
+const [ , , { name} ] = topics
 
 console.log(name)
 
@@ -64,9 +61,19 @@ console.info("## Exercise >> 04")
 
 const colors = ['#FF00FF', ['#FF0D0D', '#0AFA00', '#011EFA'], '#7BF0FF']
 
-const [_, [red, green, blue], __] = colors
+const [ , [red, green, blue]] = colors
 
 console.log(red, green, blue)
+
+const object = {
+  property01: {
+    innerProp01: true
+  }
+}
+
+const { property01: { innerProp01 } } = object
+
+console.log(innerProp01)
 
 /*
   05
@@ -85,9 +92,9 @@ console.info("## Exercise >> 05")
 
 const greet = (obj, dynamicName) => {
   const { [dynamicName]: name = 'desconhecido' } = obj
+
   return `Olá, meu nome é ${name}!`
 }
-
 console.log(greet({ name: 'Iury' }, 'name'))
 console.log(greet({}, 'personName'))
 
@@ -105,6 +112,7 @@ console.log(greet({}, 'personName'))
 */
 console.info("## Exercise >> 06")
 
+console.log(`- [x] Traduza os possíveis valores da propriedade "WeatherText"`)
 
 /*
   07
@@ -114,5 +122,7 @@ console.info("## Exercise >> 06")
     - A repetição dos requests pode ser eliminada por uma função genérica e 
       reutilizável, responsável apenas por fazer requests.
 */
+
 console.info("## Exercise >> 07")
 
+console.log('- [x] refactoring concluído.')
