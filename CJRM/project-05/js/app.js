@@ -1,33 +1,34 @@
 const form = document.querySelector('[data-js="change-location"]')
-const imgTime = document.querySelector('[data-js="time"]')
+const cityCard = document.querySelector('[data-js="city-card"]')
+const timeImg = document.querySelector('[data-js="time"]')
 const timeIcon = document.querySelector('[data-js="time-icon"]')
-const climate = document.querySelector('.my-3')
 const cityNameContainer = document.querySelector('[data-js="city-name"]')
-const weatherText = document.querySelector('[data-js="weather-text"')
-const temperature = document.querySelector('[data-js="temperature"]')
+const cityWeatherContainer = document.querySelector('[data-js="city-weather"')
+const cityTemperatureContainer = document.querySelector('[data-js="city-temperature"]')
 
 form.addEventListener('submit', async event => {
     event.preventDefault()
 
     const inputValue = event.target.city.value
 
-    const response = await getCityWeather(inputValue)
-    const isDay = response[0].IsDayTime
-    if (isDay) {
-        imgTime.setAttribute('src', './src/day.svg')
-    }else {
-        imgTime.setAttribute('src', './src/night.svg')
+    const [{ Key, LocalizedName }] = await getCityData(inputValue)
+    const [{ WeatherText, Temperature, IsDayTime, WeatherIcon }] = await getCityWeather(Key)
+
+    if (cityCard.classList.contains('d-none')) {
+        cityCard.classList.remove('d-none')
     }
 
-    const weatherIcon = response[0].WeatherIcon
+    IsDayTime ? timeImg.src  = './src/day.svg' : timeImg.src = './src/night.svg'
+
+    const weatherIcon = WeatherIcon
 
     const imageIcon = document.createElement('img')
     imageIcon.setAttribute('src', `./src/icons/${weatherIcon}-s.png`)
     timeIcon.insertAdjacentElement('afterend', imageIcon)
 
-    cityNameContainer.textContent = inputValue
-    weatherText.textContent = response[0].WeatherText
-    temperature.textContent = response[0].Temperature.Metric.Value
+    cityNameContainer.textContent = LocalizedName
+    cityWeatherContainer.textContent = WeatherText
+    cityTemperatureContainer.textContent = Temperature.Metric.Value
 
     form.reset()
 })
