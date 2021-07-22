@@ -23,7 +23,8 @@ form.addEventListener('submit', async event => {
     const weatherIcon = WeatherIcon
 
     const imageIcon = document.createElement('img')
-    imageIcon.setAttribute('src', `./src/icons/${weatherIcon}-s.png`)
+    imageIcon.setAttribute('src', `./src/icons/svg/${weatherIcon}.svg`)
+    imageIcon.setAttribute('class', 'time-icon')
     timeIcon.insertAdjacentElement('afterend', imageIcon)
 
     cityNameContainer.textContent = LocalizedName
