@@ -29,5 +29,3 @@ const getCityWeather = async cityName => {
 
     return fetchData(endPoint)
 }
-
-getCityWeather('Curitiba').then( console.log )
