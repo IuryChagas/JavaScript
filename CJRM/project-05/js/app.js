@@ -27,15 +27,27 @@ const showCityWeatherInfo = async cityName => {
     cityNameContainer.textContent = LocalizedName
     cityWeatherContainer.textContent = WeatherText
     cityTemperatureContainer.textContent = Temperature.Metric.Value
+
+    showCityCard()
+}
+
+const showLocalStorageCity = () => {
+    const city = localStorage.getItem('city')
+
+    if (city) {
+        showCityWeatherInfo(city)
+    }
 }
 
 form.addEventListener('submit', event => {
     event.preventDefault()
 
     const inputValue = event.target.city.value
+    localStorage.setItem('city', inputValue)
 
-    showCityCard()
     showCityWeatherInfo(inputValue)
 
     form.reset()
 })
+
+showLocalStorageCity()
