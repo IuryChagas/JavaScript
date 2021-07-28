@@ -62,28 +62,18 @@ input.addEventListener('input', event => {
 */
 console.info("## Exercise >> 03")
 
-function add100 (num) {
-  return num + 100
-}
+const add100 = num => num + 100
 
-function divByFive (num) {
-  return num / 5
-}
+const divByFive = num => num / 5
 
-function multiplyByThree (num) {
-  return num * 3
-}
+const multiplyByThree = num => num * 3
 
-function multiplyFive (num) {
-  return num * 5
-}
+const multiplyFive = num => num * 5
 
-function addTen (num) {
-  return num + 10
-}
+const addTen = num => num + 10
 
 const combineOperations = (initValue, arrOfFunctions) => {
-  return arrOfFunctions.reduce(function(accumulator, func) {
+  return arrOfFunctions.reduce((accumulator, func) => {
     return func(accumulator)
   }, initValue)
 }
@@ -136,10 +126,6 @@ console.log(searchAlbum)
 console.log(albums.includes(JSON.stringify(searchAlbum)))
 
 
-if (albums.includes(searchAlbum)) {
-  console.log(`${JSON.stringify(searchAlbum)} existe no array albums.`)
-}
-
 const searchAlbumExistsInArray = albums.some( album => albums.id === searchAlbum.id)
 
 if (searchAlbumExistsInArray) {
@@ -154,6 +140,7 @@ if (searchAlbumExistsInArray) {
 console.info("## Exercise >> 05")
 
 const obj = {
+  prop0: ()=> {}, // www.json.org
   prop1: 'a',
   prop2: 'b',
   prop3: null,
@@ -164,13 +151,30 @@ const obj = {
   prop8: { a: 'x', b: 'y' },
 }
 
-const objAsJSON = JSON.stringify(obj, null, 2)
+// const objAsJSON = JSON.stringify(obj, null, 2)
 
-console.log(objAsJSON)
+// console.log(objAsJSON)
 
-const objCopy = JSON.parse(objAsJSON)
+// Spread Operator
+const objCopy = {
+  ...obj,
+  prop6: [
+    obj.prop6[0],
+    { ...obj.prop6[1] }
+  ],
+  prop8: {
+    ...obj.prop8
+  }
+}
 
-console.log(objCopy)
+obj.prop1 = 'X'
+obj.prop6[0] =  'item modificado!'
+obj.prop6[1].x =  'Valor modificado!'
+obj.prop8.a = 'Valor modificado!'
+
+console.log(obj, objCopy)
+
+console.log('obj.prop8 === objCopy.prop8 => ', obj.prop8 === objCopy.prop8)
 
 /*
   06
