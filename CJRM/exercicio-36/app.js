@@ -205,36 +205,30 @@ const nextButton = document.querySelector('[data-js="carousel__button--next"]')
 const prevButton = document.querySelector('[data-js="carousel__button--prev"]')
 const visible = document.querySelectorAll('.carousel__item--visible')
 
+const lastSlideIndex = slides.length - 1
 let currentSlideIndex = 0
 
+const manipulateSlidesClasses = currentSlideIndex => {
+
+  slides.forEach( slide => slide.classList.remove('carousel__item--visible'))
+  slides[currentSlideIndex].classList.add('carousel__item--visible')
+
+}
+
 nextButton.addEventListener('click', () => {
-  currentSlideIndex++
+  const correctSlideIndex = currentSlideIndex === lastSlideIndex
+    ? currentSlideIndex = 0
+    : ++currentSlideIndex
+
+    manipulateSlidesClasses(correctSlideIndex)
  
-  slides.forEach( slide => {
-    slide.classList.remove('carousel__item--visible')
-  })
-
-  if (currentSlideIndex < slides.length) {
-    slides[currentSlideIndex].classList.add('carousel__item--visible')
-
-  }else {
-    currentSlideIndex = 0
-    slides[currentSlideIndex].classList.add('carousel__item--visible')
-  }
-
 })
 
 prevButton.addEventListener('click', () => {
-  if (currentSlideIndex === 0) {
-    currentSlideIndex = slides.length - 1
-  }else {
-    currentSlideIndex--
-  }
+  const correctSlideIndex = currentSlideIndex === 0
+    ? currentSlideIndex = lastSlideIndex
+    : --currentSlideIndex
 
-  slides.forEach( slide => {
-    slide.classList.remove('carousel__item--visible')
-  })
-
-  slides[currentSlideIndex].classList.add('carousel__item--visible')
+  manipulateSlidesClasses(correctSlideIndex)
 
 })
