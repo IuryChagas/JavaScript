@@ -20,11 +20,7 @@ class Animal {
 }
 
 class Rabbit extends Animal {
-  constructor (name) {
-    super(name)
-    this.name = name
-    this.created = new Date()
-  }
+  created = new Date()
 }
 
 let rabbit = new Rabbit('White Rabbit')
@@ -39,22 +35,31 @@ console.log(rabbit)
 console.info("## Exercise >> 02")
 
 class Counter {
-  constructor(number){
-    this.value = number
+    #number = 0
+
+  get value() {
+    return console.log(this.#number)
   }
-  getValue() {
-    return console.log(this.value)
-  }
+
   increment() {
-    return this.value++
+    return this.#number++
+  }
+
+  set newValue (number) {
+    this.#number = number
   }
 }
 
 const counter = new Counter(5)
 
-counter.getValue()
+counter.value
 counter.increment()
-counter.getValue()
+counter.value
+
+counter.newValue = 10
+counter.value
+counter.increment()
+counter.value
 
 /*
   03
@@ -74,20 +79,8 @@ const values = [
   () => {}
 ]
 
-class TruthyValues {
-  constructor(value){
-    this.value = value
-  }
-  isTruthyValue(){
-    let truthyValues = []
-    this.value.filter( value => value ? truthyValues.push(value) :  false)
-    return console.log(truthyValues)
-  }
-}
-
-const onlyTruthyValues = new TruthyValues(values)
-
-onlyTruthyValues.isTruthyValue()
+const truthyValues = values.filter( Boolean )
+console.log(truthyValues)
 
 /*
   04
@@ -115,14 +108,13 @@ const formattedTimeUnits = units => units.map( unit => unit < 10 ? `0${unit}` : 
 const getformattedTime = template => {
 
   const [hours, minutes, seconds] = getTime()  
-  const [formattedHours, formattedMinutes, formattedSeconds] = formattedTimeUnits([hours, minutes, seconds])
+  const formattedTime = formattedTimeUnits([hours, minutes, seconds])
 
-  const formattedTime = template
-    .replace('h', formattedHours)
-    .replace('m', formattedMinutes)
-    .replace('s', formattedSeconds)
+  return template
+            .split(':')
+            .map((_, index) => formattedTime[index])
+            .join(':')
 
-  return formattedTime
 }
 
 class Clock {
@@ -136,8 +128,10 @@ class Clock {
   }
 
   start () {
+    const oneSecond = 1000
+
     this.render()
-    this.timer = setInterval(() => this.render(), 1000)
+    this.timer = setInterval(() => this.render(), oneSecond)
   }
 
   stop () {
@@ -149,7 +143,7 @@ class ExtendedClock extends Clock {
   constructor (options) {
     super(options)
 
-    let { precision = 1000 } = options
+    const { precision = 1000 } = options
     this.precision = precision
   }
 
@@ -161,7 +155,7 @@ class ExtendedClock extends Clock {
 
 const clock = new ExtendedClock({ template: 'h:m:s', precision: 1000 })
 
-clock.start()
+// clock.start()
 
 /*
   05
@@ -175,14 +169,16 @@ console.info("## Exercise >> 05")
 const textarea = document.querySelector('[data-js="textarea"]')
 const paragraph = document.querySelector('[data-js="paragraph"]')
 
-textarea.addEventListener('keyup', event => {
+const showCounterParagraph = event => {
 
   const inputValue = event.target.value
-  const valueLength = inputValue.length
+  const currentLength = inputValue.length
+  const maxLength = event.target.getAttribute('maxlength')
 
-  paragraph.textContent = valueLength
+  paragraph.textContent = `${currentLength} / ${maxLength}`
+}
 
-})
+textarea.addEventListener('input', showCounterParagraph)
 
 /*
   06
@@ -212,3 +208,23 @@ textarea.addEventListener('keyup', event => {
 */
 console.info("## Exercise >> 06")
 
+const reduce = (arr, func, type) => {
+  let acc = type
+
+  arr.forEach((item, index, array) => {
+    acc = func(acc, item, index, array)
+  })
+
+  return acc
+}
+
+
+console.log(reduce([1, 2, 3], (acc, item) => acc + item, 0))
+console.log(reduce([2, 3, 4], (acc, item) => acc + item, 0))
+console.log(reduce([1, 2], (acc, item) => {
+  acc['number-' + item] = item
+    return acc
+  },{}
+))
+console.log(reduce([1, 2], (acc, item, index) => acc + index, 0))
+console.log(reduce([1, 2], (acc, item, index, array) => acc + array[index], 0))
