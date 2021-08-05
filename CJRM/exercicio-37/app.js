@@ -211,20 +211,26 @@ console.info("## Exercise >> 06")
 const reduce = (arr, func, type) => {
   let acc = type
 
-  arr.forEach((item, index, array) => {
+  const accumulateCallbackReturn = (item, index, array) => {
     acc = func(acc, item, index, array)
-  })
+  }
+
+  arr.forEach(accumulateCallbackReturn)
 
   return acc
 }
 
-
-console.log(reduce([1, 2, 3], (acc, item) => acc + item, 0))
-console.log(reduce([2, 3, 4], (acc, item) => acc + item, 0))
-console.log(reduce([1, 2], (acc, item) => {
+const createItemBasedProperties = (acc, item) => {
   acc['number-' + item] = item
-    return acc
-  },{}
-))
-console.log(reduce([1, 2], (acc, item, index) => acc + index, 0))
-console.log(reduce([1, 2], (acc, item, index, array) => acc + array[index], 0))
+  return acc
+}
+
+const sumItems = (acc, item) => acc + item
+const sumItemsPlusIndex =  (acc, _, index) => acc + index
+const sumItemsUsingArrayParam = (acc, _, index, array) => acc + array[index]
+
+console.log(reduce([1, 2, 3], sumItems, 0))
+console.log(reduce([2, 3, 4], sumItems, 0))
+console.log(reduce( [1, 2], createItemBasedProperties, {} ))
+console.log(reduce([1, 2], sumItemsPlusIndex, 0))
+console.log(reduce([1, 2], sumItemsUsingArrayParam, 0))
