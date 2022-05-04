@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="UTF-8">
+   <title>React App</title>
+   <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+ </head>
+ <style>
+   html{
+    font-family: 'Bebas Neue', cursive;
+    background-color: #282c34;
+    color: rgb(97, 218, 251);
+    text-align: center;
+   }
+   span {color: red;}
+ </style>
+ <body>
+  <div id="app"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
+  <script type="text/babel">
+	// Creating own components
+	var Title = React.createClass({
+	  render: function (){
+	    return (
+	    	<h1>
+		  <span>Hello Folks!</span>
+		</h1>
+	    )
+	  }	
+	})
+	// Introduction JSX
+	ReactDOM.render(
+	 <Title />,
+	 document.getElementById('app')
+	);
+
+        </script>
+    </body>
+</html>
