@@ -72,12 +72,12 @@ section(2)
 
 const hour = 23
 
-const morning = hour > 0 && hour < 12 
-const afternoon = hour >= 12 && hour <= 18
+const isMorning = hour > 0 && hour < 12 
+const isAfternoon = hour >= 12 && hour <= 18
 
-if(morning){
+if(isMorning){
     result(`Bom dia!`)
-}else if(afternoon){
+}else if(isAfternoon){
     result(`Boa tarde!`)
 }else {
     result(`Boa noite!`)
@@ -99,9 +99,11 @@ if(morning){
 section(3)
 
 const age = 142
-let ticketTypeMessage = ``
+let ticketTypeMessage = null
+const isChild = age <= 7
+const isOlder = age >= 65
 
-if (age <= 7 || age >= 65) {
+if ( isChild || isOlder) {
     ticketTypeMessage = `Para você, a entrada é grátis!`
     result(ticketTypeMessage)
 }else {
@@ -120,15 +122,20 @@ if (age <= 7 || age >= 65) {
 section(4)
 
 const numbers = [7, 92, 34, 46, 90, 25, 11, 3, 89, 76, 99]
-let newArrayOfNumber = []
+let numbersBetween11And90 = []
 
-for (let number = 0; number < numbers.length; number++) {
-  if (numbers[number] >= 11 && numbers[number] <= 90) {
-    newArrayOfNumber.push(numbers[number])
+for (let num = 0; num < numbers.length; num++) {
+  
+  const number = numbers[num]
+  const isNumberBetween11And90 = number >= 11 && number <= 90
+
+  if (isNumberBetween11And90) {
+    numbersBetween11And90.push(number)
   }
+
 }
 
-result(newArrayOfNumber)
+result(numbersBetween11And90)
 
 /*
   05
@@ -151,13 +158,19 @@ let nums = 0
 let strings = 0
 
 for (let item = 0; item < crazyArray.length; item++) {
-  if (typeof crazyArray[item] === typeof Number()) {
+
+  const typeOfItem = typeof crazyArray[item]
+  const isItemABoolean = typeOfItem === typeof Boolean()
+  const isItemANumber = typeOfItem === typeof Number()
+  
+  if (isItemANumber) {
     nums++
-  } else if(typeof crazyArray[item] === typeof Boolean()){
+  } else if(isItemABoolean){
     booleans++
   } else {
     strings++
   }
+
 }
 
 result(`"O crazyArray tem ${booleans} booleans, ${nums} números e ${strings} strings."`)
@@ -184,18 +197,22 @@ const oddNumbers = []
 const evenNumbers = []
 
 for (let num = 0; num < randomNumbers.length; num++) {
-  let number = randomNumbers[num];
-  if (number % 2 === 0) {
+
+  let number = randomNumbers[num]
+  const isEvenNumber = number % 2 === 0
+
+  if (isEvenNumber) {
     evenNumbers.push(number)
   }else {
     oddNumbers.push(number)
   }
+
 }
 
 const lastOddNumber = oddNumbers[oddNumbers.length -1]
 const lastEvenNumber = evenNumbers[evenNumbers.length -1]
 
-const listOfOddNumbers = `${oddNumbers.join(', ').replace(`, ${lastOddNumber}`, ` e ${lastOddNumber}`)}`
-const listOfEvenNumbers = `${evenNumbers.join(', ').replace(`, ${lastEvenNumber}`, ` e ${lastEvenNumber}`)}`
+const oddNumbersString = `${oddNumbers.join(', ').replace(`, ${lastOddNumber}`, ` e ${lastOddNumber}`)}`
+const evenNumbersString = `${evenNumbers.join(', ').replace(`, ${lastEvenNumber}`, ` e ${lastEvenNumber}`)}`
 
-result(`Numeros ímpares: ${listOfOddNumbers}. Números pares: ${listOfEvenNumbers}.`)
+result(`Numeros ímpares: ${oddNumbersString}. Números pares: ${evenNumbersString}.`)
