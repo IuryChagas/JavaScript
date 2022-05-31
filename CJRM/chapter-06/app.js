@@ -56,13 +56,13 @@ section(3)
 
 const randomNumbers = [59, 61, 73, 57, 35, 73, 21, 87, 43]
 let total = 0
-
+const limit = 400
 for(let i = 0; i < randomNumbers.length; i++){
   let number = randomNumbers[i]
   total += number
 
-  if(total > 400){
-    result(`A soma ultrapassou 400. Até aqui, o valor atual é ${total}.`)
+  if(total > limit){
+    result(`A soma ultrapassou ${limit}. Até aqui, o valor atual é ${total}.`)
     break
   }
 }
@@ -79,22 +79,28 @@ section(4)
 
 const sentence = ['A', 'certeza', 'dúvida', 'é', 'o', 'princípio', 'da', 'sabedoria.']
 
-const certezaExist = sentence.indexOf('certeza') > -1
-const removeWordCerteza = sentence.splice(sentence.indexOf('certeza'), 1)
+const wordExist = sentence.indexOf('certeza') > -1
+const removeWord = sentence.splice(sentence.indexOf('certeza'), 1)
 
-if(certezaExist){
-  removeWordCerteza
-}
+if (wordExist) removeWord
 
 result(sentence.join(' '))
 
-// if (!sentence.includes('certeza')) {
-//   console.log(sentence.join(' '))
-// }else {
-//   sentence.splice(sentence.indexOf('certeza'), 1)
-//   console.log(sentence.join(' '))
-// }
+/* Option 2 */
 
+let newSentence = ''
+
+for(let i = 0; i < sentence.length; i++){
+  const word = sentence[i]
+
+  if(word === 'certeza'){
+    continue
+  }
+
+  newSentence += `${word} `
+}
+
+result(newSentence)
 
 /*
   05
@@ -113,35 +119,41 @@ section(5)
 
 const randomValues = [57, false, 'JS', [], true, 'HTML', 31, null, false, 'CSS', 97, true, 'Git', 11, 'sticker', false, 'GitHub', true, null]
 
-let booleansTotal = 0
-let stringsTotal = 0
-let arrayIterations = 0
-let strings = []
+let booleansAmount = 0
+let stringsAmount = 0
+let totalIterations = 0
+let firstFourStrings = []
 
 for (let i = 0; i < randomValues.length; i++) {
   const value = randomValues[i]
+  const typeOfValue = typeof value
+  const isItemAString = typeOfValue === typeof ''
+  const isItemABoolean = typeOfValue === typeof Boolean()
 
-  if (stringsTotal === 4) {
-    arrayIterations = i
+  if (stringsAmount === 4) {
     break
   }
-
-  if(typeof value === typeof ''){
-    stringsTotal++
-    strings.push(value)
+  
+  if(isItemAString){
+    stringsAmount++
+    firstFourStrings.push(value)
+  }
+  
+  if (isItemABoolean) {
+    booleansAmount++
   }
 
-  if (typeof value === typeof Boolean()) {
-    booleansTotal++
-  }
-
+  totalIterations++
 }
+
+const lastItem = firstFourStrings[firstFourStrings.length -1]
+const fourStrings = firstFourStrings.join(', ').replace(`, ${lastItem}`, ` e ${lastItem}`)
 
 const message = `\n
 3 informações sobre o array randomValues:
-  - As primeiras 4 strings são ${strings.join(', ')}.
-  - Até que as primeiras 4 strings fossem iteradas, ${booleansTotal} booleans foram iterados.
-  - O array foi iterado por ${arrayIterations} vezes.
+  - As primeiras 4 strings são ${fourStrings}.
+  - Até que as primeiras 4 strings fossem iteradas, ${booleansAmount} booleans foram iterados.
+  - O array foi iterado por ${totalIterations} vezes.
 `
 result(message)
 
@@ -167,26 +179,24 @@ result(message)
 section(6)
 
 const drinkType = 'cerveja'
-let msg = ''
+let drinkMessage = null
 
 switch (drinkType) {
   case 'água':
-    msg = 'Substância química cujas moléculas são formadas por dois átomos de hidrogênio e um de oxigênio.'
-    result(msg)
+    drinkMessage = 'Substância química cujas moléculas são formadas por dois átomos de hidrogênio e um de oxigênio.'
     break;
   case 'refrigerante':
-    msg = 'Bebida não alcoólica e não fermentada, fabricada industrialmente, à base de água mineral e açúcar.'
-    result(msg)
+    drinkMessage = 'Bebida não alcoólica e não fermentada, fabricada industrialmente, à base de água mineral e açúcar.'
     break;
   case 'suco':
-    msg = 'Bebida produzida do líquido extraído de frutos.'
-    result(msg)
+    drinkMessage = 'Bebida produzida do líquido extraído de frutos.'
     break;
   default:
-    msg = 'Bebida desconhecida.'
-    result(msg)
+    drinkMessage = 'Bebida desconhecida.'
     break;
 }
+
+result(drinkMessage)
 
 /*
   07
@@ -197,27 +207,18 @@ switch (drinkType) {
 */
 section(7)
 
-const a = 2
+const number = 2
 
-// if (a === 0) {
-//   console.log(`O valor de "a" é ${a}`)
-// } else if (a === 1) {
-//   console.log(`O valor de "a" é ${a}`)
-// } else {
-//   console.log('O valor de "a" é qualquer número, exceto 0 e 1')
-// }
+let numberMessage = `O valor de "number" é ${number}`
 
-msg = `O valor de "a" é ${a}`
-
-switch (a) {
-  case a === 0:
-    result(msg)
+switch (number) {
+  case number === 0:
     break;
-  case a === 1:
-    result(msg)
+  case number === 1:
     break;
   default:
-    msg = 'O valor de "a" é qualquer número, exceto 0 e 1'
-    result(msg)
+    numberMessage = numberMessage.replace(`${number}`, ' qualquer número, exceto 0 e 1')
     break;
 }
+
+result(numberMessage)
