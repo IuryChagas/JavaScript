@@ -61,18 +61,21 @@ section(3)
 const car = {
     name: `SUV3`,
     brand: `Lexus`,
-    colors: [`Prata`, `Preto`, `Azul petróleo`],
-    isRunning(value = false) {
-        return value
-    },
+    colors: [`Prata`, `Preto`, `Azul netuno`],
+    isRunning: false,
     run(){
+        this.isRunning = true
         return `${this.name} está em movimento`
     },
     stop() {
+        this.isRunning = false
         return `${this.name} está parado`
     },
     getColorMessage() {
-        return `O ${this.name} está disponível nas cores ${this.colors[0]}, ${this.colors[1]} e ${this.colors[2]}`
+      const lastItem = this.colors[this.colors.length -1]
+      const colors = this.colors.join(', ').replace(`, ${lastItem}`,` e ${lastItem}`)
+
+        return `O ${this.name} está disponível nas cores ${colors}`
     }
 }
 
