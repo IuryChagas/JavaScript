@@ -41,15 +41,14 @@ const best2019Movies = [
     { title: 'A Vida Invisível', directedBy: 'Karim Aïnouz' }
 ]
 
-let releaseMovie = []  
+let message = `Segundo o site Omelete, os melhores filmes de 2019 são:`
 
 best2019Movies.forEach(movie => {
-    let movieDescription = `- ${movie.title}, dirigido por ${movie.directedBy}\n`
-    releaseMovie.push(movieDescription)
+    return message += `
+    - ${movie.title}, dirigido por ${movie.directedBy}`
 })
 
-result(`\n\nSegundo o site Omelete, os melhores filmes de 2019 são:\n${releaseMovie.join('')}`)
-
+console.log(message)
 /*
 02
 
@@ -83,23 +82,19 @@ const youtubeUser = {
         },
         country: 'Brasil'
     },
-    lastVideos(){
-        let lastMovieList = []
-        let movieTitle = ``
-        
-        for (let i = 0; i < this.videos.recentVideos.length; i++) {
-            movieTitle = this.videos.recentVideos[i].title
-            lastMovieList.push(movieTitle)
+    getRecentVideos(){
+        console.log(`Vídeos recentes de ${this.name}:`)
+
+        const getVideoTitle = video => {
+            const title = video.title
+            console.log(title)
         }
 
-        return `\nVídeos recentes de ${this.name}:\n${lastMovieList.join('\n')}`
-
+        this.videos.recentVideos.forEach(getVideoTitle)
     }
-
 }
-section(2)
 
-result(youtubeUser.lastVideos())
+youtubeUser.getRecentVideos()
 
 
 /*
@@ -128,7 +123,7 @@ result(Math.ceil(firstNumber))
 section(5)
 const secondNumber = 3.5
 
-result(Math.ceil(secondNumber))
+result(Math.round(secondNumber))
 /*
 06
 
@@ -146,6 +141,7 @@ result(Math.floor(thirdNumber))
 section(7)
 const fourthNumber = 5.5
 
+result(Math.trunc(fourthNumber))
 /*
 08
 
@@ -153,4 +149,4 @@ const fourthNumber = 5.5
 */
 section(8)
 
-result(Math.trunc(Math.random() * 10))
+result(Math.round(Math.random() * 10))
