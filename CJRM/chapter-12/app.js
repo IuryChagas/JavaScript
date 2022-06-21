@@ -29,9 +29,11 @@ const getCatInfo = () => {
     return { name, age, color }
 }
 
-const name = getCatInfo().name
-const color = getCatInfo().color
-const age = getCatInfo().age
+// const name = getCatInfo().name
+// const color = getCatInfo().color
+// const age = getCatInfo().age
+
+const {name, color, age} = getCatInfo()
 
 result(`${name} é um gato ${color} de ${age}.`)
 
