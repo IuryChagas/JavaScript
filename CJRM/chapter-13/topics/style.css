@@ -1,0 +1,27 @@
+.erro {
+    padding: 10px;
+    color: crimson;
+    border: 1px dotted crimson;
+}
+
+.success {
+    padding: 10px;
+    color: chartreuse;
+    border: 3px dotted chartreuse;
+    background-color: rgba(145, 231, 58, 0.425);
+}
+
+
+.ok {
+    display: inline-block;
+    box-sizing: border-box;
+    background-color: greenyellow;
+    padding: .1em;
+}
+
+.error {
+    display: inline-block;
+    box-sizing: border-box;
+    background-color: darkred;
+    padding: .1em;
+}

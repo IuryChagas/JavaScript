@@ -1,0 +1,7 @@
+body { font-family: 'Courier New', Courier, monospace }
+.body-background {
+    color: white;
+    background-color: #3d0f92;
+}
+.number { list-style: none }
+.link { color: rgb(0, 163, 218) }
