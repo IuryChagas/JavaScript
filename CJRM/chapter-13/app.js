@@ -64,10 +64,11 @@ const addConditionalColor = li => {
     const evenNumber = number % 2 === 0
 
     if (evenNumber) {
-        li.style.color = `#lightblue`
-    } else {
-        li.style.color = `red`
+        li.style.color = `lightblue`
+        return
     }
+
+    li.style.color = `red`
 }
 
 li.forEach(addConditionalColor)
@@ -82,7 +83,8 @@ P.s: a classe "body-background" já está declarada no style.css.
 */
 section(4)
 
-const body = document.querySelector('body')
+// const body = document.querySelector('body')
+const body = document.body
 
 body.classList.add('body-background')
 
@@ -120,7 +122,7 @@ result(url.getAttribute('href'))
 */
 section(7)
 
-result(title.classList)
+result(title.style)
 
 /*
 08
@@ -141,6 +143,6 @@ section(9)
 
 const a = document.querySelector('a')
 
-a.toggleAttribute('class')
+a.classList.toggle('link')
 
 result(a)
