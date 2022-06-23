@@ -19,15 +19,16 @@ const result = result => {
 */
 section(1)
 
-const li = document.querySelectorAll('li')
-const addClassVideo = li => {
-    // li.setAttribute('class', 'video')
-    li.classList.add('video')
+const unorderedList = document.querySelector('.videos')
+const lis = Array.from(unorderedList.children)
+
+const insertVideoClass = li => {
+    li.classList.add('videos')
 }
 
-li.forEach(addClassVideo)
+lis.forEach(insertVideoClass)
 
-result(li[0].getAttribute('class'))
+result(lis)
 
 /*
 02
@@ -65,14 +66,19 @@ result(ul.previousElementSibling)
 */
 section(5)
 
-li.forEach( li => {
-    li.addEventListener( 'click', event => {
-        // event.target
-        // event.target.textContent
-        // li.textContent
-        console.log(event.target.textContent)
-    })
-})
+const li = document.querySelectorAll('li')
+const showClickedLI = event => {
+    // event.target
+    // event.target.textContent
+    // li.textContent
+    result(event.target)
+}
+
+const addClickEvent = li => {
+    li.addEventListener('click', showClickedLI)
+}
+
+li.forEach(addClickEvent)
 
 /*
 06
@@ -98,15 +104,15 @@ const videos = [
 
 const button = document.querySelector('button')
 
-button.addEventListener('click', event => {
-    
-    videos.forEach(video => {
-        const title = video.name
-        const newLI = document.createElement('li')
-        newLI.textContent += title
-        ul.append(newLI)
-    })
-})
+const insertVideoLI = ({ name }) => {
+    ul.innerHTML += `<li>${name}</li>`
+}
+
+const handleClickButton = () => {
+    videos.forEach(insertVideoLI)
+}
+
+button.addEventListener('click', handleClickButton)
 
 /*
 07
@@ -117,7 +123,5 @@ section(7)
 let body = document.querySelector('body')
 
 h1.addEventListener('click', event => {
-    while(body.hasChildNodes()) {
-        //...
-    }
+    body.innerHTML = ''
 })
