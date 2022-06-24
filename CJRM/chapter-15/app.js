@@ -20,10 +20,24 @@ const result = result => {
 section(1)
 
 const div = document.querySelector('div')
+const elementsInsideDiv = Array.from(div.children)
 
-div.addEventListener('click', ()=> {
-    result('Clicou na div!')
+div.addEventListener('click', ({ target }) => {
+  const clickedElementName = target.tagName.toLowerCase()
+
+  if (clickedElementName === 'DIV') {
+     h2.textContent = 'Clicou na div.'
+     return
+  }
+  h2.textContent = `Clicou no ${clickedElementName}, filho da div.`
 })
+
+// elementsInsideDiv.forEach( element => {
+//   element.addEventListener('click', event => {
+//     event.stopImmediatePropagation()
+//     result(`Clicou no filha da div.`)
+//   })
+// })
 
 /*
   02
@@ -33,11 +47,13 @@ div.addEventListener('click', ()=> {
 */
 section(2)
 
-div.addEventListener('click', event => {
-    const tag = event.target.nodeName
-    console.log(tag)
-    result(`Clicou no <${tag}>, filho da div.`)
-})
+const showEventMessage = event => {
+  const tag = event.target.tagName.toLowerCase()
+  console.log(tag)
+  result(`Clicou no <${tag}>, filho da div.`)
+}
+
+div.addEventListener('click', showEventMessage)
 
 /*
   03
@@ -46,12 +62,15 @@ div.addEventListener('click', event => {
     filho da div, ao invés de ser exibida no console, seja inserida neste h2.
 */
 section(3)
+
 const h2 = document.querySelector('h2')
 
-div.addEventListener('click', event => {
-    const tag = event.target.nodeName
-    h2.textContent = `Clicou no <${tag}>, filho da div.`
-})
+const showClickMessage = event => {
+  const tag = event.target.tagName
+  h2.textContent = `Clicou no <${tag}>, filho da div.`
+}
+
+div.addEventListener('click', showClickMessage)
 
 /*
   04
@@ -60,9 +79,11 @@ div.addEventListener('click', event => {
 */
 section(4)
 
-h2.addEventListener('copy', () => {
-    result(`Texto copiado!`)
-})
+const showCopyMessage = () => {
+  result(`Texto copiado!`)
+}
+
+h2.addEventListener('copy', showCopyMessage)
 
 /*
   05
@@ -73,11 +94,12 @@ h2.addEventListener('copy', () => {
 section(5)
 
 const eggTag = document.querySelector('.egg')
+const shoeCoordinates = ({ offsetX, offsetY }) => {
+  eggTag.textContent = `Eixo X: ${offsetX} | Eixo Y: ${offsetY}`
+  result(`Eixo X: ${offsetX} | Eixo Y: ${offsetY}`)
+}
 
-eggTag.addEventListener('mousemove', event => {
-    eggTag.textContent = `Eixo X: ${event.offsetX} | Eixo Y: ${event.offsetY}`
-    result(`Eixo X: ${event.offsetX} | Eixo Y: ${event.offsetY}`)
-})
+eggTag.addEventListener('mousemove', shoeCoordinates)
 
 /*
   06
@@ -88,10 +110,12 @@ section(6)
 
 const button = document.querySelector('button')
 
-button.addEventListener('click', () => {
-    eggTag.style.backgroundColor = `lightgoldenrodyellow`
-    result(eggTag)
-})
+const changeEggColor = () => {
+  eggTag.style.backgroundColor = `lightgoldenrodyellow`
+  result(eggTag)
+}
+
+button.addEventListener('click', changeEggColor)
 
 /*
   07
@@ -116,8 +140,8 @@ const people = [
 
 let message = ``
 
-people.some( employee => {
-  const hasFrontEndDeveloper = employee.profession === `Front-end developer`
+people.some( ({ profession }) => {
+  const hasFrontEndDeveloper = profession === `Front-end developer`
 
   if (hasFrontEndDeveloper) {
     message = `O array people contém, no mínimo, um(a) Front-end developer.`
