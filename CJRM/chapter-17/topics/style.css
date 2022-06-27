@@ -1,0 +1,30 @@
+body {
+    background-color: #f3f3f3;
+    font-family: 'Courier New', Courier, monospace;
+}
+h1 { text-align: center }
+form {
+    max-width: 200px;
+    margin: 40px auto;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+input, button {
+    display: block;
+    margin: 10px auto;
+    padding: 4px;
+}
+
+button { cursor: pointer }
+
+.success {
+    background-color: #00ff2685;
+    border-radius: 5%;
+    border: solid 2px green;
+}
+.error {
+    background-color: #ff7b94;
+    border-radius: 5%;
+    border: solid 2px #e50019;
+}
