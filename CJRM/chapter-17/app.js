@@ -28,57 +28,59 @@ console.info(
 
 const form = document.querySelector('form')
 const input = document.querySelector('input')
-const feedbackLabel = document.createElement('p')
+const feedbackParagraph = document.createElement('p')
+const button = document.querySelector('button')
 
-const usernameValidation = input => {
+const usernameValidation = username => {
   const regexUsernamePattern = /^[a-zA-Z]{6,}$/
-  return regexUsernamePattern.test(input)
+  return regexUsernamePattern.test(username)
 }
 
-const customSuccessFeedback = (input, label, message) => {
-  input.style.border = `0.1rem solid green`
-  input.style.backgroundColor = `#01e90321`
-  label.setAttribute('class', 'username-success-feedback')
-  label.textContent = message
-}
+const customSuccessFeedback = (relativeTagName, message) => {
+  feedbackParagraph.textContent = message
 
-const customErrorFeedback = (input, label, message) => {
-  input.style.border = `0.1rem solid darkorange`
-  input.style.backgroundColor = `#e9470121`
-  label.setAttribute('class', 'username-help-feedback')
-  label.textContent = message
-}
-
-const feedbackMessage = (feedback, input, label, message) => {
-  if (feedback === `success`) {
-    customSuccessFeedback(input, label, message)
+  if (relativeTagName === "input") {
+    feedbackParagraph.setAttribute('class', 'username-success-feedback')
     return
   }
-  customErrorFeedback(input, label, message)
+
+  feedbackParagraph.setAttribute('class', 'submit-success-feedback')
 }
 
-const usernameStatusChecker = (status) =>  console.log(status)
+const customErrorFeedback = (relativeTagName, message) => {
+  feedbackParagraph.textContent = message
 
-form.addEventListener('submit', event => event.preventDefault())
+  if(relativeTagName === "input") {
+    feedbackParagraph.setAttribute('class', 'username-help-feedback')
+    return
+  }
 
-form.username.addEventListener('keyup', event => {
+  feedbackParagraph.setAttribute('class', 'submit-help-feedback')
+}
+
+const feedbackMessage = (status, relativeTagName, message) => {
+  relativeTagName.insertAdjacentElement('afterend', feedbackParagraph)
+  
+  if (status === `success`) {
+    customSuccessFeedback(relativeTagName, message)
+    return
+  }
+
+  customErrorFeedback(relativeTagName, message)  
+}
+
+form.username.addEventListener('input', event => {
   const inputValue = event.target.value
   const isAValidUsername = usernameValidation(inputValue)
- 
-  input.insertAdjacentElement('afterend', feedbackLabel)
 
-  usernameStatusChecker(isAValidUsername)
-
-  if(isAValidUsername){
-    const message = `Username válido =)`
-    feedbackMessage('success', input, feedbackLabel, message)
-    usernameStatusChecker(true)
+  if(!isAValidUsername){
+    const message = `Seu username deve conter no mínimo 6 caracteres, apenas letras maiúsculas e/ou minúsculas`
+    feedbackMessage('error', input, message)
     return
   }
 
-  const message = `Seu username deve conter no mínimo 6 caracteres, apenas letras maiúsculas e/ou minúsculas`
-  feedbackMessage('error', input, feedbackLabel, message)
-  usernameStatusChecker(false)
+  const message = `Username válido =)`
+  feedbackMessage('success', input, message)
 })
 
 /*
@@ -93,21 +95,22 @@ form.username.addEventListener('keyup', event => {
   - Não insira o parágrafo manualmente no index.html.
 */
 
+const paragrath = document.createElement('p')
+
 form.addEventListener('submit', event => {
-  const inputValue = event.target.value
-  const isAValidUsername = usernameValidation(inputValue)
+  event.preventDefault()
 
-  if (isAValidUsername) {
-    const message = "Dados enviados =)"
-    feedbackMessage('success', input, feedbackLabel, message)
+  const username = event.target.username.value
+  
+  if (!usernameValidation(username)) {
+    const message = `Para efetivar o envio, insira um username válido`
+    feedbackMessage('error', button, message)
     return
   }
 
-  if (!isAValidUsername) {
-    const message = "Por favor, insira um username válido"
-    feedbackMessage('error', input, feedbackLabel, message)
-    return
-  }
+  const message =  `Dados enviados =)`
+  feedbackMessage('success', button, message)
+
 })
 
 /*
