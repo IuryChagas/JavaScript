@@ -146,3 +146,23 @@ form.addEventListener('submit', showSubmitInfo)
     2) Pesquisar no MDN.
 */
 
+const numbers = [1, 2, 3]
+
+const some = (arr, func) => {
+  for (let i = 0; i < arr.length; i++) {
+    
+    const item = arr[i]
+
+    if(func(item)){
+      return true
+    }
+  }
+
+  return false
+}
+
+console.log(some(numbers, item => item > 2))
+console.log(some(numbers, item => item === 0))
+
+console.log(numbers.some(item => item > 2))
+console.log(numbers.some(item => item === 0))
