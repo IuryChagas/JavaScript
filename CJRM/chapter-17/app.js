@@ -27,61 +27,77 @@ console.info(
 */
 
 const form = document.querySelector('form')
-const input = document.querySelector('input')
-const feedbackParagraph = document.createElement('p')
+const inputUsername = document.querySelector('#username')
 const button = document.querySelector('button')
+const paragraphUsernameFeedBack = document.createElement('p')
+const paragraphSubmitFeedBack = document.createElement('p')
 
-const usernameValidation = username => {
+
+const invalidUsernameInfo = {
+  paragraph: paragraphUsernameFeedBack,
+  text: 'Seu username deve conter no mínimo 6 caracteres, apenas letras maiúsculas e/ou minúsculas',
+  className: 'username-help-feedback',
+  previousSibling: inputUsername
+}
+
+const validUsernameInfo = {
+  paragraph: paragraphUsernameFeedBack,
+  text: 'Username válido =)',
+  className: 'username-success-feedback ',
+  previousSibling: inputUsername
+}
+
+const invalidSubmitInfo = {
+  paragraph: paragraphSubmitFeedBack,
+  text: 'Para efetivar o envio, insira um username válido',
+  className: 'submit-help-feedback',
+  previousSibling: button
+}
+
+const validSubmitInfo = {
+  paragraph: paragraphSubmitFeedBack,
+  text: 'Dados enviados =)',
+  className: 'submit-success-feedback',
+  previousSibling: button
+}
+
+paragraphSubmitFeedBack.setAttribute('data-feedback', 'submit-feedback')
+
+const usernameRegex = username => {
   const regexUsernamePattern = /^[a-zA-Z]{6,}$/
   return regexUsernamePattern.test(username)
 }
 
-const customSuccessFeedback = (relativeTagName, message) => {
-  feedbackParagraph.textContent = message
-
-  if (relativeTagName === "input") {
-    feedbackParagraph.setAttribute('class', 'username-success-feedback')
-    return
-  }
-
-  feedbackParagraph.setAttribute('class', 'submit-success-feedback')
+const insertParagraphIntoDOM = paragraphInfo => {
+  const { paragraph, text, className, previousSibling } = paragraphInfo
+  paragraph.textContent = text
+  paragraph.setAttribute('class', className)
+  previousSibling.insertAdjacentElement('afterend', paragraph)
 }
 
-const customErrorFeedback = (relativeTagName, message) => {
-  feedbackParagraph.textContent = message
-
-  if(relativeTagName === "input") {
-    feedbackParagraph.setAttribute('class', 'username-help-feedback')
-    return
-  }
-
-  feedbackParagraph.setAttribute('class', 'submit-help-feedback')
-}
-
-const feedbackMessage = (status, relativeTagName, message) => {
-  relativeTagName.insertAdjacentElement('afterend', feedbackParagraph)
+const removeSubmitParagraph = () => {
+  const paragraphSubmitFeedBackExists = document.querySelector('[data-feedback="submit-feedback"]')
   
-  if (status === `success`) {
-    customSuccessFeedback(relativeTagName, message)
-    return
+  if (paragraphSubmitFeedBackExists) {
+    paragraphSubmitFeedBack.remove()
   }
-
-  customErrorFeedback(relativeTagName, message)  
 }
 
-form.username.addEventListener('input', event => {
+const showUsernameInfo = event => {
   const inputValue = event.target.value
-  const isAValidUsername = usernameValidation(inputValue)
+  const isUsernameValid = usernameRegex(inputValue)
 
-  if(!isAValidUsername){
-    const message = `Seu username deve conter no mínimo 6 caracteres, apenas letras maiúsculas e/ou minúsculas`
-    feedbackMessage('error', input, message)
+  removeSubmitParagraph()
+
+  if(!isUsernameValid){
+    insertParagraphIntoDOM(invalidUsernameInfo)
     return
   }
 
-  const message = `Username válido =)`
-  feedbackMessage('success', input, message)
-})
+  insertParagraphIntoDOM(validUsernameInfo)
+}
+
+inputUsername.addEventListener('input', showUsernameInfo)
 
 /*
   02
@@ -95,23 +111,22 @@ form.username.addEventListener('input', event => {
   - Não insira o parágrafo manualmente no index.html.
 */
 
-const paragrath = document.createElement('p')
+const paragraph = document.createElement('p')
 
-form.addEventListener('submit', event => {
+const showSubmitInfo = event => {
   event.preventDefault()
 
   const username = event.target.username.value
-  
-  if (!usernameValidation(username)) {
-    const message = `Para efetivar o envio, insira um username válido`
-    feedbackMessage('error', button, message)
+
+  if (!usernameRegex(username)) {
+    insertParagraphIntoDOM(invalidSubmitInfo)
     return
   }
 
-  const message =  `Dados enviados =)`
-  feedbackMessage('success', button, message)
+  insertParagraphIntoDOM(validSubmitInfo)
+}
 
-})
+form.addEventListener('submit', showSubmitInfo)
 
 /*
   03
