@@ -13,17 +13,37 @@ const correctAnswers = [
     { inputQuestion: 'A', value: 15 },
 ]
 
-const cssClasses = ['btn-close', 'modal']
 let score = 0
-let timer = 0
+
+const removableClasses = ['btn-close', 'modal']
+
+const showScoreBoard = score => {
+
+    scroll(0, 0)
+
+    let counter = 0
+
+    const timer = setInterval(()=>{
+        if (counter === score) {
+            clearInterval(timer)
+        }
+        finalResult.textContent = `${counter}%`
+        counter++
+    },5)
+
+    scoreContainer.classList.remove('d-none')
+}
 
 const closeModal = event => {
-    if(cssClasses.includes(event.target.classList[0])){   
+    if(removableClasses.includes(event.target.classList[0])){
         modalContainer.classList.add('d-none')
     }
 }
 
-form.addEventListener('submit', event => {
+modalContainer.addEventListener('click', closeModal)
+btnCloseModal.addEventListener('click', closeModal)
+
+const handleScoreboard = event => {
     event.preventDefault()
 
     const userAnswers = [
@@ -39,11 +59,22 @@ form.addEventListener('submit', event => {
         const answer = userAnswers[i]
 
         if(answer === ''){
+            scoreContainer.classList.add('d-none')
+            score = 0
             modalContainer.classList.remove('d-none')
             return
         }
-    }
-})
 
-modalContainer.addEventListener('click', closeModal)
-btnCloseModal.addEventListener('click', closeModal)
+        if (answer === correctAnswers[i].inputQuestion) {
+            score += correctAnswers[i].value
+            if (score > 100) {
+                score = 0
+                return
+            }
+        }
+        showScoreBoard(score)
+    }
+}
+
+form.addEventListener('submit', handleScoreboard)
+
