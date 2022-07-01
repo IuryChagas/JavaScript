@@ -28,10 +28,16 @@ console.info(`- [x]: Insira apenas o css do bootstrap no index.html.`)
     mensagem "Um segundo e meio se passaram desde que a página foi carregada".
 */
 
-setTimeout(() => {
-    section(2)
-    console.info(`- [x]: Um segundo e meio se passaram desde que a página foi carregada`)
-},1500)
+const message = `- [x]: Um segundo e meio se passaram desde que a página foi carregada`
+
+const logMessage = message => {
+  section(2)
+  console.info(message)
+}
+
+setTimeout(logMessage, 1500, message)
+
+setTimeout(console.log, 1500, '- [x]: test')
 
 /* 
   03
@@ -44,18 +50,25 @@ setTimeout(() => {
     section(3)
 },1501)
 
-let numberField = document.querySelector('.counter-container')
+let counterContainer = document.querySelector('.counter-container')
 const initCounter = document.querySelector('.button-init-counter')
 const stopCounter = document.querySelector('.button-stop-counter')
 
 let counter = 0
 let timer = 0
 
+const incrementCounter = ()=> {
+  const incrementedCounter = `${++counter}`
+  counterContainer.textContent = incrementedCounter
+}
+
 const startCounter = () => {
-    timer = setInterval( ()=> {
-        numberField.textContent = `${counter}`
-        counter++
-    },250)
+    timer = setInterval(incrementCounter, 250)
+}
+
+const stopCounterEvent = () => {
+  clearInterval(timer)
+  counterContainer.textContent = 0
 }
 
 initCounter.addEventListener('click', event => {
@@ -63,8 +76,7 @@ initCounter.addEventListener('click', event => {
 })
 
 stopCounter.addEventListener('click', event => {
-    numberField.textContent = `0`
-    clearInterval(timer)
+  stopCounterEvent()
 })
 
 /* 
