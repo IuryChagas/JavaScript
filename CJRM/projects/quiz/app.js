@@ -1,6 +1,6 @@
 const form = document.querySelector('.quiz-form')
 const scoreContainer = document.querySelector('.final-score-container')
-const finalResult = document.querySelector(".final-score-container > div > p > span")
+const finalScoreContainer = document.querySelector(".final-score-container > div > p > span")
 const modalContainer = document.querySelector('.modal')
 const btnCloseModal = document.querySelector('.btn-close')
 
@@ -17,21 +17,30 @@ let score = 0
 
 const removableClasses = ['btn-close', 'modal']
 
-const showScoreBoard = score => {
+const showFinalScore = () => {
+    scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+    })
 
-    scroll(0, 0)
+    scoreContainer.classList.remove('d-none')
+}
 
+const animateFinalScore = () => {
     let counter = 0
 
     const timer = setInterval(()=>{
         if (counter === score) {
             clearInterval(timer)
         }
-        finalResult.textContent = `${counter}%`
-        counter++
+        finalScoreContainer.textContent = `${counter++}%`
     },5)
+}
+const showScoreBoard = () => {
 
-    scoreContainer.classList.remove('d-none')
+    animateFinalScore()
+    showFinalScore()
 }
 
 const closeModal = event => {
@@ -58,21 +67,26 @@ const handleScoreboard = event => {
     for (let i = 0; i < userAnswers.length; i++) {
         const answer = userAnswers[i]
 
-        if(answer === ''){
+        const isUserAnswerEmpty = answer === ''
+
+        if(isUserAnswerEmpty){
             scoreContainer.classList.add('d-none')
             score = 0
             modalContainer.classList.remove('d-none')
             return
         }
 
-        if (answer === correctAnswers[i].inputQuestion) {
+        const isUserAnswerCorrect = answer === correctAnswers[i].inputQuestion
+
+        if (isUserAnswerCorrect) {
             score += correctAnswers[i].value
             if (score > 100) {
                 score = 0
                 return
             }
         }
-        showScoreBoard(score)
+
+        showScoreBoard()
     }
 }
 
