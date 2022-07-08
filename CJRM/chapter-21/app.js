@@ -24,9 +24,9 @@ section(1)
 const names = ['Caio', 'André', 'Dário']
 
 
-const ordenatedNames = names.map( name => name )
+const ordenatedNames = names.map( name => name ).sort()
 
-result(ordenatedNames.sort())
+result(ordenatedNames)
 
 /*
   02
@@ -44,20 +44,9 @@ const characters = [
   { id: 04, name: 'Mufasa' }
 ]
 
-const objectsCopy = characters.map( ( obj ) => obj )
-
-const ordenatedObjects = objectsCopy.sort( (a, b) => {
-
-  if(a.id > b.id) {
-    return 1
-  }
-
-  if(a.id < b.id) {
-    return -1
-  }
-
-  return 0
-})
+const ordenatedObjects = characters
+  .map( ( obj ) => obj )
+  .sort( (object1, object2)=> object1.id - object2.id)
 
 result(ordenatedObjects)
 result(characters)
@@ -73,9 +62,10 @@ section(3)
 
 const numbers = [41, 15, 63, 349, 25, 22, 143, 64, 59, 291]
 
-const descendingOrderNumbers  = numbers.sort( (a, b)=> a - b)
+const AscendingOrderNumbers  = numbers.map( number => number).sort( (a, b)=> a - b)
 
-console.log(descendingOrderNumbers)
+result(AscendingOrderNumbers)
+result(numbers)
 
 /*
   04
@@ -86,10 +76,13 @@ section(4)
 
 const randomNumbers = [10, 5, 0, 40, 60, 10, 20, 70]
 
-const numberGraterThan50 = randomNumbers.some( number => number > 50)
+const numberGraterThan50 =  randomNumbers.filter( number => {
+  if(number > 50){
+    return number
+  }
+})
 
 result(numberGraterThan50)
-
 /*
   05
 
@@ -123,6 +116,7 @@ const ingredientsMessage = ingredients.reduce( (message, item) => {
   if (item[item.length -1] === 'a') {
     state = 'cozida'
   }
+
   message += `${item} ${state}, `
 
   return message
@@ -198,9 +192,9 @@ result(dogs)
 */
 section(9)
 
-const ul = document.querySelector('.list-group')
+// const ul = document.querySelector('.list-group')
 
-topBrazilmovies.map( movie => ul.innerHTML += `<li>${movie.title}</li>` )
+// topBrazilmovies.map( movie => ul.innerHTML += `<li>${movie.title}</li>` )
 /*
   10
   
