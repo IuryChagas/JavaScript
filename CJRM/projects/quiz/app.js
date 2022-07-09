@@ -49,6 +49,10 @@ const closeModal = event => {
     }
 }
 
+const resetUserScore = () => {
+    score = 0
+}
+
 modalContainer.addEventListener('click', closeModal)
 btnCloseModal.addEventListener('click', closeModal)
 
@@ -63,6 +67,8 @@ const handleScoreboard = event => {
         form.inputQuestion5.value,
         form.inputQuestion6.value,
     ]
+
+    resetUserScore()
 
     for (let i = 0; i < userAnswers.length; i++) {
         const answer = userAnswers[i]
