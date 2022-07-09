@@ -21,9 +21,11 @@ const result = result => {
 */
 section(1)
 
+const getArrayCopy = array => array.map( item => item )
+
 const names = ['Caio', 'André', 'Dário']
 
-
+const copyNames = getArrayCopy(names)
 const ordenatedNames = names.map( name => name ).sort()
 
 result(ordenatedNames)
@@ -45,7 +47,7 @@ const characters = [
 ]
 
 const ordenatedObjects = characters
-  .map( ( obj ) => obj )
+  .map( ( { id, name } ) => ({ id, name }) )
   .sort( (object1, object2)=> object1.id - object2.id)
 
 result(ordenatedObjects)
@@ -62,9 +64,10 @@ section(3)
 
 const numbers = [41, 15, 63, 349, 25, 22, 143, 64, 59, 291]
 
-const AscendingOrderNumbers  = numbers.map( number => number).sort( (a, b)=> a - b)
+const numbersInAscendingOrder  = getArrayCopy(numbers)
+  .sort( ( numberPositionOne, numberPositionTwo ) => numberPositionOne - numberPositionTwo )
 
-result(AscendingOrderNumbers)
+result(numbersInAscendingOrder)
 result(numbers)
 
 /*
@@ -75,12 +78,7 @@ result(numbers)
 section(4)
 
 const randomNumbers = [10, 5, 0, 40, 60, 10, 20, 70]
-
-const numberGraterThan50 =  randomNumbers.filter( number => {
-  if(number > 50){
-    return number
-  }
-})
+const numberGraterThan50 =  randomNumbers.find( number => number > 50 )
 
 result(numberGraterThan50)
 /*
@@ -94,11 +92,13 @@ section(5)
 
 const people = ['Cauã', 'Alfredo', 'Bruno']
 
-const namesReverseOrdering = people.map( name => name).sort( (a, b) => {
-  return b.localeCompare(a)
-})
+const namesReverseOrdering = getArrayCopy(people).sort( (a, b) => b.localeCompare(a) )
 
 result(namesReverseOrdering)
+
+const peopleInReverseAlphabeticalOrder = getArrayCopy(people).sort().reverse()
+
+result(peopleInReverseAlphabeticalOrder)
 
 /*
   06
@@ -109,25 +109,23 @@ result(namesReverseOrdering)
 section(6)
 
 const ingredients = ['vinho', 'tomate', 'cebola', 'cogumelo']
-const ingredientsMessage = ingredients.reduce( (message, item) => {
-  
-  let state = 'cozido'
 
-  if (item[item.length -1] === 'a') {
-    state = 'cozida'
-  }
+const ingredientsMessage = ingredients.reduce( (message, item, index, array) => {
 
-  message += `${item} ${state}, `
+  const correctWordGender = /a$/.test(item) ? 'codiza' : 'cozido'
+  const isLastItem = index === array.length -1
+  const ingredientMessage = `${item} ${correctWordGender}`
 
-  return message
+  return isLastItem ? message + ingredientMessage : message + `${ingredientMessage}, `
+
 }, '')
 
 result(ingredientsMessage)
+
 /*
   07
   
-  - À partir do array abaixo, obtenha e exiba no console o total de pessoas que 
-    assistiram apenas os filmes da Disney.
+  - À partir do array abaixo, obtenha e exiba no console o total de pessoas que assistiram apenas os filmes da Disney.
 */
 section(7)
 
@@ -144,15 +142,22 @@ const topBrazilmovies = [
   { title: 'Dona Flor e Seus Dois Maridos', peopleAmount: 10735524, distributedBy: 'Embrafilme' }
 ]
 
-const disneyFilmsAssistants = topBrazilmovies.reduce( (peopleTotal, movie) => {
-  if (movie.distributedBy === 'Disney') {
-    peopleTotal += movie.peopleAmount
+const disneyFilmsAssistants = topBrazilmovies.reduce( (peopleTotal, { distributedBy, peopleAmount }) => {
+  if (distributedBy === 'Disney') {
+    peopleTotal += peopleAmount
   }
 
   return peopleTotal
 }, 0)
 
 result(disneyFilmsAssistants)
+
+const peopleAmount = topBrazilmovies
+  .filter( ({ distributedBy }) => distributedBy === 'Disney')
+  .reduce( (acc, { peopleAmount })=> (acc += peopleAmount), 0)
+
+result(peopleAmount)
+
 /*
   08
   
@@ -175,14 +180,11 @@ const pets = [
 ]
 
 
-const dogs = pets.filter( pet => {
-  if (pet.type === 'Dog') {
-    pet.age *= 7
-    return pet
-  }
-})
+const dogsInHumanAge = pets
+  .filter( ({ type }) => type === 'Dog')
+  .map( ({ name, age, gender, type }) => ({ name, age: age * 7, gender, type }))
 
-result(dogs)
+result(dogsInHumanAge)
 
 /*
   09
@@ -192,9 +194,14 @@ result(dogs)
 */
 section(9)
 
-// const ul = document.querySelector('.list-group')
+const ul = document.querySelector('.list-group')
 
-// topBrazilmovies.map( movie => ul.innerHTML += `<li>${movie.title}</li>` )
+topBrazilmovies.map( movie => ul.innerHTML += `<li>${movie.title}</li>` )
+
+const insertMoviesIntoHTML = (acc, { title })=> ul.innerHTML = acc += `<li>${title}</li>`
+
+const movieNames = topBrazilmovies.reduce(insertMoviesIntoHTML, '')
+
 /*
   10
   
@@ -207,3 +214,4 @@ section(9)
 */
 section(10)
 
+result(`-[x] function resetUserScore it's working`)
