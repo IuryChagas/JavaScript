@@ -1,26 +1,17 @@
-const form = document.querySelector('.form-add-todo')
-const ul = document.querySelector('.todos-container')
+const todosContainer = document.querySelector('.todos-container')
+const formAddTodo = document.querySelector('.form-add-todo')
 
-const createLabelAndWithAttributes = item => {
-
-    const li = document.createElement('li')
-    const span = document.createElement('span')
-    const i = document.createElement('i')
-
-    span.textContent = item
-    
-    li.setAttribute('class', 'list-group-item d-flex justify-content-between align-items-center')
-    i.setAttribute('class', 'far fa-trash-alt delete')
-    
-    li.insertAdjacentElement('afterbegin', span)
-    li.insertAdjacentElement('beforeend', i)
-    ul.insertAdjacentElement('afterbegin', li)
-}
-
-const createItem = event => {
+formAddTodo.addEventListener('submit', event => {
     event.preventDefault()
-    const item = event.target.add.value
-    createLabelAndWithAttributes(item)
-}
+    const inputValue = event.target.add.value.trim()
 
-form.addEventListener('submit', createItem)
+    if (inputValue) {
+        todosContainer.innerHTML += `
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+         <span>${inputValue}</span>
+         <i class="far fa-trash-alt delete"></i>
+        </li>
+        `
+        event.target.reset()
+    }
+})
