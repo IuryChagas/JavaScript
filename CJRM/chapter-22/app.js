@@ -41,9 +41,11 @@ const people = [
   { firstName: 'Eric', lastName: 'Silva', score: 82 }
 ]
 
-const scoresOrdenation = people.map( item => item ).sort( (obj1, obj2) => obj1.score - obj2.score)
+const peopleOrderedByScore = people
+    .map( ({ firstName, lastName, score }) => ({ firstName, lastName, score }) )
+    .sort( (obj1, obj2) => obj1.score - obj2.score )
 
-result(scoresOrdenation)
+result(peopleOrderedByScore)
 result(people)
 /*
   03
@@ -58,9 +60,9 @@ section(3)
 
 const animals = ['cão', 'gato', 'boi', 'leão', 'gnu', 'alce', 'ema']
 
-const selectedAnimals = animals.filter( animal => animal.length === 3 )
+const getOnlyAnimalsWithThreeLetters = animals.filter( ({ length }) => length === 3 )
 
-result(selectedAnimals)
+result(getOnlyAnimalsWithThreeLetters)
 /*
   04
 
@@ -69,9 +71,9 @@ result(selectedAnimals)
 */
 section(4)
 
-const newArray = animals.map( animal => animal.length )
+const animalNamesLength = animals.map( ({ length }) => length )
 
-result(newArray)
+result(animalNamesLength)
 /*
   05
 
@@ -89,7 +91,7 @@ const friends = [
   { id: 5, name: 'Solange', nearMe: false }
 ]
 
-const friendsNearBy = friends.filter( friend => friend.nearMe === true ).map( ({ name }) => name)
+const friendsNearBy = friends.filter( ({ nearMe }) => nearMe ).map( ({ name }) => name )
 
 result(friendsNearBy)
 /*
@@ -102,11 +104,11 @@ section(6)
 
 const numbers = [46, 86, 212, 29, 51, 9, 25, 42, 81]
 
-const totalSumOddNumbers = numbers
-    .filter( number => number % 2 === 1 )
+const getOddNumberSum = numbers
+    .filter( number => number % 2 )
     .reduce( (acc, number)=> acc += number, 0)
 
-result(totalSumOddNumbers)
+result(getOddNumberSum)
 
 /*
   07
@@ -131,7 +133,7 @@ const data = [{
 }]
 
 const populationAmount = data
-    .filter( country => country.country !== 'China' )
+    .filter( ({ country }) => country !== 'China' )
     .reduce((acc, { population }) => acc += population, 0)
 
 result(populationAmount)
