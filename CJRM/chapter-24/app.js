@@ -32,8 +32,7 @@ const months = [
 'Dezembro'
 ]
 
-let monthFebruaryExist = null
-months.some(month =>  month === 'Fevereiro' ? monthFebruaryExist = month : monthFebruaryExist)
+let monthFebruaryExist = months[months.indexOf('Fevereiro')]
 
 result(monthFebruaryExist)
 
@@ -63,7 +62,7 @@ result(currentYear)
 */
 section(4)
 
-const past = new Date('2121-05-13T23:50:21.817Z')
+const past = new Date('August 11 1993 20:19:00')
 
 result(past)
 /*
@@ -82,7 +81,7 @@ result(hourOfPast)
 */
 section(6)
 
-const future = new Date('Jul 30 2022 20:18:32')
+const future = new Date('Jul 27 2022 09:14:99')
 
 result(future)
 /*
@@ -93,12 +92,14 @@ section(7)
 
 const difference = future.getTime() - present.getTime()
 
-const seconds = Math.round(difference / 1000)
-const minutes = Math.round(seconds / 60)
-const hours = Math.round(minutes / 60)
-const days = Math.round(hours / 24)
+const miliSeconds = 1000
+const seconds = 60
+const minutes = 60
+const hours = 24
 
-result({ days })
+const differenceInDays = Math.round(difference / miliSeconds / seconds / minutes / hours)
+
+result(`Difference in days: ${differenceInDays} days`)
 /*
 08
     Assim como a 1ª aplicação que implementamos (Quiz), considere fazer 
