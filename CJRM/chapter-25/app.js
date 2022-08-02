@@ -110,10 +110,10 @@ section(4)
 const robotA = { name: 'Bender' }
 const robotB = { name: 'HAL 9000' }
 
-const nameA = { ...robotA }
-const nameB = { ...robotB } 
+const { name: nameA } = robotA
+const { name: nameB } = robotB 
 
-result({ nameA, nameB })
+console.log(`result >> ${nameA, nameB}`)
 
 /*
   05
@@ -140,15 +140,11 @@ section(6)
 
 const useDataSomewhereElse = value => result(value)
 
-const updateSomething = ({ target, property, willChange }) => {
+const updateSomething = ({ target, property, willChange } = {}) => {
 
   if (willChange === 'valor indesejado') { willChange = 'valor desejado' }
 
-  useDataSomewhereElse({
-    target,
-    property,
-    willChange
-  })
+  useDataSomewhereElse({ target, property, willChange })
 }
 
 updateSomething({ target: '1', property: '2', willChange: 'valor indesejado' })
@@ -161,19 +157,22 @@ updateSomething({ target: '1', property: '2', willChange: 'valor indesejado' })
 
 const clockContainer = document.querySelector('.clock-container')
 
+const templateClockHTML = (hours, minutes, seconds) => {
+  const numberDisplay = number => `<span>${String(number).length === 1 ? `0${number}` : number}</span>`
+
+  return `
+  ${numberDisplay(hours)} : ${numberDisplay(minutes)} : ${numberDisplay(seconds)}
+`
+
+}
+
 const updateClock = () => {
   const present = new Date()
   const hours = present.getHours()
   const minutes = present.getMinutes()
   const seconds = present.getSeconds()
 
-  const numberDisplay = number => `<span>${String(number).length === 1 ? `0${number}` : number}</span>`
-
-  const clockHTML = `
-    ${numberDisplay(hours)} : ${numberDisplay(minutes)} : ${numberDisplay(seconds)}
-  `
-
-  clockContainer.innerHTML = clockHTML
+  clockContainer.innerHTML = templateClockHTML(hours, minutes, seconds)
 }
 
 setInterval(updateClock, 1000)
