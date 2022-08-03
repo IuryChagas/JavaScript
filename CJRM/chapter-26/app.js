@@ -17,20 +17,20 @@ const result = result => {
 
   - Implemente um código assíncrono entre os console.log() abaixo.
 */
-// console.log('Linha 1')
-// console.log('Linha 2')
-// console.log('Linha 3')
-// console.log('Linha 4')
+console.log('Linha 1')
+console.log('Linha 2')
+console.log('Linha 3')
+console.log('Linha 4')
 
-// setTimeout(() => {
-//     section(1)
-//     result(`Async process it's done!`)
-// }, 1000)
+setTimeout(() => {
+    section(1)
+    result(`Async process it's done!`)
+}, 1000)
 
-// console.log('Linha 5')
-// console.log('Linha 6')
-// console.log('Linha 7')
-// console.log('Linha 8')
+console.log('Linha 5')
+console.log('Linha 6')
+console.log('Linha 7')
+console.log('Linha 8')
 
 /*
   02
@@ -39,16 +39,16 @@ const result = result => {
     "logGreeting" ser exibida no console.
 */
 
-// function logGreeting (name) {
-//     console.log(`olá, ${name}`)
-// }
+function logGreeting (name) {
+    console.log(`olá, ${name}`)
+}
 
-// setTimeout( ()=> {
-//     section(2)
-//     const x = (func, name = `Iury Chagas`) => func(name)
+setTimeout( ()=> {
+    section(2)
+    const x = (callback, name = `Iury Chagas`) => callback(name)
     
-//     x(logGreeting)
-// }, 1200)
+    x(logGreeting)
+}, 1200)
 
 /*
   03
@@ -56,13 +56,14 @@ const result = result => {
   - O código abaixo possui uma parte que pode ser isolada. Isole-a.
 */
 
-// const numbers = [3, 4, 10, 20]
-// const lesserThanFive = numbers.filter(num => num < 5)
+const numbers = [3, 4, 10, 20]
+const getLessThanFive = num => num < 5
+const numbersLessThanFive  = numbers.filter(getLessThanFive)
 
-// setTimeout(()=>{
-//     section(3)
-//     console.log(lesserThanFive)
-// }, 1250)
+setTimeout(()=>{
+    section(3)
+    console.log(numbersLessThanFive)
+}, 1250)
 
 /*
   04
@@ -70,19 +71,21 @@ const result = result => {
   - Refatore o código abaixo.
 */
 
-// const prices = [12, 19, 7, 209]
-// let totalPrice = 0
+const prices = [12, 19, 7, 209]
+let totalPrice = 0
 
-// const totalSum = prices.reduce( (acc, number) => acc += number, 0)
+const getTotalPrice = (acc, number) => acc += number
 
-// for (let i = 0; i < prices.length; i++) {
-//   totalPrice += prices[i]
-// }
-// setTimeout(() => {
-//     section(4)
-//     console.log(` Preço total: ${totalPrice}`)
-//     result(totalSum)
-// }, 1300)
+const totalSum = prices.reduce( getTotalPrice, 0 )
+
+for (let i = 0; i < prices.length; i++) {
+  totalPrice += prices[i]
+}
+setTimeout(() => {
+    section(4)
+    console.log(` Preço total: ${totalPrice}`)
+    result(totalSum)
+}, 1300)
 
 /*
   05
@@ -91,13 +94,16 @@ const result = result => {
   - Não insira `car.color = azul`.
 */
 
-// let car = { color: 'amarelo' }
-// car["color"] = 'Azul'
+let car = { color: 'amarelo' }
+car["color"] = 'Azul'
 
-// setTimeout(()=> {
-//     section(5)
-//     result(car)
-// }, 1350)
+const secondCar = car
+secondCar.color = 'Black'
+
+setTimeout(()=> {
+    section(5)
+    result({car, secondCar})
+}, 1350)
 
 /*
   06
@@ -106,12 +112,19 @@ const result = result => {
   - Se um dos 3 argumentos não for passado na invocação, a string 'A função deve ser invocada com 3 argumentos' deve ser retornada;
   - Se todos os argumentos forem passados, retorne a string 'A função foi invocada com 3 argumentos'.
 */
-// const getsThreeArguments = (arg1, arg2, arg3) => [arg1, arg2, arg3].includes(undefined) ? `A função deve ser invocada com 3 argumentos` : 'A função foi invocada com 3 argumentos'
 
-// setTimeout(()=>{
-//     section(5)
-//     result(getsThreeArguments("null", "false"))
-// }, 1355)
+const myFunc = (param1, param2, param3) => {
+    const isSomeParametersUndefined = [param1, param2, param3].includes(undefined)
+    const warningMessage = 'A função deve ser invocada com 3 argumentos'
+    const successMessage = 'A função foi invocada com 3 argumentos'
+    
+    return isSomeParametersUndefined ? warningMessage : successMessage
+}
+
+setTimeout(()=>{
+    section(6)
+    result(myFunc("null", "false"))
+}, 1355)
 
 /*
   07
@@ -135,40 +148,40 @@ let booksBox = {
   booksIn: 0
 }
 
-booksBox.addBooks = function(quantity) {
+booksBox.addBooks = booksQuantity => {
+    const fixPluralOrSingular = (pluralWord, singularWord, correlation) => correlation === 1 ? pluralWord : singularWord
 
-    let availableSpace = this.spaces - this.booksIn
+    let { spaces } = booksBox
+    let availableSpaces = 0
 
-    if(quantity === 0){
-        return `Há ${availableSpace} espaços para inserir livros`
+    const hasAvailableSpaces = spaces - booksBox.booksIn > 0
+    if (hasAvailableSpaces) {
+        availableSpaces = spaces - booksBox.booksIn
+    }
+    
+    
+    const unavailableSpaces = booksQuantity > availableSpaces && availableSpaces != 0
+    if (unavailableSpaces) {
+        const book = fixPluralOrSingular('livro', 'livros', availableSpaces)
+        const cabe = fixPluralOrSingular('cabe', 'cabem', availableSpaces)
+        
+        return `Só ${cabe} mais ${availableSpaces} ${book}`
     }
 
-    if(quantity > this.spaces){
-        return `O valor inserido excede o valor máximo disponível`
+    
+    const hasSpacesAvailable = availableSpaces > 0 && availableSpaces <= spaces
+    if (hasSpacesAvailable) {
+        booksBox.booksIn += booksQuantity
+        const book = fixPluralOrSingular('livro', 'livros', booksBox.booksIn)
+        return `Já há '${booksBox.booksIn}' ${book} na caixa`
     }
 
-    if(quantity <= availableSpace){
-        this.booksIn += quantity
-        if (this.booksIn === 1) {
-            return `Já há '${this.booksIn}' livro na caixa`
-        }
-        return `Já há '${this.booksIn}' livros na caixa`
-    }
-
-    if (quantity > availableSpace) {
-        if (availableSpace === 1) {
-            return `Só cabe mais ${availableSpace} livro`
-        }
-        if (availableSpace === 0) {
-            return `A caixa já está cheia`
-        }
-        return `Só cabem mais ${availableSpace} livros`
-    }
+    return `A caixa já está cheia`
 }
 
-console.log(booksBox.addBooks(9))
-console.log(booksBox.addBooks(1))
-console.log(booksBox.addBooks(3))
-console.log(booksBox.addBooks(3))
-console.log(booksBox.addBooks(1))
-console.log(booksBox.addBooks(4))
+setTimeout( ()=> {
+    section(7)
+    result(booksBox.addBooks(4))
+    result(booksBox.addBooks(3))
+}, 1360)
+
