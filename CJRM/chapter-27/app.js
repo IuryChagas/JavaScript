@@ -34,13 +34,14 @@ const pokemon = 'pikachu'
 
 request.addEventListener('readystatechange', () => {
     const readyStateChangeStatus = request.readyState
-
-    if(readyStateChangeStatus === 4 && request.status === 200){
+    const successfulRequest = readyStateChangeStatus === 4 && request.status === 200
+    const unsuccessfullRequest = readyStateChangeStatus === 4
+    if(successfulRequest){
         console.log(request.responseText)
         return
     }
 
-    if (readyStateChangeStatus === 4) {
+    if (unsuccessfullRequest) {
         console.log(`http status: ${request.status} - Não foi possível obter os dados do pokémon`)
     }
 })
@@ -87,15 +88,11 @@ setTimeout( ()=> {
   - Após criar o método, adicione 5 anos à idade do objeto.
 */
 
-personalInfo.incrementAge = number => {
-    number = 1
-    personalInfo.age += number
+personalInfo.incrementAge = () => {
+    personalInfo.age++
 }
-personalInfo.incrementAge()
-personalInfo.incrementAge()
-personalInfo.incrementAge()
-personalInfo.incrementAge()
-personalInfo.incrementAge()
+
+for (let i = 0; i < 5; i++) personalInfo.incrementAge()
 
 setTimeout( ()=> {
     section(3)
@@ -113,15 +110,14 @@ setTimeout( ()=> {
     método 4x, com diferentes metragens passadas por parâmetro.
 */
 
-personalInfo.countMeters = meter => {
+personalInfo.walk = meter => {
     personalInfo.isWallking = true
     personalInfo.distance += meter
 }
 
-personalInfo.countMeters(1)
-personalInfo.countMeters(200)
-personalInfo.countMeters(1000)
-personalInfo.countMeters(1300)
+const meters = [1, 1000, 200, 1300]
+
+meters.forEach( meters => personalInfo.walk(meters) )
 
 setTimeout( ()=> {
     section(4)
@@ -173,23 +169,21 @@ setTimeout( ()=> {
 */
 
 const booleanValidator = value => console.log(Boolean(value))
+
+const falsyValues = ['', 0, -0, null, undefined, false, NaN]
+const logFaltyValues = value => booleanValidator(value)
+
+const truthyValues = [' ', -1, 1, Boolean, 'str', {}, ()=> {}, BigInt, [], true]
+const logTruthyValues = value => booleanValidator(value)
+
 setTimeout( ()=> {
     section(6)
 
     console.log('### falsy values ###')
-    booleanValidator('')
-    booleanValidator(0)
-    booleanValidator(null)
-    booleanValidator(undefined)
+    falsyValues.forEach( logFaltyValues )
 
-    console.log('### truthy values ###')
-    booleanValidator(' ')
-    booleanValidator(-1)
-    booleanValidator(Boolean)
-    booleanValidator('n')
-    booleanValidator({})
-    booleanValidator(()=>{})
-    booleanValidator(BigInt)
+    console.log('### truthy values ###') 
+    truthyValues.forEach( logTruthyValues )
 }, 1015)
 
 /*
@@ -210,31 +204,31 @@ setTimeout( ()=> {
 
   Dica: propriedades de objetos podem ser declaradas como strings.
 */
-const standBooks = bookTitle => {
+const getBook = bookTitle => {
     const books = {
         "The Echo Wife": {
-            pageNumbers: 256,
+            totalPages: 256,
             author: 'Sarah Gailey',
             publisher: 'Tor books'
         },
         "Snow Crash": {
-            pageNumbers: 440,
+            totalPages: 440,
             author: 'Neal Stephenson',
             publisher: 'Random House Worlds'
         },
         "Solaris": {
-            pageNumbers: 224,
+            totalPages: 224,
             author: 'Stanislaw Lem',
             publisher: 'Mariner'
         }
     }
 
-    return bookTitle ? books[bookTitle] : books
+    return books[bookTitle] || books
 }
 
 setTimeout( ()=> {
     section(7)
-    console.log(standBooks())
-    console.log(standBooks('Solaris'))
-    console.log(standBooks('Snow Crash'))
+    console.log(getBook())
+    console.log(getBook('Solaris'))
+    console.log(getBook('Snow Crash'))
 }, 1020)
