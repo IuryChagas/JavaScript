@@ -42,8 +42,8 @@ setTimeout(()=>{
 
     section(1)
     user
-        .then( value => console.log(value) )
-        .catch( console.log )
+        .then( value => result(value) )
+        .catch( result )
 
 }, 0)
 
@@ -60,16 +60,13 @@ setTimeout(()=>{
 
 const getOperationMessage = (operator, num1, num2, operation) => `Resultado da operação: ${num1} ${operator} ${num2} = ${operation}.`
 
-const calculator = operator => (num1, num2) => {
-    const operators = {
-        "+": getOperationMessage(operator, num1, num2, num1 + num2),
-        "-": getOperationMessage(operator, num1, num2, num1 - num2),
-        "*": getOperationMessage(operator, num1, num2, num1 * num2),
-        "/": getOperationMessage(operator, num1, num2, num1 / num2),
-        "%": getOperationMessage(operator, num1, num2, num1 % num2)
-    }
-    return operators[operator] || "Operação inválida."
-}
+const calculator = operator => (num1, num2) => ({
+    "+": getOperationMessage(operator, num1, num2, num1 + num2),
+    "-": getOperationMessage(operator, num1, num2, num1 - num2),
+    "*": getOperationMessage(operator, num1, num2, num1 * num2),
+    "/": getOperationMessage(operator, num1, num2, num1 / num2),
+    "%": getOperationMessage(operator, num1, num2, num1 % num2)
+})[operator] || "Operação inválida."
  
 const sum = calculator('+')
 const subtraction = calculator('-')
@@ -80,12 +77,12 @@ const invalidTest = calculator('Z')
 
 setTimeout( ()=> {
     section(2)
-    console.log(sum(2, 2))
-    console.log(subtraction(2, 2))
-    console.log(multiplication(2, 2))
-    console.log(division(2, 2))
-    console.log(mod(2, 2))
-    console.log(invalidTest(2, null))
+    result(sum(2, 2))
+    result(subtraction(2, 2))
+    result(multiplication(2, 2))
+    result(division(2, 2))
+    result(mod(2, 2))
+    result(invalidTest(2, null))
 }, 100)
 
 
