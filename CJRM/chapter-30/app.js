@@ -21,12 +21,24 @@ const result = result => {
 */
 section(1)
 
-const githubUserName = 'iurychagas'
+const username = 'iurychagas'
+const endpoint = `https://api.github.com/users/${username}`
 
-fetch(`https://api.github.com/users/${githubUserName}`)
-    .then( response => response.json() )
-    .then( userData => console.log(userData))
-    .catch(result)
+fetch(endpoint)
+.then( response => response.json() )
+.then( userData => console.log(userData))
+.catch(result)
+
+const getGithubUserData = async username => {
+    const endpoint = `https://api.github.com/users/${username}`
+    const response = await fetch(endpoint)
+    return response.json()
+}
+
+const logGithubUserData = async () => console.log(await getGithubUserData(username))
+
+logGithubUserData()
+
 /*
   02
 
@@ -37,11 +49,12 @@ fetch(`https://api.github.com/users/${githubUserName}`)
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-const numbersDivisibleBy2Or3 = numbers.filter( number => (number % 2 === 0) || (number / 3 === 3) )
+const getNumbersDivisibleBy20Or3 = numbers => 
+    numbers.filter( number => number % 2 === 0 || number % 3 === 0 )
 
 setTimeout( ()=> {
     section(2)
-    result(numbersDivisibleBy2Or3)
+    result(getNumbersDivisibleBy20Or3(numbers))
 }, 1000)
 
 /*
@@ -62,24 +75,21 @@ const iury = ['I','u','ry']
 const rafaela = ['Ra', 'fa', 'e', 'la']
 
 const namesInSylables = [natalia, roger, iury, rafaela]
-
-const getPNames = namesInSylables.map( namesInSylables => {
-    const pName = namesInSylables.reduce((acc, syllable) => {
+const getNameInPLanguage = namesInSylables => {
+    const convertNameInPName = (acc, syllable) => {
         acc += 'P' + syllable
         return acc
-    }, "")
+    }
 
+    const pName = namesInSylables.reduce(convertNameInPName, "")
     return pName
-})
-const pName = iury.reduce((acc, syllable) => {
-    acc += 'P' + syllable
-    return acc
-}, "")
+}
 
+const getPNames = namesInSylables.map( getNameInPLanguage )
 
 setTimeout( ()=> {
     section(3)
-    getPNames.forEach( pName => result(pName))
+    getPNames.forEach( pName => result(pName) )
 }, 1010)
 
 /*
@@ -95,14 +105,13 @@ setTimeout( ()=> {
   Dica: pesquise pelo método split.
 */
 const mainName = 'Roger'
-const logMessageName = mainName.split('').reduce( (acc, char, index)=> {
-    acc += `- ${char} é a ${index +1}ª do nome\n`
-    return acc
-}, "")
+const logSplitedName = (char, index) => console.log(`- ${char} é a ${index +1}ª do nome.`)
+
+const logMessageName = () => mainName.split('').forEach( logSplitedName )
 
 setTimeout( ()=> {
     section(4)
-    console.log(logMessageName)
+    logMessageName()
 }, 1020)
 /*
   05
@@ -117,9 +126,9 @@ setTimeout( ()=> {
   Dica: pesquise pelo método Object.keys().
 */
 const obj = {
-    name: String,
-    lastname: String,
-    age: Number
+    name: 'Tuddy',
+    lastname: 'Nigris',
+    age: 2.5
 }
 
 setTimeout( ()=> {
@@ -138,12 +147,8 @@ setTimeout( ()=> {
 
 const scores = [100, 90, 85, 100, 60, 85, 100, 90, 55, 75, 60]
 
-const getOccurrance = (arr, value) =>  arr.reduce( (totalOccurance, arrayNumber) =>  {
-    if(arrayNumber === value){
-        totalOccurance++
-    }
-    return totalOccurance
-}, 0)
+const getOccurrance = (arr, value) =>  
+    arr.reduce( (totalOccurance, arrayNumber) => value === arrayNumber ? totalOccurance + 1 : totalOccurance, 0)
 
 setTimeout( ()=> {
     section(6)
@@ -170,22 +175,25 @@ setTimeout( ()=> {
 
   Dica: lembre-se que o método filter inclui o item em questão no novo array que está sendo gerado **apenas** se a função retorna um valor truthy.
 */
-const nativeFilter = [1, 2, 3].filter(item => item < 2)
 
-const filter = (arr, func) => {
+const filter = (arr, callbackFunction) => {
     let newArray = []
 
-    for (let i = 0; i < arr.length; i++) {
+    // arr.forEach( (item, index, array) => {
+    //     callbackFunction(item, index, array) ? newArray.push(item) : false
+    // })
 
-        let index = i
+    for (let i = 0; i < arr.length; i++) {
         let item = arr[i]
+        let indice = i
         let array = arr
 
-        func(item, index, array) ? newArray.push(arr[i]) : false   
+        callbackFunction(item, indice, array) ? newArray.push(item) : false
+        
     }
+
     return newArray
 }
-
 setTimeout( ()=> {
     section(6)
     console.log(filter([1, 2, 3], item => item), " === [1, 2, 3]") // [1, 2, 3];
