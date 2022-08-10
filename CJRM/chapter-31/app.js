@@ -37,31 +37,48 @@ const result = result => {
 
 const form = document.querySelector('form')
 const GIFContainer = document.querySelector('.out')
-form.addEventListener('submit', async event => {
-    event.preventDefault()
-    
-    const inputValue = event.target.search.value.trim().toLowerCase()
 
-    const apiKey = `o9MI320xnGJrYOFseN70WD06POwzNGMb`
-    const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=1&q=${inputValue}`
+const apiKey = `o9MI320xnGJrYOFseN70WD06POwzNGMb`
 
-    try {
-        const response = await fetch(endpoint)
-        const GIFData = await response.json()
-        
+const getGIPHYApiUrl = GIFName => `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=1&q=${GIFName}`
+
+const insertImageIntoDOM = (url, title) => {
+  const image = document.createElement('img')
+  
+  image.setAttribute('src', url)
+  image.setAttribute('title', title)
+  GIFContainer.prepend(image)
+
+}
+const fetchGIFImage = async inputValue => {
+  const endpoint = getGIPHYApiUrl(inputValue)
+
+  try {
+      const response = await fetch(endpoint)
+      const GIFData = await response.json()
+      
+      if (GIFData) {
         const { data } = GIFData
         const { title } = data[0]
         const { url } = data[0].images.downsized
 
-        const image = document.createElement('img')
+        insertImageIntoDOM(url, title)
+      }
 
-        image.setAttribute('src', url)
-        image.setAttribute('title', title)
-        GIFContainer.prepend(image)
-        if(!response.ok) {
-            throw new Error("Não foi possível obter os dados")
-        }
-    } catch (error) {
-        alert(`${error.message},\nConsulte o log para mais informações`)
-    }
+      if(!response.ok) {
+          throw new Error("Não foi possível obter os dados")
+      }
+  } catch (error) {
+      alert(`${error.message},\nConsulte o log para mais informações`)
+  }
+
+  form.reset()
+}
+
+form.addEventListener('submit', event => {
+    event.preventDefault()
+    const inputValue = event.target.search.value.trim().toLowerCase()
+
+    fetchGIFImage(inputValue)
+
 })
