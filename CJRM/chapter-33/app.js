@@ -30,9 +30,8 @@ section(1)
 
 const getInverseOrder = stringParam => stringParam
     .split('')
-    .map( char => char)
     .reverse()
-    .reduce( (acc, char) => acc += char, '')
+    .join('')
 
 const stringsToInverseOrder = 'abcdefghi'
 const numbersToInverseOrder = '123456789'
