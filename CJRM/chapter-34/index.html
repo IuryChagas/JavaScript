@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <title>Exercicio 34</title>
+    </head>
+    <body>
+        <div class="my-4 text-center text-white-50">
+            <h1 class="text-light text-center my-4">Chapter 34 :: Exercises</h1>
+            <input data-js="input" type="number" autofocus >
+        </div>
+
+        <div class="container my-5 mx-auto">
+            <h1 class="text-light text-center my-4">Informações do Clima</h1>
+        
+            <form data-js="change-location" class="my-4 text-center text-white-50">
+              <label for="city">Insira o nome de uma cidade</label>
+              <input class="form-control p-4" type="text" name="city" placeholder="Ex: Miami" autofocus>
+            </form>
+        
+            <div data-js="city-card" class="card shadow-lg rounded d-none">
+              <img data-js="time" src="https://via.placeholder.com/400x300" class="card-img-top">
+              
+              <div data-js="time-icon" class="bg-light mx-auto text-center time-icon"></div>
+              
+              <div data-js="weather-details" class="text-muted text-uppercase text-center">
+                <h5 data-js="city-name" class="my-3" >Nome da Cidade</h5>
+                
+                <div data-js="city-weather" class="my-3" id="climate" >Clima</div>
+                
+                <div data-js="city-temperature" class="display-4 my-4">
+                  <span class="temperature" >00</span>
+                  <span>&deg;C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+    <script src="./app.js"></script>
+    </body>
+</html>
