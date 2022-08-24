@@ -109,7 +109,7 @@ console.log(greet({}, 'personName'))
 */
 section(6)
 
-const apikey = "xzV5czHUwwtTItA4WlhM62jIfLECo5uK"
+const apikey = "mtpIrVucJyRtnXFAnaHBSA2iL6iL0rtc"
 const baseURL = `http://dataservice.accuweather.com`
 
 const getCityInfoEndPoint = cityName => `${baseURL}/locations/v1/cities/search?apikey=${apikey}&q=${cityName}&language=pt-br`
@@ -157,7 +157,6 @@ const getCityWeather = async cityName => {
 
 // getCityWeather('São Paulo').then(console.log)
 
-
 const cityForm = document.querySelector('[data-js="change-location"]')
 const cityName = document.querySelector('[data-js="city-name"]')
 const cityWeatherDescription = document.querySelector('[data-js="city-weather"')
@@ -166,25 +165,26 @@ const cityCard = document.querySelector('[data-js="city-card"')
 const timeImage = document.querySelector('[data-js="time"]')
 const timeIconContainer = document.querySelector('[data-js="time-icon"')
 
-cityForm.addEventListener('submit', async event => {
-  event.preventDefault()
-  const inputValue = event.target.city.value.trim()
+const showCityCard = () => cityCard.classList.contains('d-none') ? cityCard.classList.remove('d-none') : undefined
 
-  const [{Key, LocalizedName }] = await getCityData(inputValue)
+const showCityWeatherInfo = async userInput => {
+  const [{Key, LocalizedName }] = await getCityData(userInput)
   const [{ WeatherText, Temperature, IsDayTime, WeatherIcon }]  = await getCityWeather(Key)
-  
-  if (cityCard.classList.contains('d-none')) cityCard.classList.remove('d-none') 
 
   const timeIcon = `<img src="./src/icons/${WeatherIcon}.svg" />`
-
-  IsDayTime
-  ? timeImage.setAttribute('src', './src/day.svg')
-  : timeImage.setAttribute('src', './src/night.svg')
-  
+  IsDayTime ? timeImage.src = './src/day.svg' : timeImage.src = './src/night.svg'
   timeIconContainer.innerHTML = timeIcon
   cityName.textContent = LocalizedName
   cityWeatherDescription.textContent = WeatherText
   cityTemperature.textContent = Temperature.Metric.Value
-  
+}
+
+cityForm.addEventListener('submit', event => {
+  event.preventDefault()
+  const inputValue = event.target.city.value.trim()
+
+  showCityCard()
+  showCityWeatherInfo(inputValue)
+
   cityForm.reset()
 })
