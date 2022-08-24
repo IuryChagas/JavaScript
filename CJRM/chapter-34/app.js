@@ -22,6 +22,9 @@ section(1)
 
 const getJSONFromLocalStorage = keyName => JSON.parse(localStorage.getItem(keyName))
 
+const myArray = ['g','i','t','h','u','b']
+
+localStorage.setItem('myArray', JSON.stringify(myArray))
 const getArrayFromLocalStorage = getJSONFromLocalStorage('myArray')
 
 result(getArrayFromLocalStorage)
@@ -60,42 +63,13 @@ input.addEventListener('input', event => result(`exercise 02:: ${event.target.va
 */
 section(3)
 
-const combineOperations = (num, arr) => {
-    let currentFunc = null
-    let returnedValue = num
+const combineOperations = (num, arr) => arr.reduce((acc, func) => func(acc), num)
 
-    for (let i = 0; i < arr.length; i++) {
-        currentFunc = arr[i]
-
-        returnedValue = currentFunc(returnedValue)
-    }
-    // arr.reduce((acc, func) => {
-    //     acc = num
-    //     acc = func(num)
-
-    // }, 0)
-    return returnedValue
-}
-
-function add100 (num) {
-  return num + 100
-}
-
-function divByFive (num) {
-  return num / 5
-}
-
-function multiplyByThree (num) {
-  return num * 3
-}
-
-function multiplyFive (num) {
-  return num * 5
-}
-
-function addTen (num) {
-  return num + 10
-}
+const add100 = num => num + 100
+const divByFive = num => num / 5
+const multiplyByThree = num => num * 3
+const multiplyFive = num => num * 5
+const addTen = num => num + 10
 
 console.log(combineOperations(0, [add100, divByFive, multiplyByThree]))
 console.log(combineOperations(0, [divByFive, multiplyFive, addTen]))
@@ -144,11 +118,12 @@ if (albums.includes(searchAlbum)) {
   console.log(`${JSON.stringify(searchAlbum)} existe no array albums.`)
 }
 
-const albumsContainsAlbum = albums.some( album => JSON.stringify(searchAlbum) == JSON.stringify(album) )
+const searchAlbumExistsInArray = albums
+    .some( album => JSON.stringify(searchAlbum) == JSON.stringify(album) )
     ? `${JSON.stringify(searchAlbum)} existe no array albums.`
     : undefined
 
-result(albumsContainsAlbum)
+result(searchAlbumExistsInArray)
 
 /*
   05
@@ -168,15 +143,15 @@ const obj = {
   prop8: { a: 'x', b: 'y' },
 }
 
-const objCopy1 = {
-    ...obj
-}
+let objAsJSON = JSON.stringify(obj, null, 2)
+console.log(objAsJSON)
 
-let objCopy2 = JSON.stringify(obj)
-objCopy2 = JSON.parse(objCopy2)
+const objCopy = JSON.parse(objAsJSON)
 
-result(objCopy1)
-result(objCopy2)
+const objCopy2 = { ...obj }
+
+console.log(`objCopy === obj = ${objCopy === obj}:`, objCopy)
+console.log(`objCopy2 === obj = ${objCopy2 === obj}:`, objCopy2)
 
 
 /*
@@ -191,26 +166,24 @@ result(objCopy2)
 */
 section(6)
 
-const generateHTMLElement = (name, obj) => {
-    const newHTMLElement = document.createElement(name)
+const createHTMLElement = (elementName, attributes) => {
+    const newHTMLElement = document.createElement(elementName)
+    const attributesAsArray = Object.entries(attributes)
 
-    for (let i = 0; i < Object.entries(obj).length; i++) {
-
-        const atributeName = Object.entries(obj)[i][0]
-        const atributeValue = Object.entries(obj)[i][1]
-
-        newHTMLElement.setAttribute(atributeName, atributeValue)
-    }
+    attributesAsArray.forEach( ([attribute, value]) => newHTMLElement.setAttribute(attribute, value) )
 
     return newHTMLElement
 }
 
-const attrObject = {
-    "src": `/src/favicon.icon`,
-    "img": `/src/image.jpg`,
-    "class": `top`
+const attributes = {
+    type: 'radio',
+    id: 'input1',
+    name: 'main',
+    value: 'principal',
+    'data-js': 'input1'
 }
-result(generateHTMLElement('image', attrObject))
+
+result(createHTMLElement('input', attributes))
 
 /*
   07
@@ -264,24 +237,11 @@ const timeIconContainer = document.querySelector('[data-js="time-icon"')
 
 const showCityCard = () => cityCard.classList.contains('d-none') ? cityCard.classList.remove('d-none') : undefined
 
-const saveOnLocalStorage = (name, dataObjects) => {
-    localStorage.setItem(name, JSON.stringify(dataObjects))
-}
-
 const showCityWeatherInfo = async userInput => {
     const [{Key, LocalizedName }] = await getCityData(userInput)
     const [{ WeatherText, Temperature, IsDayTime, WeatherIcon }]  = await getCityWeather(Key)
 
-    const data =  {
-        "localizedName": LocalizedName,
-        "weatherText": WeatherText,
-        "temperature": Temperature.Metric.Value,
-        "isDayTime": IsDayTime,
-        "weatherIcon": WeatherIcon 
-    }
-
-    saveOnLocalStorage('cityWeatherData', data)
-
+    
     const timeIcon = `<img src="./src/icons/${WeatherIcon}.svg" />`
 
     IsDayTime ? timeImage.src = './src/day.svg' : timeImage.src = './src/night.svg'
@@ -290,30 +250,27 @@ const showCityWeatherInfo = async userInput => {
     cityWeatherDescription.textContent = WeatherText
     cityTemperature.textContent = Temperature.Metric.Value
 
-  }
-
-const weatherDataFromLocalStorage = localStorage.getItem('cityWeatherData')
-
-if (weatherDataFromLocalStorage) {    
-    const dataSerialization = JSON.parse(weatherDataFromLocalStorage)
-
-    const { localizedName, weatherText, temperature, isDayTime, weatherIcon } = dataSerialization
-
-    const timeIcon = `<img src="./src/icons/${weatherIcon}.svg" />`
-    isDayTime ? timeImage.src = './src/day.svg' : timeImage.src = './src/night.svg'
-    timeIconContainer.innerHTML = timeIcon
-    cityName.textContent = localizedName
-    cityWeatherDescription.textContent = weatherText
-    cityTemperature.textContent = temperature
     showCityCard()
+}
+  
+const showLocalStorageCity = () => {
+    const city = localStorage.getItem('city')
+  
+    if (city) {
+        showCityWeatherInfo(city)
+    }
 }
 
 cityForm.addEventListener('submit', event => {
     event.preventDefault()
+    
     const inputValue = event.target.city.value.trim()
-  
-    showCityCard()
+    
     showCityWeatherInfo(inputValue)
-  
+    localStorage.setItem('city', inputValue)
+    
     cityForm.reset()
-  })
+})
+
+
+showLocalStorageCity()
