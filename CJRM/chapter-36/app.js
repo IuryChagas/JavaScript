@@ -219,18 +219,17 @@ const reduce = (arr, func, initAndType) => {
     return response
 }
 
-result(reduce([1, 2, 3], (acc, item) => acc + item, 0))
-result(reduce([2, 3, 4], (acc, item) => acc + item, 0))
+const createItemBasedProperties = (acc, item) => {
+    acc['number-' + item] = item
+    return acc
+}
 
-result(
-    reduce(
-        [1, 2],
-        (acc, item) => {
-        acc['number-' + item] = item
-        return acc
-        },
-        {})
-)
+const sumItems = (acc, item) => acc + item
+const sumItemsPlusIndex = (acc, _, index) => acc + index
+const sumItemsUsingArrayParam = (acc, _, index, array) => acc + array[index]
 
-result(reduce([1, 2], (acc, item, index) => acc + index, 0))
-result(reduce([1, 2], (acc, item, index, array) => acc + array[index], 0))
+result(reduce([1, 2, 3], sumItems, 0))
+result(reduce([2, 3, 4], sumItems, 0))
+result(reduce([1, 2], createItemBasedProperties, {}))
+result(reduce([1, 2], sumItemsPlusIndex, 0))
+result(reduce([1, 2], sumItemsUsingArrayParam, 0))
