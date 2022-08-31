@@ -157,3 +157,93 @@ console.info('Observe que "rathtafi" possui seus metodos únicos e herda os mesm
 console.log(rathtafi, hahvowo)
 console.log(rathtafi.giveBadge(hahvowo))
 console.log(rathtafi.login())
+
+console.info('\n#################    Factory Functions    #################\n')
+
+class User {
+    #counter = 0
+
+    constructor(name, email) {
+        this.name = name
+        this.email = email
+    }
+
+    incrementCounter () {
+        return ++this.#counter
+    }
+}
+
+const createUser = (name, email) => {
+    let counter = 0
+
+    return {
+        name,
+        email,
+        incrementCounter: () => ++counter
+    }
+}
+
+console.info('Utilizando Classe:')
+const user = new User('Braoric', 'hello@braoric.com')
+console.log(user)
+// console.log(user.#count)
+console.log(user.incrementCounter())
+console.log(user.incrementCounter())
+
+console.info('Utilizando Função:')
+const user2 = createUser('Asfoinit', 'hello@asfoinit.com')
+console.log(user2)
+console.log(user2.incrementCounter())
+console.log(user2.incrementCounter())
+
+// Closures: combinação de uma função com seu escopo lexico
+const user3 = createUser('Harvilli', 'hello@harvilli.com')
+console.log(user3)
+console.log(user3.incrementCounter())
+console.log(user3.incrementCounter())
+
+class A {
+    first () {
+        return 'banana'
+    }
+
+    second () {
+        return `pegue banana e a floresta inteira`
+    }
+}
+
+class B extends A {
+    third () {
+        return 'Macaco'
+    }
+}
+
+const obj = new B()
+ 
+console.log(obj.second())
+
+const a = {
+    first () {
+        return 'banana'
+    }
+}
+
+const b = {
+    second () {
+        return 'pegue banana e a floresta inteira se quiser...'
+    }
+}
+
+const c = {
+    third () {
+        return 'Macaco'
+    }
+}
+
+
+const obj2 = {
+    ...a,
+    ...c
+}
+
+console.log(obj2)
