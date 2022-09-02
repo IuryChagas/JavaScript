@@ -220,8 +220,8 @@ section(5)
 const exportButton = document.querySelector('[data-js="export-table-btn"]')
 const table = document.querySelector('[data-js="table"]')
 
-exportButton.addEventListener('click', () => {
-    const arrayOfTRs = Array.from(table.querySelectorAll('tr'))
+const exportTableToCSVFile = () => {
+    const arrayOfTableRows = Array.from(table.querySelectorAll('tr'))
 
     const converTableDataInCSVFormat = tableRow => {
         const content = tableRow.innerText
@@ -230,12 +230,14 @@ exportButton.addEventListener('click', () => {
         return `${concatenatedStrings}\n`
     }
 
-    const getStringsInCSVFormat = arrayOfTRs.map( converTableDataInCSVFormat ).join('')
+    const getStringsInCSVFormat = arrayOfTableRows.map( converTableDataInCSVFormat ).join('')
 
-    const uri = `data:text/csvcharset=utf-8,${encodeURIComponent(getStringsInCSVFormat)}`
-    exportButton.href = uri
-    exportButton.download = `tabela-lista-de-jogos.csv`
-})
+    const CSVURI = `data:text/csvcharset=utf-8,${encodeURIComponent(getStringsInCSVFormat)}`
+    exportButton.setAttribute('href', CSVURI)
+    exportButton.setAttribute('download','tabela-lista-de-jogos.csv')
+}
+
+exportButton.addEventListener('click', exportTableToCSVFile)
 
 
 /*
