@@ -193,7 +193,7 @@ result(createHTMLElement('input', attributes))
     exibidas na interface.
 */
 
-const apikey = "1YtobioGrrCxHFpTJLiFWGeKlKnBCleJ"
+const apikey = "Lxc9Ff4mDPAZ40yCQsNXZQGqji6WQANo"
 const baseURL = `http://dataservice.accuweather.com`
 
 const getCityInfoEndPoint = cityName => `${baseURL}/locations/v1/cities/search?apikey=${apikey}&q=${cityName}&language=pt-br`
@@ -228,7 +228,7 @@ const getCityWeather = async cityName => {
   
   
 const cityForm = document.querySelector('[data-js="change-location"]')
-const cityName = document.querySelector('[data-js="city-name"]')
+const cityNameLabel = document.querySelector('[data-js="city-name"]')
 const cityWeatherDescription = document.querySelector('[data-js="city-weather"')
 const cityTemperature = document.querySelector('[data-js="city-temperature"]')
 const cityCard = document.querySelector('[data-js="city-card"')
@@ -237,20 +237,23 @@ const timeIconContainer = document.querySelector('[data-js="time-icon"')
 
 const showCityCard = () => cityCard.classList.contains('d-none') ? cityCard.classList.remove('d-none') : undefined
 
-const showCityWeatherInfo = async userInput => {
-    const [{Key, LocalizedName }] = await getCityData(userInput)
-    const [{ WeatherText, Temperature, IsDayTime, WeatherIcon }]  = await getCityWeather(Key)
+const fetchCityWeatherInfo = async userInput => {
+  const [{Key, LocalizedName }] = await getCityData(userInput)
+  const [{ WeatherText, Temperature, IsDayTime, WeatherIcon }]  = await getCityWeather(Key)
 
-    
-    const timeIcon = `<img src="./src/icons/${WeatherIcon}.svg" />`
+  return { LocalizedName, WeatherText, Temperature, IsDayTime, WeatherIcon }
+}
 
-    IsDayTime ? timeImage.src = './src/day.svg' : timeImage.src = './src/night.svg'
-    timeIconContainer.innerHTML = timeIcon
-    cityName.textContent = LocalizedName
-    cityWeatherDescription.textContent = WeatherText
-    cityTemperature.textContent = Temperature.Metric.Value
+const showCityWeatherInfo = async cityName => {
 
-    showCityCard()
+  const { LocalizedName, WeatherText, Temperature, IsDayTime, WeatherIcon } = await fetchCityWeatherInfo(cityName)
+  const timeIcon = `<img src="./src/icons/${WeatherIcon}.svg" />`
+  IsDayTime ? timeImage.src = './src/day.svg' : timeImage.src = './src/night.svg'
+  timeIconContainer.innerHTML = timeIcon
+  cityNameLabel.textContent = LocalizedName
+  cityWeatherDescription.textContent = WeatherText
+  cityTemperature.textContent = Temperature.Metric.Value
+  showCityCard()
 }
   
 const showLocalStorageCity = () => {
@@ -261,16 +264,18 @@ const showLocalStorageCity = () => {
     }
 }
 
-cityForm.addEventListener('submit', event => {
-    event.preventDefault()
-    
-    const inputValue = event.target.city.value.trim()
-    
-    showCityWeatherInfo(inputValue)
-    localStorage.setItem('city', inputValue)
-    
-    cityForm.reset()
-})
+const handleCityInfo = event => {
+  event.preventDefault()
+  
+  const inputValue = event.target.city.value.trim()
+  
+  showCityWeatherInfo(inputValue)
+  localStorage.setItem('city', inputValue)
+  
+  cityForm.reset()
+}
+
+cityForm.addEventListener('submit', handleCityInfo)
 
 
 showLocalStorageCity()
