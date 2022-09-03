@@ -218,27 +218,26 @@ Passo a passo para alcançar este resultado
 section(5)
 
 const exportButton = document.querySelector('[data-js="export-table-btn"]')
-const table = document.querySelector('[data-js="table"]')
+const tableRows = document.querySelectorAll('tr')
 
-const exportTableToCSVFile = () => {
-    const arrayOfTableRows = Array.from(table.querySelectorAll('tr'))
+const getCellsContent = cell => cell.textContent
 
-    const converTableDataInCSVFormat = tableRow => {
-        const content = tableRow.innerText
-        const concatenatedStrings = content.split().join().replaceAll('\t', ',')
+const getStringWithCommas = ({ cells }) => Array.from(cells).map( getCellsContent )
+const createCSVString = () => Array.from(tableRows).map( getStringWithCommas ).join(',\n')
+const setCSVDownload = CSVString => {
+    const CSVURI =  `data:text/csvcharset=utf-8,${encodeURIComponent(CSVString)}`
+    const CSVFileName = 'tabela-lista-de-jogos'
 
-        return `${concatenatedStrings}\n`
-    }
-
-    const getStringsInCSVFormat = arrayOfTableRows.map( converTableDataInCSVFormat ).join('')
-
-    const CSVURI = `data:text/csvcharset=utf-8,${encodeURIComponent(getStringsInCSVFormat)}`
     exportButton.setAttribute('href', CSVURI)
-    exportButton.setAttribute('download','tabela-lista-de-jogos.csv')
+    exportButton.setAttribute('download', `${CSVFileName}.csv`)
 }
 
-exportButton.addEventListener('click', exportTableToCSVFile)
+const exportTable = () => {
+    const CSVString = createCSVString()
+    setCSVDownload(CSVString)
+}
 
+exportButton.addEventListener('click', exportTable)
 
 /*
 06
@@ -253,7 +252,6 @@ exportButton.addEventListener('click', exportTableToCSVFile)
     essa aplicação.
 */
 section(6)
-
 
 /*
 07
